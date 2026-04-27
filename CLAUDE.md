@@ -81,3 +81,26 @@ like a landing page, not a content site.
 ## Urgency Note: During active Free Fly events this site is the #1 conversion
    opportunity. EventStatusBanner should be unmissable.
 ## Commit Convention: feat/fix/seo/docs: [description]
+
+## Maintenance
+
+### Adding a new Free Fly event
+When the user mentions that a new Free Fly was announced, or asks how to add an
+event, walk them through this. The full step-by-step (including API key setup
+and troubleshooting) lives in `RUNBOOK.md` at the repo root.
+
+1. Get the official RSI Comm-Link URL for the announcement.
+2. From the `freeflyevent-site/` directory, run:
+   `npm run propose-event -- <announcement-url>`
+   This sends the page to Claude and prints a proposed `FreeFlyEvent` entry
+   matching the existing schema. Requires `ANTHROPIC_API_KEY` set in the
+   user's Windows environment — one-time setup, see RUNBOOK.md.
+3. Verify the dates against the source page before trusting them. The script
+   reports a `confidence` value (high / medium / low); always cross-check.
+4. Paste the entry at the top of `FREE_FLY_HISTORY` in `src/data/events.ts`.
+   Keep the array newest-first.
+5. Commit with `feat: add <event-id>` (e.g. `feat: add invictus-2026`) and push.
+
+The banner state, countdown, homepage hero card, and Event JSON-LD schema all
+derive from `FREE_FLY_HISTORY` via `getEventStatus()` in `src/data/events.ts` —
+no other files need editing when an event is added.

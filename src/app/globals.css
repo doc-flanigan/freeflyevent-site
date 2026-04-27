@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --space-black: #080c14;
+  --black-mid: #0f1520;
+  --orange: #ff5500;
+  --orange-dark: #cc4400;
+  --white: #f5f8ff;
+  --muted: #6b7890;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  background: var(--space-black);
+  color: var(--white);
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-image: radial-gradient(
+      ellipse at 20% -10%,
+      rgba(255, 85, 0, 0.12),
+      transparent 55%
+    ),
+    radial-gradient(ellipse at 80% 0%, rgba(70, 130, 255, 0.08), transparent 50%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: rgba(255, 85, 0, 0.4);
+  color: var(--white);
+}
+
+/* Tabular numerals for countdown */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--space-black);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 85, 0, 0.35);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 85, 0, 0.6);
+}
+
+/* Subtle starfield overlay used on hero */
+.starfield::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, 0.6) 50%, transparent 51%),
+    radial-gradient(1px 1px at 70% 60%, rgba(255, 255, 255, 0.4) 50%, transparent 51%),
+    radial-gradient(1px 1px at 40% 80%, rgba(255, 255, 255, 0.5) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 85% 20%, rgba(255, 255, 255, 0.7) 50%, transparent 51%),
+    radial-gradient(1px 1px at 10% 70%, rgba(255, 255, 255, 0.4) 50%, transparent 51%);
+  background-size: 800px 800px;
+  opacity: 0.45;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-orange px-6 py-3 font-semibold uppercase tracking-wide text-spaceBlack transition-all duration-200 hover:bg-orange-dark hover:-translate-y-0.5 active:translate-y-0;
+    box-shadow: 0 14px 40px -14px rgba(255, 85, 0, 0.7);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-orange/40 bg-transparent px-6 py-3 font-semibold uppercase tracking-wide text-orange transition-all duration-200 hover:border-orange hover:bg-orange/10;
+  }
+
+  .container-narrow {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-wide {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .heading-display {
+    @apply font-display font-bold tracking-tight text-white;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-orange/30 bg-orange/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-orange;
+  }
+
+  .card {
+    @apply rounded-xl border border-white/10 bg-blackMid/70 p-6 backdrop-blur-sm transition-colors hover:border-orange/30;
+  }
+}
