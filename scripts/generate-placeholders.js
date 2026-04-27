@@ -6,7 +6,7 @@ const path = require('path');
 const heroDir = path.join(__dirname, '../public/images/hero');
 fs.mkdirSync(heroDir, { recursive: true });
 
-for (let i = 1; i <= 10; i++) {
+for (let i = 1; i <= 12; i++) {
   const num = String(i).padStart(2, '0');
   const filename = path.join(heroDir, `hero-${num}.jpg`);
   if (!fs.existsSync(filename)) {

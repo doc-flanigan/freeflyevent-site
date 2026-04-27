@@ -19,11 +19,11 @@ Incremental agents. Confirm each before proceeding.
     orangeDark: '#cc4400'
     white: '#f5f8ff'
     muted: '#6b7890'
-- 10 hero image placeholders
+- 12 hero image placeholders
 - Confirm dev server
 
 ### Agent 2 — Components
-- HeroCarousel.tsx (10 slides)
+- HeroCarousel.tsx (12 slides)
 - EventStatusBanner.tsx: ACTIVE (orange pulse) / UPCOMING (countdown) /
   INACTIVE (next event TBD) states. This is the most important component.
 - CountdownTimer.tsx: days/hours/minutes/seconds to event end or start
