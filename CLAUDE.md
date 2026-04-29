@@ -7,6 +7,14 @@ SC calendar. New players who find this site during a Free Fly event are the
 highest-intent audience in the entire portfolio: they're actively trying the
 game RIGHT NOW. Convert them to referral signups before the event ends.
 
+## Quick Reference
+```
+Referral code:  STAR-GCQJ-N6NC
+Enlist URL:     https://www.robertsspaceindustries.com/enlist?referral=STAR-GCQJ-N6NC
+Hub:            https://dayonecitizen.com
+Conventions:    E:\Claude Code\sc-portfolio\SHARED_CONVENTIONS.md
+```
+
 ## Agentic Build Instructions
 Incremental agents. Confirm each before proceeding.
 
@@ -34,7 +42,7 @@ Incremental agents. Confirm each before proceeding.
 - FreeFlyGuide.tsx: "What to do during your Free Fly" checklist component
 - Footer.tsx
 - NavBar.tsx: links: Home, Current Event, Event Guide, Event History,
-  Referral Bonus, o7citizen.com
+  Referral Bonus, dayonecitizen.com
 
 ### Agent 3 — Homepage (/)
 URGENCY IS THE DESIGN PRINCIPLE. If an event is active, this should feel
@@ -62,25 +70,33 @@ like a landing page, not a content site.
 ### Agent 4 — Event Guide Page (/event-guide)
   - "Your First Free Fly — A Complete Beginner's Guide"
   - Step-by-step: sign up → referral code → download → what to do first
-  - Links to o7citizen.com glossary for terms
+  - Links to dayonecitizen.com glossary for terms
   - CTAButton
 
 ### Agent 5 — Event History Page (/event-history)
   - Full EventHistoryTable with sortable columns
-  - "Subscribe for event alerts" → newsletter at o7citizen.com
+  - "Subscribe for event alerts" → newsletter at dayonecitizen.com
 
 ### Agent 6 — SEO & Build
   - Sitemap, robots, OG meta
   - Event schema (Event type JSON-LD) for current/upcoming events
   - npm run build passes
 
-## Referral URL: https://www.robertsspaceindustries.com/enlist?referral=STAR-GCQJ-N6NC
-## Hub Link: https://o7citizen.com
-## Color Palette: spaceBlack #080c14, orange #ff5500
-## Footer: Standard three-section
-## Urgency Note: During active Free Fly events this site is the #1 conversion
-   opportunity. EventStatusBanner should be unmissable.
-## Commit Convention: feat/fix/seo/docs: [description]
+## Color Palette
+  --space-black: #080c14
+  --black-mid: #0f1520
+  --orange: #ff5500
+  --orange-dark: #cc4400
+  --white: #f5f8ff
+  --muted: #6b7890
+
+## Urgency Note
+During active Free Fly events this site is the #1 conversion opportunity in
+the portfolio. EventStatusBanner must be unmissable above the fold.
+
+## Network Conventions
+See `E:\Claude Code\sc-portfolio\SHARED_CONVENTIONS.md` for footer spec,
+tone rules, commit convention, tech stack, and agentic build pattern.
 
 ## Maintenance
 
@@ -104,3 +120,25 @@ and troubleshooting) lives in `RUNBOOK.md` at the repo root.
 The banner state, countdown, homepage hero card, and Event JSON-LD schema all
 derive from `FREE_FLY_HISTORY` via `getEventStatus()` in `src/data/events.ts` —
 no other files need editing when an event is added.
+
+## Data Verification Rule (READ THIS BEFORE EDITING src/data/events.ts)
+
+Every entry in `FREE_FLY_HISTORY` must be verifiable against an official RSI
+Comm-Link. Do not use third-party event trackers as the source of truth.
+
+Authoritative sources for event data:
+1. **Star Citizen Wiki API** — `https://api.star-citizen.wiki/api/comm-links`
+   Search by event name. The field `translations.en_EN` contains the full
+   Comm-Link body. This is the easiest way in — RSI Comm-Link pages are
+   JS-rendered and block most scrapers.
+2. **Official RSI** — `robertsspaceindustries.com` Free Fly event pages directly.
+
+When adding a new event entry:
+- Set the `source` field to the Comm-Link URL you verified against.
+- Verify both the event dates AND the included ships before saving.
+- If a Comm-Link describes only one side of the referral reward, look for the
+  event-overview Comm-Link — it usually documents both sides. Use that one.
+
+The banner state, countdown, homepage hero card, and Event JSON-LD schema all
+derive from `FREE_FLY_HISTORY` via `getEventStatus()` — no other files need
+editing when an event is added.
