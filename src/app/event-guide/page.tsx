@@ -77,9 +77,9 @@ const STEPS: Step[] = [
     body: (
       <>
         During the event, several ships are temporarily unlocked for everyone.
-        Featured ships rotate event to event — Invictus tends to spotlight
-        military ships, IAE rotates 100+ ships through the event. Check the
-        homepage for the current roster.
+        Featured ships rotate event to event — DefenseCon (formerly Invictus
+        Launch Week) spotlights military ships, IAE rotates 100+ ships through
+        the event. Check the homepage for the current roster.
       </>
     ),
   },
