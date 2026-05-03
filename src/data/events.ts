@@ -24,12 +24,13 @@ export type FreeFlyEvent = {
  */
 export const FREE_FLY_HISTORY: FreeFlyEvent[] = [
   {
-    id: 'invictus-2026',
-    name: 'Invictus Launch Week 2026',
-    start: '2026-05-22T17:00:00Z',
-    end: '2026-06-02T17:00:00Z',
-    ships: ['Anvil F7C Hornet', 'Drake Cutlass Black', 'RSI Aurora MR'],
-    notes: 'Annual UEE Navy fleet week. Largest Free Fly of the year.',
+    id: 'defensecon-2026',
+    name: 'DefenseCon 2956',
+    start: '2026-05-14T17:00:00Z',
+    end: '2026-05-27T17:00:00Z',
+    ships: ['Anvil Ironclad (Flight Ready debut)', 'Military ships across all manufacturers', 'Combat fighters, bombers, and capital ships'],
+    notes: 'DefenseCon replaces Invictus Launch Week in 2026. Combat and defense-focused fleet showcase. Anvil Ironclad debuts as Flight Ready.',
+    source: 'https://robertsspaceindustries.com/en/comm-link/transmission/21134-Countdown-To-DefenseCon',
   },
   {
     id: 'iae-2025',
