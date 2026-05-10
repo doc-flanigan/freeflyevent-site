@@ -1,5 +1,7 @@
+'use client';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { REFERRAL_URL } from '@/data/events';
+import { getRotatedReferralUrl, FALLBACK_REFERRAL_URL } from '@/lib/referral-rotator';
 
 type Props = {
   children?: React.ReactNode;
@@ -11,11 +13,15 @@ type Props = {
 
 export function CTAButton({
   children = 'Play Free — Claim Your 50,000 UEC Bonus',
-  href = REFERRAL_URL,
+  href: hrefProp,
   variant = 'primary',
   size = 'md',
   className = '',
 }: Props) {
+  const [referralUrl, setReferralUrl] = useState(FALLBACK_REFERRAL_URL);
+  useEffect(() => { setReferralUrl(getRotatedReferralUrl()); }, []);
+
+  const href = hrefProp ?? referralUrl;
   const sizeCls = size === 'lg' ? 'px-8 py-4 text-base' : 'px-6 py-3 text-sm';
   const base = variant === 'primary' ? 'btn-primary' : 'btn-secondary';
   return (
