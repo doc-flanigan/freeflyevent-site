@@ -18,7 +18,7 @@ export function Footer() {
             >
               Doc_Flanigan
             </Link>{' '}
-            for new players. Part of the o7citizen.com fan-site network.
+            for new players. Part of the dayonecitizen.com fan-site network.
           </p>
         </div>
 
@@ -71,7 +71,7 @@ export function Footer() {
             rel="noopener"
             className="mt-4 inline-block text-sm text-muted hover:text-orange"
           >
-            Visit o7citizen.com ↗
+            Visit dayonecitizen.com ↗
           </Link>
         </div>
       </div>

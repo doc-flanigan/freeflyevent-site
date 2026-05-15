@@ -16,7 +16,7 @@ Inactive). Update `src/data/currentEvent.ts` when CIG announces an event.
 
 ## Funnel
 freeflyevent.com → current event info → referral code → RSI signup →
-o7citizen.com for new player guidance
+dayonecitizen.com for new player guidance
 
 ## Tech Stack: Next.js 14 · TypeScript · Tailwind CSS · Vercel
 ## Setup: `npm install && npm run dev`

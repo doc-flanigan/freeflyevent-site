@@ -262,7 +262,7 @@ export default function HomePage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <CTAButton size="lg" />
             <Link href={HUB_URL} target="_blank" rel="noopener" className="btn-secondary">
-              New to SC? Visit o7citizen.com →
+              New to SC? Visit dayonecitizen.com →
             </Link>
           </div>
         </section>

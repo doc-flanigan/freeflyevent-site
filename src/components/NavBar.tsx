@@ -41,7 +41,7 @@ export function NavBar() {
             rel="noopener"
             className="ml-2 rounded-md border border-white/10 px-3 py-2 text-sm text-muted transition-colors hover:border-orange/40 hover:text-orange"
           >
-            o7citizen.com ↗
+            dayonecitizen.com ↗
           </Link>
         </div>
 
@@ -89,7 +89,7 @@ export function NavBar() {
               onClick={() => setOpen(false)}
               className="rounded-md px-3 py-3 text-sm text-muted hover:bg-white/5 hover:text-orange"
             >
-              o7citizen.com ↗
+              dayonecitizen.com ↗
             </Link>
           </div>
         </div>

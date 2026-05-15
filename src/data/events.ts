@@ -128,4 +128,4 @@ export function getEventStatus(now: Date = new Date()): EventStatus {
 export const REFERRAL_URL =
   'https://www.robertsspaceindustries.com/enlist?referral=STAR-GCQJ-N6NC';
 export const REFERRAL_CODE = 'STAR-GCQJ-N6NC';
-export const HUB_URL = 'https://o7citizen.com';
+export const HUB_URL = 'https://dayonecitizen.com';

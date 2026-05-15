@@ -69,7 +69,7 @@ export default function EventHistoryPage() {
                 </h2>
                 <p className="mt-3 text-muted">
                   We post date confirmations and full event roundups on
-                  o7citizen.com. Subscribe there for event alerts and
+                  dayonecitizen.com. Subscribe there for event alerts and
                   beginner-friendly Star Citizen guides.
                 </p>
                 <Link
@@ -78,7 +78,7 @@ export default function EventHistoryPage() {
                   rel="noopener"
                   className="btn-secondary mt-6"
                 >
-                  Subscribe at o7citizen.com →
+                  Subscribe at dayonecitizen.com →
                 </Link>
               </div>
               <div className="rounded-xl border border-white/10 bg-spaceBlack/60 p-6">

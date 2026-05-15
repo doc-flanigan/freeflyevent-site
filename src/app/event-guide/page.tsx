@@ -202,7 +202,7 @@ export default function EventGuidePage() {
             <p className="mt-3 text-muted">
               We keep the plain-English glossary on the main hub. Free Fly is
               packed with acronyms — when you hit one you don&apos;t know,
-              o7citizen.com has the answer.
+              dayonecitizen.com has the answer.
             </p>
             <Link
               href={HUB_URL}
@@ -210,7 +210,7 @@ export default function EventGuidePage() {
               rel="noopener"
               className="btn-secondary mt-6"
             >
-              Open the o7citizen.com Glossary →
+              Open the dayonecitizen.com Glossary →
             </Link>
           </div>
         </section>
