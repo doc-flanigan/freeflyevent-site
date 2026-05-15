@@ -1,4 +1,4 @@
-const REFERRAL_CODES = ['STAR-GCQJ-N6NC', 'STAR-CLXM-7VNH', 'STAR-RXW4-JPN3'] as const
+const REFERRAL_CODES = ['STAR-GCQJ-N6NC', 'STAR-RXW4-JPN3', 'STAR-C2GJ-XSSS'] as const
 const BASE_URL = 'https://www.robertsspaceindustries.com/enlist?referral='
 const STORAGE_KEY = 'sc_referral_index'
 
