@@ -9,6 +9,7 @@ type Props = {
   variant?: 'primary' | 'secondary';
   size?: 'md' | 'lg';
   className?: string;
+  trackingLabel?: string;
 };
 
 export function CTAButton({
@@ -17,6 +18,7 @@ export function CTAButton({
   variant = 'primary',
   size = 'md',
   className = '',
+  trackingLabel,
 }: Props) {
   const [referralUrl, setReferralUrl] = useState(FALLBACK_REFERRAL_URL);
   useEffect(() => { setReferralUrl(getRotatedReferralUrl()); }, []);
@@ -24,12 +26,29 @@ export function CTAButton({
   const href = hrefProp ?? referralUrl;
   const sizeCls = size === 'lg' ? 'px-8 py-4 text-base' : 'px-6 py-3 text-sm';
   const base = variant === 'primary' ? 'btn-primary' : 'btn-secondary';
+
+  const handleClick = () => {
+    const code = href.split('referral=')[1] ?? ''
+    fetch('/api/track-click', {
+      method: 'POST',
+      keepalive: true,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        label: trackingLabel ?? 'unknown',
+        referralCode: code,
+        page: window.location.pathname,
+        site: window.location.hostname,
+      }),
+    }).catch(() => {})
+  }
+
   return (
     <Link
       href={href}
       target={href.startsWith('http') ? '_blank' : undefined}
       rel={href.startsWith('http') ? 'noopener' : undefined}
       className={`${base} ${sizeCls} ${className}`}
+      onClick={handleClick}
     >
       <span>{children}</span>
       <ArrowIcon />
