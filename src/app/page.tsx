@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { EventStatusBanner } from '@/components/EventStatusBanner';
 import { NavBar } from '@/components/NavBar';
@@ -7,7 +8,43 @@ import { CTAButton } from '@/components/CTAButton';
 import { EventCard } from '@/components/EventCard';
 import { EventHistoryTable } from '@/components/EventHistoryTable';
 import { FreeFlyGuide } from '@/components/FreeFlyGuide';
+import { TwitchClip } from '@/components/TwitchClip';
 import { FREE_FLY_HISTORY, getEventStatus, HUB_URL, REFERRAL_URL } from '@/data/events';
+
+const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const status = getEventStatus();
+  if (status.state === 'CANCELLED_FREE_FLY') {
+    return {
+      title: 'DefenseCon Free Fly Cancelled — 50,000 UEC Bonus Still Available | freeflyevent.com',
+      description:
+        "CIG cancelled the Star Citizen Free Fly for DefenseCon 2026 due to server performance issues — the first time this has ever happened. You can still create a free RSI account and claim 50,000 UEC with a referral code.",
+      keywords: [
+        'Star Citizen free fly cancelled',
+        'DefenseCon free fly cancelled',
+        'Star Citizen free fly not available 2026',
+        'free fly cancelled server issues',
+        'Star Citizen DefenseCon 2026',
+        'Star Citizen 50000 UEC no free fly',
+        'Star Citizen referral bonus DefenseCon',
+        'STAR-GCQJ-N6NC',
+      ],
+      openGraph: {
+        title: 'DefenseCon Free Fly Cancelled — 50,000 UEC Still Available',
+        description:
+          "CIG pulled the Free Fly for DefenseCon 2026 due to server load — a first in Star Citizen history. Your 50,000 UEC referral bonus still works. Sign up now.",
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Star Citizen Free Fly Cancelled (DefenseCon 2026)',
+        description:
+          "First ever Free Fly cancellation. Server issues forced CIG's hand — but your 50,000 UEC signup bonus still works.",
+      },
+    };
+  }
+  return {};
+}
 
 export default function HomePage() {
   // Server-side initial state — used for the static SEO/schema content.
@@ -58,6 +95,97 @@ export default function HomePage() {
         <section id="current-event" className="container-wide -mt-8 sm:-mt-12 relative z-10">
           <EventStatusBanner variant="hero" />
         </section>
+
+        {/* DEFENSECON CANCELLATION — visible only when free fly was pulled */}
+        {status.state === 'CANCELLED_FREE_FLY' && (
+          <section id="cancellation" className="container-narrow py-16 sm:py-20">
+            <div className="rounded-2xl border border-white/10 bg-blackMid/60 p-8 sm:p-12">
+
+              {/* Header */}
+              <div className="mb-8 max-w-2xl">
+                <span className="eyebrow text-muted/80">DefenseCon 2026 — What Happened</span>
+                <h2 className="heading-display mt-4 text-3xl sm:text-4xl">
+                  The first time in Star Citizen history a Free Fly has been cancelled.
+                </h2>
+                <p className="mt-5 text-white/80">
+                  CIG pulled the Free Fly portion of DefenseCon 2956 mid-event due to server
+                  performance issues — something that has never happened in over a decade of
+                  Free Fly events. They didn&apos;t go quiet: they went live on Twitch to explain
+                  it directly to the community.
+                </p>
+              </div>
+
+              {/* Twitch embed */}
+              <div className="mb-8">
+                <div className="mb-3 flex items-center gap-2">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-[#9147ff]"
+                    aria-hidden
+                  >
+                    <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z" />
+                  </svg>
+                  <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[#9147ff]">
+                    Official statement — CIG on Twitch
+                  </span>
+                </div>
+                <TwitchClip
+                  clipId={DEFENSECON_CLIP_ID}
+                  title="CIG explains the DefenseCon Free Fly cancellation"
+                />
+              </div>
+
+              {/* Rolling with it */}
+              <div className="grid gap-6 sm:grid-cols-3 border-t border-white/10 pt-8">
+                <div>
+                  <div className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-muted">
+                    What CIG said
+                  </div>
+                  <p className="text-sm text-white/80">
+                    Server load under the DefenseCon traffic made a stable Free Fly
+                    experience impossible. CIG made the call to pull it rather than let
+                    new players hit a broken game as their first impression.
+                  </p>
+                </div>
+                <div>
+                  <div className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-muted">
+                    The community take
+                  </div>
+                  <p className="text-sm text-white/80">
+                    Disappointing? Yes. But CIG were transparent about it in real time.
+                    This is Star Citizen — the community rolls with the punches.
+                    The game will get a better Free Fly window when the servers can
+                    handle it.
+                  </p>
+                </div>
+                <div>
+                  <div className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-muted">
+                    What you can still do
+                  </div>
+                  <p className="text-sm text-white/80">
+                    The <strong className="text-orange">50,000 UEC referral bonus</strong> is
+                    still available — create a free RSI account now and it&apos;s locked in
+                    for the next Free Fly. Buying a Game Package during DefenseCon still
+                    earns the <strong className="text-white">referral clothing pack</strong>.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-4">
+                <CTAButton size="lg">Claim Your 50,000 UEC Bonus Anyway</CTAButton>
+                <Link
+                  href="/event-history"
+                  className="btn-secondary"
+                >
+                  See all past Free Fly events →
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* WHAT IS A FREE FLY */}
         <section className="container-narrow py-20 sm:py-28">
@@ -184,9 +312,11 @@ export default function HomePage() {
               <span className="eyebrow">
                 {status.state === 'ACTIVE'
                   ? 'Right Now'
-                  : status.state === 'UPCOMING'
-                    ? 'Next Event'
-                    : 'Most Recent Event'}
+                  : status.state === 'CANCELLED_FREE_FLY'
+                    ? 'Free Fly Cancelled'
+                    : status.state === 'UPCOMING'
+                      ? 'Next Event'
+                      : 'Most Recent Event'}
               </span>
               <h2 className="heading-display mt-3 text-3xl">{featuredEvent.name}</h2>
             </div>
@@ -203,9 +333,11 @@ export default function HomePage() {
               status={
                 status.state === 'ACTIVE'
                   ? 'ACTIVE'
-                  : status.state === 'UPCOMING'
-                    ? 'UPCOMING'
-                    : 'PAST'
+                  : status.state === 'CANCELLED_FREE_FLY'
+                    ? 'CANCELLED_FREE_FLY'
+                    : status.state === 'UPCOMING'
+                      ? 'UPCOMING'
+                      : 'PAST'
               }
               highlight
             />
@@ -270,8 +402,8 @@ export default function HomePage() {
 
       <Footer />
 
-      {/* JSON-LD: Event schema for the active or upcoming event */}
-      {(status.state === 'ACTIVE' || status.state === 'UPCOMING') && (
+      {/* JSON-LD: Event schema for the active, cancelled, or upcoming event */}
+      {(status.state === 'ACTIVE' || status.state === 'CANCELLED_FREE_FLY' || status.state === 'UPCOMING') && (
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
@@ -284,15 +416,17 @@ export default function HomePage() {
               endDate: status.event.end,
               eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
               eventStatus:
-                status.state === 'ACTIVE'
-                  ? 'https://schema.org/EventScheduled'
+                status.state === 'CANCELLED_FREE_FLY'
+                  ? 'https://schema.org/EventMovedOnline'
                   : 'https://schema.org/EventScheduled',
               location: {
                 '@type': 'VirtualLocation',
                 url: REFERRAL_URL,
               },
-              description: `${status.event.name} — Star Citizen Free Fly event. ${
-                status.event.notes ?? ''
+              description: `${status.event.name} — ${
+                status.state === 'CANCELLED_FREE_FLY'
+                  ? 'Free Fly access was cancelled by CIG due to performance issues. New players can still sign up for a free RSI account and claim 50,000 UEC with a referral code.'
+                  : `Star Citizen Free Fly event. ${status.event.notes ?? ''}`
               }`,
               organizer: {
                 '@type': 'Organization',

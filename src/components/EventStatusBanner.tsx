@@ -55,7 +55,32 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
   return <Hero {...slotProps} />;
 }
 
+function CancelledBar({ referralUrl, onNavigate }: { referralUrl: string; onNavigate: () => void }) {
+  return (
+    <div className="w-full border-b border-orange/30 bg-blackMid text-white">
+      <div className="container-wide flex flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-2 text-center text-sm">
+        <span className="font-semibold text-orange">DefenseCon Free Fly Cancelled</span>
+        <span className="opacity-60 hidden sm:inline">·</span>
+        <span className="text-muted">50,000 UEC referral bonus still available at signup.</span>
+        <a
+          href={referralUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ml-2 rounded-md border border-orange/40 px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange transition-transform hover:-translate-y-0.5"
+          onClick={onNavigate}
+        >
+          Claim Bonus →
+        </a>
+      </div>
+    </div>
+  );
+}
+
 function Bar({ status, referralUrl, onNavigate }: SlotProps) {
+  if (status.state === 'CANCELLED_FREE_FLY') {
+    return <CancelledBar referralUrl={referralUrl} onNavigate={onNavigate} />;
+  }
+
   if (status.state === 'ACTIVE') {
     return (
       <div className="relative w-full overflow-hidden border-b border-orange/40 bg-orange text-spaceBlack">
@@ -109,6 +134,63 @@ function Bar({ status, referralUrl, onNavigate }: SlotProps) {
 }
 
 function Hero({ status, referralUrl, onNavigate }: SlotProps) {
+  if (status.state === 'CANCELLED_FREE_FLY') {
+    return (
+      <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-blackMid p-8 sm:p-10">
+        <div className="flex flex-col items-start gap-5">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.25em] text-muted">
+            Free Fly Cancelled — {status.event.name}
+          </span>
+          <h2 className="heading-display text-3xl sm:text-4xl">
+            First ever Free Fly cancellation.<br />
+            <span className="text-orange">The bonus still works.</span>
+          </h2>
+          <p className="max-w-xl text-white/80">
+            CIG pulled the Free Fly portion of DefenseCon due to server performance issues —
+            the first time this has happened in Star Citizen history. The event and ship
+            showcases continue, but free public access was removed.{' '}
+            <a href="#cancellation" className="text-orange underline underline-offset-2 hover:text-orange/80">
+              Watch CIG&apos;s official explanation ↓
+            </a>
+          </p>
+
+          {/* Two-column value props */}
+          <div className="grid gap-4 sm:grid-cols-2 w-full max-w-2xl">
+            <div className="rounded-xl border border-orange/30 bg-orange/10 p-5">
+              <div className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-orange">
+                Still Available — Free Account
+              </div>
+              <p className="text-sm text-white/85">
+                Create a free RSI account now and paste a referral code at signup.
+                You receive <strong className="text-white">50,000 UEC</strong> the moment you log in — no purchase needed.
+              </p>
+            </div>
+            <div className="rounded-xl border border-white/15 bg-white/5 p-5">
+              <div className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-muted">
+                If You Buy a Game Package
+              </div>
+              <p className="text-sm text-white/85">
+                Purchasing a Game Package during DefenseCon still qualifies for the{' '}
+                <strong className="text-white">referral bonus clothing pack</strong>.
+                The referral code must be applied at signup.
+              </p>
+            </div>
+          </div>
+
+          <a
+            href={referralUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary px-8 py-4 text-base"
+            onClick={onNavigate}
+          >
+            Create Free Account & Claim 50,000 UEC →
+          </a>
+        </div>
+      </div>
+    );
+  }
+
   if (status.state === 'ACTIVE') {
     return (
       <div className="relative overflow-hidden rounded-2xl border border-orange/60 bg-gradient-to-br from-orange/20 via-spaceBlack to-spaceBlack p-8 sm:p-10">

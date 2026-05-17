@@ -19,6 +19,11 @@ export const metadata: Metadata = {
     'play Star Citizen free',
     'Star Citizen referral bonus',
     'STAR-GCQJ-N6NC',
+    'Star Citizen free fly cancelled',
+    'DefenseCon free fly cancelled',
+    'Star Citizen free fly not available',
+    'Star Citizen free fly 2026',
+    'DefenseCon 2026',
   ],
   authors: [{ name: 'Doc_Flanigan' }],
   openGraph: {
