@@ -52,12 +52,41 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const SITE_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: 'freeflyevent.com',
+      description:
+        'Star Citizen Free Fly event tracker — current event status, dates, and referral bonus guide.',
+      inLanguage: 'en-US',
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+      name: 'freeflyevent.com',
+      url: SITE_URL,
+      description:
+        'Unofficial Star Citizen fan site tracking Free Fly events and referral bonuses. Not affiliated with Cloud Imperium Games.',
+      sameAs: ['https://dayonecitizen.com'],
+    },
+  ],
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="bg-spaceBlack">
       <body className="min-h-screen bg-spaceBlack font-sans text-white antialiased">
         {children}
         <Analytics />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(SITE_SCHEMA) }}
+        />
       </body>
     </html>
   );

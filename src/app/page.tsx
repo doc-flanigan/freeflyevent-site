@@ -445,6 +445,59 @@ export default function HomePage() {
           }}
         />
       )}
+      {/* JSON-LD: FAQPage — surfaces FAQ accordion in Bing rich results */}
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'What is a Star Citizen Free Fly event?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'A Star Citizen Free Fly event is a limited-time period — typically 10 days — when Cloud Imperium Games opens Star Citizen to everyone at no cost. No purchase is required: you create a free RSI account, download the launcher, and play. Free Fly events run roughly twice a year: Invictus Launch Week (or DefenseCon) in May and the Intergalactic Aerospace Expo (IAE) in November.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'How do I get the 50,000 UEC referral bonus during Free Fly?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'During signup on robertsspaceindustries.com, paste a referral code into the Referral Code field on the account creation form. Using code STAR-GCQJ-N6NC will credit your new account with 50,000 UEC — Star Citizen\'s in-game currency — the moment you log in. The code must be entered at or within 24 hours of signup; it cannot be added later.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Can I still get the 50,000 UEC bonus if there is no active Free Fly event?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Yes. The 50,000 UEC referral bonus is awarded when you create a free RSI account using a referral code — regardless of whether a Free Fly event is active. Creating the account now locks in your bonus before the next Free Fly opens.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'When is the next Star Citizen Free Fly event?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Star Citizen Free Fly events follow a predictable annual pattern: a military-themed event (Invictus Launch Week or DefenseCon) in May, and the Intergalactic Aerospace Expo (IAE) in November. Check the freeflyevent.com homepage for the current event status, countdown timer, and announced dates.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Do I keep progress after a Free Fly event ends?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Your RSI account and any UEC you earned persist after the Free Fly ends. In-game assets acquired with loaner ships are returned, but your account, referral bonus UEC, and any purchases made during the event remain. If you buy a Game Package during Free Fly, all progress carries over seamlessly.',
+                },
+              },
+            ],
+          }),
+        }}
+      />
     </>
   );
 }
