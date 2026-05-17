@@ -142,3 +142,22 @@ When adding a new event entry:
 The banner state, countdown, homepage hero card, and Event JSON-LD schema all
 derive from `FREE_FLY_HISTORY` via `getEventStatus()` — no other files need
 editing when an event is added.
+
+## Click Tracking
+
+Added 2026-05-17. Every referral CTA click fires a background POST to `/api/log` which writes a row to the shared Google Sheet and posts an embed to the #referral-clicks Discord channel.
+
+**Env vars required** (Vercel project settings + `.env.local`):
+- `CLICK_TRACKER_SHEET_URL` — Google Apps Script web app deploy URL
+- `DISCORD_CLICK_WEBHOOK_URL` — Discord channel webhook URL
+
+**Key files:**
+- `src/app/api/log/route.ts` — server-side handler (parallel Sheet + Discord calls)
+- `src/components/CTAButton.tsx` — `handleClick` fires the fetch on CTA click
+
+> **Note:** Endpoint was renamed from `/api/track-click` → `/api/log` because adblocker filter lists (EasyPrivacy, uBlock Origin) blocked the original URL pattern client-side.
+
+### TODO: Verify end-to-end on this site
+- [ ] Click CTA **with** adblocker enabled → Sheet row appears within 5s
+- [ ] Click CTA **with** adblocker enabled → Discord embed appears in #referral-clicks
+- [ ] Click CTA **without** adblocker → same as above
