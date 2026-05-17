@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { HUB_URL, REFERRAL_CODE, REFERRAL_URL } from '@/data/events';
+import { HUB_URL, REFERRAL_CODE } from '@/data/events';
 
 export function Footer() {
   return (
@@ -43,13 +43,8 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link
-                href={REFERRAL_URL}
-                target="_blank"
-                rel="noopener"
-                className="text-orange hover:underline"
-              >
-                Get 50,000 UEC →
+              <Link href="/event-guide" className="text-white/80 hover:text-orange">
+                How to claim your bonus
               </Link>
             </li>
           </ul>

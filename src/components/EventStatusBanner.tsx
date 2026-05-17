@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { getEventStatus, REFERRAL_URL, type EventStatus } from '@/data/events';
+import { getEventStatus, type EventStatus } from '@/data/events';
+import { getRotatedReferralUrl, FALLBACK_REFERRAL_URL } from '@/lib/referral-rotator';
 import { CountdownTimer } from './CountdownTimer';
 
 type Props = {
@@ -11,15 +12,34 @@ type Props = {
   variant?: 'bar' | 'hero';
 };
 
+type SlotProps = { status: EventStatus; referralUrl: string; onNavigate: () => void };
+
 export function EventStatusBanner({ variant = 'bar' }: Props) {
   const [status, setStatus] = useState<EventStatus | null>(null);
+  const [referralUrl, setReferralUrl] = useState(FALLBACK_REFERRAL_URL);
 
   useEffect(() => {
     setStatus(getEventStatus());
+    setReferralUrl(getRotatedReferralUrl());
     // refresh every minute so banner state flips automatically
     const id = setInterval(() => setStatus(getEventStatus()), 60_000);
     return () => clearInterval(id);
   }, []);
+
+  const handleNavigate = () => {
+    const code = referralUrl.split('referral=')[1] ?? '';
+    fetch('/api/log', {
+      method: 'POST',
+      keepalive: true,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        label: 'EventStatusBanner',
+        referralCode: code,
+        page: window.location.pathname,
+        site: window.location.hostname,
+      }),
+    }).catch(() => {});
+  };
 
   if (!status) {
     // Render a stable, accessible placeholder that occupies the same space.
@@ -30,11 +50,12 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
     );
   }
 
-  if (variant === 'bar') return <Bar status={status} />;
-  return <Hero status={status} />;
+  const slotProps: SlotProps = { status, referralUrl, onNavigate: handleNavigate };
+  if (variant === 'bar') return <Bar {...slotProps} />;
+  return <Hero {...slotProps} />;
 }
 
-function Bar({ status }: { status: EventStatus }) {
+function Bar({ status, referralUrl, onNavigate }: SlotProps) {
   if (status.state === 'ACTIVE') {
     return (
       <div className="relative w-full overflow-hidden border-b border-orange/40 bg-orange text-spaceBlack">
@@ -45,14 +66,15 @@ function Bar({ status }: { status: EventStatus }) {
           <span className="font-normal opacity-80">{status.event.name}</span>
           <span className="hidden sm:inline opacity-60">·</span>
           <CountdownTimer target={status.endsAt} variant="compact" />
-          <Link
-            href={REFERRAL_URL}
+          <a
+            href={referralUrl}
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             className="ml-2 rounded-md bg-spaceBlack px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange transition-transform hover:-translate-y-0.5"
+            onClick={onNavigate}
           >
             Play Free →
-          </Link>
+          </a>
         </div>
       </div>
     );
@@ -86,7 +108,7 @@ function Bar({ status }: { status: EventStatus }) {
   );
 }
 
-function Hero({ status }: { status: EventStatus }) {
+function Hero({ status, referralUrl, onNavigate }: SlotProps) {
   if (status.state === 'ACTIVE') {
     return (
       <div className="relative overflow-hidden rounded-2xl border border-orange/60 bg-gradient-to-br from-orange/20 via-spaceBlack to-spaceBlack p-8 sm:p-10">
@@ -102,14 +124,15 @@ function Hero({ status }: { status: EventStatus }) {
             miss it — when the timer hits zero, the game returns to paid.
           </p>
           <CountdownTimer target={status.endsAt} label="Event ends in" />
-          <Link
-            href={REFERRAL_URL}
+          <a
+            href={referralUrl}
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             className="btn-primary px-8 py-4 text-base"
+            onClick={onNavigate}
           >
             Create Your Free Account & Claim 50,000 UEC →
-          </Link>
+          </a>
         </div>
       </div>
     );
@@ -127,14 +150,15 @@ function Hero({ status }: { status: EventStatus }) {
             ready when you launch the game.
           </p>
           <CountdownTimer target={status.startsAt} label="Begins in" />
-          <Link
-            href={REFERRAL_URL}
+          <a
+            href={referralUrl}
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             className="btn-primary px-8 py-4 text-base"
+            onClick={onNavigate}
           >
             Pre-Register & Lock In Bonus →
-          </Link>
+          </a>
         </div>
       </div>
     );
@@ -152,14 +176,15 @@ function Hero({ status }: { status: EventStatus }) {
           You can still create a Star Citizen account today and lock in the
           50,000 UEC bonus — your account will be ready the moment the event opens.
         </p>
-        <Link
-          href={REFERRAL_URL}
+        <a
+          href={referralUrl}
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           className="btn-secondary px-8 py-4 text-base"
+          onClick={onNavigate}
         >
           Create Account & Reserve Bonus →
-        </Link>
+        </a>
       </div>
     </div>
   );
