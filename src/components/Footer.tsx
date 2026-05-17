@@ -89,7 +89,10 @@ export function Footer() {
             <span>
               This is an unofficial Star Citizen fansite, not affiliated with the
               Cloud Imperium group of companies. All content not authored by
-              Doc_Flanigan is property of its respective owners.
+              Doc_Flanigan is property of its respective owners.{' '}
+              Affiliate disclosure: This site uses Star Citizen referral links.
+              Referral code owners may receive an in-game bonus if you sign up.
+              Your rewards are not affected.
             </span>
           </div>
           <div className="flex items-center gap-4">

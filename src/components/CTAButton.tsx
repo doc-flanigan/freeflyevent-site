@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { getRotatedReferralUrl, FALLBACK_REFERRAL_URL } from '@/lib/referral-rotator';
@@ -29,7 +29,7 @@ export function CTAButton({
 
   const handleClick = () => {
     const code = href.split('referral=')[1] ?? ''
-    fetch('/api/track-click', {
+    fetch('/api/log', {
       method: 'POST',
       keepalive: true,
       headers: { 'Content-Type': 'application/json' },
