@@ -6,7 +6,7 @@ type Step = {
 const STEPS: Step[] = [
   {
     title: 'Create your free RSI account',
-    body: 'Use a referral code at signup so 50,000 UEC lands in your account when you log in — plus a free Drake DefenseCon Gear Pack if you sign up before May 24. You cannot add the code after the 24-hour grace window — get it right the first time.',
+    body: 'Use a referral code at signup so 50,000 UEC lands in your account when you log in — plus a free Drake DefenseCon Gear Pack if you sign up before May 27. You cannot add the code after the 24-hour grace window — get it right the first time.',
   },
   {
     title: 'Download the launcher',

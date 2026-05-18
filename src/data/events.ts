@@ -42,9 +42,9 @@ export const FREE_FLY_HISTORY: FreeFlyEvent[] = [
     end: '2026-05-27T17:00:00Z',
     ships: ['Anvil Ironclad (Flight Ready debut)', 'Rotating Anvil & military fleet'],
     bonusOverride: {
-      text: '50,000 UEC + a free Drake DefenseCon Gear Pack — use a referral code at signup before May 24',
-      badge: '+ Drake DefenseCon Gear Pack (through May 24)',
-      expiresAt: '2026-05-25T00:00:00Z',
+      text: '50,000 UEC + a free Drake DefenseCon Gear Pack — use a referral code at signup before May 27',
+      badge: '+ Drake DefenseCon Gear Pack (through May 27)',
+      expiresAt: '2026-05-28T00:00:00Z',
     },
     notes: 'DefenseCon 2956. Free Fly reinstated May 18 2026 and active through May 27. Initially cancelled ~May 14 due to server performance issues — first cancellation in SC history — then restored. Anvil Ironclad made its Flight Ready debut.',
     source: 'https://robertsspaceindustries.com/en/comm-link/transmission/21134-Countdown-To-DefenseCon',

@@ -20,10 +20,10 @@ export async function generateMetadata(): Promise<Metadata> {
     const bonus = getActiveBonusOverride();
     return {
       title: bonus
-        ? 'Star Citizen Free Fly ACTIVE — 50,000 UEC + Drake Gear Pack Through May 24 | freeflyevent.com'
+        ? 'Star Citizen Free Fly ACTIVE — 50,000 UEC + Drake Gear Pack Through May 27 | freeflyevent.com'
         : 'Star Citizen Free Fly ACTIVE Now — DefenseCon 2956 Live Through May 27 | freeflyevent.com',
       description: bonus
-        ? "DefenseCon 2956 Free Fly is live right now through May 27. Sign up with a referral code and claim 50,000 UEC + a free Drake DefenseCon Gear Pack — gear pack offer ends May 24."
+        ? "DefenseCon 2956 Free Fly is live right now through May 27. Sign up with a referral code and claim 50,000 UEC + a free Drake DefenseCon Gear Pack — gear pack offer ends May 27."
         : "Star Citizen is free to play right now — DefenseCon 2956 Free Fly is live through May 27. No purchase needed. Create a free account and claim 50,000 UEC with a referral code before the event ends.",
       keywords: [
         'Star Citizen free fly active',
@@ -311,11 +311,11 @@ export default function HomePage() {
                 {bonusOverride && (
                   <>
                     <div className="mt-4 rounded-lg border border-yellow-400/50 bg-yellow-400/10 px-4 py-3 text-sm text-yellow-200">
-                      <strong className="text-yellow-300">Limited offer through May 24:</strong> New accounts created with a referral code also receive a free Drake DefenseCon Gear Pack. After May 24, only the standard 50,000 UEC applies.
+                      <strong className="text-yellow-300">Limited offer through May 27:</strong> New accounts created with a referral code also receive a free Drake DefenseCon Gear Pack. After May 27, only the standard 50,000 UEC applies.
                     </div>
                     <LightboxImage
                       src="/images/defensecon-2956.webp"
-                      alt="Drake DefenseCon 2956 Gear Pack — limited signup bonus through May 24"
+                      alt="Drake DefenseCon 2956 Gear Pack — limited signup bonus through May 27"
                       width={800}
                       height={450}
                       containerClassName="mt-5 block rounded-xl border-4 border-yellow-400 shadow-[0_0_28px_rgba(250,204,21,0.4)]"
