@@ -9,7 +9,8 @@ const LINKS = [
   { href: '/#current-event', label: 'Current Event' },
   { href: '/event-guide', label: 'Event Guide' },
   { href: '/event-history', label: 'Event History' },
-  { href: '/#referral-bonus', label: 'Referral Bonus' },
+  { href: '/glossary', label: 'Glossary' },
+  { href: '/should-i-buy', label: 'Should I Buy?' },
 ];
 
 export function NavBar() {

@@ -19,6 +19,11 @@ export const metadata: Metadata = {
     'play Star Citizen free',
     'Star Citizen referral bonus',
     'STAR-GCQJ-N6NC',
+    'Star Citizen free fly cancelled',
+    'DefenseCon free fly cancelled',
+    'Star Citizen free fly not available',
+    'Star Citizen free fly 2026',
+    'DefenseCon 2026',
   ],
   authors: [{ name: 'Doc_Flanigan' }],
   openGraph: {
@@ -47,12 +52,41 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const SITE_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: 'freeflyevent.com',
+      description:
+        'Star Citizen Free Fly event tracker — current event status, dates, and referral bonus guide.',
+      inLanguage: 'en-US',
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+      name: 'freeflyevent.com',
+      url: SITE_URL,
+      description:
+        'Unofficial Star Citizen fan site tracking Free Fly events and referral bonuses. Not affiliated with Cloud Imperium Games.',
+      sameAs: ['https://dayonecitizen.com'],
+    },
+  ],
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="bg-spaceBlack">
       <body className="min-h-screen bg-spaceBlack font-sans text-white antialiased">
         {children}
         <Analytics />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(SITE_SCHEMA) }}
+        />
       </body>
     </html>
   );

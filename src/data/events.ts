@@ -13,7 +13,9 @@ export type FreeFlyEvent = {
   name: string;
   start: string; // ISO UTC
   end: string; // ISO UTC
-  ships: string[]; // ships unlocked during the event
+  ships: string[]; // ships unlocked during the event (empty if free fly was cancelled)
+  freeFlyActive?: boolean; // false = event window exists but CIG cancelled free access
+  cancelledNote?: string; // shown in banner when freeFlyActive is false
   notes?: string;
   source?: string; // canonical announcement URL (optional)
 };
@@ -28,8 +30,11 @@ export const FREE_FLY_HISTORY: FreeFlyEvent[] = [
     name: 'DefenseCon 2956',
     start: '2026-05-14T17:00:00Z',
     end: '2026-05-27T17:00:00Z',
-    ships: ['Anvil Ironclad (Flight Ready debut)', 'Military ships across all manufacturers', 'Combat fighters, bombers, and capital ships'],
-    notes: 'DefenseCon replaces Invictus Launch Week in 2026. Combat and defense-focused fleet showcase. Anvil Ironclad debuts as Flight Ready.',
+    ships: [],
+    freeFlyActive: false,
+    cancelledNote:
+      'CIG cancelled the Free Fly portion of DefenseCon due to server performance issues. The event continues — but free public access was pulled. You can still create a free RSI account and claim your 50,000 UEC referral bonus. If you purchase a Game Package during DefenseCon, the referral clothing pack bonus still applies.',
+    notes: 'DefenseCon 2956 — Free Fly was cancelled by CIG due to performance issues. The event itself (ship showcases, sales) continues. Anvil Ironclad made its Flight Ready debut.',
     source: 'https://robertsspaceindustries.com/en/comm-link/transmission/21134-Countdown-To-DefenseCon',
   },
   {
@@ -86,21 +91,26 @@ export const FREE_FLY_HISTORY: FreeFlyEvent[] = [
 
 export type EventStatus =
   | { state: 'ACTIVE'; event: FreeFlyEvent; endsAt: Date }
+  | { state: 'CANCELLED_FREE_FLY'; event: FreeFlyEvent; endsAt: Date }
   | { state: 'UPCOMING'; event: FreeFlyEvent; startsAt: Date }
   | { state: 'INACTIVE'; nextLikely?: string };
 
 /**
  * Derive current state from history + the current time.
- * - ACTIVE: now is between start and end of any event
+ * - ACTIVE: now is between start and end of an event where freeFlyActive !== false
+ * - CANCELLED_FREE_FLY: date-active event but CIG pulled the free fly access
  * - UPCOMING: nearest future event within 60 days
  * - INACTIVE: otherwise
  */
 export function getEventStatus(now: Date = new Date()): EventStatus {
-  // Active?
+  // Active (or cancelled-free-fly)?
   for (const ev of FREE_FLY_HISTORY) {
     const start = new Date(ev.start);
     const end = new Date(ev.end);
     if (now >= start && now <= end) {
+      if (ev.freeFlyActive === false) {
+        return { state: 'CANCELLED_FREE_FLY', event: ev, endsAt: end };
+      }
       return { state: 'ACTIVE', event: ev, endsAt: end };
     }
   }

@@ -3,13 +3,14 @@ import { formatRangeUTC } from '@/lib/format';
 
 type Props = {
   event: FreeFlyEvent;
-  status: 'ACTIVE' | 'UPCOMING' | 'PAST';
+  status: 'ACTIVE' | 'CANCELLED_FREE_FLY' | 'UPCOMING' | 'PAST';
   highlight?: boolean;
 };
 
 export function EventCard({ event, status, highlight = false }: Props) {
   const statusBadge = {
     ACTIVE: { text: 'ACTIVE NOW', cls: 'bg-orange text-spaceBlack' },
+    CANCELLED_FREE_FLY: { text: 'FREE FLY CANCELLED', cls: 'bg-white/5 text-muted border border-white/15' },
     UPCOMING: { text: 'UPCOMING', cls: 'bg-orange/15 text-orange border border-orange/40' },
     PAST: { text: 'PAST', cls: 'bg-white/5 text-muted border border-white/10' },
   }[status];
@@ -54,13 +55,21 @@ export function EventCard({ event, status, highlight = false }: Props) {
       <div className="mt-auto flex items-center gap-2 text-xs">
         <span
           className={`inline-flex items-center gap-1.5 rounded-full px-2 py-1 ${
-            status !== 'PAST'
+            status === 'ACTIVE'
               ? 'border border-orange/40 bg-orange/10 text-orange'
-              : 'border border-white/10 bg-white/5 text-muted'
+              : status === 'CANCELLED_FREE_FLY'
+                ? 'border border-orange/30 bg-orange/10 text-orange'
+                : status === 'UPCOMING'
+                  ? 'border border-orange/40 bg-orange/10 text-orange'
+                  : 'border border-white/10 bg-white/5 text-muted'
           }`}
         >
           <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden />
-          50,000 UEC referral bonus {status !== 'PAST' ? 'available' : 'was available'}
+          {status === 'CANCELLED_FREE_FLY'
+            ? '50,000 UEC bonus still available at signup'
+            : status === 'PAST'
+              ? '50,000 UEC referral bonus was available'
+              : '50,000 UEC referral bonus available'}
         </span>
       </div>
     </article>

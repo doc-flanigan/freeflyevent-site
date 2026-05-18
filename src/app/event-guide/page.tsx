@@ -230,6 +230,31 @@ export default function EventGuidePage() {
       </main>
 
       <Footer />
+
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Free Fly Events',
+                item: 'https://freeflyevent.com',
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Event Guide',
+                item: 'https://freeflyevent.com/event-guide',
+              },
+            ],
+          }),
+        }}
+      />
     </>
   );
 }

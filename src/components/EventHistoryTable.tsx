@@ -73,7 +73,15 @@ export function EventHistoryTable({ limit }: { limit?: number }) {
                 <td className="px-4 py-3 font-semibold text-white">{ev.name}</td>
                 <td className="px-4 py-3 text-muted">{formatRangeUTC(ev.start, ev.end)}</td>
                 <td className="px-4 py-3 text-muted">{durationDays(ev)} days</td>
-                <td className="px-4 py-3 text-muted">{ev.ships[0] ?? '—'}</td>
+                <td className="px-4 py-3 text-muted">
+                  {ev.freeFlyActive === false ? (
+                    <span className="text-xs font-semibold uppercase tracking-wide text-muted/70">
+                      Free fly cancelled
+                    </span>
+                  ) : (
+                    ev.ships[0] ?? '—'
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
