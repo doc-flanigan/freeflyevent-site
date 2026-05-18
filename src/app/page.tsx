@@ -10,7 +10,7 @@ import { EventHistoryTable } from '@/components/EventHistoryTable';
 import { FreeFlyGuide } from '@/components/FreeFlyGuide';
 import { TwitchClip } from '@/components/TwitchClip';
 import { LightboxImage } from '@/components/LightboxImage';
-import { FREE_FLY_HISTORY, getEventStatus, getActiveBonusOverride, HUB_URL, REFERRAL_URL } from '@/data/events';
+import { FREE_FLY_HISTORY, getEventStatus, getActiveBonusOverride, REFERRAL_URL } from '@/data/events';
 
 const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
 
@@ -537,24 +537,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* FINAL CTA */}
-        <section className="container-narrow py-24 text-center">
-          <span className="eyebrow">Don&apos;t Wait</span>
-          <h2 className="heading-display mt-4 text-3xl sm:text-5xl">
-            Free Flys end. Your account doesn&apos;t.
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl text-muted">
-            Make the account today. The 50,000 UEC bonus is locked the moment
-            you sign up with a referral code, and it&apos;s waiting for you when
-            the next event opens.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <CTAButton size="lg" />
-            <Link href={HUB_URL} target="_blank" rel="noopener" className="btn-secondary">
-              New to SC? Visit dayonecitizen.com →
-            </Link>
-          </div>
-        </section>
+
       </main>
 
       <Footer />
