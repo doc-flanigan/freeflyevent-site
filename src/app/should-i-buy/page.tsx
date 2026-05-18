@@ -80,7 +80,7 @@ export default function ShouldIBuyPage() {
                 ['A starter ship', 'Aurora MR, Avenger Titan, or Mustang Alpha depending on the package. All are capable solo ships. Any ship in the game can be rented in-game with UEC — you don\'t need to buy additional ships.'],
                 ['Access to everything in the live game', 'All star systems, all gameplay loops, all future patches. There is no DLC. Content that ships after you buy is included.'],
                 ['No subscription', 'Star Citizen has no monthly fee. You pay once.'],
-                ['1,000 aUEC', 'Alpha starter currency. Enough to rent a ship or buy some gear.'],
+                ['1,000 aUEC — plus 50,000 UEC if you use a referral code', 'aUEC is the alpha test currency that wipes between patches. UEC is the permanent in-game currency that carries forward forever. Paste a referral code at signup and you receive 50,000 UEC on top of the starter aUEC — enough for rentals, gear, and ammo from day one.'],
                 ['Squadron 42 — check your package', 'The single-player campaign is not included in every starter. Look for the "Squadron 42 combo" package if you want both. It\'s not required to play Star Citizen.'],
               ].map(([title, desc]) => (
                 <li key={title as string} className="flex gap-4 rounded-xl border border-white/10 bg-blackMid/60 p-5">
