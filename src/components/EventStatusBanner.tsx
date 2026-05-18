@@ -207,51 +207,60 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
     return (
       <div className="relative overflow-hidden rounded-2xl border border-orange/60 bg-gradient-to-br from-orange/20 via-spaceBlack to-spaceBlack p-8 sm:p-10">
         <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-orange/30 blur-3xl" aria-hidden />
-        <div className="relative flex flex-col items-start gap-5">
-          <span className="inline-flex items-center gap-2 rounded-full border border-orange bg-orange px-4 py-1.5 text-xs font-bold uppercase tracking-[0.25em] text-spaceBlack">
-            <span className="h-2 w-2 animate-ping rounded-full bg-spaceBlack" aria-hidden />
-            Active Now — Play Free
-          </span>
-          <h2 className="heading-display text-3xl sm:text-4xl">{status.event.name}</h2>
-          <p className="max-w-xl text-white/80">
-            Star Citizen is free to play right now. No purchase required. Don&apos;t
-            miss it — when the timer hits zero, the game returns to paid.
-          </p>
-          <CountdownTimer target={status.endsAt} label="Event ends in" />
-          {bonusOverride && (
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start w-full max-w-xl">
-              <div className="flex-shrink-0 rounded-xl border-4 border-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.3)]">
-                <Image
-                  src="/images/defensecon-2956.webp"
-                  alt="Drake DefenseCon 2956 Gear Pack"
-                  width={180}
-                  height={101}
-                  className="rounded-lg"
-                />
-              </div>
-              <div className="rounded-xl border border-yellow-400/60 bg-yellow-400/10 px-5 py-4">
-                <div className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-yellow-300">
+        <div className="relative grid gap-8 lg:grid-cols-2 lg:items-center">
+
+          {/* LEFT — identity + CTA */}
+          <div className="flex flex-col items-start gap-5">
+            <span className="inline-flex items-center gap-2 rounded-full border border-orange bg-orange px-4 py-1.5 text-xs font-bold uppercase tracking-[0.25em] text-spaceBlack">
+              <span className="h-2 w-2 animate-ping rounded-full bg-spaceBlack" aria-hidden />
+              Active Now — Play Free
+            </span>
+            <h2 className="heading-display text-3xl sm:text-4xl">{status.event.name}</h2>
+            <p className="text-white/80">
+              Star Citizen is free to play right now. No purchase required. Don&apos;t
+              miss it — when the timer hits zero, the game returns to paid.
+            </p>
+            <a
+              href={referralUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary px-8 py-4 text-base"
+              onClick={onNavigate}
+            >
+              {bonusOverride
+                ? 'Create Free Account — Claim 50,000 UEC + Gear Pack →'
+                : 'Create Your Free Account & Claim 50,000 UEC →'}
+            </a>
+          </div>
+
+          {/* RIGHT — countdown + bonus (all above the fold on desktop) */}
+          <div className="flex flex-col gap-5">
+            <CountdownTimer target={status.endsAt} label="Event ends in" />
+            {bonusOverride && (
+              <div className="flex flex-col gap-3 rounded-xl border border-yellow-400/50 bg-yellow-400/10 p-4">
+                <div className="text-xs font-bold uppercase tracking-[0.2em] text-yellow-300">
                   Limited Signup Bonus — Through May 24
                 </div>
-                <p className="text-sm text-white/90">
-                  Sign up with a referral code right now and receive{' '}
-                  <strong className="text-white">50,000 UEC + a free Drake DefenseCon Gear Pack</strong>.
-                  This gear pack offer expires May 24 — only the standard 50,000 UEC applies after that.
-                </p>
+                <div className="flex gap-4 items-start">
+                  <div className="flex-shrink-0 rounded-lg border-4 border-yellow-400 shadow-[0_0_16px_rgba(250,204,21,0.3)]">
+                    <Image
+                      src="/images/defensecon-2956.webp"
+                      alt="Drake DefenseCon 2956 Gear Pack"
+                      width={140}
+                      height={79}
+                      className="rounded-md"
+                    />
+                  </div>
+                  <p className="text-sm text-white/90">
+                    Sign up with a referral code and receive{' '}
+                    <strong className="text-white">50,000 UEC + a free Drake DefenseCon Gear Pack</strong>.
+                    Gear pack offer ends May 24.
+                  </p>
+                </div>
               </div>
-            </div>
-          )}
-          <a
-            href={referralUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary px-8 py-4 text-base"
-            onClick={onNavigate}
-          >
-            {bonusOverride
-              ? 'Create Free Account — Claim 50,000 UEC + Gear Pack →'
-              : 'Create Your Free Account & Claim 50,000 UEC →'}
-          </a>
+            )}
+          </div>
+
         </div>
       </div>
     );
