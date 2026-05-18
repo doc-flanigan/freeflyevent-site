@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { EventStatusBanner } from '@/components/EventStatusBanner';
 import { NavBar } from '@/components/NavBar';
@@ -9,17 +10,21 @@ import { EventCard } from '@/components/EventCard';
 import { EventHistoryTable } from '@/components/EventHistoryTable';
 import { FreeFlyGuide } from '@/components/FreeFlyGuide';
 import { TwitchClip } from '@/components/TwitchClip';
-import { FREE_FLY_HISTORY, getEventStatus, HUB_URL, REFERRAL_URL } from '@/data/events';
+import { FREE_FLY_HISTORY, getEventStatus, getActiveBonusOverride, HUB_URL, REFERRAL_URL } from '@/data/events';
 
 const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
 
 export async function generateMetadata(): Promise<Metadata> {
   const status = getEventStatus();
   if (status.state === 'ACTIVE') {
+    const bonus = getActiveBonusOverride();
     return {
-      title: 'Star Citizen Free Fly ACTIVE Now — DefenseCon 2956 Live Through May 27 | freeflyevent.com',
-      description:
-        "Star Citizen is free to play right now — DefenseCon 2956 Free Fly is live through May 27. No purchase needed. Create a free account and claim 50,000 UEC with a referral code before the event ends.",
+      title: bonus
+        ? 'Star Citizen Free Fly ACTIVE — 50,000 UEC + Drake Gear Pack Through May 24 | freeflyevent.com'
+        : 'Star Citizen Free Fly ACTIVE Now — DefenseCon 2956 Live Through May 27 | freeflyevent.com',
+      description: bonus
+        ? "DefenseCon 2956 Free Fly is live right now through May 27. Sign up with a referral code and claim 50,000 UEC + a free Drake DefenseCon Gear Pack — gear pack offer ends May 24."
+        : "Star Citizen is free to play right now — DefenseCon 2956 Free Fly is live through May 27. No purchase needed. Create a free account and claim 50,000 UEC with a referral code before the event ends.",
       keywords: [
         'Star Citizen free fly active',
         'Star Citizen free to play now',
@@ -81,6 +86,8 @@ export default function HomePage() {
   // The banner re-derives state on the client every minute so it stays
   // accurate without a redeploy.
   const status = getEventStatus();
+
+  const bonusOverride = getActiveBonusOverride();
 
   // Featured event = active OR upcoming OR most recent.
   const featuredEvent =
@@ -276,9 +283,30 @@ export default function HomePage() {
               <div>
                 <span className="eyebrow">The Referral Bonus</span>
                 <h2 className="heading-display mt-4 text-3xl sm:text-4xl">
-                  50,000 UEC — only if you use a code{' '}
-                  <span className="text-orange">at signup</span>.
+                  {bonusOverride ? (
+                    <>50,000 UEC + Drake Gear Pack — only if you use a code{' '}
+                    <span className="text-orange">at signup</span>.</>
+                  ) : (
+                    <>50,000 UEC — only if you use a code{' '}
+                    <span className="text-orange">at signup</span>.</>
+                  )}
                 </h2>
+                {bonusOverride && (
+                  <>
+                    <div className="mt-4 rounded-lg border border-yellow-400/50 bg-yellow-400/10 px-4 py-3 text-sm text-yellow-200">
+                      <strong className="text-yellow-300">Limited offer through May 24:</strong> New accounts created with a referral code also receive a free Drake DefenseCon Gear Pack. After May 24, only the standard 50,000 UEC applies.
+                    </div>
+                    <div className="mt-5 inline-block rounded-xl border-4 border-yellow-400 shadow-[0_0_24px_rgba(250,204,21,0.35)]">
+                      <Image
+                        src="/images/defensecon-2956.webp"
+                        alt="Drake DefenseCon 2956 Gear Pack — limited signup bonus through May 24"
+                        width={480}
+                        height={270}
+                        className="rounded-lg"
+                      />
+                    </div>
+                  </>
+                )}
                 <p className="mt-5 text-white/85">
                   When you create your RSI account, paste a referral code into
                   the <span className="font-mono">Referral Code</span> field.

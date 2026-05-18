@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { getEventStatus, type EventStatus } from '@/data/events';
+import { getEventStatus, getActiveBonusOverride, type EventStatus, type BonusOverride } from '@/data/events';
 import { getRotatedReferralUrl, FALLBACK_REFERRAL_URL } from '@/lib/referral-rotator';
 import { CountdownTimer } from './CountdownTimer';
 
@@ -12,17 +13,22 @@ type Props = {
   variant?: 'bar' | 'hero';
 };
 
-type SlotProps = { status: EventStatus; referralUrl: string; onNavigate: () => void };
+type SlotProps = { status: EventStatus; referralUrl: string; onNavigate: () => void; bonusOverride: BonusOverride | null };
 
 export function EventStatusBanner({ variant = 'bar' }: Props) {
   const [status, setStatus] = useState<EventStatus | null>(null);
   const [referralUrl, setReferralUrl] = useState(FALLBACK_REFERRAL_URL);
+  const [bonusOverride, setBonusOverride] = useState<BonusOverride | null>(null);
 
   useEffect(() => {
     setStatus(getEventStatus());
     setReferralUrl(getRotatedReferralUrl());
+    setBonusOverride(getActiveBonusOverride());
     // refresh every minute so banner state flips automatically
-    const id = setInterval(() => setStatus(getEventStatus()), 60_000);
+    const id = setInterval(() => {
+      setStatus(getEventStatus());
+      setBonusOverride(getActiveBonusOverride());
+    }, 60_000);
     return () => clearInterval(id);
   }, []);
 
@@ -50,7 +56,7 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
     );
   }
 
-  const slotProps: SlotProps = { status, referralUrl, onNavigate: handleNavigate };
+  const slotProps: SlotProps = { status, referralUrl, onNavigate: handleNavigate, bonusOverride };
   if (variant === 'bar') return <Bar {...slotProps} />;
   return <Hero {...slotProps} />;
 }
@@ -76,7 +82,7 @@ function CancelledBar({ referralUrl, onNavigate }: { referralUrl: string; onNavi
   );
 }
 
-function Bar({ status, referralUrl, onNavigate }: SlotProps) {
+function Bar({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
   if (status.state === 'CANCELLED_FREE_FLY') {
     return <CancelledBar referralUrl={referralUrl} onNavigate={onNavigate} />;
   }
@@ -89,6 +95,12 @@ function Bar({ status, referralUrl, onNavigate }: SlotProps) {
           <span className="inline-flex h-2 w-2 animate-ping rounded-full bg-spaceBlack" aria-hidden />
           <span className="uppercase tracking-[0.2em]">Free Fly Active Now</span>
           <span className="font-normal opacity-80">{status.event.name}</span>
+          {bonusOverride && (
+            <>
+              <span className="hidden sm:inline opacity-60">·</span>
+              <span className="font-normal opacity-90">{bonusOverride.badge}</span>
+            </>
+          )}
           <span className="hidden sm:inline opacity-60">·</span>
           <CountdownTimer target={status.endsAt} variant="compact" />
           <a
@@ -133,7 +145,7 @@ function Bar({ status, referralUrl, onNavigate }: SlotProps) {
   );
 }
 
-function Hero({ status, referralUrl, onNavigate }: SlotProps) {
+function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
   if (status.state === 'CANCELLED_FREE_FLY') {
     return (
       <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-blackMid p-8 sm:p-10">
@@ -206,6 +218,29 @@ function Hero({ status, referralUrl, onNavigate }: SlotProps) {
             miss it — when the timer hits zero, the game returns to paid.
           </p>
           <CountdownTimer target={status.endsAt} label="Event ends in" />
+          {bonusOverride && (
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start w-full max-w-xl">
+              <div className="flex-shrink-0 rounded-xl border-4 border-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+                <Image
+                  src="/images/defensecon-2956.webp"
+                  alt="Drake DefenseCon 2956 Gear Pack"
+                  width={180}
+                  height={101}
+                  className="rounded-lg"
+                />
+              </div>
+              <div className="rounded-xl border border-yellow-400/60 bg-yellow-400/10 px-5 py-4">
+                <div className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-yellow-300">
+                  Limited Signup Bonus — Through May 24
+                </div>
+                <p className="text-sm text-white/90">
+                  Sign up with a referral code right now and receive{' '}
+                  <strong className="text-white">50,000 UEC + a free Drake DefenseCon Gear Pack</strong>.
+                  This gear pack offer expires May 24 — only the standard 50,000 UEC applies after that.
+                </p>
+              </div>
+            </div>
+          )}
           <a
             href={referralUrl}
             target="_blank"
@@ -213,7 +248,9 @@ function Hero({ status, referralUrl, onNavigate }: SlotProps) {
             className="btn-primary px-8 py-4 text-base"
             onClick={onNavigate}
           >
-            Create Your Free Account & Claim 50,000 UEC →
+            {bonusOverride
+              ? 'Create Free Account — Claim 50,000 UEC + Gear Pack →'
+              : 'Create Your Free Account & Claim 50,000 UEC →'}
           </a>
         </div>
       </div>

@@ -8,6 +8,15 @@
  * Dates are ISO 8601 in UTC. CIG typically runs Free Flys ~10 days.
  */
 
+export type BonusOverride = {
+  /** Full sentence for body copy, e.g. "50,000 UEC + Drake DefenseCon Gear Pack" */
+  text: string;
+  /** Short badge label for compact banner strip */
+  badge: string;
+  /** ISO UTC — bonus reverts to standard 50k UEC after this time */
+  expiresAt: string;
+};
+
 export type FreeFlyEvent = {
   id: string;
   name: string;
@@ -16,6 +25,7 @@ export type FreeFlyEvent = {
   ships: string[]; // ships unlocked during the event (empty if free fly was cancelled)
   freeFlyActive?: boolean; // false = event window exists but CIG cancelled free access
   cancelledNote?: string; // shown in banner when freeFlyActive is false
+  bonusOverride?: BonusOverride; // limited-time signup bonus on top of standard 50k UEC
   notes?: string;
   source?: string; // canonical announcement URL (optional)
 };
@@ -31,6 +41,11 @@ export const FREE_FLY_HISTORY: FreeFlyEvent[] = [
     start: '2026-05-14T17:00:00Z',
     end: '2026-05-27T17:00:00Z',
     ships: ['Anvil Ironclad (Flight Ready debut)', 'Rotating Anvil & military fleet'],
+    bonusOverride: {
+      text: '50,000 UEC + a free Drake DefenseCon Gear Pack — use a referral code at signup before May 24',
+      badge: '+ Drake DefenseCon Gear Pack (through May 24)',
+      expiresAt: '2026-05-25T00:00:00Z',
+    },
     notes: 'DefenseCon 2956. Free Fly reinstated May 18 2026 and active through May 27. Initially cancelled ~May 14 due to server performance issues — first cancellation in SC history — then restored. Anvil Ironclad made its Flight Ready debut.',
     source: 'https://robertsspaceindustries.com/en/comm-link/transmission/21134-Countdown-To-DefenseCon',
   },
@@ -130,6 +145,20 @@ export function getEventStatus(now: Date = new Date()): EventStatus {
     state: 'INACTIVE',
     nextLikely: 'Next Free Fly TBD — historically Invictus (May) and IAE (November).',
   };
+}
+
+/**
+ * Returns the active limited-time bonus override if one is live right now.
+ * Returns null after the override's expiresAt — callers fall back to "50,000 UEC".
+ */
+export function getActiveBonusOverride(now: Date = new Date()): BonusOverride | null {
+  for (const ev of FREE_FLY_HISTORY) {
+    if (!ev.bonusOverride) continue;
+    const start = new Date(ev.start);
+    const expires = new Date(ev.bonusOverride.expiresAt);
+    if (now >= start && now <= expires) return ev.bonusOverride;
+  }
+  return null;
 }
 
 export const REFERRAL_URL =
