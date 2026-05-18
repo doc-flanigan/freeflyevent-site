@@ -161,3 +161,27 @@ Added 2026-05-17. Every referral CTA click fires a background POST to `/api/log`
 - [ ] Click CTA **with** adblocker enabled → Sheet row appears within 5s
 - [ ] Click CTA **with** adblocker enabled → Discord embed appears in #referral-clicks
 - [ ] Click CTA **without** adblocker → same as above
+
+---
+
+## SEO
+
+**Network role:** Bing authority hub — permanent
+**Search engine:** Bing (primary), Google
+
+**Primary keywords:**
+- "star citizen free fly event"
+- "star citizen free fly 2026"
+- "is star citizen free to play"
+- "when is the next star citizen free fly"
+- "star citizen free fly dates"
+
+**Cross-links this site must send (body copy only):**
+- → dayonecitizen.com: Prominent "New to Star Citizen? Start here" callout — highest-priority link on this site
+- → screferralreward.com: "Claim your 50,000 UEC referral bonus when you enlist"
+
+**Do not:**
+- Place cross-portfolio links in footers or link lists — editorial/body copy only
+- Target new keywords without updating `E:\Claude Code\sc-portfolio\docs\seo\keyword-research.md`
+
+**Full strategy:** `E:\Claude Code\sc-portfolio\docs\seo\README.md`
