@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: false }, { status: 400 })
     }
 
-    const timestamp = new Date().toISOString()
+    const timestamp = new Date().toLocaleString('en-US', { timeZone: 'America/Chicago', dateStyle: 'short', timeStyle: 'medium' }) + ' CST'
     const sheetUrl = process.env.CLICK_TRACKER_SHEET_URL
     const discordUrl = process.env.DISCORD_CLICK_WEBHOOK_URL
 
