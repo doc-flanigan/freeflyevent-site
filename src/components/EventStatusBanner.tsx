@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
+import { LightboxImage } from './LightboxImage';
 import { getEventStatus, getActiveBonusOverride, type EventStatus, type BonusOverride } from '@/data/events';
 import { getRotatedReferralUrl, FALLBACK_REFERRAL_URL } from '@/lib/referral-rotator';
 import { CountdownTimer } from './CountdownTimer';
@@ -241,22 +241,19 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
                 <div className="text-xs font-bold uppercase tracking-[0.2em] text-yellow-300">
                   Limited Signup Bonus — Through May 24
                 </div>
-                <div className="flex gap-4 items-start">
-                  <div className="flex-shrink-0 rounded-lg border-4 border-yellow-400 shadow-[0_0_16px_rgba(250,204,21,0.3)]">
-                    <Image
-                      src="/images/defensecon-2956.webp"
-                      alt="Drake DefenseCon 2956 Gear Pack"
-                      width={140}
-                      height={79}
-                      className="rounded-md"
-                    />
-                  </div>
-                  <p className="text-sm text-white/90">
-                    Sign up with a referral code and receive{' '}
-                    <strong className="text-white">50,000 UEC + a free Drake DefenseCon Gear Pack</strong>.
-                    Gear pack offer ends May 24.
-                  </p>
-                </div>
+                <LightboxImage
+                  src="/images/defensecon-2956.webp"
+                  alt="Drake DefenseCon 2956 Gear Pack"
+                  width={600}
+                  height={338}
+                  containerClassName="rounded-lg border-4 border-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.35)]"
+                  className="w-full h-auto"
+                />
+                <p className="text-sm text-white/90">
+                  Sign up with a referral code and receive{' '}
+                  <strong className="text-white">50,000 UEC + a free Drake DefenseCon Gear Pack</strong>.
+                  Gear pack offer ends May 24.
+                </p>
               </div>
             )}
           </div>

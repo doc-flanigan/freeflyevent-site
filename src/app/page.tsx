@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { EventStatusBanner } from '@/components/EventStatusBanner';
 import { NavBar } from '@/components/NavBar';
@@ -10,6 +9,7 @@ import { EventCard } from '@/components/EventCard';
 import { EventHistoryTable } from '@/components/EventHistoryTable';
 import { FreeFlyGuide } from '@/components/FreeFlyGuide';
 import { TwitchClip } from '@/components/TwitchClip';
+import { LightboxImage } from '@/components/LightboxImage';
 import { FREE_FLY_HISTORY, getEventStatus, getActiveBonusOverride, HUB_URL, REFERRAL_URL } from '@/data/events';
 
 const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
@@ -313,15 +313,14 @@ export default function HomePage() {
                     <div className="mt-4 rounded-lg border border-yellow-400/50 bg-yellow-400/10 px-4 py-3 text-sm text-yellow-200">
                       <strong className="text-yellow-300">Limited offer through May 24:</strong> New accounts created with a referral code also receive a free Drake DefenseCon Gear Pack. After May 24, only the standard 50,000 UEC applies.
                     </div>
-                    <div className="mt-5 inline-block rounded-xl border-4 border-yellow-400 shadow-[0_0_24px_rgba(250,204,21,0.35)]">
-                      <Image
-                        src="/images/defensecon-2956.webp"
-                        alt="Drake DefenseCon 2956 Gear Pack — limited signup bonus through May 24"
-                        width={480}
-                        height={270}
-                        className="rounded-lg"
-                      />
-                    </div>
+                    <LightboxImage
+                      src="/images/defensecon-2956.webp"
+                      alt="Drake DefenseCon 2956 Gear Pack — limited signup bonus through May 24"
+                      width={800}
+                      height={450}
+                      containerClassName="mt-5 block rounded-xl border-4 border-yellow-400 shadow-[0_0_28px_rgba(250,204,21,0.4)]"
+                      className="w-full h-auto"
+                    />
                   </>
                 )}
                 <p className="mt-5 text-white/85">
