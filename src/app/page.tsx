@@ -295,98 +295,170 @@ export default function HomePage() {
         {/* REFERRAL BONUS — URGENCY */}
         <section id="referral-bonus" className="container-narrow py-20 sm:py-28">
           <div className="rounded-2xl border border-orange/30 bg-gradient-to-br from-orange/10 via-blackMid to-spaceBlack p-8 sm:p-12">
-            <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-              <div>
-                <span className="eyebrow">The Referral Bonus</span>
-                <h2 className="heading-display mt-4 text-3xl sm:text-4xl">
-                  {bonusOverride ? (
-                    <>50,000 UEC + Drake Gear Pack — only if you use a code{' '}
-                    <span className="text-orange">at signup</span>.</>
-                  ) : (
-                    <>50,000 UEC — only if you use a code{' '}
-                    <span className="text-orange">at signup</span>.</>
-                  )}
-                </h2>
-                {bonusOverride && (
-                  <>
-                    <div className="mt-4 rounded-lg border border-yellow-400/50 bg-yellow-400/10 px-4 py-3 text-sm text-yellow-200">
-                      <strong className="text-yellow-300">Limited offer through May 27:</strong> New accounts created with a referral code also receive a free Drake DefenseCon Gear Pack. After May 27, only the standard 50,000 UEC applies.
-                    </div>
-                    <LightboxImage
-                      src="/images/defensecon-2956.webp"
-                      alt="Drake DefenseCon 2956 Gear Pack — limited signup bonus through May 27"
-                      width={800}
-                      height={450}
-                      containerClassName="mt-5 block rounded-xl border-4 border-yellow-400 shadow-[0_0_28px_rgba(250,204,21,0.4)]"
-                      className="w-full h-auto"
-                    />
-                  </>
-                )}
-                <p className="mt-5 text-white/85">
-                  When you create your RSI account, paste a referral code into
-                  the <span className="font-mono">Referral Code</span> field.
-                  You receive 50,000 UEC — Star Citizen&apos;s in-game currency
-                  — the moment you log in. That&apos;s real money to spend on
-                  rentals, ammo, components, and gear during the event.
-                </p>
-                <div className="mt-6 rounded-lg border border-orange/40 bg-spaceBlack/60 p-5">
-                  <div className="text-xs font-semibold uppercase tracking-[0.25em] text-muted">
-                    Use this code
-                  </div>
-                  <div className="mt-2 font-mono text-2xl font-bold text-orange">
-                    STAR-GCQJ-N6NC
+            {bonusOverride ? (
+              /* Gear pack active: heading full-width → 2-col (action | image) → warning full-width */
+              <>
+                <div className="mb-8">
+                  <span className="eyebrow">The Referral Bonus</span>
+                  <h2 className="heading-display mt-4 text-3xl sm:text-4xl">
+                    50,000 UEC + Drake Gear Pack — only if you use a code{' '}
+                    <span className="text-orange">at signup</span>.
+                  </h2>
+                  <div className="mt-4 rounded-lg border border-yellow-400/50 bg-yellow-400/10 px-4 py-3 text-sm text-yellow-200">
+                    <strong className="text-yellow-300">Limited offer through May 27:</strong> New accounts created with a referral code also receive a free Drake DefenseCon Gear Pack. After May 27, only the standard 50,000 UEC applies.
                   </div>
                 </div>
-                <div className="mt-6">
-                  <CTAButton size="lg">Create Your Free Account Now</CTAButton>
-                </div>
-                <p className="text-muted text-sm mt-3">
-                  Want the full referral code details?{' '}
-                  <a
-                    href="https://screferralreward.com"
-                    className="text-orange underline hover:text-orange-dark"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    screferralreward.com
-                  </a>{' '}
-                  has everything you need.
-                </p>
-              </div>
 
-              {/* The 24-hour grace period warning — prominent */}
-              <div className="rounded-xl border border-orange bg-orange/15 p-6 sm:p-8">
-                <div className="mb-3 flex items-center gap-3">
-                  <span
-                    aria-hidden
-                    className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-orange text-spaceBlack"
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 9v4" />
-                      <path d="M12 17h.01" />
-                      <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-                    </svg>
-                  </span>
-                  <h3 className="heading-display text-xl text-white">
-                    Important: use the code at signup.
-                  </h3>
+                <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
+                  <div>
+                    <p className="text-white/85">
+                      When you create your RSI account, paste a referral code into
+                      the <span className="font-mono">Referral Code</span> field.
+                      You receive 50,000 UEC — Star Citizen&apos;s in-game currency
+                      — the moment you log in. That&apos;s real money to spend on
+                      rentals, ammo, components, and gear during the event.
+                    </p>
+                    <div className="mt-6 rounded-lg border border-orange/40 bg-spaceBlack/60 p-5">
+                      <div className="text-xs font-semibold uppercase tracking-[0.25em] text-muted">
+                        Use this code
+                      </div>
+                      <div className="mt-2 font-mono text-2xl font-bold text-orange">
+                        STAR-GCQJ-N6NC
+                      </div>
+                    </div>
+                    <div className="mt-6">
+                      <CTAButton size="lg">Create Your Free Account Now</CTAButton>
+                    </div>
+                    <p className="text-muted text-sm mt-3">
+                      Want the full referral code details?{' '}
+                      <a
+                        href="https://screferralreward.com"
+                        className="text-orange underline hover:text-orange-dark"
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        screferralreward.com
+                      </a>{' '}
+                      has everything you need.
+                    </p>
+                  </div>
+
+                  <LightboxImage
+                    src="/images/defensecon-2956.webp"
+                    alt="Drake DefenseCon 2956 Gear Pack — limited signup bonus through May 27"
+                    width={800}
+                    height={450}
+                    containerClassName="block rounded-xl border-4 border-yellow-400 shadow-[0_0_28px_rgba(250,204,21,0.4)]"
+                    className="w-full h-auto"
+                  />
                 </div>
-                <p className="text-white/90">
-                  RSI offers a 24-hour grace period to add a referral code after
-                  signup, but in practice it&apos;s easy to miss. The reliable
-                  path:{' '}
-                  <strong className="text-orange">
-                    paste the code into the Referral Code field on the signup
-                    form itself.
-                  </strong>
-                </p>
-                <p className="mt-3 text-sm text-white/75">
-                  After 24 hours have passed, the code cannot be added — you
-                  forfeit the 50,000 UEC permanently. There&apos;s no support
-                  ticket that fixes it.
-                </p>
+
+                <div className="mt-8 rounded-xl border border-orange bg-orange/15 p-6 sm:p-8">
+                  <div className="mb-3 flex items-center gap-3">
+                    <span
+                      aria-hidden
+                      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-orange text-spaceBlack"
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 9v4" />
+                        <path d="M12 17h.01" />
+                        <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      </svg>
+                    </span>
+                    <h3 className="heading-display text-xl text-white">
+                      Important: use the code at signup.
+                    </h3>
+                  </div>
+                  <p className="text-white/90">
+                    RSI offers a 24-hour grace period to add a referral code after
+                    signup, but in practice it&apos;s easy to miss. The reliable
+                    path:{' '}
+                    <strong className="text-orange">
+                      paste the code into the Referral Code field on the signup
+                      form itself.
+                    </strong>
+                  </p>
+                  <p className="mt-3 text-sm text-white/75">
+                    After 24 hours have passed, the code cannot be added — you
+                    forfeit the 50,000 UEC permanently. There&apos;s no support
+                    ticket that fixes it.
+                  </p>
+                </div>
+              </>
+            ) : (
+              /* Default: 2-col (text + warning) */
+              <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+                <div>
+                  <span className="eyebrow">The Referral Bonus</span>
+                  <h2 className="heading-display mt-4 text-3xl sm:text-4xl">
+                    50,000 UEC — only if you use a code{' '}
+                    <span className="text-orange">at signup</span>.
+                  </h2>
+                  <p className="mt-5 text-white/85">
+                    When you create your RSI account, paste a referral code into
+                    the <span className="font-mono">Referral Code</span> field.
+                    You receive 50,000 UEC — Star Citizen&apos;s in-game currency
+                    — the moment you log in. That&apos;s real money to spend on
+                    rentals, ammo, components, and gear during the event.
+                  </p>
+                  <div className="mt-6 rounded-lg border border-orange/40 bg-spaceBlack/60 p-5">
+                    <div className="text-xs font-semibold uppercase tracking-[0.25em] text-muted">
+                      Use this code
+                    </div>
+                    <div className="mt-2 font-mono text-2xl font-bold text-orange">
+                      STAR-GCQJ-N6NC
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <CTAButton size="lg">Create Your Free Account Now</CTAButton>
+                  </div>
+                  <p className="text-muted text-sm mt-3">
+                    Want the full referral code details?{' '}
+                    <a
+                      href="https://screferralreward.com"
+                      className="text-orange underline hover:text-orange-dark"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      screferralreward.com
+                    </a>{' '}
+                    has everything you need.
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-orange bg-orange/15 p-6 sm:p-8">
+                  <div className="mb-3 flex items-center gap-3">
+                    <span
+                      aria-hidden
+                      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-orange text-spaceBlack"
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 9v4" />
+                        <path d="M12 17h.01" />
+                        <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      </svg>
+                    </span>
+                    <h3 className="heading-display text-xl text-white">
+                      Important: use the code at signup.
+                    </h3>
+                  </div>
+                  <p className="text-white/90">
+                    RSI offers a 24-hour grace period to add a referral code after
+                    signup, but in practice it&apos;s easy to miss. The reliable
+                    path:{' '}
+                    <strong className="text-orange">
+                      paste the code into the Referral Code field on the signup
+                      form itself.
+                    </strong>
+                  </p>
+                  <p className="mt-3 text-sm text-white/75">
+                    After 24 hours have passed, the code cannot be added — you
+                    forfeit the 50,000 UEC permanently. There&apos;s no support
+                    ticket that fixes it.
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </section>
 
