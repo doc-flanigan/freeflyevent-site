@@ -115,8 +115,7 @@ export default function HomePage() {
                 out when the next one is, what&apos;s included, and how to lock in
                 a 50,000 UEC referral bonus before you launch.
               </p>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <CTAButton size="lg" />
+              <div className="mt-8">
                 <Link
                   href="#current-event"
                   className="text-sm font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-orange"
