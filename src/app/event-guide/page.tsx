@@ -44,6 +44,18 @@ const STEPS: Step[] = [
         </code>{' '}
         into the <strong>Referral Code</strong> field on the signup form. This
         is the only reliable way to lock in your 50,000 UEC bonus.
+        <p className="text-muted text-sm mt-4">
+          Once you&apos;re signed up,{' '}
+          <a
+            href="https://dayonecitizen.com"
+            className="text-orange underline hover:text-orange-dark"
+            target="_blank"
+            rel="noopener"
+          >
+            DayOneCitizen.com
+          </a>{' '}
+          will walk you through your first 30 days step by step.
+        </p>
       </>
     ),
   },

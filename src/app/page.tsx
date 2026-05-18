@@ -273,6 +273,23 @@ export default function HomePage() {
               </p>
             </div>
             <FreeFlyGuide />
+
+            {/* SEO cross-link: dayonecitizen */}
+            <section className="mt-12 rounded-lg border border-orange/30 bg-blackMid px-6 py-5">
+              <h2 className="text-lg font-bold text-white mb-2">New to Star Citizen?</h2>
+              <p className="text-muted text-sm leading-relaxed">
+                Free Fly is a great time to start. If you&apos;ve never played before,{' '}
+                <a
+                  href="https://dayonecitizen.com"
+                  className="text-orange underline hover:text-orange-dark"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  DayOneCitizen.com
+                </a>{' '}
+                has a plain-English guide for your first 30 days in the &apos;Verse.
+              </p>
+            </section>
           </div>
         </section>
 
@@ -325,6 +342,18 @@ export default function HomePage() {
                 <div className="mt-6">
                   <CTAButton size="lg">Create Your Free Account Now</CTAButton>
                 </div>
+                <p className="text-muted text-sm mt-3">
+                  Want the full referral code details?{' '}
+                  <a
+                    href="https://screferralreward.com"
+                    className="text-orange underline hover:text-orange-dark"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    screferralreward.com
+                  </a>{' '}
+                  has everything you need.
+                </p>
               </div>
 
               {/* The 24-hour grace period warning — prominent */}
