@@ -15,6 +15,36 @@ const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF'
 
 export async function generateMetadata(): Promise<Metadata> {
   const status = getEventStatus();
+  if (status.state === 'ACTIVE') {
+    return {
+      title: 'Star Citizen Free Fly ACTIVE Now — DefenseCon 2956 Live Through May 27 | freeflyevent.com',
+      description:
+        "Star Citizen is free to play right now — DefenseCon 2956 Free Fly is live through May 27. No purchase needed. Create a free account and claim 50,000 UEC with a referral code before the event ends.",
+      keywords: [
+        'Star Citizen free fly active',
+        'Star Citizen free to play now',
+        'DefenseCon 2956 free fly',
+        'DefenseCon free fly back on',
+        'Star Citizen free fly May 2026',
+        'Star Citizen DefenseCon 2026',
+        'Star Citizen free fly reinstated',
+        'play Star Citizen free',
+        'Star Citizen referral bonus',
+        'STAR-GCQJ-N6NC',
+      ],
+      openGraph: {
+        title: 'Star Citizen Free Fly is LIVE — DefenseCon 2956 Through May 27',
+        description:
+          "Star Citizen is free to play right now. DefenseCon 2956 Free Fly runs through May 27 — create your free account and lock in 50,000 UEC before it ends.",
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Star Citizen Free Fly is LIVE — DefenseCon 2956 (ends May 27)',
+        description:
+          "Play Star Citizen free right now. DefenseCon 2956 Free Fly is back on through May 27. Claim 50,000 UEC with a referral code at signup.",
+      },
+    };
+  }
   if (status.state === 'CANCELLED_FREE_FLY') {
     return {
       title: 'DefenseCon Free Fly Cancelled — 50,000 UEC Bonus Still Available | freeflyevent.com',

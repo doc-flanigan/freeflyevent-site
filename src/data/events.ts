@@ -30,11 +30,8 @@ export const FREE_FLY_HISTORY: FreeFlyEvent[] = [
     name: 'DefenseCon 2956',
     start: '2026-05-14T17:00:00Z',
     end: '2026-05-27T17:00:00Z',
-    ships: [],
-    freeFlyActive: false,
-    cancelledNote:
-      'CIG cancelled the Free Fly portion of DefenseCon due to server performance issues. The event continues — but free public access was pulled. You can still create a free RSI account and claim your 50,000 UEC referral bonus. If you purchase a Game Package during DefenseCon, the referral clothing pack bonus still applies.',
-    notes: 'DefenseCon 2956 — Free Fly was cancelled by CIG due to performance issues. The event itself (ship showcases, sales) continues. Anvil Ironclad made its Flight Ready debut.',
+    ships: ['Anvil Ironclad (Flight Ready debut)', 'Rotating Anvil & military fleet'],
+    notes: 'DefenseCon 2956. Free Fly reinstated May 18 2026 and active through May 27. Initially cancelled ~May 14 due to server performance issues — first cancellation in SC history — then restored. Anvil Ironclad made its Flight Ready debut.',
     source: 'https://robertsspaceindustries.com/en/comm-link/transmission/21134-Countdown-To-DefenseCon',
   },
   {
