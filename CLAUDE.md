@@ -199,6 +199,7 @@ Reuses the same Apps Script pattern as `CLICK_TRACKER_SHEET_URL` but is a
 - [ ] Verify: submit 4× from the same IP → 4th submission shows the rate-limit message
 
 ### TODO: Google Sheet setup
+- [ ] **BLOCKED:** Extensions → Apps Script returns "Sorry, unable to open the file at this time." Suspected multi-account session conflict on personal Gmail. To resolve: open Sheet in Incognito with only the owning Gmail account signed in; if still failing, visit `https://script.google.com` directly to accept the Apps Script Terms of Service, then retry. Other fallbacks: disable browser extensions, try a different browser, clear `*.google.com` cookies.
 - [ ] Create a new Google Sheet titled "freeflyevent giveaway entries"
 - [ ] Add header row: `Timestamp | RSI Handle | Email | Discord | Confirmed`
 - [ ] Extensions → Apps Script → paste the code below, deploy as a web app (execute as: me, access: anyone), copy the deploy URL
