@@ -93,24 +93,14 @@ function Bar({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
         <div className="absolute inset-0 animate-pulse-orange" aria-hidden />
         <div className="container-wide relative flex flex-wrap items-center justify-center gap-x-4 gap-y-1 px-4 py-2 text-center text-sm font-semibold">
           <span className="inline-flex h-2 w-2 animate-ping rounded-full bg-spaceBlack" aria-hidden />
-          <span className="uppercase tracking-[0.2em]">Free Fly Active Now</span>
-          <span className="font-normal opacity-80">{status.event.name}</span>
-          {bonusOverride && (
-            <>
-              <span className="hidden sm:inline opacity-60">·</span>
-              <span className="font-normal opacity-90">{bonusOverride.badge}</span>
-            </>
-          )}
+          <span className="uppercase tracking-[0.2em]">Free Fly Active</span>
           <span className="hidden sm:inline opacity-60">·</span>
-          <CountdownTimer target={status.endsAt} variant="compact" />
+          <span className="font-normal opacity-90">Win a DefenseCon Starter Pack</span>
           <a
-            href={referralUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/giveaway.html"
             className="ml-2 rounded-md bg-spaceBlack px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange transition-transform hover:-translate-y-0.5"
-            onClick={onNavigate}
           >
-            Play Free →
+            Enter Giveaway →
           </a>
         </div>
       </div>

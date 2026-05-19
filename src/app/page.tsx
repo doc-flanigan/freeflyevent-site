@@ -462,6 +462,33 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* GIVEAWAY CALLOUT — visible while DefenseCon is active */}
+        {status.state === 'ACTIVE' && (
+          <section className="container-narrow py-12 sm:py-16">
+            <a
+              href="/giveaway.html"
+              className="group block rounded-2xl border border-orange/40 bg-gradient-to-br from-orange/15 via-blackMid to-spaceBlack p-8 sm:p-10 transition-colors hover:border-orange/70"
+            >
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-[0.25em] text-orange">
+                    DefenseCon 2956 Giveaway
+                  </span>
+                  <h2 className="heading-display mt-2 text-2xl sm:text-3xl">
+                    Win a Generalist DefenseCon Starter Pack
+                  </h2>
+                  <p className="mt-2 max-w-xl text-white/75">
+                    New players who sign up with a referral code during this Free Fly can enter to win a Warbond Edition Starter Pack. Drawing happens when the event ends.
+                  </p>
+                </div>
+                <span className="flex-shrink-0 rounded-xl border border-orange/50 bg-orange/10 px-6 py-3 text-sm font-bold uppercase tracking-wide text-orange transition-colors group-hover:bg-orange/20 sm:text-base">
+                  Enter Giveaway →
+                </span>
+              </div>
+            </a>
+          </section>
+        )}
+
         {/* FEATURED EVENT CARD */}
         <section className="container-narrow pb-20">
           <div className="mb-8 flex items-end justify-between gap-6">
