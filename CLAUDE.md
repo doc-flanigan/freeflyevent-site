@@ -183,11 +183,11 @@ local dev, but **set both in production** so the limiter is active.
 - `public/giveaway.html` — standalone form
 
 ### TODO: Upstash setup
-- [ ] Create a free Redis database at [console.upstash.com](https://console.upstash.com) (pick a region close to the Vercel deployment region)
-- [ ] Copy `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` from the database page
-- [ ] Add both env vars to Vercel (Production + Preview + Development) and to local `.env.local`
-- [ ] Add `DISCORD_GIVEAWAY_WEBHOOK_URL` to the same env scopes (webhook from `#giveaway-entries` Discord channel)
-- [ ] Redeploy
+- [x] Create a free Redis database at [console.upstash.com](https://console.upstash.com) (pick a region close to the Vercel deployment region)
+- [x] Copy `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` from the database page
+- [x] Add both env vars to Vercel (Production + Preview + Development) and to local `.env.local`
+- [x] Add `DISCORD_GIVEAWAY_WEBHOOK_URL` to the same env scopes (webhook from `#giveaway-entries` Discord channel)
+- [x] Redeploy
 - [ ] Verify: submit a valid entry → embed appears in `#giveaway-entries` within ~2s
 - [ ] Verify: submit 6× from the same IP → 6th submission shows the rate-limit message
 
