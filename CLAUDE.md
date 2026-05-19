@@ -195,17 +195,16 @@ Reuses the same Apps Script pattern as `CLICK_TRACKER_SHEET_URL` but is a
 - [x] Add both env vars to Vercel (Production + Preview + Development) and to local `.env.local`
 - [x] Add `DISCORD_GIVEAWAY_WEBHOOK_URL` to the same env scopes (webhook from `#giveaway-entries` Discord channel)
 - [x] Redeploy
-- [ ] Verify: submit a valid entry → embed appears in `#giveaway-entries` within ~2s
-- [ ] Verify: submit 4× from the same IP → 4th submission shows the rate-limit message
+- [x] Verify: submit a valid entry → embed appears in `#giveaway-entries` within ~2s
+- [x] Verify: submit 4× from the same IP → 4th submission shows the rate-limit message
 
 ### TODO: Google Sheet setup
-- [ ] **BLOCKED:** Extensions → Apps Script returns "Sorry, unable to open the file at this time." Suspected multi-account session conflict on personal Gmail. To resolve: open Sheet in Incognito with only the owning Gmail account signed in; if still failing, visit `https://script.google.com` directly to accept the Apps Script Terms of Service, then retry. Other fallbacks: disable browser extensions, try a different browser, clear `*.google.com` cookies.
-- [ ] Create a new Google Sheet titled "freeflyevent giveaway entries"
-- [ ] Add header row: `Timestamp | RSI Handle | Email | Discord | Confirmed`
-- [ ] Extensions → Apps Script → paste the code below, deploy as a web app (execute as: me, access: anyone), copy the deploy URL
-- [ ] Add `GIVEAWAY_SHEET_URL` to Vercel (Production + Preview + Development) and `.env.local`
-- [ ] Redeploy
-- [ ] Verify: submit a valid entry → new row appears in the Sheet within ~5s
+- [x] Create a new Google Sheet titled "freeflyevent giveaway entries"
+- [x] Add header row: `Timestamp | RSI Handle | Email | Discord | Confirmed`
+- [x] Extensions → Apps Script → paste the code below, deploy as a web app (execute as: me, access: anyone), copy the deploy URL
+- [x] Add `GIVEAWAY_SHEET_URL` to Vercel (Production + Preview + Development) and `.env.local`
+- [x] Redeploy
+- [x] Verify: submit a valid entry → new row appears in the Sheet within ~5s
 
 Apps Script body (paste into the new script's `Code.gs`):
 
