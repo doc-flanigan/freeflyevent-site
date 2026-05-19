@@ -295,19 +295,29 @@
     color: #3d9be9;
   }
 
-  /* success */
-  .success {
+  /* status panels */
+  .status-msg {
     display: none;
     margin-top: 14px;
     padding: 12px 14px;
-    border: 1px solid #2fa86b;
-    background: rgba(47,168,107,0.08);
-    color: #9fdcb9;
     font-family: 'Share Tech Mono', monospace;
     font-size: 12px;
     letter-spacing: 0.04em;
   }
-  .success.show { display: block; }
+  .status-msg.show { display: block; }
+  .status-msg.success {
+    border: 1px solid #2fa86b;
+    background: rgba(47,168,107,0.08);
+    color: #9fdcb9;
+  }
+  .status-msg.error {
+    border: 1px solid #e0533d;
+    background: rgba(224,83,61,0.08);
+    color: #f0b3a8;
+  }
+  .submit[disabled] { opacity: 0.55; cursor: wait; }
+  .submit[disabled]:hover { color: #3d9be9; }
+  .submit[disabled]:hover::before { left: -100%; }
 
   @media (max-width: 480px) {
     .card { padding: 32px 22px 24px; }
@@ -362,10 +372,13 @@
     </label>
     <div class="field-error" data-for="confirm"></div>
 
-    <button type="submit" class="submit"><span>Transmit Entry</span></button>
+    <button type="submit" class="submit" id="submit-btn"><span>Transmit Entry</span></button>
 
-    <div class="success" id="success">
-      Entry compiled. If your mail client did not open, please check pop-up settings or send manually.
+    <div class="status-msg success" id="success">
+      Entry received. You're in the draw — good luck, citizen.
+    </div>
+    <div class="status-msg error" id="error">
+      Transmission failed. Please try again in a moment.
     </div>
   </form>
 
@@ -401,13 +414,11 @@
     field.appendChild(frag);
   })();
 
-  /* ---------- Email obfuscation ----------
-     Set _u to the local part (before the @) and _d to the domain.
-     Both are assembled at runtime so the address is not present as a
-     single string in the page source. */
-  const _u = 'REPLACEME'; // local part — e.g. 'giveaway'
-  const _d = 'REPLACEME'; // domain    — e.g. 'example.com'
-  const _to = `${_u}@${_d}`;
+  /* ---------- Endpoint ----------
+     Entries POST to a same-origin Next.js API route, which forwards to
+     the giveaway Discord webhook server-side. The webhook URL never
+     touches the browser. */
+  const ENTRY_ENDPOINT = '/api/giveaway-entry';
 
   /* ---------- Validation ---------- */
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -419,6 +430,8 @@
   const confirm  = document.getElementById('confirm');
   const checkRow = document.querySelector('.check');
   const success  = document.getElementById('success');
+  const errorBox = document.getElementById('error');
+  const submitBtn = document.getElementById('submit-btn');
 
   function setError(input, msg) {
     input.classList.add('error-field');
@@ -478,8 +491,11 @@
   confirm .addEventListener('change', () => validateConfirm(true));
 
   /* ---------- Submit ---------- */
-  form.addEventListener('submit', function (e) {
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
+    success.classList.remove('show');
+    errorBox.classList.remove('show');
+
     const okH = validateHandle(true);
     const okE = validateEmail(true);
     validateDiscord();
@@ -491,25 +507,36 @@
       return;
     }
 
-    const handleVal  = handleEl.value.trim();
-    const emailVal   = emailEl.value.trim();
-    const discordVal = discord.value.trim() || '(not provided)';
+    const payload = {
+      handle:    handleEl.value.trim(),
+      email:     emailEl.value.trim(),
+      discord:   discord.value.trim(),
+      confirmed: confirm.checked,
+    };
 
-    const subject = 'Ship Giveaway Entry — ' + handleVal;
-    const body =
-      'RSI Handle: ' + handleVal + '\n' +
-      'Email: ' + emailVal + '\n' +
-      'Discord: ' + discordVal + '\n' +
-      '\n' +
-      'Confirmed referral code usage: Yes\n';
+    submitBtn.disabled = true;
+    submitBtn.querySelector('span').textContent = 'Transmitting…';
 
-    const mailto =
-      'mailto:' + encodeURIComponent(_to) +
-      '?subject=' + encodeURIComponent(subject) +
-      '&body='    + encodeURIComponent(body);
+    try {
+      const res = await fetch(ENTRY_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
 
-    success.classList.add('show');
-    window.location.href = mailto;
+      if (!res.ok) throw new Error('http_' + res.status);
+
+      success.classList.add('show');
+      form.reset();
+      [handleEl, emailEl, discord].forEach(clearState);
+      checkRow.classList.remove('error-field');
+    } catch (err) {
+      console.error('[giveaway] submit failed:', err);
+      errorBox.classList.add('show');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.querySelector('span').textContent = 'Transmit Entry';
+    }
   });
 </script>
 </body>

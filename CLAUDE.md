@@ -162,6 +162,19 @@ Added 2026-05-17. Every referral CTA click fires a background POST to `/api/log`
 - [ ] Click CTA **with** adblocker enabled → Discord embed appears in #referral-clicks
 - [ ] Click CTA **without** adblocker → same as above
 
+## Ship Giveaway Entries
+
+Static form at `public/giveaway.html` (served at `/giveaway.html`) POSTs to
+`/api/giveaway-entry`, which forwards an embed to a Discord channel. No
+entrant data is stored server-side.
+
+**Env vars required** (Vercel project settings + `.env.local`):
+- `DISCORD_GIVEAWAY_WEBHOOK_URL` — Discord channel webhook (e.g. `#giveaway-entries`)
+
+**Key files:**
+- `src/app/api/giveaway-entry/route.ts` — server handler (validates + forwards)
+- `public/giveaway.html` — standalone form
+
 ---
 
 ## SEO
