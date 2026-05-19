@@ -171,9 +171,6 @@ export default function EventGuidePage() {
               players. Follow it in order — each step assumes you finished the
               previous one.
             </p>
-            <div className="mt-8">
-              <CTAButton size="lg" />
-            </div>
           </div>
         </section>
 
