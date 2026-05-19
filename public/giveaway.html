@@ -538,6 +538,7 @@
   function validateHandle(showErr) {
     const v = handleEl.value.trim();
     if (!v) { if (showErr) setError(handleEl, 'RSI Handle is required.'); else clearState(handleEl); return false; }
+    if (/\s/.test(v)) { setError(handleEl, 'RSI Handles cannot contain spaces.'); return false; }
     setValid(handleEl);
     return true;
   }

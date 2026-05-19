@@ -46,6 +46,9 @@ export async function POST(req: NextRequest) {
   if (h.length > MAX || e.length > MAX || d.length > MAX) {
     return NextResponse.json({ ok: false, error: 'too_long' }, { status: 400 })
   }
+  if (/\s/.test(h)) {
+    return NextResponse.json({ ok: false, error: 'bad_handle' }, { status: 400 })
+  }
   if (!EMAIL_RE.test(e)) {
     return NextResponse.json({ ok: false, error: 'bad_email' }, { status: 400 })
   }
