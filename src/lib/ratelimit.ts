@@ -16,7 +16,7 @@ export function getGiveawayLimiter(): Ratelimit | null {
 
   _limiter = new Ratelimit({
     redis: new Redis({ url, token }),
-    limiter: Ratelimit.slidingWindow(5, '1 h'),
+    limiter: Ratelimit.slidingWindow(3, '1 h'),
     analytics: true,
     prefix: 'rl:giveaway',
   })

@@ -173,7 +173,7 @@ entrant data is stored server-side.
 - `UPSTASH_REDIS_REST_URL` — Upstash Redis REST URL (rate limiting)
 - `UPSTASH_REDIS_REST_TOKEN` — Upstash Redis REST token (rate limiting)
 
-Rate limit: 5 entries per IP per hour (sliding window). If the Upstash
+Rate limit: 3 entries per IP per hour (sliding window). If the Upstash
 env vars are unset the route falls through to the handler — useful for
 local dev, but **set both in production** so the limiter is active.
 
@@ -189,7 +189,7 @@ local dev, but **set both in production** so the limiter is active.
 - [x] Add `DISCORD_GIVEAWAY_WEBHOOK_URL` to the same env scopes (webhook from `#giveaway-entries` Discord channel)
 - [x] Redeploy
 - [ ] Verify: submit a valid entry → embed appears in `#giveaway-entries` within ~2s
-- [ ] Verify: submit 6× from the same IP → 6th submission shows the rate-limit message
+- [ ] Verify: submit 4× from the same IP → 4th submission shows the rate-limit message
 
 ---
 
