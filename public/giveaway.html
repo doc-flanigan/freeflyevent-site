@@ -343,7 +343,7 @@
 
   <h1>Ship Giveaway Entry</h1>
   <p class="subtitle">
-    Submit your details below to enter. Your mail client will open with a pre-filled message — send it as-is to confirm your entry.
+    Submit your details below to enter. You'll see a confirmation once your entry is received.
   </p>
 
   <form id="entry-form" novalidate>
@@ -380,10 +380,12 @@
     <div class="status-msg error" id="error">
       Transmission failed. Please try again in a moment.
     </div>
+    <div class="status-msg error" id="rate-limited">
+      Too many submissions from your network. Try again in an hour.
+    </div>
   </form>
 
   <div class="footnotes">
-    <div>No server submission. Entry sent via your mail client.</div>
     <div>One entry per RSI handle. Duplicate entries are discarded.</div>
     <div>Winner contacted at the email address above.</div>
   </div>
@@ -431,6 +433,7 @@
   const checkRow = document.querySelector('.check');
   const success  = document.getElementById('success');
   const errorBox = document.getElementById('error');
+  const rateLimited = document.getElementById('rate-limited');
   const submitBtn = document.getElementById('submit-btn');
 
   function setError(input, msg) {
@@ -495,6 +498,7 @@
     e.preventDefault();
     success.classList.remove('show');
     errorBox.classList.remove('show');
+    rateLimited.classList.remove('show');
 
     const okH = validateHandle(true);
     const okE = validateEmail(true);
@@ -524,6 +528,10 @@
         body: JSON.stringify(payload),
       });
 
+      if (res.status === 429) {
+        rateLimited.classList.add('show');
+        return;
+      }
       if (!res.ok) throw new Error('http_' + res.status);
 
       success.classList.add('show');

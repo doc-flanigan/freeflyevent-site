@@ -170,9 +170,16 @@ entrant data is stored server-side.
 
 **Env vars required** (Vercel project settings + `.env.local`):
 - `DISCORD_GIVEAWAY_WEBHOOK_URL` — Discord channel webhook (e.g. `#giveaway-entries`)
+- `UPSTASH_REDIS_REST_URL` — Upstash Redis REST URL (rate limiting)
+- `UPSTASH_REDIS_REST_TOKEN` — Upstash Redis REST token (rate limiting)
+
+Rate limit: 5 entries per IP per hour (sliding window). If the Upstash
+env vars are unset the route falls through to the handler — useful for
+local dev, but **set both in production** so the limiter is active.
 
 **Key files:**
 - `src/app/api/giveaway-entry/route.ts` — server handler (validates + forwards)
+- `src/lib/ratelimit.ts` — Upstash limiter singleton + client IP helper
 - `public/giveaway.html` — standalone form
 
 ---

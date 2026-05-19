@@ -1,9 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getGiveawayLimiter, getClientIp } from '@/lib/ratelimit'
 
 const MAX = 200
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export async function POST(req: NextRequest) {
+  const limiter = getGiveawayLimiter()
+  if (limiter) {
+    const ip = getClientIp(req)
+    const { success, reset } = await limiter.limit(ip)
+    if (!success) {
+      const retryAfter = Math.max(1, Math.ceil((reset - Date.now()) / 1000))
+      return NextResponse.json(
+        { ok: false, error: 'rate_limited' },
+        { status: 429, headers: { 'Retry-After': String(retryAfter) } }
+      )
+    }
+  }
+
   let body: unknown
   try {
     body = await req.json()
