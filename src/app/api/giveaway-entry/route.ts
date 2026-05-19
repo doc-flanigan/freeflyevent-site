@@ -61,39 +61,80 @@ export async function POST(req: NextRequest) {
     }) + ' CST'
 
   const discordUrl = process.env.DISCORD_GIVEAWAY_WEBHOOK_URL
-  if (!discordUrl) {
-    console.error('[giveaway-entry] DISCORD_GIVEAWAY_WEBHOOK_URL not configured')
+  const sheetUrl = process.env.GIVEAWAY_SHEET_URL
+
+  if (!discordUrl && !sheetUrl) {
+    console.error('[giveaway-entry] No sinks configured (DISCORD_GIVEAWAY_WEBHOOK_URL / GIVEAWAY_SHEET_URL)')
     return NextResponse.json({ ok: false, error: 'not_configured' }, { status: 500 })
   }
 
-  try {
-    const res = await fetch(discordUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        embeds: [
-          {
-            title: 'Ship Giveaway Entry',
-            color: 0x3d9be9,
-            fields: [
-              { name: 'RSI Handle', value: h, inline: true },
-              { name: 'Email', value: e, inline: true },
-              { name: 'Discord', value: d || '(not provided)', inline: true },
-              { name: 'Confirmed referral usage', value: 'Yes', inline: false },
-            ],
-            footer: { text: timestamp },
-          },
-        ],
-      }),
-    })
+  const calls: Promise<boolean>[] = []
 
-    if (!res.ok) {
-      console.error('[giveaway-entry] Discord webhook failed:', res.status)
-      return NextResponse.json({ ok: false, error: 'webhook_failed' }, { status: 502 })
-    }
-  } catch (err) {
-    console.error('[giveaway-entry] Discord error:', err)
-    return NextResponse.json({ ok: false, error: 'webhook_error' }, { status: 502 })
+  if (discordUrl) {
+    calls.push(
+      fetch(discordUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          embeds: [
+            {
+              title: 'Ship Giveaway Entry',
+              color: 0xff5500,
+              fields: [
+                { name: 'RSI Handle', value: h, inline: true },
+                { name: 'Email', value: e, inline: true },
+                { name: 'Discord', value: d || '(not provided)', inline: true },
+                { name: 'Confirmed referral usage', value: 'Yes', inline: false },
+              ],
+              footer: { text: timestamp },
+            },
+          ],
+        }),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            console.error('[giveaway-entry] Discord webhook failed:', res.status)
+            return false
+          }
+          return true
+        })
+        .catch((err) => {
+          console.error('[giveaway-entry] Discord error:', err)
+          return false
+        })
+    )
+  }
+
+  if (sheetUrl) {
+    calls.push(
+      fetch(sheetUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          timestamp,
+          handle: h,
+          email: e,
+          discord: d,
+          confirmed: true,
+        }),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            console.error('[giveaway-entry] Sheet append failed:', res.status)
+            return false
+          }
+          return true
+        })
+        .catch((err) => {
+          console.error('[giveaway-entry] Sheet error:', err)
+          return false
+        })
+    )
+  }
+
+  const results = await Promise.all(calls)
+  if (!results.some(Boolean)) {
+    return NextResponse.json({ ok: false, error: 'sinks_failed' }, { status: 502 })
   }
 
   return NextResponse.json({ ok: true })

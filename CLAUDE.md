@@ -165,11 +165,14 @@ Added 2026-05-17. Every referral CTA click fires a background POST to `/api/log`
 ## Ship Giveaway Entries
 
 Static form at `public/giveaway.html` (served at `/giveaway.html`) POSTs to
-`/api/giveaway-entry`, which forwards an embed to a Discord channel. No
-entrant data is stored server-side.
+`/api/giveaway-entry`, which fans the entry out **in parallel** to a Discord
+channel (live notifications) and a Google Sheet (durable record / CSV export
+for Random.org). The entry is accepted if **at least one** sink succeeds; if
+both fail the route returns 502 and the form shows the retry message.
 
 **Env vars required** (Vercel project settings + `.env.local`):
 - `DISCORD_GIVEAWAY_WEBHOOK_URL` — Discord channel webhook (e.g. `#giveaway-entries`)
+- `GIVEAWAY_SHEET_URL` — Google Apps Script web app deploy URL (giveaway-specific Sheet)
 - `UPSTASH_REDIS_REST_URL` — Upstash Redis REST URL (rate limiting)
 - `UPSTASH_REDIS_REST_TOKEN` — Upstash Redis REST token (rate limiting)
 
@@ -177,8 +180,12 @@ Rate limit: 3 entries per IP per hour (sliding window). If the Upstash
 env vars are unset the route falls through to the handler — useful for
 local dev, but **set both in production** so the limiter is active.
 
+The Sheet receives JSON: `{ timestamp, handle, email, discord, confirmed }`.
+Reuses the same Apps Script pattern as `CLICK_TRACKER_SHEET_URL` but is a
+**separate Sheet + script** because the column schema differs.
+
 **Key files:**
-- `src/app/api/giveaway-entry/route.ts` — server handler (validates + forwards)
+- `src/app/api/giveaway-entry/route.ts` — server handler (validates + fans out)
 - `src/lib/ratelimit.ts` — Upstash limiter singleton + client IP helper
 - `public/giveaway.html` — standalone form
 
@@ -190,6 +197,32 @@ local dev, but **set both in production** so the limiter is active.
 - [x] Redeploy
 - [ ] Verify: submit a valid entry → embed appears in `#giveaway-entries` within ~2s
 - [ ] Verify: submit 4× from the same IP → 4th submission shows the rate-limit message
+
+### TODO: Google Sheet setup
+- [ ] Create a new Google Sheet titled "freeflyevent giveaway entries"
+- [ ] Add header row: `Timestamp | RSI Handle | Email | Discord | Confirmed`
+- [ ] Extensions → Apps Script → paste the code below, deploy as a web app (execute as: me, access: anyone), copy the deploy URL
+- [ ] Add `GIVEAWAY_SHEET_URL` to Vercel (Production + Preview + Development) and `.env.local`
+- [ ] Redeploy
+- [ ] Verify: submit a valid entry → new row appears in the Sheet within ~5s
+
+Apps Script body (paste into the new script's `Code.gs`):
+
+```js
+function doPost(e) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const data = JSON.parse(e.postData.contents);
+  sheet.appendRow([
+    data.timestamp,
+    data.handle,
+    data.email,
+    data.discord || '',
+    data.confirmed ? 'Yes' : 'No',
+  ]);
+  return ContentService.createTextOutput(JSON.stringify({ok: true}))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+```
 
 ---
 
