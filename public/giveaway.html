@@ -3,201 +3,247 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ship Giveaway Entry</title>
+<title>Win a Star Citizen Starter Package — freeflyevent.com Giveaway</title>
+<meta name="description" content="Enter to win a Generalist DefenseCon Starter Pack (Warbond Edition). Sponsored by DayOneCitizen.com. Open to new Star Citizen players who use the referral code on freeflyevent.com." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 <style>
-  /* ----- base ----- */
+  /* ---------- palette (mirrors freeflyevent.com globals.css) ---------- */
+  :root {
+    --space-black: #080c14;
+    --black-mid:   #0f1520;
+    --orange:      #ff5500;
+    --orange-dark: #cc4400;
+    --white:       #f5f8ff;
+    --muted:       #6b7890;
+    --line:        rgba(255, 255, 255, 0.10);
+    --line-hover:  rgba(255, 85, 0, 0.30);
+  }
+
   *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   html, body {
-    margin: 0;
-    padding: 0;
-    background: #080c10;
-    color: #d4dde6;
-    font-family: 'Inter', system-ui, sans-serif;
+    margin: 0; padding: 0;
+    background: var(--space-black);
+    color: var(--white);
+    font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
     min-height: 100%;
   }
   body {
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 48px 16px;
     position: relative;
     overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse at 20% -10%, rgba(255, 85, 0, 0.12), transparent 55%),
+      radial-gradient(ellipse at 80% 0%,   rgba(70, 130, 255, 0.08), transparent 50%);
+    background-attachment: fixed;
   }
+  ::selection { background: rgba(255, 85, 0, 0.4); color: var(--white); }
 
-  /* ----- starfield -----
-     NOTE: position:fixed background. If embedding into a host page that
-     already has its own background, remove #starfield from the DOM
-     (or delete this block) so it doesn't paint over the host. */
+  a { color: var(--orange); text-decoration: none; }
+  a:hover { color: var(--orange-dark); text-decoration: underline; }
+
+  /* ---------- starfield ----------
+     position:fixed overlay. Remove this element if embedding into a host
+     page that already paints its own background. */
   #starfield {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-    background:
-      radial-gradient(ellipse at 20% 10%, rgba(61,155,233,0.08), transparent 60%),
-      radial-gradient(ellipse at 80% 90%, rgba(61,155,233,0.05), transparent 55%),
-      #080c10;
+    position: fixed; inset: 0; z-index: 0;
+    pointer-events: none; overflow: hidden;
   }
   #starfield .star {
     position: absolute;
-    width: 2px;
-    height: 2px;
     background: #ffffff;
     border-radius: 50%;
-    opacity: 0.6;
+    opacity: 0.5;
     animation-name: twinkle;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
   }
   @keyframes twinkle {
-    0%, 100% { opacity: 0.15; transform: scale(0.8); }
-    50%      { opacity: 0.95; transform: scale(1.15); }
+    0%, 100% { opacity: 0.15; transform: scale(0.85); }
+    50%      { opacity: 0.85; transform: scale(1.15); }
   }
 
-  /* ----- card ----- */
-  .card {
+  /* ---------- layout ---------- */
+  .wrap {
     position: relative;
     z-index: 1;
-    width: 100%;
-    max-width: 540px;
-    background: #0d1319;
-    border: 1px solid #1a2a3d;
-    padding: 40px 36px 32px;
-    box-shadow: 0 0 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(61,155,233,0.04);
-  }
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #3d9be9 30%, #3d9be9 70%, transparent);
+    max-width: 720px;
+    margin: 0 auto;
   }
 
-  /* corner brackets */
-  .corner {
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    border-color: #3d9be9;
-    border-style: solid;
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    border: 1px solid rgba(255, 85, 0, 0.4);
+    background: rgba(255, 85, 0, 0.06);
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    border-radius: 999px;
   }
-  .corner.tl { top: -1px; left: -1px;  border-width: 2px 0 0 2px; }
-  .corner.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
-  .corner.bl { bottom: -1px; left: -1px;  border-width: 0 0 2px 2px; }
-  .corner.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+  .eyebrow .dot {
+    width: 7px; height: 7px;
+    background: var(--orange);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(255, 85, 0, 0.55);
+    animation: pulseOrange 2s ease-in-out infinite;
+  }
+  @keyframes pulseOrange {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 85, 0, 0.55); }
+    50%      { box-shadow: 0 0 0 10px rgba(255, 85, 0, 0); }
+  }
 
-  /* ----- header ----- */
-  .header {
+  h1 {
+    font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 14px 0 12px;
+    color: var(--white);
+  }
+  h2 {
+    font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    margin: 0 0 14px;
+    color: var(--white);
+    letter-spacing: -0.005em;
+  }
+
+  .lede {
+    color: rgba(245, 248, 255, 0.85);
+    font-size: 16px;
+    line-height: 1.55;
+    margin: 0 0 28px;
+  }
+  .lede strong { color: var(--white); font-weight: 600; }
+
+  /* ---------- cards ---------- */
+  .card {
+    background: rgba(15, 21, 32, 0.7);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px 22px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(4px);
+    transition: border-color 0.2s ease;
+  }
+  .card:hover { border-color: var(--line-hover); }
+
+  .prize {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .prize .tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .prize .title {
+    font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .prize .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .prize .meta span strong { color: var(--white); font-weight: 600; }
+
+  .deadline {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 6px;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px 18px;
+    border: 1px solid rgba(255, 85, 0, 0.35);
+    background: rgba(255, 85, 0, 0.05);
+    border-radius: 10px;
+    margin-bottom: 24px;
   }
-  .status-dot {
-    width: 9px;
-    height: 9px;
-    background: #3d9be9;
-    border-radius: 50%;
-    box-shadow: 0 0 8px #3d9be9;
-    animation: pulse 1.8s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1;   box-shadow: 0 0 8px  #3d9be9; }
-    50%      { opacity: 0.4; box-shadow: 0 0 14px #3d9be9; }
-  }
-  .status-text {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    color: #3d9be9;
+  .deadline .label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-  }
-  h1 {
-    font-family: 'Rajdhani', sans-serif;
+    color: var(--orange);
     font-weight: 700;
-    font-size: 30px;
-    letter-spacing: 0.04em;
-    margin: 4px 0 6px;
-    color: #f0f5fb;
-    text-transform: uppercase;
   }
-  .subtitle {
-    color: #8a99aa;
-    font-size: 13px;
-    line-height: 1.5;
-    margin-bottom: 26px;
+  .deadline .when {
+    font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    color: var(--white);
+    font-size: 15px;
   }
 
-  /* ----- form ----- */
-  form { display: flex; flex-direction: column; gap: 18px; }
+  /* ---------- form ---------- */
+  form { display: flex; flex-direction: column; gap: 16px; }
 
   .field { display: flex; flex-direction: column; gap: 6px; }
 
   label {
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 600;
     font-size: 12px;
-    letter-spacing: 0.16em;
+    font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #b5c2d1;
+    color: rgba(245, 248, 255, 0.85);
   }
-  label .req { color: #3d9be9; margin-left: 4px; }
+  label .req { color: var(--orange); margin-left: 4px; }
   label .opt {
-    color: #6b7a8c;
+    color: var(--muted);
     font-size: 10px;
     margin-left: 6px;
     letter-spacing: 0.1em;
+    font-weight: 600;
   }
 
   input[type="text"],
   input[type="email"] {
     width: 100%;
-    background: #080c10;
-    border: 1px solid #1f3045;
-    color: #e5edf6;
-    padding: 11px 13px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 14px;
-    border-radius: 0;
+    background: rgba(8, 12, 20, 0.85);
+    border: 1px solid var(--line);
+    color: var(--white);
+    padding: 12px 14px;
+    font: inherit;
+    font-size: 15px;
+    border-radius: 8px;
     outline: none;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
   }
-  input::placeholder { color: #46566a; }
+  input::placeholder { color: rgba(107, 120, 144, 0.7); }
   input:focus {
-    border-color: #3d9be9;
-    box-shadow: 0 0 0 1px #3d9be9, 0 0 12px rgba(61,155,233,0.35);
-    background: #0a1017;
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(255, 85, 0, 0.18);
   }
-  input.valid {
-    border-color: #2fa86b;
-    box-shadow: inset 0 0 0 1px rgba(47,168,107,0.25);
-  }
-  input.error-field {
-    border-color: #e0533d;
-    box-shadow: inset 0 0 0 1px rgba(224,83,61,0.3);
-  }
+  input.valid    { border-color: rgba(47, 168, 107, 0.7); }
+  input.error-field { border-color: rgba(224, 83, 61, 0.8); }
 
   .field-error {
-    color: #e0533d;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
+    color: #ff8a76;
+    font-size: 12px;
     min-height: 14px;
-    letter-spacing: 0.04em;
   }
 
-  /* checkbox */
   .check {
     display: flex;
     align-items: flex-start;
-    gap: 11px;
+    gap: 12px;
     margin-top: 4px;
     cursor: pointer;
     user-select: none;
@@ -205,191 +251,228 @@
   .check input { position: absolute; opacity: 0; pointer-events: none; }
   .check .box {
     flex-shrink: 0;
-    width: 18px;
-    height: 18px;
-    border: 1px solid #1f3045;
-    background: #080c10;
+    width: 20px; height: 20px;
+    border: 1px solid var(--line);
+    background: rgba(8, 12, 20, 0.85);
+    border-radius: 5px;
     margin-top: 1px;
     position: relative;
     transition: border-color 0.15s ease, background 0.15s ease;
   }
-  .check:hover .box { border-color: #3d9be9; }
+  .check:hover .box { border-color: var(--orange); }
   .check input:checked + .box {
-    border-color: #3d9be9;
-    background: #0a1825;
+    border-color: var(--orange);
+    background: var(--orange);
   }
   .check input:checked + .box::after {
     content: '';
     position: absolute;
-    left: 4px;
-    top: 0px;
-    width: 6px;
-    height: 11px;
-    border: solid #3d9be9;
+    left: 6px; top: 2px;
+    width: 6px; height: 11px;
+    border: solid var(--space-black);
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
   }
   .check input:focus-visible + .box {
-    box-shadow: 0 0 0 2px rgba(61,155,233,0.5);
+    box-shadow: 0 0 0 3px rgba(255, 85, 0, 0.3);
   }
+  .check.error-field .box { border-color: rgba(224, 83, 61, 0.8); }
   .check .label-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    line-height: 1.45;
-    color: #c4cfdb;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(245, 248, 255, 0.9);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
   }
-  .check.error-field .box {
-    border-color: #e0533d;
+  .check .label-text code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 13px;
+    color: var(--orange);
+    background: rgba(255, 85, 0, 0.08);
+    padding: 1px 6px;
+    border-radius: 4px;
   }
 
-  /* submit button */
+  /* submit */
   .submit {
-    position: relative;
-    margin-top: 8px;
-    background: transparent;
-    color: #3d9be9;
-    border: 1px solid #3d9be9;
-    padding: 14px 22px;
-    font-family: 'Rajdhani', sans-serif;
+    margin-top: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--orange);
+    color: var(--space-black);
+    border: 0;
+    padding: 15px 24px;
+    font: inherit;
     font-weight: 700;
     font-size: 14px;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     cursor: pointer;
-    border-radius: 0;
-    overflow: hidden;
-    transition: color 0.25s ease;
+    border-radius: 8px;
+    box-shadow: 0 14px 40px -14px rgba(255, 85, 0, 0.7);
+    transition: background 0.18s ease, transform 0.18s ease;
   }
-  .submit span { position: relative; z-index: 1; }
-  .submit::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: #3d9be9;
-    transition: left 0.3s ease;
-    z-index: 0;
+  .submit:hover  { background: var(--orange-dark); transform: translateY(-1px); }
+  .submit:active { transform: translateY(0); }
+  .submit[disabled] {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
   }
-  .submit:hover { color: #080c10; }
-  .submit:hover::before { left: 0; }
-  .submit:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(61,155,233,0.4);
-  }
-
-  /* footer scan-line notes */
-  .footnotes {
-    margin-top: 26px;
-    padding-top: 18px;
-    border-top: 1px dashed #1a2a3d;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    color: #56697d;
-    line-height: 1.7;
-    letter-spacing: 0.04em;
-  }
-  .footnotes div::before {
-    content: '// ';
-    color: #3d9be9;
-  }
+  .submit svg { width: 16px; height: 16px; }
 
   /* status panels */
   .status-msg {
     display: none;
     margin-top: 14px;
-    padding: 12px 14px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.04em;
+    padding: 14px 16px;
+    font-size: 14px;
+    border-radius: 8px;
   }
   .status-msg.show { display: block; }
   .status-msg.success {
-    border: 1px solid #2fa86b;
-    background: rgba(47,168,107,0.08);
-    color: #9fdcb9;
+    border: 1px solid rgba(47, 168, 107, 0.6);
+    background: rgba(47, 168, 107, 0.10);
+    color: #b6e5cb;
   }
   .status-msg.error {
-    border: 1px solid #e0533d;
-    background: rgba(224,83,61,0.08);
-    color: #f0b3a8;
+    border: 1px solid rgba(224, 83, 61, 0.6);
+    background: rgba(224, 83, 61, 0.10);
+    color: #f5bdb1;
   }
-  .submit[disabled] { opacity: 0.55; cursor: wait; }
-  .submit[disabled]:hover { color: #3d9be9; }
-  .submit[disabled]:hover::before { left: -100%; }
 
-  @media (max-width: 480px) {
-    .card { padding: 32px 22px 24px; }
-    h1 { font-size: 24px; }
+  /* terms */
+  .terms {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .terms ul { margin: 8px 0 0; padding-left: 20px; }
+  .terms li { margin-bottom: 6px; }
+  .terms li strong { color: rgba(245, 248, 255, 0.9); font-weight: 600; }
+
+  .colophon {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 28px;
+    line-height: 1.6;
+  }
+  .colophon a { color: var(--orange); font-weight: 600; }
+
+  @media (max-width: 520px) {
+    body { padding: 28px 12px; }
+    .card { padding: 20px 18px; }
+    .deadline { flex-direction: column; align-items: flex-start; gap: 4px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Animated starfield. Remove this element if the host page has its own background. -->
+<!-- Animated starfield. Remove this element when embedding into a host page with its own background. -->
 <div id="starfield" aria-hidden="true"></div>
 
-<main class="card" role="main">
-  <span class="corner tl"></span>
-  <span class="corner tr"></span>
-  <span class="corner bl"></span>
-  <span class="corner br"></span>
+<div class="wrap">
 
-  <div class="header">
-    <span class="status-dot" aria-hidden="true"></span>
-    <span class="status-text">Entry Channel // Open</span>
-  </div>
+  <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Giveaway · Open Entry</span>
 
-  <h1>Ship Giveaway Entry</h1>
-  <p class="subtitle">
-    Submit your details below to enter. You'll see a confirmation once your entry is received.
+  <h1>Win a Star Citizen Starter Package</h1>
+
+  <p class="lede">
+    Sponsored by <a href="https://dayonecitizen.com" target="_blank" rel="noopener">DayOneCitizen.com</a> — enter for a chance to win a <strong>Generalist DefenseCon Starter Pack (Warbond Edition)</strong>, redeemable as a brand-new Star Citizen account package.
   </p>
 
-  <form id="entry-form" novalidate>
-    <div class="field">
-      <label for="handle">RSI Handle <span class="req">*</span></label>
-      <input type="text" id="handle" name="handle" autocomplete="off" spellcheck="false" placeholder="e.g. CitizenKane_2954" required />
-      <div class="field-error" data-for="handle"></div>
+  <!-- Prize -->
+  <section class="card prize" aria-labelledby="prize-title">
+    <span class="tag">The Prize</span>
+    <span id="prize-title" class="title">Generalist DefenseCon Starter Pack — Warbond</span>
+    <div class="meta">
+      <span><strong>Sponsor:</strong> <a href="https://dayonecitizen.com" target="_blank" rel="noopener">DayOneCitizen.com</a></span>
+      <span><strong>Package details:</strong> <a href="https://robertsspaceindustries.com/en/pledge/Packages/Generalist-DefenseCon-Starter-Pack-Warbond" target="_blank" rel="noopener">RSI store page</a></span>
     </div>
+  </section>
 
-    <div class="field">
-      <label for="email">Email Address <span class="req">*</span></label>
-      <input type="email" id="email" name="email" autocomplete="email" spellcheck="false" placeholder="you@example.com" required />
-      <div class="field-error" data-for="email"></div>
-    </div>
-
-    <div class="field">
-      <label for="discord">Discord Username <span class="opt">OPTIONAL</span></label>
-      <input type="text" id="discord" name="discord" autocomplete="off" spellcheck="false" placeholder="username" />
-      <div class="field-error" data-for="discord"></div>
-    </div>
-
-    <label class="check" for="confirm">
-      <input type="checkbox" id="confirm" name="confirm" required />
-      <span class="box" aria-hidden="true"></span>
-      <span class="label-text">I confirm I created my RSI account using this site's referral code.</span>
-    </label>
-    <div class="field-error" data-for="confirm"></div>
-
-    <button type="submit" class="submit" id="submit-btn"><span>Transmit Entry</span></button>
-
-    <div class="status-msg success" id="success">
-      Entry received. You're in the draw — good luck, citizen.
-    </div>
-    <div class="status-msg error" id="error">
-      Transmission failed. Please try again in a moment.
-    </div>
-    <div class="status-msg error" id="rate-limited">
-      Too many submissions from your network. Try again in an hour.
-    </div>
-  </form>
-
-  <div class="footnotes">
-    <div>One entry per RSI handle. Duplicate entries are discarded.</div>
-    <div>Winner contacted at the email address above.</div>
+  <!-- Deadline -->
+  <div class="deadline" role="note">
+    <span class="label">Entries Close</span>
+    <span class="when">Friday, May 29th — 11:59 PM CST</span>
   </div>
-</main>
+
+  <!-- Form -->
+  <section class="card" aria-labelledby="form-title">
+    <h2 id="form-title">Enter the Drawing</h2>
+
+    <form id="entry-form" novalidate>
+      <div class="field">
+        <label for="handle">RSI Handle <span class="req">*</span></label>
+        <input type="text" id="handle" name="handle" autocomplete="off" spellcheck="false" placeholder="e.g. CitizenKane_2954" required />
+        <div class="field-error" data-for="handle"></div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email Address <span class="req">*</span></label>
+        <input type="email" id="email" name="email" autocomplete="email" spellcheck="false" placeholder="you@example.com" required />
+        <div class="field-error" data-for="email"></div>
+      </div>
+
+      <div class="field">
+        <label for="discord">Discord Username <span class="opt">OPTIONAL</span></label>
+        <input type="text" id="discord" name="discord" autocomplete="off" spellcheck="false" placeholder="username" />
+        <div class="field-error" data-for="discord"></div>
+      </div>
+
+      <label class="check" for="confirm">
+        <input type="checkbox" id="confirm" name="confirm" required />
+        <span class="box" aria-hidden="true"></span>
+        <span class="label-text">I confirm I created my RSI account using the referral code <code>STAR-GCQJ-N6NC</code> from this site.</span>
+      </label>
+      <div class="field-error" data-for="confirm"></div>
+
+      <button type="submit" class="submit" id="submit-btn">
+        <span>Submit Entry</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="13 6 19 12 13 18" />
+        </svg>
+      </button>
+
+      <div class="status-msg success" id="success">
+        Entry received — you're in the drawing. Good luck, citizen.
+      </div>
+      <div class="status-msg error" id="error">
+        Something went wrong submitting your entry. Please try again in a moment.
+      </div>
+      <div class="status-msg error" id="rate-limited">
+        Too many submissions from your network. Please try again in an hour.
+      </div>
+    </form>
+  </section>
+
+  <!-- Terms -->
+  <section class="card terms" aria-labelledby="terms-title">
+    <h2 id="terms-title" style="color: var(--white); margin-bottom: 10px;">Official Rules</h2>
+    <ul>
+      <li><strong>No purchase necessary.</strong> A purchase will not improve your chances of winning.</li>
+      <li><strong>Eligibility:</strong> Open to new Star Citizen players who create their RSI account using the referral code <code style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--orange);">STAR-GCQJ-N6NC</code> displayed on this site. Existing RSI accounts created without the referral code are not eligible.</li>
+      <li><strong>One entry per person.</strong> Duplicate entries (same RSI Handle, email, or Discord) will be discarded; only the earliest valid entry per person is kept.</li>
+      <li><strong>Age:</strong> Entrants must be 18 or older, or have permission from a parent/legal guardian.</li>
+      <li><strong>Entry period:</strong> Entries must be submitted by <strong>Friday, May 29th 2026 at 11:59 PM CST</strong>. Late entries are not accepted.</li>
+      <li><strong>Winner selection:</strong> One winner will be drawn at random on or about May 30th using <a href="https://www.random.org/draws/" target="_blank" rel="noopener">Random.org's Third-Party Drawing Service</a>. A public certificate URL will be posted in the <a href="https://dayonecitizen.com" target="_blank" rel="noopener">DayOneCitizen.com</a> Discord and on this page.</li>
+      <li><strong>Notification:</strong> The winner will be contacted via the email address and/or Discord username submitted with their entry. If the winner does not respond within <strong>7 days</strong> of notification, an alternate winner will be drawn.</li>
+      <li><strong>Prize:</strong> One (1) <a href="https://robertsspaceindustries.com/en/pledge/Packages/Generalist-DefenseCon-Starter-Pack-Warbond" target="_blank" rel="noopener">Generalist DefenseCon Starter Pack (Warbond Edition)</a>, delivered as an RSI gift code redeemable on the winner's RSI account. No cash or substitute prizes.</li>
+      <li><strong>Privacy:</strong> Submitted information is used solely to contact the winner and verify eligibility. Entries are not sold or shared with third parties.</li>
+      <li><strong>Sponsor:</strong> This giveaway is sponsored by <a href="https://dayonecitizen.com" target="_blank" rel="noopener">DayOneCitizen.com</a> and hosted by freeflyevent.com. It is not affiliated with, endorsed by, or sponsored by Cloud Imperium Games or the Roberts Space Industries corporate group.</li>
+      <li><strong>Void where prohibited</strong> by law.</li>
+    </ul>
+  </section>
+
+  <p class="colophon">
+    Sponsored by <a href="https://dayonecitizen.com" target="_blank" rel="noopener">DayOneCitizen.com</a> · Hosted on freeflyevent.com
+  </p>
+</div>
 
 <script>
   /* ---------- Starfield ---------- */
@@ -410,16 +493,13 @@
       const delay = (Math.random() * 6).toFixed(2);
       s.style.animationDuration = dur + 's';
       s.style.animationDelay = delay + 's';
-      s.style.opacity = (0.2 + Math.random() * 0.7).toFixed(2);
+      s.style.opacity = (0.2 + Math.random() * 0.6).toFixed(2);
       frag.appendChild(s);
     }
     field.appendChild(frag);
   })();
 
-  /* ---------- Endpoint ----------
-     Entries POST to a same-origin Next.js API route, which forwards to
-     the giveaway Discord webhook server-side. The webhook URL never
-     touches the browser. */
+  /* ---------- Endpoint ---------- */
   const ENTRY_ENDPOINT = '/api/giveaway-entry';
 
   /* ---------- Validation ---------- */
@@ -519,7 +599,7 @@
     };
 
     submitBtn.disabled = true;
-    submitBtn.querySelector('span').textContent = 'Transmitting…';
+    submitBtn.querySelector('span').textContent = 'Submitting…';
 
     try {
       const res = await fetch(ENTRY_ENDPOINT, {
@@ -543,7 +623,7 @@
       errorBox.classList.add('show');
     } finally {
       submitBtn.disabled = false;
-      submitBtn.querySelector('span').textContent = 'Transmit Entry';
+      submitBtn.querySelector('span').textContent = 'Submit Entry';
     }
   });
 </script>
