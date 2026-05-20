@@ -489,6 +489,9 @@
       <div class="status-msg error" id="rate-limited">
         Too many submissions from your network. Please try again in an hour.
       </div>
+      <div class="status-msg error" id="blocked">
+        Your entry didn't go through — looks like a browser extension is blocking the submit endpoint. If you have an ad blocker or strict tracking protection (uBlock Origin, Brave Shields, Firefox Strict mode, etc.), <strong>disable it for this page and try again</strong>. We're not serving ads or trackers; the endpoint only records your giveaway entry.
+      </div>
     </form>
   </section>
 
@@ -555,6 +558,7 @@
   const success  = document.getElementById('success');
   const errorBox = document.getElementById('error');
   const rateLimited = document.getElementById('rate-limited');
+  const blocked = document.getElementById('blocked');
   const submitBtn = document.getElementById('submit-btn');
 
   function setError(input, msg) {
@@ -621,6 +625,7 @@
     success.classList.remove('show');
     errorBox.classList.remove('show');
     rateLimited.classList.remove('show');
+    blocked.classList.remove('show');
 
     const okH = validateHandle(true);
     const okE = validateEmail(true);
@@ -662,7 +667,14 @@
       checkRow.classList.remove('error-field');
     } catch (err) {
       console.error('[giveaway] submit failed:', err);
-      errorBox.classList.add('show');
+      // fetch() throws TypeError when the request is blocked at the
+      // network layer (browser extension, CORS, offline). For a
+      // same-origin POST, the realistic cause is an ad/tracking blocker.
+      if (err instanceof TypeError) {
+        blocked.classList.add('show');
+      } else {
+        errorBox.classList.add('show');
+      }
     } finally {
       submitBtn.disabled = false;
       submitBtn.querySelector('span').textContent = 'Submit Entry';
