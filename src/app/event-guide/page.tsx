@@ -7,12 +7,12 @@ import { CTAButton } from '@/components/CTAButton';
 import { HUB_URL, REFERRAL_CODE } from '@/data/events';
 
 export const metadata: Metadata = {
-  title: 'Your First Free Fly — A Complete Beginner\'s Guide',
+  title: 'Star Citizen Free Fly Event Guide — What to Do First',
   description:
     'Step-by-step guide for new players: sign up, claim your 50,000 UEC referral bonus, download the launcher, and what to do during your first Star Citizen Free Fly event.',
   alternates: { canonical: '/event-guide' },
   openGraph: {
-    title: 'Your First Free Fly — Beginner\'s Guide',
+    title: 'Star Citizen Free Fly Event Guide — What to Do First',
     description:
       'Sign up, claim 50,000 UEC, download, and what to do first during a Star Citizen Free Fly.',
   },
