@@ -5,27 +5,19 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
   async redirects() {
-    // Canonical host is the apex `freeflyevent.com`. Everything else
-    // funnels here.
+    // Canonical host is the apex `freeflyevent.com`. The `www → apex` 308
+    // is handled at the edge by Vercel's Domains config — do not add a
+    // duplicate rule here (on 2026-05-19 a conflicting `apex → www` rule
+    // in the dashboard produced a loop that took the site down for ~24h;
+    // running both layers in the same direction is safe but leaves the
+    // code rule as dead weight behind the edge redirect).
     //
-    // IMPORTANT: Do NOT configure a conflicting redirect in the Vercel
-    // dashboard (Project → Settings → Domains). On 2026-05-19 the
-    // dashboard was set to redirect apex → www while this file sent
-    // www → apex, producing a redirect loop that took the entire site
-    // down for ~24h. Pick one layer (this file) and keep the dashboard
-    // configured with `freeflyevent.com` as primary with no redirect.
+    // The vercel.app production alias is NOT redirected by the dashboard,
+    // so we still 301 it here. Match is intentionally exact to avoid
+    // catching preview hostnames like
+    // `freeflyevent-site-git-*-scottgayden.vercel.app`, which need to
+    // keep working for PR review.
     return [
-      // www → apex
-      {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'www.freeflyevent.com' }],
-        destination: 'https://freeflyevent.com/:path*',
-        permanent: true,
-      },
-      // Production vercel.app alias → apex. Narrow match: only the bare
-      // project alias, NOT preview deployments (which match longer
-      // hostnames like `freeflyevent-site-git-*-scottgayden.vercel.app`
-      // and need to keep working for PR previews).
       {
         source: '/:path*',
         has: [{ type: 'host', value: 'freeflyevent-site.vercel.app' }],
