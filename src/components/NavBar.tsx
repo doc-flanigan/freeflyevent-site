@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { HUB_URL } from '@/data/events';
 
 const LINKS = [
   { href: '/', label: 'Home' },
@@ -42,14 +41,6 @@ export function NavBar() {
           >
             🎁 Giveaway
           </a>
-          <Link
-            href={HUB_URL}
-            target="_blank"
-            rel="noopener"
-            className="ml-2 rounded-md border border-white/10 px-3 py-2 text-sm text-muted transition-colors hover:border-orange/40 hover:text-orange"
-          >
-            dayonecitizen.com ↗
-          </Link>
         </div>
 
         <button
@@ -96,15 +87,6 @@ export function NavBar() {
             >
               🎁 Giveaway — Win a Starter Pack
             </a>
-            <Link
-              href={HUB_URL}
-              target="_blank"
-              rel="noopener"
-              onClick={() => setOpen(false)}
-              className="rounded-md px-3 py-3 text-sm text-muted hover:bg-white/5 hover:text-orange"
-            >
-              dayonecitizen.com ↗
-            </Link>
           </div>
         </div>
       )}
