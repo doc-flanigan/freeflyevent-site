@@ -366,7 +366,7 @@ export default function EventGuidePage() {
                 name: 'How big is the Star Citizen download?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'The Star Citizen game client is approximately 100 GB. Download the RSI Launcher from your account dashboard — it manages the installation. Start the download as soon as you sign up, as it can take several hours depending on your connection speed.',
+                  text: 'The Star Citizen game client is approximately 100 GB. Download the RSI Launcher from your account dashboard — it manages the installation. On a 100 Mbps connection expect 2 to 3 hours; on gigabit fiber around 15 to 20 minutes. Start the download as soon as you sign up — patches also release during event week and add to the queue.',
                 },
               },
               {
@@ -374,7 +374,7 @@ export default function EventGuidePage() {
                 name: 'What ships can I fly during a Star Citizen Free Fly event?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Each Free Fly event unlocks a selection of ships for all players at no cost. The roster varies by event — DefenseCon highlights military vessels, while the Intergalactic Aerospace Expo (IAE) in November rotates through 100+ ships over the event duration. Check the freeflyevent.com homepage for the current event\'s ship lineup.',
+                  text: 'Each Free Fly event unlocks a rotating selection of ships for all players at no cost. DefenseCon (May) highlights military vessels from the UEE Navy. The Intergalactic Aerospace Expo (IAE) in November rotates through 100+ ships across all manufacturers over the event duration. Check the freeflyevent.com homepage for the current event\'s ship lineup.',
                 },
               },
               {
@@ -382,7 +382,7 @@ export default function EventGuidePage() {
                 name: 'Can I add a referral code after signing up for Star Citizen?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'RSI allows referral codes to be added within approximately 24 hours of account creation via account settings. However, this grace period is unreliable — the only guaranteed method is entering the code (STAR-GCQJ-N6NC) in the Referral Code field on the signup form itself. After 24 hours, the code cannot be added and the 50,000 UEC bonus is forfeited permanently.',
+                  text: 'RSI offers a grace period of approximately 24 hours to add a referral code via account settings after signup. However, this is unreliable — the only guaranteed method is entering code STAR-GCQJ-N6NC in the Referral Code field on the signup form itself. After 24 hours, the code cannot be added and the 50,000 UEC bonus is forfeited permanently with no support override.',
                 },
               },
               {
@@ -390,7 +390,39 @@ export default function EventGuidePage() {
                 name: 'What should I do first in Star Citizen during a Free Fly?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'After logging in, run the new-player tutorial at your starting station. It covers flight, quantum travel, and combat basics in about 30 to 45 minutes. Once done, take a delivery mission from the contracts terminal — it teaches quantum jumps, planetary landing, and the UI. Then explore a major planet: Microtech, ArcCorp, Crusader, or Hurston.',
+                  text: 'Run the new-player tutorial at your starting station immediately after logging in. It covers flight, quantum travel, and combat basics in about 30 to 45 minutes. Then take a delivery mission from the contracts terminal to learn quantum jumps and planetary landing. After that, explore one of the major planets: Microtech, ArcCorp, Crusader, or Hurston.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What is the best starter ship during a Star Citizen Free Fly?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'For a solo new player the Avenger Titan is the most recommended ship during Free Fly — it is fast, easy to fly, has a small cargo hold, and handles both combat and delivery missions well. For seeing large capital ships, join an experienced player\'s crew rather than attempting to fly a multi-crew vessel solo.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'How do I launch Star Citizen for the first time during Free Fly?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Open the RSI Launcher after installing it from your account dashboard. Click INSTALL for Star Citizen and wait for the ~100 GB download to complete. Then click LAUNCH. The first launch may require an additional day-one patch. Log in with your RSI account credentials and you will spawn at the Welcome Hub.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What is quantum travel in Star Citizen?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Quantum travel is Star Citizen\'s faster-than-light system for covering large distances between planets, moons, and stations within a star system. To quantum jump: press F2 to open your star map and select a destination, then hold B to spool your quantum drive, and hold B again to confirm the jump. Travel times range from a few seconds to several minutes depending on distance.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'How do I join a friend\'s ship in Star Citizen?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Add your friend as a contact in-game, then ask them to invite you to their party via the Social menu. Once in the same party, travel to the same location — your friend can invite you aboard their ship through the Crew menu. Alternatively, spawn at the same station by selecting it in your ASOP terminal to meet up before heading out.',
                 },
               },
               {
@@ -398,7 +430,23 @@ export default function EventGuidePage() {
                 name: 'Do I keep my progress after a Free Fly event ends?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Your RSI account, referral bonus UEC, and in-game purchases persist after the Free Fly ends. Loaner ships provided for the event are returned, but everything tied to your account — UEC balance, referral bonus, and any Game Package you purchased — carries over seamlessly if you decide to buy.',
+                  text: 'Your RSI account, referral bonus UEC, and in-game purchases persist after the Free Fly ends. Loaner ships provided for the event are returned, but your account, UEC balance, and any Game Package you purchased carry over seamlessly. Nothing is lost when the event window closes.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Is Star Citizen Free Fly available in my country?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Star Citizen Free Fly events are available worldwide wherever robertsspaceindustries.com is accessible. There are no regional restrictions on account creation or gameplay. The RSI Launcher and game client are available globally, though server latency will vary depending on your location relative to CIG\'s data centers.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Do I need a credit card to sign up for Star Citizen Free Fly?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'No. Creating a free RSI account for a Free Fly event requires only an email address — no credit card or payment method. You only need to provide payment information if you choose to purchase a Game Package after trying the game. The 50,000 UEC referral bonus is also free and requires no purchase.',
                 },
               },
             ],

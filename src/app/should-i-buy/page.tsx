@@ -293,6 +293,115 @@ export default function ShouldIBuyPage() {
           }),
         }}
       />
+      {/* FAQPage schema — AI cites purchase-decision questions from this page */}
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'Is Star Citizen worth buying in 2026?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Star Citizen is worth buying in 2026 if you enjoyed the Free Fly experience. The game offers two complete star systems (Stanton and Pyro), multiple gameplay loops — combat, mining, cargo trading, bounty hunting, salvage — and genuine open-world sandbox play with no subscription. It remains in alpha and crashes and rough edges are real, but for players who value ambition and emergent multiplayer, the $45–$65 starter range represents genuine value. If Free Fly left you cold, the paid game is the same experience.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'How much does Star Citizen cost in 2026?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Starter Game Packages range from approximately $45 to $65 USD. The basic Aurora MR or Mustang Alpha starters run around $45; the Avenger Titan starter is around $55; the combo package including Squadron 42 (the single-player campaign) is around $65. There is no subscription fee. Prices fluctuate slightly around major sales events like DefenseCon and IAE.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What is the cheapest way to get into Star Citizen?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'The cheapest entry point is a basic Game Package — Aurora MR or Mustang Alpha starter — at approximately $45 USD. There is no free-to-play option outside of Free Fly event windows. The Avenger Titan starter at ~$55 is widely considered the best value for new players due to its versatility as a solo ship.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Does Star Citizen have a monthly subscription fee?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'No. Star Citizen has no monthly subscription. You pay once for a Game Package and have permanent access to all current and future content in the live game. There is no DLC — content added after your purchase is included automatically. Optional ship subscriptions exist for specific in-game ships but are not required.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Is Star Citizen finished or still in alpha in 2026?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Star Citizen is in active alpha development as of 2026. It is not a finished game — some features are incomplete, crashes occur, and content is added incrementally with each patch. However it has two playable star systems, multiple gameplay loops, server meshing for a persistent universe, and receives regular major updates. Cloud Imperium Games has been in development since 2012.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What is included in a Star Citizen Game Package?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'A Star Citizen Game Package includes: permanent access to the Star Citizen live game and all future patches, a starter ship (Aurora MR, Mustang Alpha, or Avenger Titan depending on package), 1,000 aUEC (alpha test currency), and a hangar. Squadron 42 (the single-player campaign) is not in every package — look for a combo package if you want both. Using referral code STAR-GCQJ-N6NC at signup adds 50,000 UEC (permanent currency) at no extra cost.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Should I buy Star Citizen during a Free Fly event?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Yes — buying during a Free Fly event is the ideal time. You already know from firsthand experience whether you enjoy the game. CIG sometimes offers sale pricing or bonus gear packs during major events like DefenseCon and IAE. Your in-game progress, UEC balance, and referral bonus all carry over seamlessly from your free account to a purchased one.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Does buying Star Citizen include Squadron 42?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Squadron 42 — the single-player story campaign — is not included in every Game Package. Basic starter packages include Star Citizen only. To get both, choose the combo package priced around $65. Squadron 42 has its own separate development timeline and is not required to play the main Star Citizen persistent universe.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What is the best starter ship in Star Citizen for new players?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'For most new players, the Avenger Titan (included in the ~$55 starter) is the strongest choice. It is faster and more versatile than the Aurora or Mustang, handles solo combat and cargo delivery missions well, and has genuine utility from day one. The Aurora MR is a solid budget option if cost is the deciding factor. Avoid buying additional ships immediately — you can rent virtually any ship in-game with your UEC before committing real money.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Can I refund Star Citizen if I do not like it?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'RSI offers a 30-day return window for new Game Package purchases with minimal playtime. Submit a refund request through RSI customer support. After 30 days or significant in-game activity, refunds are generally not available. Check the current RSI refund policy on robertsspaceindustries.com for the latest terms before purchasing.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'How much should I spend on Star Citizen as a new player?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Buy a starter package and stop there — $45 to $65 is the right range for a new player. The single most common regret in the Star Citizen community is spending on large ships too early. You can earn ships in-game with aUEC and test every profession during Free Fly or after purchase before committing additional real money. Spend more only after you have 20+ hours and know exactly what you want to do.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Does Star Citizen have pay-to-win mechanics?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Star Citizen is not pay-to-win in the traditional sense — ships purchased with real money can also be earned or rented in-game using aUEC. Spending more money does not give a direct combat or progression advantage, as the same ships are available to all players. Larger and more expensive ships generally require multi-crew to operate effectively, making solo play in them challenging regardless of how you obtained the ship.',
+                },
+              },
+            ],
+          }),
+        }}
+      />
     </>
   );
 }

@@ -623,10 +623,18 @@ export default function HomePage() {
             mainEntity: [
               {
                 '@type': 'Question',
+                name: 'Is Star Citizen free to play right now?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Star Citizen is free to play only during official Free Fly events. Check the top of freeflyevent.com for the live status banner — it shows whether a Free Fly is currently active, the end date and countdown, or when the next event is expected. Outside of Free Fly windows, a Game Package (starting around $45) is required to play.',
+                },
+              },
+              {
+                '@type': 'Question',
                 name: 'What is a Star Citizen Free Fly event?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'A Star Citizen Free Fly event is a limited-time period — typically 10 days — when Cloud Imperium Games opens Star Citizen to everyone at no cost. No purchase is required: you create a free RSI account, download the launcher, and play. Free Fly events run roughly twice a year: Invictus Launch Week (or DefenseCon) in May and the Intergalactic Aerospace Expo (IAE) in November.',
+                  text: 'A Star Citizen Free Fly event is a limited-time period — typically 7 to 11 days — when Cloud Imperium Games opens Star Citizen to everyone at no cost. No purchase is required: you create a free RSI account, download the launcher, and play. Free Fly events run roughly twice a year: a military-themed event (Invictus Launch Week or DefenseCon) in May, and the Intergalactic Aerospace Expo (IAE) in November.',
                 },
               },
               {
@@ -634,7 +642,7 @@ export default function HomePage() {
                 name: 'How do I get the 50,000 UEC referral bonus during Free Fly?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'During signup on robertsspaceindustries.com, paste a referral code into the Referral Code field on the account creation form. Using code STAR-GCQJ-N6NC will credit your new account with 50,000 UEC — Star Citizen\'s in-game currency — the moment you log in. The code must be entered at or within 24 hours of signup; it cannot be added later.',
+                  text: 'During signup on robertsspaceindustries.com, paste a referral code into the Referral Code field on the account creation form. Using code STAR-GCQJ-N6NC will credit your new account with 50,000 UEC — Star Citizen\'s permanent in-game currency — the moment you log in. The code must be entered at or within 24 hours of signup; it cannot be added after that window.',
                 },
               },
               {
@@ -642,7 +650,7 @@ export default function HomePage() {
                 name: 'Can I still get the 50,000 UEC bonus if there is no active Free Fly event?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Yes. The 50,000 UEC referral bonus is awarded when you create a free RSI account using a referral code — regardless of whether a Free Fly event is active. Creating the account now locks in your bonus before the next Free Fly opens.',
+                  text: 'Yes. The 50,000 UEC referral bonus is awarded when you create a free RSI account using a referral code — regardless of whether a Free Fly event is active. Creating the account now locks in your bonus before the next Free Fly opens. The account itself is free to create at any time.',
                 },
               },
               {
@@ -650,7 +658,7 @@ export default function HomePage() {
                 name: 'When is the next Star Citizen Free Fly event?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Star Citizen Free Fly events follow a predictable annual pattern: a military-themed event (Invictus Launch Week or DefenseCon) in May, and the Intergalactic Aerospace Expo (IAE) in November. Check the freeflyevent.com homepage for the current event status, countdown timer, and announced dates.',
+                  text: 'Star Citizen Free Fly events follow a predictable annual pattern: a military-themed event (Invictus Launch Week or DefenseCon) in May, and the Intergalactic Aerospace Expo (IAE) in November. The IAE is typically the larger of the two. Check the freeflyevent.com homepage for the current event status, countdown timer, and announced dates.',
                 },
               },
               {
@@ -658,7 +666,55 @@ export default function HomePage() {
                 name: 'Do I keep progress after a Free Fly event ends?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Your RSI account and any UEC you earned persist after the Free Fly ends. In-game assets acquired with loaner ships are returned, but your account, referral bonus UEC, and any purchases made during the event remain. If you buy a Game Package during Free Fly, all progress carries over seamlessly.',
+                  text: 'Your RSI account and any permanent UEC you received persist after the Free Fly ends. Loaner ships provided during the event are returned, but your account, referral bonus UEC, and any purchases you made during the event window remain. If you buy a Game Package during Free Fly, all progress carries over seamlessly to your paid account.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What PC specs do I need for Star Citizen Free Fly?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Minimum: Intel i7-6700K or AMD Ryzen 5 1600, 16 GB RAM, Nvidia GTX 1080 or AMD RX 5700 XT, and 100 GB of free SSD space. Recommended: Intel i7-8700K or AMD Ryzen 7 3700X, 32 GB RAM, Nvidia RTX 3080 or AMD RX 6800 XT, and an NVMe SSD. The game is CPU and RAM intensive; 32 GB RAM makes a noticeable difference in city areas and busy servers.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Can I play Star Citizen on console during Free Fly?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'No. Star Citizen is a PC-only game and has no console version. It runs on Windows PC only. There is no PlayStation or Xbox version, and none has been announced by Cloud Imperium Games.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Can existing Star Citizen players play with me during Free Fly?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Yes. Free Fly events use the same Star Citizen servers as the live game. Veteran players can invite Free Fly participants to their party, lend ships, and fly multi-crew missions together. Flying as a crewmember on an experienced player\'s large ship is one of the best ways to see what the game offers during a Free Fly.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What is the difference between UEC and aUEC in Star Citizen?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'UEC (United Earth Credits) is the permanent in-game currency tied to your RSI account — it never wipes and carries forward between patches forever. aUEC (alpha UEC) is the temporary test currency used during alpha development; it resets periodically with major patches. The 50,000 from a referral code is UEC. In-game mission rewards during the current alpha are aUEC.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'How many ships can I fly for free during a Star Citizen Free Fly event?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'The number varies by event. DefenseCon (May) offers a rotating roster of military vessels — typically several available at once, swapping on a daily schedule. The IAE in November is the larger event, with 100+ ships rotating daily across all manufacturers. You can also fly additional ships by joining a friend\'s crew during any Free Fly.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What is the Drake DefenseCon Gear Pack bonus in 2026?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'During DefenseCon 2956 (May 2026), new RSI accounts created with a referral code received a limited-time bonus: 50,000 UEC plus a free Drake DefenseCon Gear Pack — an in-game cosmetic set. The gear pack bonus expired May 27, 2026. After that date, only the standard 50,000 UEC referral bonus applies to new signups.',
                 },
               },
             ],
