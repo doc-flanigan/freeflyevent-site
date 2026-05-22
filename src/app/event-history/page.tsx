@@ -107,6 +107,59 @@ export default function EventHistoryPage() {
           }),
         }}
       />
+      {/* FAQPage schema — lets AI cite pattern/cadence questions from this page */}
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'How often does Star Citizen have Free Fly events?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Star Citizen runs two Free Fly events per year. The first is a military-themed event in May — historically Invictus Launch Week, rebranded to DefenseCon in 2026. The second is the Intergalactic Aerospace Expo (IAE) in November, the largest ship showcase of the year. CIG has maintained this twice-annual cadence consistently since 2019.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'How long do Star Citizen Free Fly events last?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Most Star Citizen Free Fly events run for approximately 7 to 11 days. The IAE in November tends to be the longest, often lasting 10 or more days. Invictus Launch Week and its successor DefenseCon typically run 7 to 9 days. Exact dates are announced by Cloud Imperium Games on the official RSI Comm-Link.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Has Star Citizen ever cancelled a Free Fly event?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Yes — once. CIG cancelled the Free Fly portion of DefenseCon 2026 (May 2026) mid-event due to server performance issues under the DefenseCon traffic load. This was the first cancellation in over a decade of Free Fly events. CIG addressed the community live on Twitch when they made the call.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What is the difference between Invictus Launch Week and IAE Free Fly?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Invictus Launch Week (now called DefenseCon) is a May event that showcases military and combat ships from the UEE Navy. The Intergalactic Aerospace Expo (IAE) is a November event that rotates through 100+ ships across all manufacturers over its duration — it is the larger of the two. Both events include a Free Fly period allowing anyone to play Star Citizen at no cost.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'When is the next Star Citizen Free Fly event in 2026?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Based on the historical pattern, the next Star Citizen Free Fly event after May 2026 is expected to be the Intergalactic Aerospace Expo (IAE) in November 2026. CIG has not yet announced official dates. Check freeflyevent.com for the latest confirmed dates and countdown when they are announced.',
+                },
+              },
+            ],
+          }),
+        }}
+      />
     </>
   );
 }

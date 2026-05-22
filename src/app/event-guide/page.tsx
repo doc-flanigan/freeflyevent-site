@@ -264,6 +264,147 @@ export default function EventGuidePage() {
           }),
         }}
       />
+      {/* HowTo schema — AI surfaces step-by-step results for "how to play Star Citizen free fly" */}
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Play Star Citizen During a Free Fly Event',
+            description:
+              'A step-by-step guide for new players joining a Star Citizen Free Fly event — from creating an RSI account and claiming a 50,000 UEC referral bonus, to downloading the game and completing your first missions.',
+            totalTime: 'PT90M',
+            step: [
+              {
+                '@type': 'HowToStep',
+                position: 1,
+                name: 'Make a free RSI account',
+                text: 'Go to robertsspaceindustries.com and click Enlist Now. Use a real email — your account is permanent and your in-game progress is tied to it. Paste referral code STAR-GCQJ-N6NC into the Referral Code field on the signup form. This is the only reliable way to lock in your 50,000 UEC bonus.',
+                url: 'https://freeflyevent.com/event-guide#step-01',
+              },
+              {
+                '@type': 'HowToStep',
+                position: 2,
+                name: 'Confirm the referral bonus posted',
+                text: 'After verifying your email, log into your RSI dashboard. The 50,000 UEC will appear as a credit on your account. If it did not appear, you have approximately 24 hours to add the code in account settings — but do not rely on this grace period.',
+                url: 'https://freeflyevent.com/event-guide#step-02',
+              },
+              {
+                '@type': 'HowToStep',
+                position: 3,
+                name: 'Download the RSI Launcher',
+                text: 'From your account dashboard, download the launcher. It installs the Star Citizen client (approximately 100 GB). Start the download immediately. Log in an hour or two before the event opens on launch day — patches drop on day one and the launcher always queues.',
+                url: 'https://freeflyevent.com/event-guide#step-03',
+              },
+              {
+                '@type': 'HowToStep',
+                position: 4,
+                name: 'Pick a ship from the Free Fly roster',
+                text: 'During the event, several ships are temporarily unlocked for everyone. Featured ships rotate event to event — DefenseCon spotlights military vessels, and the IAE rotates 100+ ships. Check the freeflyevent.com homepage for the current roster.',
+                url: 'https://freeflyevent.com/event-guide#step-04',
+              },
+              {
+                '@type': 'HowToStep',
+                position: 5,
+                name: 'Run the new-player tutorial',
+                text: 'Spawn at your starting station, follow the tutorial markers, and learn flight, quantum travel, and ship combat fundamentals. Takes about 30 to 45 minutes. Skipping it will leave you lost.',
+                url: 'https://freeflyevent.com/event-guide#step-05',
+              },
+              {
+                '@type': 'HowToStep',
+                position: 6,
+                name: 'Try a delivery mission',
+                text: 'Open the contracts terminal at any station and pick a delivery mission. Pick up cargo on one moon, deliver to another. You will learn quantum jumps, planetary landing, and basic UI flow — and earn aUEC in the process.',
+                url: 'https://freeflyevent.com/event-guide#step-06',
+              },
+              {
+                '@type': 'HowToStep',
+                position: 7,
+                name: 'Visit a major planet',
+                text: 'Microtech is snow and dense forests. ArcCorp is a planet-spanning city. Crusader is a gas giant with floating platforms. Hurston is industrial. Each is enormous — pick one and quantum-jump there.',
+                url: 'https://freeflyevent.com/event-guide#step-07',
+              },
+              {
+                '@type': 'HowToStep',
+                position: 8,
+                name: 'Group up with other players',
+                text: 'Star Citizen is at its best with friends. Use Spectrum (in-game chat) or join a Star Citizen Discord server. Multi-crew ships need crews — that is the core experience of the game.',
+                url: 'https://freeflyevent.com/event-guide#step-08',
+              },
+              {
+                '@type': 'HowToStep',
+                position: 9,
+                name: 'Decide before the event ends',
+                text: 'If you are hooked, grab a Game Package while you are still inside the event window. Your progress, hangar items, and referral bonus UEC carry over to a paid account seamlessly.',
+                url: 'https://freeflyevent.com/event-guide#step-09',
+              },
+            ],
+          }),
+        }}
+      />
+      {/* FAQPage schema — AI cites individual Q&A pairs for beginner questions */}
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'How do I sign up for a Star Citizen Free Fly event?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Go to robertsspaceindustries.com and click Enlist Now to create a free account. No purchase is required to play during a Free Fly. When you sign up, paste referral code STAR-GCQJ-N6NC into the Referral Code field to claim 50,000 UEC at no cost.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'How big is the Star Citizen download?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'The Star Citizen game client is approximately 100 GB. Download the RSI Launcher from your account dashboard — it manages the installation. Start the download as soon as you sign up, as it can take several hours depending on your connection speed.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What ships can I fly during a Star Citizen Free Fly event?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Each Free Fly event unlocks a selection of ships for all players at no cost. The roster varies by event — DefenseCon highlights military vessels, while the Intergalactic Aerospace Expo (IAE) in November rotates through 100+ ships over the event duration. Check the freeflyevent.com homepage for the current event\'s ship lineup.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Can I add a referral code after signing up for Star Citizen?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'RSI allows referral codes to be added within approximately 24 hours of account creation via account settings. However, this grace period is unreliable — the only guaranteed method is entering the code (STAR-GCQJ-N6NC) in the Referral Code field on the signup form itself. After 24 hours, the code cannot be added and the 50,000 UEC bonus is forfeited permanently.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What should I do first in Star Citizen during a Free Fly?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'After logging in, run the new-player tutorial at your starting station. It covers flight, quantum travel, and combat basics in about 30 to 45 minutes. Once done, take a delivery mission from the contracts terminal — it teaches quantum jumps, planetary landing, and the UI. Then explore a major planet: Microtech, ArcCorp, Crusader, or Hurston.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Do I keep my progress after a Free Fly event ends?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Your RSI account, referral bonus UEC, and in-game purchases persist after the Free Fly ends. Loaner ships provided for the event are returned, but everything tied to your account — UEC balance, referral bonus, and any Game Package you purchased — carries over seamlessly if you decide to buy.',
+                },
+              },
+            ],
+          }),
+        }}
+      />
     </>
   );
 }
