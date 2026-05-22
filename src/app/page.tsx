@@ -11,6 +11,8 @@ import { FreeFlyGuide } from '@/components/FreeFlyGuide';
 import { TwitchClip } from '@/components/TwitchClip';
 import { LightboxImage } from '@/components/LightboxImage';
 import { FREE_FLY_HISTORY, getEventStatus, getActiveBonusOverride, REFERRAL_URL } from '@/data/events';
+import { DiscordCTA } from '@/components/DiscordCTA';
+import { UrgencyCallout } from '@/components/UrgencyCallout';
 
 const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
 
@@ -246,9 +248,13 @@ export default function HomePage() {
                   See all past Free Fly events →
                 </Link>
               </div>
+              <DiscordCTA />
             </div>
           </section>
         )}
+
+        {/* URGENCY CALLOUT — auto-hides after May 27, 2026 */}
+        <UrgencyCallout />
 
         {/* WHAT IS A FREE FLY */}
         <section className="container-narrow py-20 sm:py-28">
@@ -355,6 +361,7 @@ export default function HomePage() {
                     </div>
                     <div className="mt-6">
                       <CTAButton size="lg">Create Your Free Account Now</CTAButton>
+                      <DiscordCTA />
                     </div>
                     <p className="text-muted text-sm mt-3">
                       Want the full referral code details?{' '}
@@ -438,6 +445,7 @@ export default function HomePage() {
                   </div>
                   <div className="mt-6">
                     <CTAButton size="lg">Create Your Free Account Now</CTAButton>
+                    <DiscordCTA />
                   </div>
                   <p className="text-muted text-sm mt-3">
                     Want the full referral code details?{' '}
