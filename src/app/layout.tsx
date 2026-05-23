@@ -7,7 +7,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://freeflyevent.com';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Star Citizen Free Fly Events 2026 — Play Free, No Purchase',
+    default: 'Star Citizen Free Fly 2026 — Play Free, No Purchase',
     template: '%s — freeflyevent.com',
   },
   description:

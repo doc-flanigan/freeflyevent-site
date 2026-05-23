@@ -9,11 +9,11 @@
  */
 
 export type BonusOverride = {
-  /** Full sentence for body copy, e.g. "50,000 UEC + Drake DefenseCon Gear Pack" */
+  /** Full sentence for body copy, e.g. "50,000 aUEC + Drake DefenseCon Gear Pack" */
   text: string;
   /** Short badge label for compact banner strip */
   badge: string;
-  /** ISO UTC — bonus reverts to standard 50k UEC after this time */
+  /** ISO UTC — bonus reverts to standard 50k aUEC after this time */
   expiresAt: string;
 };
 
@@ -25,7 +25,7 @@ export type FreeFlyEvent = {
   ships: string[]; // ships unlocked during the event (empty if free fly was cancelled)
   freeFlyActive?: boolean; // false = event window exists but CIG cancelled free access
   cancelledNote?: string; // shown in banner when freeFlyActive is false
-  bonusOverride?: BonusOverride; // limited-time signup bonus on top of standard 50k UEC
+  bonusOverride?: BonusOverride; // limited-time signup bonus on top of standard 50k aUEC
   notes?: string;
   source?: string; // canonical announcement URL (optional)
 };
@@ -42,7 +42,7 @@ export const FREE_FLY_HISTORY: FreeFlyEvent[] = [
     end: '2026-05-27T17:00:00Z',
     ships: ['Anvil Ironclad (Flight Ready debut)', 'Rotating Anvil & military fleet'],
     bonusOverride: {
-      text: '50,000 UEC + a free Drake DefenseCon Gear Pack — use a referral code at signup before May 27',
+      text: '50,000 aUEC + a free Drake DefenseCon Gear Pack — use a referral code at signup before May 27',
       badge: '+ Drake DefenseCon Gear Pack (through May 27)',
       expiresAt: '2026-05-28T00:00:00Z',
     },
@@ -52,17 +52,19 @@ export const FREE_FLY_HISTORY: FreeFlyEvent[] = [
   {
     id: 'iae-2025',
     name: 'Intergalactic Aerospace Expo 2025',
-    start: '2025-11-21T17:00:00Z',
-    end: '2025-12-02T17:00:00Z',
+    start: '2025-11-20T16:00:00Z',
+    end: '2025-12-03T17:00:00Z',
     ships: ['100+ rotating ships', 'Daily manufacturer showcase'],
     notes: 'IAE 2954. Largest ship showcase of the year.',
+    source: 'https://robertsspaceindustries.com/comm-link/SCW/20861-API',
   },
   {
     id: 'invictus-2025',
     name: 'Invictus Launch Week 2025',
-    start: '2025-05-23T17:00:00Z',
-    end: '2025-06-03T17:00:00Z',
+    start: '2025-05-15T16:00:00Z',
+    end: '2025-05-27T20:00:00Z',
     ships: ['Aegis Hammerhead', 'Drake Cutlass Black', 'RSI Aurora MR'],
+    source: 'https://robertsspaceindustries.com/comm-link/SCW/20491-API',
   },
   {
     id: 'iae-2024',

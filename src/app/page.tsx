@@ -22,8 +22,8 @@ export async function generateMetadata(): Promise<Metadata> {
     const bonus = getActiveBonusOverride();
     return {
       title: bonus
-        ? 'Star Citizen Free Fly Active — Ends May 27 | freeflyevent.com'
-        : 'Star Citizen Free Fly Active — Through May 27 | freeflyevent.com',
+        ? 'Star Citizen Free Fly Active — Ends May 27'
+        : 'Star Citizen Free Fly Active — Through May 27',
       description: bonus
         ? 'DefenseCon 2956 Free Fly runs through May 27. Sign up with a referral code for 50,000 UEC plus a free Drake DefenseCon Gear Pack — bonus ends May 27.'
         : 'Star Citizen is free to play through May 27 — DefenseCon 2956 Free Fly is live. Create a free account and claim 50,000 UEC with a referral code.',
