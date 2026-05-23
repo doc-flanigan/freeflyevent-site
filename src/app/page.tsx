@@ -55,7 +55,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
   if (status.state === 'CANCELLED_FREE_FLY') {
     return {
-      title: 'DefenseCon Free Fly Cancelled — 50,000 UEC Bonus Still Available | freeflyevent.com',
+      title: 'DefenseCon Free Fly Cancelled — 50,000 UEC Still Active',
       description:
         "CIG cancelled the Star Citizen Free Fly for DefenseCon 2026 due to server performance issues — the first time this has ever happened. You can still create a free RSI account and claim 50,000 UEC with a referral code.",
       keywords: [

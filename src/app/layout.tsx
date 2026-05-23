@@ -33,12 +33,14 @@ export const metadata: Metadata = {
     title: 'Star Citizen Free Fly Events — Play Free, No Purchase',
     description:
       "Star Citizen Free Fly events let anyone play the game for free. Find current event dates, what's included, and how to get your 50,000 UEC referral bonus.",
+    images: [{ url: '/images/hero/hero-01.jpg', width: 1920, height: 1080, alt: 'Star Citizen Free Fly Events' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Star Citizen Free Fly Events — Play Free',
     description:
       'Find current Free Fly dates, what is included, and the 50,000 UEC referral bonus.',
+    images: ['/images/hero/hero-01.jpg'],
   },
   robots: {
     index: true,
