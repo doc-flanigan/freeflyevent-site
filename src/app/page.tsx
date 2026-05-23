@@ -39,6 +39,7 @@ export async function generateMetadata(): Promise<Metadata> {
         'Star Citizen referral bonus',
         'STAR-GCQJ-N6NC',
       ],
+      alternates: { canonical: '/' },
       openGraph: {
         title: 'Star Citizen Free Fly is LIVE — DefenseCon 2956 Through May 27',
         description:
@@ -67,6 +68,7 @@ export async function generateMetadata(): Promise<Metadata> {
         'Star Citizen referral bonus DefenseCon',
         'STAR-GCQJ-N6NC',
       ],
+      alternates: { canonical: '/' },
       openGraph: {
         title: 'DefenseCon Free Fly Cancelled — 50,000 UEC Still Available',
         description:
@@ -80,7 +82,7 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     };
   }
-  return {};
+  return { alternates: { canonical: '/' } };
 }
 
 export default function HomePage() {

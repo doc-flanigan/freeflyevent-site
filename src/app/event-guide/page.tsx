@@ -4,6 +4,7 @@ import { EventStatusBanner } from '@/components/EventStatusBanner';
 import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { CTAButton } from '@/components/CTAButton';
+import { DiscordCTA } from '@/components/DiscordCTA';
 import { HUB_URL, REFERRAL_CODE } from '@/data/events';
 
 export const metadata: Metadata = {
@@ -176,28 +177,35 @@ export default function EventGuidePage() {
 
         <section className="container-narrow pb-20">
           <ol className="space-y-5">
-            {STEPS.map((s) => (
-              <li key={s.num} className="card flex gap-5 sm:gap-7">
-                <div className="flex-shrink-0">
-                  <span className="font-display text-2xl font-bold tracking-tight text-orange/70">
-                    {s.num}
-                  </span>
-                </div>
-                <div>
-                  <h2 className="font-display text-xl font-bold text-white sm:text-2xl">
-                    {s.title}
-                  </h2>
-                  <div className="mt-2 text-white/85">{s.body}</div>
-                  {s.tip && (
-                    <div className="mt-4 rounded-md border-l-2 border-orange bg-orange/5 px-4 py-3 text-sm text-white/85">
-                      <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.2em] text-orange">
-                        Tip
-                      </span>
-                      {s.tip}
-                    </div>
-                  )}
-                </div>
-              </li>
+            {STEPS.map((s, i) => (
+              <>
+                <li key={s.num} className="card flex gap-5 sm:gap-7">
+                  <div className="flex-shrink-0">
+                    <span className="font-display text-2xl font-bold tracking-tight text-orange/70">
+                      {s.num}
+                    </span>
+                  </div>
+                  <div>
+                    <h2 className="font-display text-xl font-bold text-white sm:text-2xl">
+                      {s.title}
+                    </h2>
+                    <div className="mt-2 text-white/85">{s.body}</div>
+                    {s.tip && (
+                      <div className="mt-4 rounded-md border-l-2 border-orange bg-orange/5 px-4 py-3 text-sm text-white/85">
+                        <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.2em] text-orange">
+                          Tip
+                        </span>
+                        {s.tip}
+                      </div>
+                    )}
+                  </div>
+                </li>
+                {i === 0 && (
+                  <li key="discord-cta" className="list-none">
+                    <DiscordCTA />
+                  </li>
+                )}
+              </>
             ))}
           </ol>
         </section>

@@ -215,7 +215,8 @@ export default function ShouldIBuyPage() {
                 <tbody>
                   {[
                     ['Starter (Aurora / Mustang)', '~$45', 'Aurora MR or Mustang Alpha', 'No'],
-                    ['Avenger Titan Starter', '~$55', 'Avenger Titan (recommended)', 'No'],
+                    ['Avenger Titan Starter', '~$55 standard', 'Avenger Titan (recommended)', 'No'],
+                    ['Generalist DefenseCon Starter Pack', '$51 Warbond / $60 standard', 'Avenger Titan — DefenseCon Warbond edition; active sale during DefenseCon 2956', 'No'],
                     ['Combo (game + SQ42)', '~$65', 'Aurora or Avenger Titan', 'Yes'],
                   ].map(([name, price, ship, sq42]) => (
                     <tr key={name as string} className="border-b border-white/5 hover:bg-orange/5">

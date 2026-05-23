@@ -85,9 +85,7 @@ export function Footer() {
               This is an unofficial Star Citizen fansite, not affiliated with the
               Cloud Imperium group of companies. All content not authored by
               Doc_Flanigan is property of its respective owners.{' '}
-              Affiliate disclosure: This site uses Star Citizen referral links.
-              Referral code owners may receive an in-game bonus if you sign up.
-              Your rewards are not affected.
+              Affiliate disclosure: If you create a Star Citizen account using referral code STAR-GCQJ-N6NC, the site owner may receive an in-game bonus. Your 50,000 aUEC new-player bonus is not affected.
             </span>
           </div>
           <div className="flex items-center gap-4">
