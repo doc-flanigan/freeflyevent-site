@@ -95,12 +95,17 @@ function Bar({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
           <span className="inline-flex h-2 w-2 animate-ping rounded-full bg-spaceBlack" aria-hidden />
           <span className="uppercase tracking-[0.2em]">Free Fly Active</span>
           <span className="hidden sm:inline opacity-60">·</span>
-          <span className="font-normal opacity-90">Win a DefenseCon Starter Pack</span>
+          <span className="font-normal opacity-90">
+            {bonusOverride ? bonusOverride.badge : '50,000 UEC bonus at signup'}
+          </span>
           <a
-            href="/giveaway.html"
+            href={referralUrl}
+            target="_blank"
+            rel="sponsored noopener noreferrer"
             className="ml-2 rounded-md bg-spaceBlack px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange transition-transform hover:-translate-y-0.5"
+            onClick={onNavigate}
           >
-            Enter Giveaway →
+            Claim Bonus →
           </a>
         </div>
       </div>
