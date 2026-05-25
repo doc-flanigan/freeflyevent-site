@@ -49,5 +49,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: `${SITE_URL}/giveaway.html`,
+      lastModified: new Date('2026-05-20'),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
   ];
 }
