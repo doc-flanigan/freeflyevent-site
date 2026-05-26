@@ -48,6 +48,11 @@ export function CTAButton({
         site: window.location.hostname,
       }),
     }).catch(() => {})
+    ;(window as any).gtag?.('event', 'referral_click', {
+      referral_code: code,
+      page_path: window.location.pathname,
+      site: window.location.hostname,
+    })
   }
 
   return (
