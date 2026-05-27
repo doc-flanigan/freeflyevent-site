@@ -34,12 +34,6 @@ export function NavBar() {
               {l.label}
             </Link>
           ))}
-          <a
-            href="/giveaway.html"
-            className="ml-2 rounded-md border border-orange/50 bg-orange/10 px-3 py-2 text-sm font-semibold text-orange transition-colors hover:bg-orange/20"
-          >
-            🎁 Giveaway
-          </a>
         </div>
 
         <button
@@ -79,13 +73,6 @@ export function NavBar() {
                 {l.label}
               </Link>
             ))}
-            <a
-              href="/giveaway.html"
-              onClick={() => setOpen(false)}
-              className="rounded-md px-3 py-3 text-sm font-semibold text-orange hover:bg-white/5"
-            >
-              🎁 Giveaway — Win a Starter Pack
-            </a>
           </div>
         </div>
       )}
