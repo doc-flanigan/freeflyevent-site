@@ -82,7 +82,56 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     };
   }
-  return { alternates: { canonical: '/' } };
+  // UPCOMING state — event announced but not started
+  if (status.state === 'UPCOMING') {
+    return {
+      title: `Next Star Citizen Free Fly — ${status.event.name} Coming Soon`,
+      description: `The next Star Citizen Free Fly is ${status.event.name}. Track the countdown, see what ships are included, and lock in your 50,000 UEC referral bonus before the event starts.`,
+      keywords: [
+        'next star citizen free fly',
+        'when is the next star citizen free fly',
+        'star citizen free fly upcoming',
+        'star citizen free fly 2026',
+        'star citizen free fly dates',
+        'STAR-GCQJ-N6NC',
+      ],
+      alternates: { canonical: '/' },
+      openGraph: {
+        title: `Next Star Citizen Free Fly — ${status.event.name} Coming Soon`,
+        description: `The next Star Citizen Free Fly is ${status.event.name}. Lock in your 50,000 UEC referral bonus before the event starts.`,
+      },
+      twitter: {
+        card: 'summary_large_image' as const,
+        title: `Next Star Citizen Free Fly — ${status.event.name}`,
+        description: `Track the countdown for ${status.event.name} and lock in your 50,000 UEC referral bonus before it starts.`,
+      },
+    };
+  }
+
+  // INACTIVE / default state — between events
+  return {
+    title: 'Star Citizen Free Fly Events — When Is the Next One? (2026)',
+    description: 'No Star Citizen Free Fly is active right now. Track when the next event launches, browse the full event history, and lock in your 50,000 UEC referral bonus before it starts.',
+    keywords: [
+      'when is the next star citizen free fly',
+      'star citizen free fly 2026',
+      'star citizen free fly schedule',
+      'star citizen free fly dates',
+      'next star citizen free fly event',
+      'star citizen free fly history',
+      'STAR-GCQJ-N6NC',
+    ],
+    alternates: { canonical: '/' },
+    openGraph: {
+      title: 'Star Citizen Free Fly Events — When Is the Next One?',
+      description: 'No Free Fly is active right now. Track when the next Star Citizen Free Fly launches and lock in your 50,000 UEC referral bonus.',
+    },
+    twitter: {
+      card: 'summary_large_image' as const,
+      title: 'Star Citizen Free Fly Events — When Is the Next One?',
+      description: 'Track when the next Star Citizen Free Fly launches and lock in your 50,000 UEC referral bonus.',
+    },
+  };
 }
 
 export default function HomePage() {
