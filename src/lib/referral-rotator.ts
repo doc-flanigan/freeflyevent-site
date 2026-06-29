@@ -1,8 +1,11 @@
-const REFERRAL_CODES = ['STAR-GCQJ-N6NC', 'STAR-GCQJ-N6NC', 'STAR-C2GJ-XSSS'] as const
-const BASE_URL = 'https://www.robertsspaceindustries.com/enlist?referral='
-export const FALLBACK_REFERRAL_URL = BASE_URL + REFERRAL_CODES[0]
+// Single referral code — rotation discontinued 2026-06-28.
+// All CTAs use Doc's code STAR-GCQJ-N6NC. Function/export names retained for
+// backward compatibility with existing consumers.
+const REFERRAL_CODE = 'STAR-GCQJ-N6NC'
+const REFERRAL_URL = `https://www.robertsspaceindustries.com/enlist?referral=${REFERRAL_CODE}`
+
+export const FALLBACK_REFERRAL_URL = REFERRAL_URL
 
 export function getRotatedReferralUrl(): string {
-  const code = REFERRAL_CODES[Math.floor(Math.random() * REFERRAL_CODES.length)]
-  return BASE_URL + code
+  return REFERRAL_URL
 }
