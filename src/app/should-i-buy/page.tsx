@@ -266,7 +266,7 @@ export default function ShouldIBuyPage() {
           <section className="mt-14 text-center">
             <p className="text-muted">Still on the fence?</p>
             <div className="mt-4 flex flex-wrap justify-center gap-4">
-              <Link href="/event-history" className="btn-secondary">
+              <Link href="/next-free-fly" className="btn-secondary">
                 When is the next Free Fly? →
               </Link>
               <Link href={`${HUB_URL}`} target="_blank" rel="noopener" className="btn-secondary">

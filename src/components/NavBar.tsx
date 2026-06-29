@@ -5,6 +5,8 @@ import { useState } from 'react';
 
 const LINKS = [
   { href: '/', label: 'Home' },
+  { href: '/is-star-citizen-free', label: 'Is It Free?' },
+  { href: '/next-free-fly', label: 'Next Free Fly' },
   { href: '/event-guide', label: 'Guide' },
   { href: '/event-history', label: 'History' },
   { href: '/glossary', label: 'Glossary' },

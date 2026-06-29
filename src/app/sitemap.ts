@@ -26,6 +26,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
+      url: `${SITE_URL}/is-star-citizen-free`,
+      lastModified: new Date('2026-06-29'),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/next-free-fly`,
+      lastModified: homepageModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
       url: `${SITE_URL}/event-guide`,
       lastModified: guideModified,
       changeFrequency: 'monthly',
