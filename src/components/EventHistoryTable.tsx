@@ -60,7 +60,10 @@ export function EventHistoryTable({ limit }: { limit?: number }) {
                 onClick={() => toggle('duration')}
               />
               <th scope="col" className="px-4 py-3">
-                Highlights
+                What Was Flyable
+              </th>
+              <th scope="col" className="px-4 py-3">
+                Source
               </th>
             </tr>
           </thead>
@@ -78,8 +81,24 @@ export function EventHistoryTable({ limit }: { limit?: number }) {
                     <span className="text-xs font-semibold uppercase tracking-wide text-muted/70">
                       Free fly cancelled
                     </span>
+                  ) : ev.ships.length > 0 ? (
+                    ev.ships.join(' · ')
                   ) : (
-                    ev.ships[0] ?? '—'
+                    '—'
+                  )}
+                </td>
+                <td className="px-4 py-3">
+                  {ev.source ? (
+                    <a
+                      href={ev.source}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="whitespace-nowrap text-orange transition-colors hover:text-white"
+                    >
+                      RSI Comm-Link ↗
+                    </a>
+                  ) : (
+                    <span className="text-muted">—</span>
                   )}
                 </td>
               </tr>

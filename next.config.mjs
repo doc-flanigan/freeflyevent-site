@@ -24,6 +24,13 @@ const nextConfig = {
         destination: 'https://freeflyevent.com/:path*',
         permanent: true,
       },
+      {
+        // DefenseCon 2956 giveaway ended 2026-05-28; page removed. Bing had
+        // indexed it, so send the URL home instead of 404ing.
+        source: '/giveaway.html',
+        destination: '/',
+        permanent: true,
+      },
     ];
   },
 };

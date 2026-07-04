@@ -162,13 +162,22 @@ Added 2026-05-17. Every referral CTA click fires a background POST to `/api/log`
 - [ ] Click CTA **with** adblocker enabled → Discord embed appears in #referral-clicks
 - [ ] Click CTA **without** adblocker → same as above
 
-## Ship Giveaway Entries
+## Ship Giveaway Entries (RETIRED 2026-07-03)
 
-Static form at `public/giveaway.html` (served at `/giveaway.html`) POSTs to
-`/api/giveaway-entry`, which fans the entry out **in parallel** to a Discord
-channel (live notifications) and a Google Sheet (durable record / CSV export
-for Random.org). The entry is accepted if **at least one** sink succeeds; if
-both fail the route returns 502 and the form shows the retry message.
+The DefenseCon 2956 giveaway ended 2026-05-28. The form
+(`public/giveaway.html`), the `/api/giveaway-entry` route, and
+`src/lib/ratelimit.ts` were removed on 2026-07-03; `/giveaway.html` now
+301s to `/` (Bing had indexed it). The giveaway env vars
+(`DISCORD_GIVEAWAY_WEBHOOK_URL`, `GIVEAWAY_SHEET_URL`, Upstash pair) are
+unused and can be deleted from Vercel. The setup notes below are kept for
+the next giveaway.
+
+Historical design: static form at `/giveaway.html` POSTed to
+`/api/giveaway-entry`, which fanned the entry out **in parallel** to a
+Discord channel (live notifications) and a Google Sheet (durable record /
+CSV export for Random.org). The entry was accepted if **at least one**
+sink succeeded; if both failed the route returned 502 and the form showed
+the retry message.
 
 **Env vars required** (Vercel project settings + `.env.local`):
 - `DISCORD_GIVEAWAY_WEBHOOK_URL` — Discord channel webhook (e.g. `#giveaway-entries`)

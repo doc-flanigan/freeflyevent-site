@@ -7,14 +7,14 @@ import { EventHistoryTable } from '@/components/EventHistoryTable';
 import { FREE_FLY_HISTORY, HUB_URL } from '@/data/events';
 
 export const metadata: Metadata = {
-  title: 'Star Citizen Free Fly Event History',
+  title: { absolute: 'Star Citizen Free Fly Event History (2022–2026)' },
   description:
-    'A complete history of Star Citizen Free Fly events — Invictus Launch Week and Intergalactic Aerospace Expo (IAE) — sortable by date, name, and duration.',
+    'Every Star Citizen Free Fly event since 2022 — Invictus Launch Week, DefenseCon, and IAE — with verified dates, flyable ships, and official RSI Comm-Link sources.',
   alternates: { canonical: '/event-history' },
   openGraph: {
-    title: 'Star Citizen Free Fly Event History',
+    title: 'Star Citizen Free Fly Event History (2022–2026)',
     description:
-      'Sortable archive of every Star Citizen Free Fly event with dates and featured ships.',
+      'Sortable archive of every Star Citizen Free Fly event with verified dates, flyable ships, and official RSI Comm-Link sources.',
   },
 };
 
@@ -39,18 +39,34 @@ export default function EventHistoryPage() {
             <h1 className="heading-display mt-4 text-4xl sm:text-6xl">
               Free Fly Event History
             </h1>
-            <p className="mt-5 text-muted">
-              Every Free Fly event we&apos;ve catalogued, sortable by date,
-              name, or length. Useful for predicting the next one — Invictus
-              Launch Week sits in May; IAE sits in November. CIG has run them
-              annually since 2019.
+            <p className="mt-5 text-lg text-white/90">
+              Star Citizen runs several Free Fly events per year, and the two
+              reliable anchors are the May military expo (Invictus Launch Week,
+              hosted as DefenseCon in 2026) and the Intergalactic Aerospace
+              Expo (IAE) in late November.
+            </p>
+            <p className="mt-4 text-muted">
+              A typical Free Fly lasts 10&ndash;14 days, and no purchase is
+              needed &mdash; you create a free account, download the game, and
+              fly. Every event below is verified against the official RSI
+              Comm-Link announcement linked in its row, so you can check the
+              dates and ship lineups at the source. Wondering when the next
+              window opens? See our{' '}
+              <Link href="/next-free-fly" className="text-orange hover:text-white">
+                next Free Fly forecast
+              </Link>
+              , and if you&apos;re planning to jump in, the{' '}
+              <Link href="/event-guide" className="text-orange hover:text-white">
+                event guide
+              </Link>{' '}
+              walks you through your first session step by step.
             </p>
           </div>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
             <Stat label="Events tracked" value={FREE_FLY_HISTORY.length.toString()} />
             <Stat label="Total free play days" value={`${totalDays}+`} />
-            <Stat label="Annual cadence" value="2 / year" />
+            <Stat label="Annual cadence" value="2+ / year" />
           </div>
         </section>
 
