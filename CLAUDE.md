@@ -256,3 +256,7 @@ function doPost(e) {
 - Target new keywords without updating `E:\Claude Code\sc-portfolio\docs\seo\keyword-research.md`
 
 **Full strategy:** `E:\Claude Code\sc-portfolio\docs\seo\README.md`
+
+## Claims ledger (network-wide)
+
+Fact-checked claims are tracked in the portfolio claims ledger: `E:\Claude Code\sc-portfolio\docs\claims\` — one md file per claim (canonical text, status, official sources, lastVerified, usage map). Before adding or rewording a factual claim on this site, grep the ledger; a `verified` entry is network canon. Any edit that adds, changes, or removes a factual claim must update the matching claim file's `usage` list (or create the file — see the ledger README.md).
