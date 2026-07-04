@@ -32,7 +32,7 @@ export function PageSources({ route }: { route: string }) {
   if (!claims || claims.length === 0) return null;
 
   const canonical = route === '/' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}${route}`;
-  const citationUrls = [...new Set(claims.flatMap((c) => c.sources))];
+  const citationUrls = Array.from(new Set(claims.flatMap((c) => c.sources)));
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
