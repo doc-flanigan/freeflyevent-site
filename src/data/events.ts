@@ -9,12 +9,14 @@
  */
 
 export type BonusOverride = {
-  /** Full sentence for body copy, e.g. "50,000 UEC + Drake DefenseCon Gear Pack" */
+  /** Full sentence for body copy, e.g. "50,000 UEC + a Drake Dragonfly with Coalfire paint" */
   text: string;
   /** Short badge label for compact banner strip */
   badge: string;
   /** ISO UTC — bonus reverts to standard 50k UEC after this time */
   expiresAt: string;
+  /** Optional promo image shown in banner/homepage bonus panels */
+  image?: { src: string; alt: string };
 };
 
 export type FreeFlyEvent = {
@@ -48,6 +50,7 @@ export const FREE_FLY_HISTORY: FreeFlyEvent[] = [
       text: '50,000 UEC + a Drake Dragonfly with Coalfire paint — use a referral code at signup before May 27',
       badge: '+ Drake Dragonfly (Coalfire) — through May 27',
       expiresAt: '2026-05-28T00:00:00Z',
+      image: { src: '/images/defensecon-2956.webp', alt: 'DefenseCon 2956 referral signup bonus' },
     },
     notes: 'Drake-hosted DefenseCon 2956 (May 14-27). Free Fly initially cancelled ~May 14 due to server performance issues — first cancellation in SC history — then reinstated May 18 and active through May 27. Anvil Ironclad made its Flight Ready debut. Referral bonus: Drake Dragonfly with Coalfire paint. Schedule comm-link: 21129; farewell: 21166.',
     source: 'https://robertsspaceindustries.com/en/comm-link/transmission/21147-DefenseCon-2956-About',

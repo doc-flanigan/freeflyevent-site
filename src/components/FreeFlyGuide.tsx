@@ -1,12 +1,14 @@
 type Step = {
   title: string;
   body: string;
+  /** Optional trailing link rendered after the body text. */
+  link?: { href: string; label: string };
 };
 
 const STEPS: Step[] = [
   {
     title: 'Create your free RSI account',
-    body: 'Use a referral code at signup so 50,000 UEC lands in your account when you log in — plus a free Drake DefenseCon Gear Pack if you sign up before May 27. You cannot add the code after the 24-hour grace window — get it right the first time.',
+    body: 'Use a referral code at signup so 50,000 UEC lands in your account when you log in. During some events CIG adds a limited extra signup bonus on top — the banner at the top of this site shows one when it is live. You cannot add the code after the 24-hour grace window — get it right the first time.',
   },
   {
     title: 'Download the launcher',
@@ -19,6 +21,10 @@ const STEPS: Step[] = [
   {
     title: 'Run the new-player tutorial',
     body: 'Spawn at your starting station, follow the contract markers, and learn flight, quantum travel, and ship combat basics. 30–45 minutes well spent.',
+    link: {
+      href: 'https://dayonecitizen.com/day-one-citizen/first-day',
+      label: 'Full first-day walkthrough at dayonecitizen.com →',
+    },
   },
   {
     title: 'Try a delivery mission',
@@ -54,6 +60,16 @@ export function FreeFlyGuide() {
           <div>
             <h3 className="font-display text-base font-bold text-white">{step.title}</h3>
             <p className="mt-1.5 text-sm text-muted">{step.body}</p>
+            {step.link && (
+              <a
+                href={step.link.href}
+                target="_blank"
+                rel="noopener"
+                className="mt-1.5 inline-block text-sm text-orange underline hover:text-orange-dark"
+              >
+                {step.link.label}
+              </a>
+            )}
           </div>
         </li>
       ))}

@@ -5,7 +5,7 @@ import { getRotatedReferralUrl, FALLBACK_REFERRAL_URL } from '@/lib/referral-rot
 import { getActiveBonusOverride } from '@/data/events';
 
 const DEFAULT_LABEL = 'Play Free — Claim Your 50,000 UEC Bonus';
-const BONUS_LABEL = 'Play Free — 50,000 UEC + Drake Gear Pack';
+const BONUS_LABEL = 'Play Free — 50,000 UEC + Event Bonus';
 
 type Props = {
   children?: React.ReactNode;

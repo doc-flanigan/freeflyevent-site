@@ -12,7 +12,6 @@ import { TwitchClip } from '@/components/TwitchClip';
 import { LightboxImage } from '@/components/LightboxImage';
 import { FREE_FLY_HISTORY, getEventStatus, getActiveBonusOverride, REFERRAL_URL } from '@/data/events';
 import { DiscordCTA } from '@/components/DiscordCTA';
-import { UrgencyCallout } from '@/components/UrgencyCallout';
 
 const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
 
@@ -20,65 +19,53 @@ export async function generateMetadata(): Promise<Metadata> {
   const status = getEventStatus();
   if (status.state === 'ACTIVE') {
     const bonus = getActiveBonusOverride();
+    const ends = status.endsAt.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
     return {
-      title: bonus
-        ? 'Star Citizen Free Fly Active — Ends May 27'
-        : 'Star Citizen Free Fly Active — Through May 27',
+      title: `Star Citizen Free Fly Active — Ends ${ends}`,
       description: bonus
-        ? 'DefenseCon 2956 Free Fly runs through May 27. Sign up with a referral code for 50,000 UEC plus a free Drake DefenseCon Gear Pack — bonus ends May 27.'
-        : 'Star Citizen is free to play through May 27 — DefenseCon 2956 Free Fly is live. Create a free account and claim 50,000 UEC with a referral code.',
+        ? `${status.event.name} Free Fly runs through ${ends}. Sign up with a referral code for ${bonus.text}.`
+        : `Star Citizen is free to play through ${ends} — ${status.event.name} Free Fly is live. Create a free account and claim 50,000 UEC with a referral code.`,
       keywords: [
         'Star Citizen free fly active',
         'Star Citizen free to play now',
-        'DefenseCon 2956 free fly',
-        'DefenseCon free fly back on',
-        'Star Citizen free fly May 2026',
-        'Star Citizen DefenseCon 2026',
-        'Star Citizen free fly reinstated',
+        `${status.event.name} free fly`,
         'play Star Citizen free',
         'Star Citizen referral bonus',
         'STAR-GCQJ-N6NC',
       ],
       alternates: { canonical: '/' },
       openGraph: {
-        title: 'Star Citizen Free Fly is LIVE — DefenseCon 2956 Through May 27',
-        description:
-          "Star Citizen is free to play right now. DefenseCon 2956 Free Fly runs through May 27 — create your free account and lock in 50,000 UEC before it ends.",
+        title: `Star Citizen Free Fly is LIVE — ${status.event.name} Through ${ends}`,
+        description: `Star Citizen is free to play right now. ${status.event.name} Free Fly runs through ${ends} — create your free account and lock in 50,000 UEC before it ends.`,
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Star Citizen Free Fly is LIVE — DefenseCon 2956 (ends May 27)',
-        description:
-          "Play Star Citizen free right now. DefenseCon 2956 Free Fly is back on through May 27. Claim 50,000 UEC with a referral code at signup.",
+        title: `Star Citizen Free Fly is LIVE — ${status.event.name} (ends ${ends})`,
+        description: `Play Star Citizen free right now. ${status.event.name} Free Fly runs through ${ends}. Claim 50,000 UEC with a referral code at signup.`,
       },
     };
   }
   if (status.state === 'CANCELLED_FREE_FLY') {
     return {
-      title: 'DefenseCon Free Fly Cancelled — 50,000 UEC Still Active',
-      description:
-        "CIG cancelled the Star Citizen Free Fly for DefenseCon 2026 due to server performance issues — the first time this has ever happened. You can still create a free RSI account and claim 50,000 UEC with a referral code.",
+      title: `${status.event.name} Free Fly Cancelled — 50,000 UEC Still Active`,
+      description: `CIG cancelled the Star Citizen Free Fly for ${status.event.name} due to server performance issues — the first time this has ever happened. You can still create a free RSI account and claim 50,000 UEC with a referral code.`,
       keywords: [
         'Star Citizen free fly cancelled',
-        'DefenseCon free fly cancelled',
-        'Star Citizen free fly not available 2026',
+        `${status.event.name} free fly cancelled`,
         'free fly cancelled server issues',
-        'Star Citizen DefenseCon 2026',
         'Star Citizen 50000 UEC no free fly',
-        'Star Citizen referral bonus DefenseCon',
+        'Star Citizen referral bonus',
         'STAR-GCQJ-N6NC',
       ],
       alternates: { canonical: '/' },
       openGraph: {
-        title: 'DefenseCon Free Fly Cancelled — 50,000 UEC Still Available',
-        description:
-          "CIG pulled the Free Fly for DefenseCon 2026 due to server load — a first in Star Citizen history. Your 50,000 UEC referral bonus still works. Sign up now.",
+        title: `${status.event.name} Free Fly Cancelled — 50,000 UEC Still Available`,
+        description: `CIG pulled the Free Fly for ${status.event.name} due to server load — a first in Star Citizen history. Your 50,000 UEC referral bonus still works. Sign up now.`,
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Star Citizen Free Fly Cancelled (DefenseCon 2026)',
-        description:
-          "First ever Free Fly cancellation. Server issues forced CIG's hand — but your 50,000 UEC signup bonus still works.",
+        title: `Star Citizen Free Fly Cancelled (${status.event.name})`,
+        description: "First ever Free Fly cancellation. Server issues forced CIG's hand — but your 50,000 UEC signup bonus still works.",
       },
     };
   }
@@ -277,9 +264,6 @@ export default function HomePage() {
           </section>
         )}
 
-        {/* URGENCY CALLOUT — auto-hides after May 27, 2026 */}
-        <UrgencyCallout />
-
         {/* WHAT IS A FREE FLY */}
         <section className="container-narrow py-20 sm:py-28">
           <div className="grid gap-10 lg:grid-cols-12">
@@ -353,16 +337,21 @@ export default function HomePage() {
         <section id="referral-bonus" className="container-narrow py-20 sm:py-28">
           <div className="rounded-2xl border border-orange/30 bg-gradient-to-br from-orange/10 via-blackMid to-spaceBlack p-8 sm:p-12">
             {bonusOverride ? (
-              /* Gear pack active: heading full-width → 2-col (action | image) → warning full-width */
+              /* Event bonus active: heading full-width → 2-col (action | image) → warning full-width */
               <>
                 <div className="mb-8">
                   <span className="eyebrow">The Referral Bonus</span>
                   <h2 className="heading-display mt-4 text-3xl sm:text-4xl">
-                    50,000 UEC + Drake Gear Pack — only if you use a code{' '}
+                    A limited event bonus is live — only if you use a code{' '}
                     <span className="text-orange">at signup</span>.
                   </h2>
                   <div className="mt-4 rounded-lg border border-yellow-400/50 bg-yellow-400/10 px-4 py-3 text-sm text-yellow-200">
-                    <strong className="text-yellow-300">Limited offer through May 27:</strong> New accounts created with a referral code also receive a free Drake DefenseCon Gear Pack. After May 27, only the standard 50,000 UEC applies.
+                    <strong className="text-yellow-300">
+                      Limited offer through{' '}
+                      {new Date(bonusOverride.expiresAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}:
+                    </strong>{' '}
+                    New accounts created with a referral code receive {bonusOverride.text}. After that,
+                    only the standard 50,000 UEC applies.
                   </div>
                 </div>
 
@@ -401,14 +390,16 @@ export default function HomePage() {
                     </p>
                   </div>
 
-                  <LightboxImage
-                    src="/images/defensecon-2956.webp"
-                    alt="Drake DefenseCon 2956 Gear Pack — limited signup bonus through May 27"
-                    width={800}
-                    height={450}
-                    containerClassName="block rounded-xl border-4 border-yellow-400 shadow-[0_0_28px_rgba(250,204,21,0.4)]"
-                    className="w-full h-auto"
-                  />
+                  {bonusOverride.image && (
+                    <LightboxImage
+                      src={bonusOverride.image.src}
+                      alt={bonusOverride.image.alt}
+                      width={800}
+                      height={450}
+                      containerClassName="block rounded-xl border-4 border-yellow-400 shadow-[0_0_28px_rgba(250,204,21,0.4)]"
+                      className="w-full h-auto"
+                    />
+                  )}
                 </div>
 
                 <div className="mt-8 rounded-xl border border-orange bg-orange/15 p-6 sm:p-8">

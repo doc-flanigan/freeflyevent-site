@@ -189,8 +189,9 @@ export default function ShouldIBuyPage() {
                 The timeline, honestly
               </h3>
               <p className="mt-3 text-sm text-muted">
-                Star Citizen has been in development since 2012, has raised hundreds of
-                millions in crowdfunding, and remains unfinished. Squadron 42 — the
+                Star Citizen has been in development since 2012, has raised more than
+                $1 billion in crowdfunding — the most of any game in history — and
+                remains unfinished. Squadron 42 — the
                 single-player campaign — is in late development and not yet released.
                 CIG has repeatedly missed its own target windows, so don&apos;t buy
                 expecting a full release on any particular date. Buy for what the game
@@ -367,7 +368,16 @@ export default function ShouldIBuyPage() {
               </table>
             </div>
             <p className="mt-4 text-xs text-muted">
-              For most new players the Citizen or Generalist pack is the better first buy.
+              For most new players the Citizen or Generalist pack is the better first buy —{' '}
+              <a
+                href="https://dayonecitizen.com/day-one-citizen/starter-package"
+                className="text-orange underline hover:text-orange-dark"
+                target="_blank"
+                rel="noopener"
+              >
+                dayonecitizen.com&apos;s starter package guide
+              </a>{' '}
+              compares them in plain English.
               Prices vary by sale — CIG runs sales around Invictus and IAE. Never pay above
               these ranges for a starter. Squadron 42 (the single-player campaign, not yet
               released) is not included in every package — if you want it, confirm your

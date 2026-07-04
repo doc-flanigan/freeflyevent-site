@@ -61,11 +61,11 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
   return <Hero {...slotProps} />;
 }
 
-function CancelledBar({ referralUrl, onNavigate }: { referralUrl: string; onNavigate: () => void }) {
+function CancelledBar({ eventName, referralUrl, onNavigate }: { eventName: string; referralUrl: string; onNavigate: () => void }) {
   return (
     <div className="w-full border-b border-orange/30 bg-blackMid text-white">
       <div className="container-wide flex flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-2 text-center text-sm">
-        <span className="font-semibold text-orange">DefenseCon Free Fly Cancelled</span>
+        <span className="font-semibold text-orange">{eventName} Free Fly Cancelled</span>
         <span className="opacity-60 hidden sm:inline">·</span>
         <span className="text-muted">50,000 UEC referral bonus still available at signup.</span>
         <a
@@ -84,7 +84,7 @@ function CancelledBar({ referralUrl, onNavigate }: { referralUrl: string; onNavi
 
 function Bar({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
   if (status.state === 'CANCELLED_FREE_FLY') {
-    return <CancelledBar referralUrl={referralUrl} onNavigate={onNavigate} />;
+    return <CancelledBar eventName={status.event.name} referralUrl={referralUrl} onNavigate={onNavigate} />;
   }
 
   if (status.state === 'ACTIVE') {
@@ -132,7 +132,17 @@ function Bar({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
         <Link href="/event-history" className="text-orange hover:underline">
           see past events
         </Link>{' '}
-        or sign up now and lock in your referral bonus.
+        or{' '}
+        <a
+          href={referralUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={onNavigate}
+          className="text-orange hover:underline"
+        >
+          sign up now and lock in your referral bonus
+        </a>
+        .
       </div>
     </div>
   );
@@ -151,7 +161,7 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
             <span className="text-orange">The bonus still works.</span>
           </h2>
           <p className="max-w-xl text-white/80">
-            CIG pulled the Free Fly portion of DefenseCon due to server performance issues —
+            CIG pulled the Free Fly portion of {status.event.name} due to server performance issues —
             the first time this has happened in Star Citizen history. The event and ship
             showcases continue, but free public access was removed.{' '}
             <a href="#cancellation" className="text-orange underline underline-offset-2 hover:text-orange/80">
@@ -175,9 +185,9 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
                 If You Buy a Game Package
               </div>
               <p className="text-sm text-white/85">
-                Purchasing a Game Package during DefenseCon still qualifies for the{' '}
-                <strong className="text-white">referral bonus clothing pack</strong>.
-                The referral code must be applied at signup.
+                Purchasing a Game Package during {status.event.name} still qualifies
+                for any active referral bonus.{' '}
+                <strong className="text-white">The referral code must be applied at signup.</strong>
               </p>
             </div>
           </div>
@@ -222,29 +232,32 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
               onClick={onNavigate}
             >
               {bonusOverride
-                ? 'Create Free Account — Claim 50,000 UEC + Gear Pack →'
+                ? 'Create Free Account — Claim 50,000 UEC + Event Bonus →'
                 : 'Create Your Free Account & Claim 50,000 UEC →'}
             </a>
           </div>
 
-          {/* RIGHT — gear pack image (only when bonus active) */}
+          {/* RIGHT — event bonus panel (only when a bonus override is active) */}
           {bonusOverride && (
             <div className="flex flex-col gap-3 rounded-xl border border-yellow-400/50 bg-yellow-400/10 p-4">
               <div className="text-xs font-bold uppercase tracking-[0.2em] text-yellow-300">
-                Limited Signup Bonus — Through May 27
+                Limited Signup Bonus — Through{' '}
+                {new Date(bonusOverride.expiresAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}
               </div>
-              <LightboxImage
-                src="/images/defensecon-2956.webp"
-                alt="Drake DefenseCon 2956 Gear Pack"
-                width={600}
-                height={338}
-                containerClassName="rounded-lg border-4 border-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.35)]"
-                className="w-full h-auto"
-              />
+              {bonusOverride.image && (
+                <LightboxImage
+                  src={bonusOverride.image.src}
+                  alt={bonusOverride.image.alt}
+                  width={600}
+                  height={338}
+                  containerClassName="rounded-lg border-4 border-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.35)]"
+                  className="w-full h-auto"
+                />
+              )}
               <p className="text-sm text-white/90">
                 Sign up with a referral code and receive{' '}
-                <strong className="text-white">50,000 UEC + a free Drake DefenseCon Gear Pack</strong>.
-                Gear pack offer ends May 27.
+                <strong className="text-white">{bonusOverride.text}</strong>. Bonus ends{' '}
+                {new Date(bonusOverride.expiresAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}.
               </p>
             </div>
           )}
