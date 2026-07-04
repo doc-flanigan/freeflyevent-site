@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     'is star citizen free',
     'is star citizen free to play',
     'can you play star citizen for free',
+    'how to play star citizen for free',
     'star citizen free to play 2026',
     'is star citizen free on steam',
     'star citizen free account',
@@ -28,12 +29,20 @@ export const metadata: Metadata = {
 
 const faqs = [
   {
-    q: 'Is Star Citizen free to play?',
-    a: 'No. Star Citizen is not a free-to-play game like Fortnite or Warframe. To play any time you want, you buy a one-time Game Package starting around $45 USD. There is no monthly subscription.',
+    q: 'Is Star Citizen free?',
+    a: 'No. Star Citizen is a paid game — playing whenever you want requires a one-time Game Package purchase starting around $45 USD. There is no monthly subscription. However, you can play the full game for free during official Free Fly events, which Cloud Imperium runs several times a year.',
   },
   {
-    q: 'So how can I play Star Citizen for free?',
-    a: 'During official Free Fly events, Cloud Imperium opens the full game to everyone at no cost for roughly 10 days. You make a free account, download the game, and play — no purchase required. Free Flys run several times a year, most reliably during Invictus Launch Week (May) and the Intergalactic Aerospace Expo (November).',
+    q: 'When can I play Star Citizen for free?',
+    a: 'During official Free Fly events, which run several times a year for roughly two weeks each. The most reliable windows are Invictus Launch Week in May and the Intergalactic Aerospace Expo (IAE) in November. Recent examples: DefenseCon 2956 (May 14-27, 2026), IAE 2955 (Nov 20-Dec 3, 2025), and Invictus Launch Week 2955 (May 15-27, 2025).',
+  },
+  {
+    q: 'Do I need to buy anything during a Free Fly?',
+    a: 'No. Free Fly events are official Cloud Imperium events, free for anyone with a free RSI account — no purchase needed. You create a free account, download the game, and play for the full event window.',
+  },
+  {
+    q: 'Does my Free Fly progress carry over?',
+    a: 'Your free RSI account is permanent, so everything tied to the account — your username and the 50,000 UEC referral bonus claimed at signup — stays with you. If you later buy a Game Package, you keep playing on that same account rather than starting over with a new one.',
   },
   {
     q: 'Is Star Citizen free on Steam?',
@@ -42,10 +51,6 @@ const faqs = [
   {
     q: 'Will Star Citizen ever be free-to-play?',
     a: 'Cloud Imperium has not announced permanent free-to-play. The recurring Free Fly events are the official way to try it for free, and that model has been in place for years.',
-  },
-  {
-    q: 'Does a free Star Citizen account cost anything to keep?',
-    a: 'No. A free RSI account is free forever. You can claim a 50,000 UEC referral bonus on it at signup, but you can only actually launch the game when you own a Game Package or when a Free Fly event is live.',
   },
   {
     q: 'Do you have to pay monthly for Star Citizen?',
@@ -71,12 +76,17 @@ export default function IsStarCitizenFreePage() {
           {/* TL;DR direct answer */}
           <div className="mt-8 rounded-2xl border border-orange/30 bg-orange/10 p-6 sm:p-8">
             <p className="text-lg text-white/90">
-              <strong className="text-orange">Short answer:</strong> Star Citizen is{' '}
-              <strong className="text-white">not free-to-play</strong> — playing it whenever
-              you want costs a one-time <strong className="text-white">~$45</strong> Game
-              Package. But you <strong className="text-white">can play it completely free</strong>{' '}
-              during periodic <Link href="/" className="text-orange underline-offset-2 hover:underline">Free Fly events</Link>,
-              when Cloud Imperium opens the whole game to everyone for about 10 days at a time.
+              Star Citizen is <strong className="text-white">a paid game, not free-to-play</strong> —
+              playing year-round requires a one-time{' '}
+              <strong className="text-white">~$45 Game Package</strong> purchase. But Cloud
+              Imperium runs several official{' '}
+              <Link href="/" className="text-orange underline-offset-2 hover:underline">Free Fly events</Link>{' '}
+              each year, when <strong className="text-white">anyone can play the full game for
+              free</strong> with nothing but a free RSI account — no purchase needed. Check{' '}
+              <Link href="/next-free-fly" className="text-orange underline-offset-2 hover:underline">
+                when the next Free Fly is
+              </Link>{' '}
+              to find your next free window.
             </p>
           </div>
 
@@ -141,6 +151,64 @@ export default function IsStarCitizenFreePage() {
                 </li>
               ))}
             </ul>
+          </section>
+
+          {/* When can you play free — verified recent windows */}
+          <section className="mt-14">
+            <h2 className="heading-display text-2xl sm:text-3xl">
+              When can you play Star Citizen for free?
+            </h2>
+            <p className="mt-4 text-muted">
+              Free Fly events are official Cloud Imperium events, announced on the RSI
+              Comm-Link. They typically run about two weeks, and the two most reliable
+              windows each year are <strong className="text-white">Invictus Launch Week in May</strong>{' '}
+              and the <strong className="text-white">Intergalactic Aerospace Expo (IAE) in November</strong>.
+              Recent Free Fly windows:
+            </p>
+            <div className="mt-6 overflow-hidden rounded-xl border border-white/10">
+              <table className="w-full text-left text-sm">
+                <thead>
+                  <tr className="border-b border-white/10 bg-spaceBlack/60 text-xs uppercase tracking-[0.18em] text-muted">
+                    <th className="px-4 py-3">Event</th>
+                    <th className="px-4 py-3">Free Fly window</th>
+                    <th className="px-4 py-3">Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ['DefenseCon 2956', 'May 14 – 27, 2026', 'https://robertsspaceindustries.com/en/comm-link/transmission/21147-DefenseCon-2956-About'],
+                    ['Intergalactic Aerospace Expo 2955', 'Nov 20 – Dec 3, 2025', 'https://robertsspaceindustries.com/en/comm-link/transmission/20861-Intergalactic-Aerospace-Expo-2955-Free-Fly-And-Manufacturer-Schedule'],
+                    ['Invictus Launch Week 2955', 'May 15 – 27, 2025', 'https://robertsspaceindustries.com/en/comm-link/transmission/20491-About-Invictus-Launch-Week-2955'],
+                  ].map(([name, dates, source]) => (
+                    <tr key={name} className="border-b border-white/5">
+                      <td className="px-4 py-3 font-semibold text-white">{name}</td>
+                      <td className="px-4 py-3 text-muted">{dates}</td>
+                      <td className="px-4 py-3">
+                        <a
+                          href={source}
+                          target="_blank"
+                          rel="noopener"
+                          className="text-orange underline-offset-2 hover:underline"
+                        >
+                          Official announcement
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-5 text-muted">
+              To find the current window, see{' '}
+              <Link href="/next-free-fly" className="text-orange underline-offset-2 hover:underline">
+                when the next Star Citizen Free Fly is
+              </Link>
+              . And if a Free Fly is live right now, our{' '}
+              <Link href="/event-guide" className="text-orange underline-offset-2 hover:underline">
+                Free Fly event guide
+              </Link>{' '}
+              walks you from free account to first takeoff, step by step.
+            </p>
           </section>
 
           {/* Myth-busting */}
