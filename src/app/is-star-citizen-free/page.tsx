@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { EventStatusBanner } from '@/components/EventStatusBanner';
 import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
+import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { HUB_URL, REFERRAL_CODE } from '@/data/events';
 
@@ -289,6 +290,8 @@ export default function IsStarCitizenFreePage() {
 
         </div>
       </main>
+
+      <PageSources route="/is-star-citizen-free" />
 
       <Footer />
 

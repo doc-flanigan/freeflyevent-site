@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { EventStatusBanner } from '@/components/EventStatusBanner';
 import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
+import { PageSources } from '@/components/PageSources';
 import { HeroCarousel } from '@/components/HeroCarousel';
 import { CTAButton } from '@/components/CTAButton';
 import { EventCard } from '@/components/EventCard';
@@ -589,6 +590,8 @@ export default function HomePage() {
 
 
       </main>
+
+      <PageSources route="/" />
 
       <Footer />
 

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { EventStatusBanner } from '@/components/EventStatusBanner';
 import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
+import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { HUB_URL, REFERRAL_CODE } from '@/data/events';
 
@@ -440,6 +441,8 @@ export default function ShouldIBuyPage() {
 
         </div>
       </main>
+
+      <PageSources route="/should-i-buy" />
 
       <Footer />
 

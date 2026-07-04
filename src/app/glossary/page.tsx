@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { EventStatusBanner } from '@/components/EventStatusBanner';
 import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
+import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { GlossaryClient, type GlossaryTerm } from '@/components/GlossaryClient';
 import { HUB_URL } from '@/data/events';
@@ -146,6 +147,8 @@ export default async function GlossaryPage() {
           </div>
         </section>
       </main>
+
+      <PageSources route="/glossary" />
 
       <Footer />
 

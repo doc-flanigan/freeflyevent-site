@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "propose-event": "node scripts/propose-event.mjs",
+    "gen-sources": "node ../docs/claims/gen-sources.mjs freeflyevent.com src/data/page-sources.generated.json",
     "indexnow": "node scripts/indexnow.mjs",
     "postbuild": "node scripts/indexnow.mjs || true"
   },

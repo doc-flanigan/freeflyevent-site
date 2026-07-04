@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { EventStatusBanner } from '@/components/EventStatusBanner';
 import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
+import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { FREE_FLY_HISTORY, getEventStatus, HUB_URL } from '@/data/events';
 import { formatRangeUTC } from '@/lib/format';
@@ -332,6 +333,8 @@ export default function NextFreeFlyPage() {
 
         </div>
       </main>
+
+      <PageSources route="/next-free-fly" />
 
       <Footer />
 

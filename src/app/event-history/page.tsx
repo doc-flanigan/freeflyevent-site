@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { EventStatusBanner } from '@/components/EventStatusBanner';
 import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
+import { PageSources } from '@/components/PageSources';
 import { EventHistoryTable } from '@/components/EventHistoryTable';
 import { FREE_FLY_HISTORY, HUB_URL } from '@/data/events';
 
@@ -96,6 +97,8 @@ export default function EventHistoryPage() {
           </div>
         </section>
       </main>
+
+      <PageSources route="/event-history" />
 
       <Footer />
 
