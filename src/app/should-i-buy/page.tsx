@@ -437,6 +437,16 @@ export default function ShouldIBuyPage() {
                 New player guides at dayonecitizen.com →
               </Link>
             </div>
+            <p className="mt-6 text-sm text-muted">
+              Weighing Star Citizen against the rest of the genre first?{' '}
+              <a
+                href="https://bestspacesim.com/is-star-citizen-worth-it"
+                className="text-orange underline hover:text-orange-dark"
+              >
+                bestspacesim.com&apos;s honest worth-it verdict
+              </a>{' '}
+              scores it against Elite Dangerous, No Man&apos;s Sky, and more.
+            </p>
           </section>
 
         </div>
