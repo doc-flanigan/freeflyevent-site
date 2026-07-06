@@ -255,7 +255,7 @@ export default function IsStarCitizenFreePage() {
               ⚠️ The code must be entered at signup or within 24 hours — it cannot be added later.
             </div>
             <div className="mt-6">
-              <CTAButton size="lg" />
+              <CTAButton size="lg" trackingLabel="is-free-referral" />
             </div>
           </section>
 

@@ -298,7 +298,7 @@ export default function NextFreeFlyPage() {
               jump in the moment the next event goes live.
             </p>
             <div className="mt-6">
-              <CTAButton size="lg" />
+              <CTAButton size="lg" trackingLabel="next-free-fly-cta" />
             </div>
           </section>
 

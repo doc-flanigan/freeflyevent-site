@@ -409,7 +409,7 @@ export default function ShouldIBuyPage() {
               added after that window — no support ticket can override it.
             </div>
             <div className="mt-6">
-              <CTAButton size="lg" />
+              <CTAButton size="lg" trackingLabel="should-i-buy-referral" />
             </div>
           </section>
 

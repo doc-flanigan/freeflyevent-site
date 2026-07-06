@@ -18,7 +18,7 @@ export default function NotFound() {
           <Link href="/" className="btn-secondary">
             ← Back to home
           </Link>
-          <CTAButton />
+          <CTAButton trackingLabel="404-referral" />
         </div>
       </main>
       <Footer />

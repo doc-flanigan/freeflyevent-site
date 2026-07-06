@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    if (discordUrl) {
+    if (discordUrl && !label.startsWith('impression:')) {
       calls.push(
         fetch(discordUrl, {
           method: 'POST',

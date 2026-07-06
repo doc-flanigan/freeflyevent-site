@@ -242,7 +242,7 @@ export default function EventGuidePage() {
             locks in the moment you sign up.
           </p>
           <div className="mt-8">
-            <CTAButton size="lg" />
+            <CTAButton size="lg" trackingLabel="event-guide-footer" />
           </div>
         </section>
       </main>

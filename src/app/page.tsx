@@ -252,7 +252,7 @@ export default function HomePage() {
               </div>
 
               <div className="mt-8 flex flex-wrap gap-4">
-                <CTAButton size="lg">Claim Your 50,000 UEC Bonus Anyway</CTAButton>
+                <CTAButton size="lg" trackingLabel="home-cancelled-event">Claim Your 50,000 UEC Bonus Anyway</CTAButton>
                 <Link
                   href="/event-history"
                   className="btn-secondary"
@@ -374,7 +374,7 @@ export default function HomePage() {
                       </div>
                     </div>
                     <div className="mt-6">
-                      <CTAButton size="lg">Create Your Free Account Now</CTAButton>
+                      <CTAButton size="lg" trackingLabel="home-referral-bonus-override">Create Your Free Account Now</CTAButton>
                       <DiscordCTA />
                     </div>
                     <p className="text-muted text-sm mt-3">
@@ -460,7 +460,7 @@ export default function HomePage() {
                     </div>
                   </div>
                   <div className="mt-6">
-                    <CTAButton size="lg">Create Your Free Account Now</CTAButton>
+                    <CTAButton size="lg" trackingLabel="home-referral-bonus">Create Your Free Account Now</CTAButton>
                     <DiscordCTA />
                   </div>
                   <p className="text-muted text-sm mt-3">

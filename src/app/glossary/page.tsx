@@ -128,7 +128,7 @@ export default async function GlossaryPage() {
                   currency — instantly. It cannot be added after 24 hours.
                 </p>
                 <div className="mt-6">
-                  <CTAButton />
+                  <CTAButton trackingLabel="glossary-referral-nudge" />
                 </div>
               </div>
               <div className="rounded-xl border border-white/10 bg-spaceBlack/60 p-6">
