@@ -25,6 +25,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: false }, { status: 400 })
     }
 
+    const sheetLabel = label.startsWith('impression:') ? label : `click:${label}`
     const timestamp = new Date().toLocaleString('en-US', { timeZone: 'America/Chicago', dateStyle: 'short', timeStyle: 'medium' }) + ' CST'
     const sheetUrl = process.env.CLICK_TRACKER_SHEET_URL
     const discordUrl = process.env.DISCORD_CLICK_WEBHOOK_URL
@@ -36,7 +37,7 @@ export async function POST(req: NextRequest) {
         fetch(sheetUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ timestamp, site, label, referralCode, page }),
+          body: JSON.stringify({ timestamp, site, label: sheetLabel, referralCode, page }),
         }).catch((err) => console.error('[track-click] Sheet error:', err))
       )
     }
