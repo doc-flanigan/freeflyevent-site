@@ -7,6 +7,26 @@ import { getActiveBonusOverride } from '@/data/events';
 const DEFAULT_LABEL = 'Play Free — Claim Your 50,000 UEC Bonus';
 const BONUS_LABEL = 'Play Free — 50,000 UEC + Event Bonus';
 
+const CTA_VARIANT_KEY = 'cta_variant';
+
+/**
+ * Sticky visitor-level A/B assignment. Reads localStorage; if unset, assigns
+ * 'a' or 'b' at random and persists so the same visitor sees the same variant
+ * on every button and every visit. Client-only — call from an effect.
+ */
+export function getCtaVariant(): 'a' | 'b' {
+  if (typeof window === 'undefined') return 'a';
+  try {
+    const stored = window.localStorage.getItem(CTA_VARIANT_KEY);
+    if (stored === 'a' || stored === 'b') return stored;
+    const assigned = Math.random() < 0.5 ? 'a' : 'b';
+    window.localStorage.setItem(CTA_VARIANT_KEY, assigned);
+    return assigned;
+  } catch {
+    return 'a'; // localStorage unavailable (private mode etc.)
+  }
+}
+
 type Props = {
   children?: React.ReactNode;
   href?: string;
@@ -14,6 +34,8 @@ type Props = {
   size?: 'md' | 'lg';
   className?: string;
   trackingLabel?: string;
+  /** A/B copy test: two button-text variants. Assignment is sticky per visitor. */
+  variants?: { a: string; b: string };
 };
 
 export function CTAButton({
@@ -23,13 +45,18 @@ export function CTAButton({
   size = 'md',
   className = '',
   trackingLabel,
+  variants,
 }: Props) {
   const [referralUrl, setReferralUrl] = useState(FALLBACK_REFERRAL_URL);
   const [defaultLabel, setDefaultLabel] = useState(DEFAULT_LABEL);
+  const [abVariant, setAbVariant] = useState<'a' | 'b'>('a');
   useEffect(() => {
     setReferralUrl(getRotatedReferralUrl());
     setDefaultLabel(getActiveBonusOverride() ? BONUS_LABEL : DEFAULT_LABEL);
-  }, []);
+    if (variants) setAbVariant(getCtaVariant());
+  }, [variants]);
+
+  const variantSuffix = variants ? `~${abVariant}` : '';
 
   const href = hrefProp ?? referralUrl;
   const sizeCls = size === 'lg' ? 'px-8 py-4 text-base' : 'px-6 py-3 text-sm';
@@ -51,7 +78,7 @@ export function CTAButton({
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            label: `impression:${trackingLabel ?? 'unknown'}`,
+            label: `impression:${trackingLabel ?? 'unknown'}${variantSuffix}`,
             referralCode: code,
             page: window.location.pathname,
             site: window.location.hostname,
@@ -62,13 +89,14 @@ export function CTAButton({
           referral_code: code,
           page_path: window.location.pathname,
           site: window.location.hostname,
+          ...(variants ? { variant: abVariant } : {}),
         })
       },
       { threshold: 0.5 }
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [href, trackingLabel]);
+  }, [href, trackingLabel, variants, abVariant, variantSuffix]);
 
   const handleClick = () => {
     const code = href.split('referral=')[1] ?? ''
@@ -77,7 +105,7 @@ export function CTAButton({
       keepalive: true,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        label: trackingLabel ?? 'unknown',
+        label: `${trackingLabel ?? 'unknown'}${variantSuffix}`,
         referralCode: code,
         page: window.location.pathname,
         site: window.location.hostname,
@@ -87,6 +115,7 @@ export function CTAButton({
       referral_code: code,
       page_path: window.location.pathname,
       site: window.location.hostname,
+      ...(variants ? { variant: abVariant } : {}),
     })
   }
 
@@ -99,7 +128,7 @@ export function CTAButton({
       className={`${base} ${sizeCls} ${className}`}
       onClick={handleClick}
     >
-      <span>{children ?? defaultLabel}</span>
+      <span>{variants ? variants[abVariant] : (children ?? defaultLabel)}</span>
       <ArrowIcon />
     </Link>
   );

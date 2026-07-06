@@ -242,7 +242,14 @@ export default function EventGuidePage() {
             locks in the moment you sign up.
           </p>
           <div className="mt-8">
-            <CTAButton size="lg" trackingLabel="event-guide-footer" />
+            <CTAButton
+              size="lg"
+              trackingLabel="event-guide-footer"
+              variants={{
+                a: 'Play Free — Claim Your 50,000 UEC Bonus',
+                b: 'Sign Up Now — Lock In Your 50,000 UEC',
+              }}
+            />
           </div>
         </section>
       </main>

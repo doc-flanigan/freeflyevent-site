@@ -374,7 +374,14 @@ export default function HomePage() {
                       </div>
                     </div>
                     <div className="mt-6">
-                      <CTAButton size="lg" trackingLabel="home-referral-bonus-override">Create Your Free Account Now</CTAButton>
+                      <CTAButton
+                        size="lg"
+                        trackingLabel="home-referral-bonus-override"
+                        variants={{
+                          a: 'Create Your Free Account Now',
+                          b: 'Sign Up Free — 50,000 UEC Bonus Included',
+                        }}
+                      />
                       <DiscordCTA />
                     </div>
                     <p className="text-muted text-sm mt-3">
@@ -460,7 +467,14 @@ export default function HomePage() {
                     </div>
                   </div>
                   <div className="mt-6">
-                    <CTAButton size="lg" trackingLabel="home-referral-bonus">Create Your Free Account Now</CTAButton>
+                    <CTAButton
+                      size="lg"
+                      trackingLabel="home-referral-bonus"
+                      variants={{
+                        a: 'Create Your Free Account Now',
+                        b: 'Start Free — Claim Your 50,000 UEC at Signup',
+                      }}
+                    />
                     <DiscordCTA />
                   </div>
                   <p className="text-muted text-sm mt-3">

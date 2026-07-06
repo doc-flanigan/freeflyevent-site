@@ -409,7 +409,14 @@ export default function ShouldIBuyPage() {
               added after that window — no support ticket can override it.
             </div>
             <div className="mt-6">
-              <CTAButton size="lg" trackingLabel="should-i-buy-referral" />
+              <CTAButton
+                size="lg"
+                trackingLabel="should-i-buy-referral"
+                variants={{
+                  a: 'Play Free — Claim Your 50,000 UEC Bonus',
+                  b: 'Create Your Account — Claim 50,000 UEC',
+                }}
+              />
             </div>
           </section>
 

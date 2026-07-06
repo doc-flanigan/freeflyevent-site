@@ -255,7 +255,14 @@ export default function IsStarCitizenFreePage() {
               ⚠️ The code must be entered at signup or within 24 hours — it cannot be added later.
             </div>
             <div className="mt-6">
-              <CTAButton size="lg" trackingLabel="is-free-referral" />
+              <CTAButton
+                size="lg"
+                trackingLabel="is-free-referral"
+                variants={{
+                  a: 'Play Free — Claim Your 50,000 UEC Bonus',
+                  b: 'Start Free — 50,000 UEC Bonus Included',
+                }}
+              />
             </div>
           </section>
 
