@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const DISCORD_URL = process.env.NEXT_PUBLIC_DISCORD_INVITE_URL ?? 'https://discord.gg/GzwgugjH'
+const DISCORD_URL = process.env.NEXT_PUBLIC_DISCORD_INVITE_URL ?? 'https://discord.gg/vHjvDxHQP2'
 
 export function DiscordCTA() {
   return (
