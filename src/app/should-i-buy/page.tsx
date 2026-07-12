@@ -10,7 +10,7 @@ import { HUB_URL, REFERRAL_CODE } from '@/data/events';
 export const metadata: Metadata = {
   title: 'Should I Buy Star Citizen? An Honest Answer (2026)',
   description:
-    'You just tried Star Citizen during Free Fly. Here\'s an honest, no-hype breakdown of what you actually get, what state the game is in, who it\'s for, and what it costs.',
+    'Try Star Citizen free during a Free Fly event before you buy: an honest breakdown of the pros, cons, alpha state, prices, and who it\'s really for.',
   alternates: { canonical: '/should-i-buy' },
   keywords: [
     'should I buy Star Citizen',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Should I Buy Star Citizen? An Honest Answer',
     description:
-      'No hype, no pitch. What you get, what state the game is in, who loves it, and who should wait.',
+      'Try Star Citizen free during a Free Fly event before you buy: an honest breakdown of the pros, cons, alpha state, prices, and who it\'s really for.',
   },
 };
 

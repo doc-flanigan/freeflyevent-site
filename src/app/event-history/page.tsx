@@ -19,7 +19,25 @@ export const metadata: Metadata = {
   },
 };
 
+const dateFmt = new Intl.DateTimeFormat('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+
 export default function EventHistoryPage() {
+  // Most recent completed Free Fly, derived from the verified event data at
+  // render time so this answer can never go stale. Excludes windows where
+  // free access was cancelled.
+  const mostRecent = FREE_FLY_HISTORY
+    .filter(
+      (ev) =>
+        ev.freeFlyActive !== false &&
+        new Date(ev.end).getTime() < Date.now(),
+    )
+    .sort((a, b) => new Date(b.end).getTime() - new Date(a.end).getTime())[0];
+
   const totalDays = FREE_FLY_HISTORY.reduce((sum, ev) => {
     const days = Math.round(
       (new Date(ev.end).getTime() - new Date(ev.start).getTime()) /
@@ -40,6 +58,13 @@ export default function EventHistoryPage() {
             <h1 className="heading-display mt-4 text-4xl sm:text-6xl">
               Free Fly Event History
             </h1>
+            {mostRecent && (
+              <p className="mt-5 text-lg font-bold text-white">
+                The most recent Star Citizen Free Fly was {mostRecent.name},
+                which ran {dateFmt.format(new Date(mostRecent.start))} to{' '}
+                {dateFmt.format(new Date(mostRecent.end))}.
+              </p>
+            )}
             <p className="mt-5 text-lg text-white/90">
               Star Citizen runs several Free Fly events per year, and the two
               reliable anchors are the May military expo (Invictus Launch Week,
