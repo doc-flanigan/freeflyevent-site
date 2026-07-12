@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from 'next';
 import { Analytics } from '@vercel/analytics/next';
-import GoogleAnalytics from '@/components/GoogleAnalytics';
-import CookieBanner from '@/components/CookieBanner';
 import './globals.css';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://freeflyevent.com';
@@ -85,8 +83,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="bg-spaceBlack">
       <body className="min-h-screen bg-spaceBlack font-sans text-white antialiased">
         {children}
-        <CookieBanner />
-        <GoogleAnalytics />
         <Analytics />
         <script
           type="application/ld+json"
