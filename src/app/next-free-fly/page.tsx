@@ -12,7 +12,7 @@ import { formatRangeUTC } from '@/lib/format';
 export const metadata: Metadata = {
   title: 'When Is the Next Star Citizen Free Fly? (July 2026)',
   description:
-    'As of July 2026, CIG has not announced the next Star Citizen Free Fly. The most likely window is the Intergalactic Aerospace Expo (IAE) in late November — here is the full pattern, sourced from official Comm-Links.',
+    'As of July 2026, CIG has not announced the next Star Citizen Free Fly. Press reports expect Foundation Festival to return around mid-July, and the most dependable window is the Intergalactic Aerospace Expo (IAE) in late November — here is the full pattern, sourced from official Comm-Links.',
   alternates: { canonical: '/next-free-fly' },
   keywords: [
     'next star citizen free fly',
@@ -47,7 +47,7 @@ const SOURCES = {
 const faqs = [
   {
     q: 'When is the next Star Citizen Free Fly in 2026?',
-    a: 'As of July 2026, Cloud Imperium Games has not announced the next Free Fly. Based on the last five years of the event calendar, the most likely window is the Intergalactic Aerospace Expo (IAE) in late November — IAE has run a November Free Fly every year since at least 2951 (2021). Check the live banner at the top of this page for any official announcement.',
+    a: 'As of July 2026, Cloud Imperium Games has not announced the next Free Fly. The nearest expected window is Foundation Festival, which press reports expect to return around mid-July 2026 based on last year’s pattern — it is not yet officially announced, and last year’s edition included a Free Fly. Beyond that, the most dependable window is the Intergalactic Aerospace Expo (IAE) in late November, which has run a November Free Fly every year since at least 2951 (2021). Check the live banner at the top of this page — it updates the moment CIG posts an official Comm-Link.',
   },
   {
     q: 'How often does Star Citizen do Free Fly events?',
@@ -125,8 +125,10 @@ export default function NextFreeFlyPage() {
           {/* GEO answer — static, honest, quotable */}
           <p className="mt-6 text-lg leading-relaxed text-white/85">
             As of July 2026, Cloud Imperium Games has not announced the next Star
-            Citizen Free Fly. Based on the event calendar of the last five years,
-            the next likely window is the{' '}
+            Citizen Free Fly. The nearest expected window is{' '}
+            <strong className="text-white">Foundation Festival</strong>, which
+            press reports expect to return around mid-July — not yet officially
+            announced. The most dependable yearly window is the{' '}
             <strong className="text-white">
               Intergalactic Aerospace Expo (IAE) in late November
             </strong>
@@ -139,6 +141,30 @@ export default function NextFreeFlyPage() {
             <p className="text-xs uppercase tracking-[0.18em] text-muted">Live status</p>
             <h2 className="heading-display mt-2 text-xl text-white">{headline}</h2>
             <p className="mt-3 text-white/85">{detail}</p>
+          </div>
+
+          {/* Watch note — press expectation, NOT an announcement. Remove or
+              replace when CIG posts the official Comm-Link (then the event
+              goes into src/data/events.ts and the banner takes over). */}
+          <div className="mt-6 rounded-2xl border border-dashed border-orange/40 bg-blackMid/60 p-6 sm:p-8">
+            <p className="text-xs uppercase tracking-[0.18em] text-orange">
+              Watch note — expected next
+            </p>
+            <h2 className="heading-display mt-2 text-xl text-white">
+              Foundation Festival — expected around mid-July, per press reports
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-white/85">
+              Gaming press expects Foundation Festival to return around
+              mid-July 2026, based on last year&apos;s pattern. CIG has not
+              officially announced it — no Comm-Link exists yet, and no dates
+              are confirmed. Last year&apos;s Foundation Festival included a
+              Free Fly alongside new-player mentorship activities, which is why
+              this is the nearest window worth watching.
+            </p>
+            <p className="mt-3 text-xs text-muted">
+              Press expectation — not a CIG announcement. This page and the
+              banner above update the moment CIG posts the official Comm-Link.
+            </p>
           </div>
 
           {/* Expected windows — pattern, not announcement */}
