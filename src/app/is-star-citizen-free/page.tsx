@@ -91,6 +91,11 @@ export default function IsStarCitizenFreePage() {
             </p>
           </div>
 
+          <p className="mt-4 text-xs text-muted">
+            Page reviewed July 18, 2026 — pricing and Free Fly details below are
+            checked against official Cloud Imperium announcements.
+          </p>
+
           {/* Free-to-play vs Free Fly */}
           <section className="mt-14">
             <h2 className="heading-display text-2xl sm:text-3xl">
