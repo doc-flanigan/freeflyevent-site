@@ -61,6 +61,7 @@ export async function generateMetadata(): Promise<Metadata> {
       ],
       alternates: { canonical: '/' },
       openGraph: {
+        images: ['/images/hero/hero-01.jpg'],
         title: `${status.event.name} Free Fly Cancelled — 50,000 UEC Still Available`,
         description: `CIG pulled the Free Fly for ${status.event.name} due to server load — a first in Star Citizen history. Your 50,000 UEC referral bonus still works. Sign up now.`,
       },
@@ -86,6 +87,7 @@ export async function generateMetadata(): Promise<Metadata> {
       ],
       alternates: { canonical: '/' },
       openGraph: {
+        images: ['/images/hero/hero-01.jpg'],
         title: `Next Star Citizen Free Fly — ${status.event.name} Coming Soon`,
         description: `The next Star Citizen Free Fly is ${status.event.name}. Lock in your 50,000 UEC referral bonus before the event starts.`,
       },
@@ -112,6 +114,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ],
     alternates: { canonical: '/' },
     openGraph: {
+      images: ['/images/hero/hero-01.jpg'],
       title: 'Star Citizen Free Fly Events — When Is the Next One?',
       description: 'No Free Fly is active right now. Track when the next Star Citizen Free Fly launches and lock in your 50,000 UEC referral bonus.',
     },
