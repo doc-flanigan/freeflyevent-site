@@ -50,7 +50,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (status.state === 'CANCELLED_FREE_FLY') {
     return {
       title: `${status.event.name} Free Fly Cancelled — 50,000 UEC Still Active`,
-      description: `CIG cancelled the Star Citizen Free Fly for ${status.event.name} due to server performance issues — the first time this has ever happened. You can still create a free RSI account and claim 50,000 UEC with a referral code.`,
+      description: `CIG cancelled the ${status.event.name} Free Fly — a first. You can still create a free RSI account and claim 50,000 UEC with a referral code.`,
       keywords: [
         'Star Citizen free fly cancelled',
         `${status.event.name} free fly cancelled`,
@@ -76,7 +76,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (status.state === 'UPCOMING') {
     return {
       title: `Next Star Citizen Free Fly — ${status.event.name} Coming Soon`,
-      description: `The next Star Citizen Free Fly is ${status.event.name}. Track the countdown, see what ships are included, and lock in your 50,000 UEC referral bonus before the event starts.`,
+      description: `The next Star Citizen Free Fly is ${status.event.name}. Track the countdown and lock in your 50,000 UEC referral bonus before it starts.`,
       keywords: [
         'next star citizen free fly',
         'when is the next star citizen free fly',
@@ -102,7 +102,7 @@ export async function generateMetadata(): Promise<Metadata> {
   // INACTIVE / default state — between events
   return {
     title: 'Star Citizen Free Fly Events — When Is the Next One? (2026)',
-    description: 'No Star Citizen Free Fly is active right now. Track when the next event launches, browse the full event history, and lock in your 50,000 UEC referral bonus before it starts.',
+    description: 'Star Citizen Free Fly events let anyone play free. Current event dates, included ships, and the 50,000 UEC referral bonus.',
     keywords: [
       'when is the next star citizen free fly',
       'star citizen free fly 2026',

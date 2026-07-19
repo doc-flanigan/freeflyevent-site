@@ -9,9 +9,9 @@ import { DiscordCTA } from '@/components/DiscordCTA';
 import { HUB_URL, REFERRAL_CODE } from '@/data/events';
 
 export const metadata: Metadata = {
-  title: 'Star Citizen Free Fly Event Guide — What to Do First',
+  title: 'Free Fly Event Guide — What to Do First',
   description:
-    'Step-by-step guide for new players: sign up, claim your 50,000 UEC referral bonus, download the launcher, and what to do during your first Star Citizen Free Fly event.',
+    'Sign up, claim the 50,000 UEC referral bonus, download the launcher, and know what to do first in your Star Citizen Free Fly.',
   alternates: { canonical: '/event-guide' },
   openGraph: {
     images: ['/images/hero/hero-01.jpg'],

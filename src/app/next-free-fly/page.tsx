@@ -12,7 +12,7 @@ import { formatRangeUTC } from '@/lib/format';
 export const metadata: Metadata = {
   title: 'When Is the Next Star Citizen Free Fly? (July 2026)',
   description:
-    'As of July 2026, CIG has not announced the next Star Citizen Free Fly. Press reports expect Foundation Festival to return around mid-July, and the most dependable window is the Intergalactic Aerospace Expo (IAE) in late November — here is the full pattern, sourced from official Comm-Links.',
+    'CIG has not announced the next Star Citizen Free Fly. The most dependable window is the Intergalactic Aerospace Expo in November — here\'s how to be ready.',
   alternates: { canonical: '/next-free-fly' },
   keywords: [
     'next star citizen free fly',

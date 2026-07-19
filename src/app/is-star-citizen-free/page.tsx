@@ -8,9 +8,9 @@ import { CTAButton } from '@/components/CTAButton';
 import { HUB_URL, REFERRAL_CODE } from '@/data/events';
 
 export const metadata: Metadata = {
-  title: 'Is Star Citizen Free? Free-to-Play vs Free Fly (2026)',
+  title: 'Is Star Citizen Free? Free Fly Explained',
   description:
-    'Star Citizen is not free-to-play — but you can play it for free during Free Fly events. Here\'s the difference, what a free account gets you, and when you can play at no cost.',
+    'Star Citizen is not free-to-play — but Free Fly events let you play free. The difference, what a free account gets, and when you can play.',
   alternates: { canonical: '/is-star-citizen-free' },
   keywords: [
     'is star citizen free',
