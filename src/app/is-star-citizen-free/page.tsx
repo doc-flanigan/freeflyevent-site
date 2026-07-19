@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     'star citizen free account',
   ],
   openGraph: {
+    images: ['/images/hero/hero-01.jpg'],
     title: 'Is Star Citizen Free? Free-to-Play vs Free Fly',
     description:
       'No, Star Citizen is not free-to-play — but you can play it free during Free Fly events. Here\'s the honest breakdown.',

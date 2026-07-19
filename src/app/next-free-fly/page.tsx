@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     'star citizen iae 2956 free fly',
   ],
   openGraph: {
+    images: ['/images/hero/hero-01.jpg'],
     title: 'When Is the Next Star Citizen Free Fly?',
     description:
       'No Free Fly is announced as of July 2026. The most likely next window is IAE in late November — the pattern, with official sources.',

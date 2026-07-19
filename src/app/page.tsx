@@ -36,6 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
       ],
       alternates: { canonical: '/' },
       openGraph: {
+        images: ['/images/hero/hero-01.jpg'],
         title: `Star Citizen Free Fly is LIVE — ${status.event.name} Through ${ends}`,
         description: `Star Citizen is free to play right now. ${status.event.name} Free Fly runs through ${ends} — create your free account and lock in 50,000 UEC before it ends.`,
       },

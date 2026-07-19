@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     'Step-by-step guide for new players: sign up, claim your 50,000 UEC referral bonus, download the launcher, and what to do during your first Star Citizen Free Fly event.',
   alternates: { canonical: '/event-guide' },
   openGraph: {
+    images: ['/images/hero/hero-01.jpg'],
     title: 'Star Citizen Free Fly Event Guide — What to Do First',
     description:
       'Sign up, claim 50,000 UEC, download, and what to do first during a Star Citizen Free Fly.',

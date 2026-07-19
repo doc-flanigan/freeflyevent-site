@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     'Star Citizen alpha worth it',
   ],
   openGraph: {
+    images: ['/images/hero/hero-01.jpg'],
     title: 'Should I Buy Star Citizen? An Honest Answer',
     description:
       'Try Star Citizen free during a Free Fly event before you buy: an honest breakdown of the pros, cons, alpha state, prices, and who it\'s really for.',

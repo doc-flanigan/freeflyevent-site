@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     'Plain-English definitions for the Star Citizen terms new players hit during Free Fly events — UEC, aUEC, Game Package, LTI, quantum travel, and more.',
   alternates: { canonical: '/glossary' },
   openGraph: {
+    images: ['/images/hero/hero-01.jpg'],
     title: 'Star Citizen Free Fly Glossary',
     description:
       'Quick definitions for the jargon every new Free Fly player needs. No wiki-crawling required.',
