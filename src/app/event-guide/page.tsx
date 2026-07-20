@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { DiscordCTA } from '@/components/DiscordCTA';
+import { LightboxImage } from '@/components/LightboxImage';
 import { HUB_URL, REFERRAL_CODE } from '@/data/events';
 
 export const metadata: Metadata = {
@@ -21,11 +22,23 @@ export const metadata: Metadata = {
   },
 };
 
+type StepImage = {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+};
+
 type Step = {
   num: string;
   title: string;
   body: React.ReactNode;
   tip?: React.ReactNode;
+  /** Single full-width screenshot below the step text */
+  image?: StepImage;
+  /** Multi-tile image strip (e.g. the four planets) */
+  gallery?: StepImage[];
 };
 
 const STEPS: Step[] = [
@@ -61,6 +74,14 @@ const STEPS: Step[] = [
         </p>
       </>
     ),
+    image: {
+      src: '/images/guides/rsi-signup-referral-code-field.jpg',
+      alt: 'RSI account signup form with the Referral Code field highlighted and code STAR-GCQJ-N6NC entered',
+      caption:
+        'The RSI signup form. The Referral Code field is on the form itself — paste the code here before you click Enlist.',
+      width: 1200,
+      height: 1069,
+    },
   },
   {
     num: '02',
@@ -85,6 +106,14 @@ const STEPS: Step[] = [
       </>
     ),
     tip: 'Pre-launch on event day: log in once an hour or two before the event opens. Patches drop on day one and the launcher always queues.',
+    image: {
+      src: '/images/guides/rsi-launcher-home-launch-ready.jpg',
+      alt: 'RSI Launcher home screen with Star Citizen fully downloaded and the Launch Game button ready',
+      caption:
+        'The RSI Launcher once the download finishes — when the button says Launch Game, you’re ready to fly.',
+      width: 1051,
+      height: 768,
+    },
   },
   {
     num: '04',
@@ -120,6 +149,14 @@ const STEPS: Step[] = [
         you&apos;ll get paid.
       </>
     ),
+    image: {
+      src: '/images/guides/first-days-mobiglas-mission-manager.jpg',
+      alt: 'mobiGlas mission manager in Star Citizen showing available delivery contracts',
+      caption:
+        'The mobiGlas mission manager (press F1) — browse contracts, accept a delivery, and the route markers do the rest.',
+      width: 1200,
+      height: 669,
+    },
   },
   {
     num: '07',
@@ -131,6 +168,36 @@ const STEPS: Step[] = [
         industrial. Each is enormous; pick one and quantum-jump there.
       </>
     ),
+    gallery: [
+      {
+        src: '/images/guides/planet-microtech-new-babbage.jpg',
+        alt: 'New Babbage city skyline on the snow planet microTech in Star Citizen',
+        caption: 'New Babbage, microTech',
+        width: 3440,
+        height: 967,
+      },
+      {
+        src: '/images/guides/planet-arccorp-plaza.jpg',
+        alt: 'Area18 plaza on the city planet ArcCorp in Star Citizen',
+        caption: 'Area18 Plaza, ArcCorp',
+        width: 1538,
+        height: 2050,
+      },
+      {
+        src: '/images/guides/planet-crusader-orison.jpg',
+        alt: 'Floating platforms of Orison above the gas giant Crusader in Star Citizen',
+        caption: 'Orison, Crusader',
+        width: 3360,
+        height: 1440,
+      },
+      {
+        src: '/images/guides/planet-hurston-lorville.jpg',
+        alt: 'Industrial city of Lorville on the planet Hurston in Star Citizen',
+        caption: 'Lorville, Hurston',
+        width: 1538,
+        height: 2050,
+      },
+    ],
   },
   {
     num: '08',
@@ -198,6 +265,40 @@ export default function EventGuidePage() {
                           Tip
                         </span>
                         {s.tip}
+                      </div>
+                    )}
+                    {s.image && (
+                      <figure className="mt-5 max-w-xl">
+                        <LightboxImage
+                          src={s.image.src}
+                          alt={s.image.alt}
+                          width={s.image.width}
+                          height={s.image.height}
+                          containerClassName="block overflow-hidden rounded-lg border border-white/10"
+                          className="w-full h-auto"
+                        />
+                        <figcaption className="mt-2 text-xs text-muted">
+                          {s.image.caption}
+                        </figcaption>
+                      </figure>
+                    )}
+                    {s.gallery && (
+                      <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                        {s.gallery.map((g) => (
+                          <figure key={g.src}>
+                            <LightboxImage
+                              src={g.src}
+                              alt={g.alt}
+                              width={g.width}
+                              height={g.height}
+                              containerClassName="block aspect-[4/3] w-full overflow-hidden rounded-lg border border-white/10"
+                              className="h-full w-full object-cover"
+                            />
+                            <figcaption className="mt-1.5 text-xs text-muted">
+                              {g.caption}
+                            </figcaption>
+                          </figure>
+                        ))}
                       </div>
                     )}
                   </div>

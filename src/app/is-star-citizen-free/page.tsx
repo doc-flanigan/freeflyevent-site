@@ -5,6 +5,7 @@ import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
+import { LightboxImage } from '@/components/LightboxImage';
 import { HUB_URL, REFERRAL_CODE } from '@/data/events';
 
 export const metadata: Metadata = {
@@ -260,6 +261,20 @@ export default function IsStarCitizenFreePage() {
             <div className="mt-4 rounded-lg border border-orange/30 bg-spaceBlack/60 p-3 text-xs text-muted">
               ⚠️ The code must be entered at signup or within 24 hours — it cannot be added later.
             </div>
+            <figure className="mt-6">
+              <LightboxImage
+                src="/images/guides/rsi-signup-referral-code-field.jpg"
+                alt="RSI account signup form with the Referral Code field highlighted and code STAR-GCQJ-N6NC entered"
+                width={1200}
+                height={1069}
+                containerClassName="block overflow-hidden rounded-xl border border-orange/40"
+                className="w-full h-auto"
+              />
+              <figcaption className="mt-2 text-xs text-muted">
+                Where the code goes — the Referral Code field on the RSI signup
+                form, shown with the code applied.
+              </figcaption>
+            </figure>
             <div className="mt-6">
               <CTAButton
                 size="lg"

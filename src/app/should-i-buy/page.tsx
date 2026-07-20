@@ -5,6 +5,7 @@ import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
+import { LightboxImage } from '@/components/LightboxImage';
 import { HUB_URL, REFERRAL_CODE } from '@/data/events';
 
 export const metadata: Metadata = {
@@ -369,6 +370,21 @@ export default function ShouldIBuyPage() {
                 </tbody>
               </table>
             </div>
+            <figure className="mt-6">
+              <LightboxImage
+                src="/images/guides/getting-started-game-package-starter-packs-list.jpg"
+                alt="RSI Getting Started page listing the current Star Citizen starter Game Packages with prices"
+                width={1200}
+                height={561}
+                containerClassName="block overflow-hidden rounded-xl border border-white/10"
+                className="w-full h-auto"
+              />
+              <figcaption className="mt-2 text-xs text-muted">
+                The starter Game Package list on RSI&apos;s Getting Started page —
+                this is the screen you&apos;ll see at checkout. Stick to the
+                starter tier.
+              </figcaption>
+            </figure>
             <p className="mt-4 text-xs text-muted">
               For most new players the Citizen or Generalist pack is the better first buy —{' '}
               <a

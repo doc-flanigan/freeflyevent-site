@@ -470,6 +470,20 @@ export default function HomePage() {
                       STAR-GCQJ-N6NC
                     </div>
                   </div>
+                  <figure className="mt-6">
+                    <LightboxImage
+                      src="/images/guides/rsi-signup-referral-code-field.jpg"
+                      alt="RSI account signup form with the Referral Code field highlighted and code STAR-GCQJ-N6NC entered"
+                      width={1200}
+                      height={1069}
+                      containerClassName="block overflow-hidden rounded-xl border border-orange/40"
+                      className="w-full h-auto"
+                    />
+                    <figcaption className="mt-2 text-xs text-muted">
+                      The RSI signup form — paste the code into the Referral Code
+                      field before you click Enlist.
+                    </figcaption>
+                  </figure>
                   <div className="mt-6">
                     <CTAButton
                       size="lg"
