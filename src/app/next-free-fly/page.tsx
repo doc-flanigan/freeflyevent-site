@@ -48,7 +48,7 @@ const SOURCES = {
 const faqs = [
   {
     q: 'When is the next Star Citizen Free Fly in 2026?',
-    a: 'As of July 2026, Cloud Imperium Games has not announced the next Free Fly. The nearest expected window is Foundation Festival, which press reports expect to return around mid-July 2026 based on last year’s pattern — it is not yet officially announced, and last year’s edition included a Free Fly. Beyond that, the most dependable window is the Intergalactic Aerospace Expo (IAE) in late November, which has run a November Free Fly every year since at least 2951 (2021). Check the live banner at the top of this page — it updates the moment CIG posts an official Comm-Link.',
+    a: 'As of July 2026, Cloud Imperium Games has not announced the next Free Fly. Foundation Festival 2026 is confirmed to start July 29 with a Twitch Drops campaign, but CIG has not announced a Free Fly alongside it — last year’s edition did include one, so it remains worth watching. Beyond that, the most dependable window is the Intergalactic Aerospace Expo (IAE) in late November, which has run a November Free Fly every year since at least 2951 (2021). Check the live banner at the top of this page — it updates the moment CIG posts an official Comm-Link.',
   },
   {
     q: 'How often does Star Citizen do Free Fly events?',
@@ -126,10 +126,15 @@ export default function NextFreeFlyPage() {
           {/* GEO answer — static, honest, quotable */}
           <p className="mt-6 text-lg leading-relaxed text-white/85">
             As of July 2026, Cloud Imperium Games has not announced the next Star
-            Citizen Free Fly. The nearest expected window is{' '}
-            <strong className="text-white">Foundation Festival</strong>, which
-            press reports expect to return around mid-July — not yet officially
-            announced. The most dependable yearly window is the{' '}
+            Citizen Free Fly.{' '}
+            <strong className="text-white">Foundation Festival 2026</strong>{' '}
+            is confirmed to begin July 29 with a Twitch Drops campaign, but CIG
+            has not announced a Free Fly alongside it — see our{' '}
+            <Link href="/foundation-festival-2026" className="text-orange underline-offset-2 hover:underline">
+              Foundation Festival 2026 breakdown
+            </Link>{' '}
+            for the full, sourced answer. The most dependable yearly window remains
+            the{' '}
             <strong className="text-white">
               Intergalactic Aerospace Expo (IAE) in late November
             </strong>
@@ -144,27 +149,31 @@ export default function NextFreeFlyPage() {
             <p className="mt-3 text-white/85">{detail}</p>
           </div>
 
-          {/* Watch note — press expectation, NOT an announcement. Remove or
-              replace when CIG posts the official Comm-Link (then the event
-              goes into src/data/events.ts and the banner takes over). */}
+          {/* Watch note — Foundation Festival dates ARE confirmed, but a
+              Free Fly is NOT. Remove/replace the Free Fly framing once CIG
+              posts the confirming Comm-Link (then the event goes into
+              src/data/events.ts and the banner takes over). */}
           <div className="mt-6 rounded-2xl border border-dashed border-orange/40 bg-blackMid/60 p-6 sm:p-8">
             <p className="text-xs uppercase tracking-[0.18em] text-orange">
-              Watch note — expected next
+              Watch note — confirmed event, unconfirmed Free Fly
             </p>
             <h2 className="heading-display mt-2 text-xl text-white">
-              Foundation Festival — expected around mid-July, per press reports
+              Foundation Festival 2026 — starts July 29, Free Fly not announced
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-white/85">
-              Gaming press expects Foundation Festival to return around
-              mid-July 2026, based on last year&apos;s pattern. CIG has not
-              officially announced it — no Comm-Link exists yet, and no dates
-              are confirmed. Last year&apos;s Foundation Festival included a
-              Free Fly alongside new-player mentorship activities, which is why
-              this is the nearest window worth watching.
+              CIG confirmed Foundation Festival 2026 begins July 29 with a
+              Twitch Drops campaign (Comm-Link 21237), and teased a &ldquo;free
+              Argo ATLS&rdquo; referral reward with terms still unpublished.
+              Last year&apos;s Foundation Festival included a Free Fly, but the
+              2026 announcement makes no mention of one — see the{' '}
+              <Link href="/foundation-festival-2026" className="text-orange underline-offset-2 hover:underline">
+                full Foundation Festival 2026 page
+              </Link>{' '}
+              for every confirmed detail.
             </p>
             <p className="mt-3 text-xs text-muted">
-              Press expectation — not a CIG announcement. This page and the
-              banner above update the moment CIG posts the official Comm-Link.
+              This page and the banner above update the moment CIG confirms or
+              rules out a 2026 Free Fly.
             </p>
           </div>
 
@@ -346,6 +355,9 @@ export default function NextFreeFlyPage() {
           <section className="mt-14 text-center">
             <p className="text-muted">Related</p>
             <div className="mt-4 flex flex-wrap justify-center gap-4">
+              <Link href="/foundation-festival-2026" className="btn-secondary">
+                Foundation Festival 2026 breakdown →
+              </Link>
               <Link href="/is-star-citizen-free" className="btn-secondary">
                 Is Star Citizen free? →
               </Link>

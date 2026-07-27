@@ -38,6 +38,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${SITE_URL}/foundation-festival-2026`,
+      // CIG has said "more details coming soon" (referral reward terms,
+      // possible Free Fly) — treat as frequently-changing until settled.
+      lastModified: new Date('2026-07-26'),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
       url: `${SITE_URL}/event-guide`,
       lastModified: guideModified,
       changeFrequency: 'monthly',
