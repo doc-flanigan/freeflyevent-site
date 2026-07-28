@@ -249,7 +249,10 @@ function doPost(e) {
 
 **Cross-links this site must send (body copy only):**
 - → dayonecitizen.com: Prominent "New to Star Citizen? Start here" callout — highest-priority link on this site
-- → screferralreward.com: "Claim your 50,000 UEC referral bonus when you enlist"
+- ~~→ screferralreward.com~~ — domain killed 2026-07-27 (301s to
+  `dayonecitizen.com/referral-code`). "Claim your 50,000 UEC referral
+  bonus when you enlist" now links to
+  `https://dayonecitizen.com/referral-code` instead.
 
 **Do not:**
 - Place cross-portfolio links in footers or link lists — editorial/body copy only

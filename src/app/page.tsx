@@ -391,12 +391,12 @@ export default function HomePage() {
                     <p className="text-muted text-sm mt-3">
                       Want the full referral code details?{' '}
                       <a
-                        href="https://screferralreward.com"
+                        href="https://dayonecitizen.com/referral-code"
                         className="text-orange underline hover:text-orange-dark"
                         target="_blank"
                         rel="noopener"
                       >
-                        screferralreward.com
+                        our referral code page
                       </a>{' '}
                       has everything you need.
                     </p>
@@ -498,12 +498,12 @@ export default function HomePage() {
                   <p className="text-muted text-sm mt-3">
                     Want the full referral code details?{' '}
                     <a
-                      href="https://screferralreward.com"
+                      href="https://dayonecitizen.com/referral-code"
                       className="text-orange underline hover:text-orange-dark"
                       target="_blank"
                       rel="noopener"
                     >
-                      screferralreward.com
+                      our referral code page
                     </a>{' '}
                     has everything you need.
                   </p>
