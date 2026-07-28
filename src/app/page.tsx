@@ -396,7 +396,7 @@ export default function HomePage() {
                         target="_blank"
                         rel="noopener"
                       >
-                        our referral code page
+                        Our referral code page
                       </a>{' '}
                       has everything you need.
                     </p>
@@ -503,7 +503,7 @@ export default function HomePage() {
                       target="_blank"
                       rel="noopener"
                     >
-                      our referral code page
+                      Our referral code page
                     </a>{' '}
                     has everything you need.
                   </p>
