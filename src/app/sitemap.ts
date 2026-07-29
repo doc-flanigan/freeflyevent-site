@@ -46,6 +46,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${SITE_URL}/free-fly-schedule`,
+      lastModified: homepageModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/free-ships-right-now`,
+      lastModified: homepageModified,
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/iae-2956`,
+      // Pre-announcement watch page — flips to confirmed when CIG posts the
+      // Comm-Link (expected ~November 2026).
+      lastModified: new Date('2026-07-29'),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
       url: `${SITE_URL}/event-guide`,
       lastModified: guideModified,
       changeFrequency: 'monthly',

@@ -355,6 +355,12 @@ export default function NextFreeFlyPage() {
               <Link href="/foundation-festival-2026" className="btn-secondary">
                 Foundation Festival 2026 breakdown →
               </Link>
+              <Link href="/free-fly-schedule" className="btn-secondary">
+                2026 Free Fly schedule →
+              </Link>
+              <Link href="/iae-2956" className="btn-secondary">
+                IAE 2956 — what we know →
+              </Link>
               <Link href="/is-star-citizen-free" className="btn-secondary">
                 Is Star Citizen free? →
               </Link>

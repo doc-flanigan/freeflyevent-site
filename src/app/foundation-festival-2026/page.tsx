@@ -284,6 +284,9 @@ export default function FoundationFestival2026Page() {
           <section className="mt-14 text-center">
             <p className="text-muted">Related</p>
             <div className="mt-4 flex flex-wrap justify-center gap-4">
+              <Link href="/free-ships-right-now" className="btn-secondary">
+                What ships are free right now? &rarr;
+              </Link>
               <Link href="/next-free-fly" className="btn-secondary">
                 When is the next Free Fly? &rarr;
               </Link>
