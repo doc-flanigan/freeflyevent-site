@@ -110,9 +110,13 @@ export default function FoundationFestival2026Page() {
             play Star Citizen for free with{' '}
             <strong className="text-white">five ships</strong> to try — no purchase
             required. The referral bonus adds a &ldquo;Ready for Anything&rdquo; Career Kit
-            for new players and an Argo ATLS for the recruiter, running until{' '}
-            <strong className="text-white">August 12, 20:00 UTC</strong>. A Twitch Drops
-            campaign runs alongside through August 12.
+            for the new player and an Argo ATLS for the recruiter —{' '}
+            <strong className="text-white">
+              both granted only if the new player pledges for a starter pack or ship
+            </strong>{' '}
+            before <strong className="text-white">August 12, 20:00 UTC</strong>; the
+            50,000 UEC signup bonus needs no purchase. A Twitch Drops campaign runs
+            alongside through August 12.
           </p>
 
           {/* Free Fly confirmed — live status box */}
@@ -324,7 +328,7 @@ export default function FoundationFestival2026Page() {
               url: SOURCES.foundationFestival2026,
             },
             description:
-              'Star Citizen Foundation Festival 2026 Free Fly: play free July 29 – August 10, 2026 with five ships, no purchase required. Referral bonus (Argo ATLS + Ready for Anything Career Kit) runs until August 12, 20:00 UTC; Twitch Drops campaign through August 12.',
+              'Star Citizen Foundation Festival 2026 Free Fly: play free July 29 – August 10, 2026 with five ships, no purchase required. Referral bonus until August 12, 20:00 UTC: Argo ATLS for the recruiter and Ready for Anything Career Kit for the new player, both granted only when the new player pledges for a starter pack or ship. Twitch Drops campaign through August 12.',
             organizer: {
               '@type': 'Organization',
               name: 'Cloud Imperium Games',

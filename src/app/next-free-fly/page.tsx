@@ -163,7 +163,8 @@ export default function NextFreeFlyPage() {
               CIG confirmed it in Comm-Link 21211: everyone can play free with five
               ships through August 10. The referral bonus — an Argo ATLS for the
               recruiter, a &ldquo;Ready for Anything&rdquo; Career Kit for the new
-              player — runs until August 12, 20:00 UTC. See the{' '}
+              player, both requiring the new player to pledge for a starter pack or
+              ship — runs until August 12, 20:00 UTC. See the{' '}
               <Link href="/foundation-festival-2026" className="text-orange underline-offset-2 hover:underline">
                 full Foundation Festival 2026 page
               </Link>{' '}
