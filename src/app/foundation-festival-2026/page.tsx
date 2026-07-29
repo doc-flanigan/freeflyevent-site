@@ -11,7 +11,7 @@ import { HUB_URL } from '@/data/events';
 export const metadata: Metadata = {
   title: 'Foundation Festival 2026 — Dates & Free Fly Status',
   description:
-    'Foundation Festival 2026 starts July 29 with Twitch Drops through Aug 12. No Free Fly has been announced yet — here is everything CIG confirmed.',
+    'Foundation Festival 2026 runs July 29 – August 10 with a confirmed Free Fly, plus Twitch Drops through Aug 12 — here is everything CIG confirmed.',
   alternates: { canonical: '/foundation-festival-2026' },
   keywords: [
     'foundation festival 2026',
@@ -26,26 +26,28 @@ export const metadata: Metadata = {
     images: ['/images/hero/hero-01.jpg'],
     title: 'Foundation Festival 2026 — Dates & Free Fly Status',
     description:
-      'Foundation Festival 2026 starts July 29. Twitch Drops run through Aug 12. No Free Fly is announced — the honest, sourced breakdown.',
+      'Foundation Festival 2026 runs July 29 – August 10 with a confirmed Free Fly. Twitch Drops run through Aug 12 — the honest, sourced breakdown.',
   },
 };
 
-// The only official source for Foundation Festival 2026 as of this writing.
+// Official sources for Foundation Festival 2026 as of this writing.
 const SOURCES = {
   foundationFestival2026:
     'https://robertsspaceindustries.com/en/comm-link/transmission/21237-Twitch-Drops-Foundation-Festival-2026',
+  freeFlyAnnouncement:
+    'https://support.robertsspaceindustries.com/hc/en-us/articles/360037529633-Welcome-to-the-Star-Citizen-Free-Fly-Event',
 } as const;
 
-const LAST_CHECKED = 'July 26, 2026';
+const LAST_CHECKED = 'July 29, 2026';
 
 const faqs = [
   {
     q: 'Is there a Free Fly for Foundation Festival 2026?',
-    a: 'Not as of July 26, 2026. Cloud Imperium Games’ official announcement (Comm-Link 21237, "Twitch Drops: Foundation Festival 2026") makes no mention of a free fly, free trial, or free access period. Foundation Festival paired with a Free Fly in both 2024 and 2025, so it is a reasonable expectation — but that is prior-year precedent, not a 2026 announcement. This page updates the moment CIG confirms one.',
+    a: 'Yes. Cloud Imperium Games’ official Free Fly support article confirms a Free Fly running July 29 – August 10, 2026, with five ships available to test fly for free: RSI Aurora Mk II, Drake Cutter, Drake Golem, Crusader Intrepid, and RSI Salvation. Foundation Festival paired with a Free Fly in both 2024 and 2025, and 2026 continues the pattern.',
   },
   {
     q: 'When does Foundation Festival 2026 start?',
-    a: 'July 29, 2026. CIG’s FAQ in Comm-Link 21237 states: "Starting July 29, with the launch of Foundation Festival, any community streamer who opts in to Twitch Drops will be eligible to host the campaign and have their viewers earn rewards." No end date for the festival itself has been announced.',
+    a: 'July 29, 2026, running through August 10. CIG’s FAQ in Comm-Link 21237 states: "Starting July 29, with the launch of Foundation Festival, any community streamer who opts in to Twitch Drops will be eligible to host the campaign and have their viewers earn rewards." The official Free Fly support article confirms the festival window (and the accompanying Free Fly) runs July 29 – August 10.',
   },
   {
     q: 'What are the Foundation Festival 2026 Twitch Drops?',
@@ -93,42 +95,40 @@ export default function FoundationFestival2026Page() {
 
           {/* GEO answer — static, honest, quotable */}
           <p className="mt-6 text-lg leading-relaxed text-white/85">
-            Foundation Festival 2026 begins <strong className="text-white">July 29</strong>.
-            CIG has confirmed a Twitch Drops campaign running{' '}
+            Foundation Festival 2026 runs <strong className="text-white">July 29 –
+            August 10</strong>, with a{' '}
+            <strong className="text-white">confirmed Free Fly</strong> for the
+            full event — five ships are available to test fly for free. CIG has
+            also confirmed a Twitch Drops campaign running{' '}
             <strong className="text-white">July 29 – August 12</strong> and teased a
-            referral reward, but has{' '}
-            <strong className="text-white">not announced a Free Fly</strong> for the event.
-            No end date for the festival itself has been given, and the referral reward’s
-            terms are unpublished. CIG says more details are coming.
+            referral reward, though its terms are unpublished. CIG says more
+            details are coming.
           </p>
 
-          {/* Is there a Free Fly — the honest-uncertainty section, this page's core value */}
+          {/* Is there a Free Fly — this page's core value */}
           <section className="mt-14">
             <h2 className="heading-display text-2xl sm:text-3xl">
               Is There a Free Fly for Foundation Festival 2026?
             </h2>
-            <div className="mt-6 rounded-2xl border border-dashed border-orange/40 bg-blackMid/60 p-6 sm:p-8">
+            <div className="mt-6 rounded-2xl border border-orange/30 bg-blackMid/60 p-6 sm:p-8">
               <p className="text-xs uppercase tracking-[0.18em] text-orange">
-                Not announced
+                Confirmed
               </p>
               <p className="mt-3 text-sm leading-relaxed text-white/85">
-                We read the full text of Comm-Link 21237, CIG&apos;s official Foundation
-                Festival 2026 announcement. It contains zero mentions of a free fly, free
-                trial, or free access period. Foundation Festival paired with a Free Fly in{' '}
-                <strong className="text-white">both 2024 and 2025</strong>, which is why a
-                2026 Free Fly is a reasonable expectation — but that is prior-year
-                pattern, not a 2026 announcement. Treat any site claiming otherwise as a guess.
+                Yes. CIG&apos;s official{' '}
+                <SourceLink href={SOURCES.freeFlyAnnouncement}>
+                  Free Fly support article
+                </SourceLink>{' '}
+                confirms a Free Fly running{' '}
+                <strong className="text-white">July 29 – August 10, 2026</strong>,
+                with five ships available to test fly for free: RSI Aurora Mk II,
+                Drake Cutter, Drake Golem, Crusader Intrepid, and RSI Salvation.
+                Foundation Festival paired with a Free Fly in{' '}
+                <strong className="text-white">both 2024 and 2025</strong>, and
+                2026 continues the pattern.
               </p>
-              {/*
-                FLIP POINT: when CIG posts an official Comm-Link confirming a 2026
-                Free Fly, replace this dashed "not announced" box with the confirmed
-                dates/ships (pattern: src/app/next-free-fly/page.tsx "Live status"
-                box), add the event to FREE_FLY_HISTORY in src/data/events.ts, and
-                update the GEO answer paragraph above. Until then, do not imply one.
-              */}
               <p className="mt-3 text-xs text-muted">
-                Last checked {LAST_CHECKED}. CIG says more details are coming — this
-                page updates the moment a Free Fly is confirmed or ruled out.
+                Last checked {LAST_CHECKED}.
               </p>
             </div>
           </section>
@@ -139,13 +139,17 @@ export default function FoundationFestival2026Page() {
               When Does Foundation Festival 2026 Start?
             </h2>
             <p className="mt-4 text-muted">
-              <strong className="text-white">July 29, 2026.</strong> CIG&apos;s FAQ in{' '}
+              <strong className="text-white">July 29, 2026, running through August 10.</strong>{' '}
+              CIG&apos;s FAQ in{' '}
               <SourceLink href={SOURCES.foundationFestival2026}>Comm-Link 21237</SourceLink>{' '}
               states: &ldquo;Starting July 29, with the launch of Foundation Festival, any
               community streamer who opts in to Twitch Drops will be eligible to host the
-              campaign and have their viewers earn rewards.&rdquo; No end date for the
-              festival has been announced — only the Twitch Drops campaign window below
-              has a confirmed close.
+              campaign and have their viewers earn rewards.&rdquo; CIG&apos;s official{' '}
+              <SourceLink href={SOURCES.freeFlyAnnouncement}>
+                Free Fly support article
+              </SourceLink>{' '}
+              confirms the festival&apos;s Free Fly window closes August 10 — a separate,
+              longer window than the Twitch Drops campaign below, which runs through Aug 12.
             </p>
           </section>
 
@@ -220,9 +224,9 @@ export default function FoundationFestival2026Page() {
           <section className="mt-14 rounded-2xl border border-white/10 bg-blackMid/60 p-8 sm:p-10">
             <h2 className="heading-display text-2xl">Get your account ready</h2>
             <p className="mt-4 text-white/80">
-              Whether or not Foundation Festival 2026 gets a Free Fly, a referral code only
-              works at signup — it cannot be added later. Create your free RSI account
-              now with a code and claim your 50,000 UEC bonus.
+              The Foundation Festival 2026 Free Fly runs through August 10, and a
+              referral code only works at signup — it cannot be added later. Create
+              your free RSI account now with a code and claim your 50,000 UEC bonus.
             </p>
             <div className="mt-6">
               <CTAButton size="lg" trackingLabel="foundation-festival-2026-cta" />
