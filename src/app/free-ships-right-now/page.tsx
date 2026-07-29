@@ -5,6 +5,7 @@ import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
+import { LightboxImage } from '@/components/LightboxImage';
 import { FREE_FLY_HISTORY, getEventStatus, HUB_URL } from '@/data/events';
 import { formatRangeUTC } from '@/lib/format';
 
@@ -29,6 +30,28 @@ export const metadata: Metadata = {
     title: 'What Ships Are Free in Star Citizen Right Now?',
     description:
       'The live list of ships you can fly free during the current Star Citizen Free Fly event.',
+  },
+};
+
+/** In-game screenshots for ships we have shots of (own library). */
+const SHIP_IMAGES: Record<string, { src: string; alt: string; width: number; height: number }> = {
+  'RSI Aurora Mk II': {
+    src: '/images/aurora-over-lorville.webp',
+    alt: 'An RSI Aurora silhouetted against the sunset over Lorville',
+    width: 1400,
+    height: 788,
+  },
+  'Drake Cutter': {
+    src: '/images/drake-cutter-hangar.webp',
+    alt: 'A Drake Cutter lifting off inside a hangar',
+    width: 1400,
+    height: 788,
+  },
+  'Crusader Intrepid': {
+    src: '/images/crusader-intrepid-landed.webp',
+    alt: 'A Crusader Intrepid landed on a pad',
+    width: 1400,
+    height: 788,
   },
 };
 
@@ -105,6 +128,16 @@ export default function FreeShipsRightNowPage() {
                       <p className="font-semibold text-white">{ship}</p>
                       {ROLE_NOTES[ship] && (
                         <p className="mt-1 text-sm text-muted">{ROLE_NOTES[ship]}</p>
+                      )}
+                      {SHIP_IMAGES[ship] && (
+                        <LightboxImage
+                          src={SHIP_IMAGES[ship].src}
+                          alt={SHIP_IMAGES[ship].alt}
+                          width={SHIP_IMAGES[ship].width}
+                          height={SHIP_IMAGES[ship].height}
+                          containerClassName="mt-3 rounded-lg border border-white/10"
+                          className="h-auto w-full rounded-lg"
+                        />
                       )}
                     </li>
                   ))}

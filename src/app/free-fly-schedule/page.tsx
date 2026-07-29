@@ -5,6 +5,7 @@ import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
+import { LightboxImage } from '@/components/LightboxImage';
 import { FREE_FLY_HISTORY, getEventStatus, HUB_URL } from '@/data/events';
 import { formatRangeUTC } from '@/lib/format';
 
@@ -108,6 +109,15 @@ export default function FreeFlySchedulePage() {
             the <strong className="text-white">IAE in late November</strong>.
           </p>
 
+          <LightboxImage
+            src="/images/free-fly-fleet-flyby.webp"
+            alt="UEE Navy capital ships seen from a fighter cockpit during an Invictus Launch Week fleet flyby"
+            width={1400}
+            height={586}
+            containerClassName="mt-8 rounded-xl border border-white/10"
+            className="h-auto w-full rounded-xl"
+          />
+
           {/* 2026 calendar table */}
           <section className="mt-14">
             <h2 className="heading-display text-2xl sm:text-3xl">The 2026 windows</h2>
@@ -181,6 +191,14 @@ export default function FreeFlySchedulePage() {
               free to fly across rotating manufacturer days. If you can only make
               one window a year, IAE is the one to plan around.
             </p>
+            <LightboxImage
+              src="/images/free-fly-community-fleet.webp"
+              alt="Players line their ships up for a community fleet photo during Invictus Launch Week 2953"
+              width={1400}
+              height={600}
+              containerClassName="mt-6 rounded-xl border border-white/10"
+              className="h-auto w-full rounded-xl"
+            />
           </section>
 
           {/* Alerts */}

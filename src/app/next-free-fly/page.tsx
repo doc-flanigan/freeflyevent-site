@@ -6,6 +6,7 @@ import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
+import { LightboxImage } from '@/components/LightboxImage';
 import { FREE_FLY_HISTORY, getEventStatus, HUB_URL } from '@/data/events';
 import { formatRangeUTC } from '@/lib/format';
 
@@ -293,6 +294,15 @@ export default function NextFreeFlyPage() {
               The cadence is visible in the record — a May flagship and a
               November IAE, year after year:
             </p>
+            <LightboxImage
+              src="/images/free-fly-community-fleet.webp"
+              alt="Players line their ships up for a community fleet photo during Invictus Launch Week 2953"
+              width={1400}
+              height={600}
+              containerClassName="mt-6 rounded-xl border border-white/10"
+              className="h-auto w-full rounded-xl"
+            />
+
             <div className="mt-6 overflow-hidden rounded-xl border border-white/10">
               <table className="w-full text-left text-sm">
                 <thead>

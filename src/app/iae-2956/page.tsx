@@ -6,6 +6,7 @@ import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
+import { LightboxImage } from '@/components/LightboxImage';
 import { FREE_FLY_HISTORY, HUB_URL } from '@/data/events';
 import { formatRangeUTC } from '@/lib/format';
 
@@ -95,6 +96,15 @@ export default function Iae2956Page() {
             showcases, free for anyone with an RSI account.
           </p>
 
+          <LightboxImage
+            src="/images/iae-2952-expo.webp"
+            alt="The IAE 2952 banner tower over New Babbage, the host city of the Intergalactic Aerospace Expo"
+            width={1400}
+            height={788}
+            containerClassName="mt-8 rounded-xl border border-white/10"
+            className="h-auto w-full rounded-xl"
+          />
+
           {/* Not announced box */}
           <section className="mt-14">
             <h2 className="heading-display text-2xl sm:text-3xl">
@@ -130,6 +140,14 @@ export default function Iae2956Page() {
             <h2 className="heading-display text-2xl sm:text-3xl">
               Five years of November Free Flys
             </h2>
+            <LightboxImage
+              src="/images/iae-2953-arch.webp"
+              alt="The entrance arch at IAE 2953 in New Babbage"
+              width={1400}
+              height={600}
+              containerClassName="mt-6 rounded-xl border border-white/10"
+              className="h-auto w-full rounded-xl"
+            />
             <p className="mt-4 text-muted">
               Every row below is sourced from an official RSI Comm-Link:
             </p>
@@ -183,6 +201,14 @@ export default function Iae2956Page() {
               — the RSI Perseus in 2025. It is the single best window of the year
               to try Star Citizen for free.
             </p>
+            <LightboxImage
+              src="/images/iae-manufacturer-hall.webp"
+              alt="The Aegis Dynamics showcase hall at a past Intergalactic Aerospace Expo — each manufacturer gets a themed hall on its featured day"
+              width={1400}
+              height={600}
+              containerClassName="mt-6 rounded-xl border border-white/10"
+              className="h-auto w-full rounded-xl"
+            />
           </section>
 
           {/* CTA */}

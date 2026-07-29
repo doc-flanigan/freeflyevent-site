@@ -9,7 +9,7 @@ const LINKS = [
   { href: '/next-free-fly', label: 'Next Free Fly' },
   { href: '/event-guide', label: 'Guide' },
   { href: '/event-history', label: 'History' },
-  { href: '/glossary', label: 'Glossary' },
+  { href: '/free-fly-schedule', label: 'Schedule' },
   { href: '/should-i-buy', label: 'Should I Buy?' },
 ];
 
