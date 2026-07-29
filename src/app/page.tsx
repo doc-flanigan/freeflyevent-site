@@ -280,8 +280,8 @@ export default function HomePage() {
             </div>
             <div className="space-y-4 lg:col-span-7 text-white/85">
               <p>
-                Twice a year, Cloud Imperium Games — the studio behind Star
-                Citizen — opens the game to everyone. For roughly 10 days,{' '}
+                Several times a year, Cloud Imperium Games — the studio behind
+                Star Citizen — opens the game to everyone. For roughly 10 days,{' '}
                 <strong className="text-white">no purchase is required.</strong>{' '}
                 You make a free RSI account, download the launcher, and you&apos;re
                 in.

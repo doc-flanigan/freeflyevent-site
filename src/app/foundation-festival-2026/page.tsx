@@ -6,6 +6,7 @@ import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
+import { LightboxImage } from '@/components/LightboxImage';
 import { HUB_URL } from '@/data/events';
 
 export const metadata: Metadata = {
@@ -205,6 +206,14 @@ export default function FoundationFestival2026Page() {
                 <SourceLink href={SOURCES.referralBonus2026}>Comm-Link 21225</SourceLink>.
                 Both sides of the referral get gear, on top of the standard signup bonus:
               </p>
+              <LightboxImage
+                src="/images/foundation-festival-2026-career-kit.webp"
+                alt='New recruit wearing the "Ready for Anything" Career Kit — RSI Venture armor set, MacFlex backpack, and rifle from the Foundation Festival 2026 referral bonus'
+                width={1200}
+                height={1082}
+                containerClassName="mt-5 rounded-xl border border-orange/30"
+                className="h-auto w-full rounded-xl"
+              />
               <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-muted">
                 <li>
                   <strong className="text-white">New player:</strong> a &ldquo;Ready for
