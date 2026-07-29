@@ -377,6 +377,9 @@ export default function NextFreeFlyPage() {
               <Link href="/event-guide" className="btn-secondary">
                 Your first Free Fly guide →
               </Link>
+              <Link href="/glossary" className="btn-secondary">
+                Free Fly glossary →
+              </Link>
               <Link href={HUB_URL} target="_blank" rel="noopener" className="btn-secondary">
                 New player guide at dayonecitizen.com →
               </Link>

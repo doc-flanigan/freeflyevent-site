@@ -250,6 +250,9 @@ export default function FreeShipsRightNowPage() {
               <Link href="/foundation-festival-2026" className="btn-secondary">
                 Foundation Festival 2026 →
               </Link>
+              <Link href="/glossary" className="btn-secondary">
+                Free Fly glossary →
+              </Link>
               <Link href={HUB_URL} target="_blank" rel="noopener" className="btn-secondary">
                 New player guide at dayonecitizen.com →
               </Link>
