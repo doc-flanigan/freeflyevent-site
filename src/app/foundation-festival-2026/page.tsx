@@ -39,6 +39,8 @@ const SOURCES = {
     'https://robertsspaceindustries.com/en/comm-link/transmission/21225-Foundation-Festival-2026-Referral-Bonus',
   twitchDrops2026:
     'https://robertsspaceindustries.com/en/comm-link/transmission/21237-Twitch-Drops-Foundation-Festival-2026',
+  freeFlyKb:
+    'https://support.robertsspaceindustries.com/hc/en-us/articles/360037529633-Welcome-to-the-Star-Citizen-Free-Fly-Event',
 } as const;
 
 const LAST_CHECKED = 'July 29, 2026';
@@ -50,7 +52,7 @@ const faqs = [
   },
   {
     q: 'Which ships are free to fly during Foundation Festival 2026?',
-    a: 'CIG has confirmed five ships but has not yet published their names — the announcement Comm-Link says only "five distinct ships," and CIG’s This Week in Star Citizen post says a full rundown is coming soon. This page will list the ships the moment CIG names them. Do not trust sites listing specific ships right now: they are guessing from prior years.',
+    a: 'Five ships, now confirmed in CIG’s official Free Fly support article: the RSI Aurora Mk II (starter), Drake Cutter (compact cargo), Drake Golem (mining), Crusader Intrepid (single-seat courier), and RSI Salvation (salvage). Between them you can try flying, hauling, mining, and salvage without spending anything.',
   },
   {
     q: 'When does the Foundation Festival 2026 Free Fly end?',
@@ -126,15 +128,16 @@ export default function FoundationFestival2026Page() {
                 CIG&apos;s official announcement,{' '}
                 <SourceLink href={SOURCES.foundationFestival2026}>Comm-Link 21211</SourceLink>
                 , confirms it: &ldquo;From July 29 through August 10, everyone can play for
-                free and explore the &apos;verse with five distinct ships.&rdquo; CIG has
-                not yet named the five ships — its own weekly post says a full rundown is
-                coming soon, and this page will list them the moment they&apos;re official.
-                No exact end time has been published either, so don&apos;t gamble on the
-                final hours of August 10.
+                free and explore the &apos;verse with five distinct ships.&rdquo; The five
+                ships are named in the official{' '}
+                <SourceLink href={SOURCES.freeFlyKb}>Free Fly support article</SourceLink>:
+                RSI Aurora Mk II, Drake Cutter, Drake Golem, Crusader Intrepid, and RSI
+                Salvation. No exact end time has been published, so don&apos;t gamble on
+                the final hours of August 10.
               </p>
               <p className="mt-3 text-xs text-muted">
-                Last checked {LAST_CHECKED}. Ship lineup and end time will be added when
-                CIG publishes them.
+                Last checked {LAST_CHECKED}. The end time will be added when CIG
+                publishes it.
               </p>
             </div>
           </section>

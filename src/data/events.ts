@@ -43,7 +43,11 @@ export const FREE_FLY_HISTORY: FreeFlyEvent[] = [
     start: '2026-07-29T16:00:00Z',
     end: '2026-08-10T23:59:00Z',
     ships: [
-      'Five ships free to fly — full lineup not yet published by CIG ("full rundown coming soon")',
+      'RSI Aurora Mk II',
+      'Drake Cutter',
+      'Drake Golem',
+      'Crusader Intrepid',
+      'RSI Salvation',
     ],
     bonusOverride: {
       text: '50,000 UEC free at signup, plus a "Ready for Anything" Career Kit (RSI Venture armor set, MacFlex backpack, Pyro RYT Multi-Tool, Behring P4-AR rifle) if you go on to pledge for any starter pack or ship before August 12',
@@ -54,7 +58,7 @@ export const FREE_FLY_HISTORY: FreeFlyEvent[] = [
         alt: 'New recruit wearing the "Ready for Anything" Career Kit — RSI Venture armor set, MacFlex backpack, and rifle from the Foundation Festival 2026 referral bonus',
       },
     },
-    notes: 'Foundation Festival 2026 (Jul 29 – Aug 10). Free Fly with five ships; as of Jul 29 CIG had not published the ship names or an end-of-day time — end set to 23:59 UTC Aug 10 pending an official time (comm-link 21211 says only "July 29 through August 10"). Referral promo (comm-link 21225) runs through Aug 12, 20:00 UTC: recruiter earns an Argo ATLS (LTI, non-meltable, one per player); the recruit earns the "Ready for Anything" Career Kit, granted after the promo ends and only if they pledge for a starter pack or ship. Standard 50k UEC signup bonus unaffected (no purchase). Twitch Drops run Jul 29 – Aug 12 (comm-link 21237).',
+    notes: 'Foundation Festival 2026 (Jul 29 – Aug 10). Free Fly with five ships, named in the official Free Fly KB article (support article 360037529633): Aurora Mk II, Cutter, Golem, Intrepid, Salvation. No end-of-day time published — end set to 23:59 UTC Aug 10 pending an official time (comm-link 21211 says only "July 29 through August 10"). Referral promo (comm-link 21225) runs through Aug 12, 20:00 UTC: recruiter earns an Argo ATLS (LTI, non-meltable, one per player); the recruit earns the "Ready for Anything" Career Kit, granted after the promo ends and only if they pledge for a starter pack or ship. Standard 50k UEC signup bonus unaffected (no purchase). Twitch Drops run Jul 29 – Aug 12 (comm-link 21237).',
     source: 'https://robertsspaceindustries.com/en/comm-link/transmission/21211-Foundation-Festival-2026',
   },
   {
