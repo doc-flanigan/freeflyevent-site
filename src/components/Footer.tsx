@@ -80,8 +80,8 @@ export function Footer() {
             <Image
               src="/images/made-by-community.png"
               alt="Made by the Community — RSI Fankit"
-              width={120}
-              height={40}
+              width={160}
+              height={160}
               className="h-10 w-auto opacity-80"
             />
             <span>
