@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { LightboxImage } from './LightboxImage';
-import { getEventStatus, getActiveBonusOverride, type EventStatus, type BonusOverride } from '@/data/events';
+import { getEventStatus, getActiveBonusOverride, REFERRAL_CODE, type EventStatus, type BonusOverride } from '@/data/events';
 import { getRotatedReferralUrl, FALLBACK_REFERRAL_URL } from '@/lib/referral-rotator';
 import { CountdownTimer } from './CountdownTimer';
 import { ArrowIcon } from './CTAButton';
@@ -151,6 +151,36 @@ function Bar({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
   );
 }
 
+/**
+ * Compact referral block shared by every Hero state — the homepage's single
+ * conversion card carries the code, the at-signup warning, and the required
+ * body-copy cross-link to dayonecitizen.com/referral-code.
+ */
+function ReferralCodePanel() {
+  return (
+    <div className="w-full max-w-md rounded-lg border border-orange/40 bg-spaceBlack/60 p-4">
+      <div className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-muted">
+        Use this code at signup — 50,000 UEC
+      </div>
+      <div className="mt-1.5 font-mono text-xl font-bold text-orange">{REFERRAL_CODE}</div>
+      <p className="mt-2 text-xs leading-relaxed text-white/70">
+        Paste it into the <span className="font-mono">Referral Code</span> field on the
+        signup form. After 24 hours it cannot be added — the 50,000 UEC is forfeited
+        permanently. Full details on{' '}
+        <a
+          href="https://dayonecitizen.com/referral-code"
+          target="_blank"
+          rel="noopener"
+          className="text-orange underline underline-offset-2 hover:text-orange-bright"
+        >
+          our referral code page
+        </a>
+        .
+      </p>
+    </div>
+  );
+}
+
 function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
   if (status.state === 'CANCELLED_FREE_FLY') {
     return (
@@ -195,6 +225,8 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
             </div>
           </div>
 
+          <ReferralCodePanel />
+
           <a
             href={referralUrl}
             target="_blank"
@@ -228,6 +260,7 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
               miss it — when the timer hits zero, the game returns to paid.
             </p>
             <CountdownTimer target={status.endsAt} label="Event ends in" />
+            <ReferralCodePanel />
             <a
               href={referralUrl}
               target="_blank"
@@ -284,6 +317,7 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
             ready when you launch the game.
           </p>
           <CountdownTimer target={status.startsAt} label="Begins in" />
+          <ReferralCodePanel />
           <a
             href={referralUrl}
             target="_blank"
@@ -311,6 +345,7 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
           You can still create a Star Citizen account today and lock in the
           50,000 UEC bonus — your account will be ready the moment the event opens.
         </p>
+        <ReferralCodePanel />
         <a
           href={referralUrl}
           target="_blank"
