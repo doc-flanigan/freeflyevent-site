@@ -1,6 +1,21 @@
 import type { Metadata, Viewport } from 'next';
 import { Analytics } from '@vercel/analytics/next';
+import { Archivo, Chakra_Petch, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
+
+/**
+ * Type system: Chakra Petch — angular, HUD-like display face for headings
+ * and buttons (fits the in-game ship-computer aesthetic); Archivo — clean
+ * grotesk body; JetBrains Mono — countdown digits, codes, and eyebrow labels.
+ */
+const archivo = Archivo({ subsets: ['latin'], display: 'swap', variable: '--font-sans' });
+const chakra = Chakra_Petch({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-display',
+  weight: ['500', '600', '700'],
+});
+const jetbrains = JetBrains_Mono({ subsets: ['latin'], display: 'swap', variable: '--font-mono' });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://freeflyevent.com';
 
@@ -80,8 +95,11 @@ const SITE_SCHEMA = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="bg-spaceBlack">
-      <body className="min-h-screen bg-spaceBlack font-sans text-white antialiased">
+    <html
+      lang="en"
+      className={`bg-spaceBlack ${archivo.variable} ${chakra.variable} ${jetbrains.variable}`}
+    >
+      <body className="min-h-screen font-sans text-white antialiased">
         {children}
         <Analytics />
         <script

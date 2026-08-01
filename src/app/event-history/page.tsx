@@ -5,6 +5,7 @@ import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { EventHistoryTable } from '@/components/EventHistoryTable';
+import { PageBackdrop } from '@/components/PageBackdrop';
 import { FREE_FLY_HISTORY, HUB_URL } from '@/data/events';
 
 export const metadata: Metadata = {
@@ -51,6 +52,7 @@ export default function EventHistoryPage() {
     <>
       <EventStatusBanner variant="bar" />
       <NavBar />
+      <PageBackdrop seed={5} />
 
       <main>
         <section className="container-narrow py-16 sm:py-20">

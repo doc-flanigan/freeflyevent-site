@@ -5,13 +5,12 @@ import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { HeroCarousel } from '@/components/HeroCarousel';
-import { CTAButton } from '@/components/CTAButton';
-import { EventCard } from '@/components/EventCard';
+import { CTAButton, ArrowIcon } from '@/components/CTAButton';
 import { EventHistoryTable } from '@/components/EventHistoryTable';
 import { FreeFlyGuide } from '@/components/FreeFlyGuide';
 import { TwitchClip } from '@/components/TwitchClip';
 import { LightboxImage } from '@/components/LightboxImage';
-import { FREE_FLY_HISTORY, getEventStatus, getActiveBonusOverride, REFERRAL_URL } from '@/data/events';
+import { getEventStatus, getActiveBonusOverride, REFERRAL_URL } from '@/data/events';
 import { DiscordCTA } from '@/components/DiscordCTA';
 
 const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
@@ -134,12 +133,6 @@ export default function HomePage() {
 
   const bonusOverride = getActiveBonusOverride();
 
-  // Featured event = active OR upcoming OR most recent.
-  const featuredEvent =
-    status.state === 'ACTIVE' || status.state === 'UPCOMING'
-      ? status.event
-      : FREE_FLY_HISTORY[0];
-
   return (
     <>
       {/* Banner: ABOVE the nav, full width, the most visible element on page */}
@@ -259,9 +252,10 @@ export default function HomePage() {
                 <CTAButton size="lg" trackingLabel="home-cancelled-event">Claim Your 50,000 UEC Bonus Anyway</CTAButton>
                 <Link
                   href="/event-history"
-                  className="btn-secondary"
+                  className="group btn-secondary"
                 >
-                  See all past Free Fly events →
+                  See all past Free Fly events
+                  <ArrowIcon />
                 </Link>
               </div>
               <DiscordCTA />
@@ -270,7 +264,7 @@ export default function HomePage() {
         )}
 
         {/* WHAT IS A FREE FLY */}
-        <section className="container-narrow py-20 sm:py-28">
+        <section className="container-narrow py-16 sm:py-20">
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <span className="eyebrow">The Basics</span>
@@ -304,8 +298,9 @@ export default function HomePage() {
         </section>
 
         {/* WHAT CAN YOU DO — checklist */}
-        <section className="border-y border-white/5 bg-blackMid/40">
-          <div className="container-narrow py-20 sm:py-28">
+        <section className="relative border-y border-white/5 bg-blackMid/40">
+          <div className="glow-horizon pointer-events-none absolute inset-x-0 top-0 h-32" aria-hidden />
+          <div className="container-narrow py-16 sm:py-20">
             <div className="mb-10 max-w-2xl">
               <span className="eyebrow">Your First 60 Minutes</span>
               <h2 className="heading-display mt-4 text-3xl sm:text-4xl">
@@ -339,7 +334,7 @@ export default function HomePage() {
         </section>
 
         {/* REFERRAL BONUS — URGENCY */}
-        <section id="referral-bonus" className="container-narrow py-20 sm:py-28">
+        <section id="referral-bonus" className="container-narrow py-16 sm:py-20">
           <div className="rounded-2xl border border-orange/30 bg-gradient-to-br from-orange/10 via-blackMid to-spaceBlack p-8 sm:p-12">
             {bonusOverride ? (
               /* Event bonus active: heading full-width → 2-col (action | image) → warning full-width */
@@ -350,8 +345,8 @@ export default function HomePage() {
                     A limited event bonus is live — only if you use a code{' '}
                     <span className="text-orange">at signup</span>.
                   </h2>
-                  <div className="mt-4 rounded-lg border border-yellow-400/50 bg-yellow-400/10 px-4 py-3 text-sm text-yellow-200">
-                    <strong className="text-yellow-300">
+                  <div className="mt-4 rounded-lg border border-orange/50 bg-orange/10 px-4 py-3 text-sm text-white/90">
+                    <strong className="text-orange-bright">
                       Limited offer through{' '}
                       {new Date(bonusOverride.expiresAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}:
                     </strong>{' '}
@@ -383,7 +378,7 @@ export default function HomePage() {
                         trackingLabel="home-referral-bonus-override"
                         variants={{
                           a: 'Create Your Free Account Now',
-                          b: 'Sign Up Free — 50,000 UEC Bonus Included',
+                          b: 'Sign Up Free — 50,000 UEC Included',
                         }}
                       />
                       <DiscordCTA />
@@ -408,7 +403,7 @@ export default function HomePage() {
                       alt={bonusOverride.image.alt}
                       width={800}
                       height={450}
-                      containerClassName="block rounded-xl border-4 border-yellow-400 shadow-[0_0_28px_rgba(250,204,21,0.4)]"
+                      containerClassName="block rounded-xl border-2 border-orange/70 shadow-[0_0_28px_rgba(255,85,0,0.4)]"
                       className="w-full h-auto"
                     />
                   )}
@@ -490,7 +485,7 @@ export default function HomePage() {
                       trackingLabel="home-referral-bonus"
                       variants={{
                         a: 'Create Your Free Account Now',
-                        b: 'Start Free — Claim Your 50,000 UEC at Signup',
+                        b: 'Start Free — 50,000 UEC at Signup',
                       }}
                     />
                     <DiscordCTA />
@@ -545,51 +540,9 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* FEATURED EVENT CARD */}
-        <section className="container-narrow pb-20">
-          <div className="mb-8 flex items-end justify-between gap-6">
-            <div>
-              <span className="eyebrow">
-                {status.state === 'ACTIVE'
-                  ? 'Right Now'
-                  : status.state === 'CANCELLED_FREE_FLY'
-                    ? 'Free Fly Cancelled'
-                    : status.state === 'UPCOMING'
-                      ? 'Next Event'
-                      : 'Most Recent Event'}
-              </span>
-              <h2 className="heading-display mt-3 text-3xl">{featuredEvent.name}</h2>
-            </div>
-            <Link
-              href="/event-history"
-              className="hidden text-sm text-orange hover:underline sm:inline"
-            >
-              All events →
-            </Link>
-          </div>
-          <div className="grid gap-5 md:grid-cols-2">
-            <EventCard
-              event={featuredEvent}
-              status={
-                status.state === 'ACTIVE'
-                  ? 'ACTIVE'
-                  : status.state === 'CANCELLED_FREE_FLY'
-                    ? 'CANCELLED_FREE_FLY'
-                    : status.state === 'UPCOMING'
-                      ? 'UPCOMING'
-                      : 'PAST'
-              }
-              highlight
-            />
-            {FREE_FLY_HISTORY[1] && (
-              <EventCard event={FREE_FLY_HISTORY[1]} status="PAST" />
-            )}
-          </div>
-        </section>
-
         {/* HISTORY TABLE */}
         <section className="border-t border-white/5 bg-blackMid/30">
-          <div className="container-narrow py-20 sm:py-24">
+          <div className="container-narrow py-16 sm:py-20">
             <div className="mb-8 flex items-end justify-between gap-6">
               <div>
                 <span className="eyebrow">Track Record</span>

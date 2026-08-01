@@ -14,19 +14,24 @@ const config: Config = {
         orange: {
           DEFAULT: '#ff5500',
           dark: '#cc4400',
+          bright: '#ff8a3d',
         },
         white: '#f5f8ff',
         muted: '#6b7890',
       },
       fontFamily: {
-        sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
-        display: ['"Space Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+        sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+      },
+      transitionTimingFunction: {
+        spring: 'cubic-bezier(0.22, 1, 0.36, 1)',
       },
       animation: {
         'pulse-orange': 'pulseOrange 2s ease-in-out infinite',
         'slow-zoom': 'slowZoom 12s ease-in-out infinite alternate',
         'fade-in': 'fadeIn 0.6s ease-out both',
+        'fade-up': 'fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both',
       },
       keyframes: {
         pulseOrange: {
@@ -39,6 +44,10 @@ const config: Config = {
         },
         fadeIn: {
           '0%': { opacity: '0', transform: 'translateY(8px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        fadeUp: {
+          '0%': { opacity: '0', transform: 'translateY(18px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
       },

@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { GlossaryClient, type GlossaryTerm } from '@/components/GlossaryClient';
+import { PageBackdrop } from '@/components/PageBackdrop';
 import { HUB_URL } from '@/data/events';
 
 export const metadata: Metadata = {
@@ -66,6 +67,7 @@ export default async function GlossaryPage() {
     <>
       <EventStatusBanner variant="bar" />
       <NavBar />
+      <PageBackdrop seed={6} />
 
       <main>
         {/* Hero */}

@@ -6,6 +6,7 @@ import { LightboxImage } from './LightboxImage';
 import { getEventStatus, getActiveBonusOverride, type EventStatus, type BonusOverride } from '@/data/events';
 import { getRotatedReferralUrl, FALLBACK_REFERRAL_URL } from '@/lib/referral-rotator';
 import { CountdownTimer } from './CountdownTimer';
+import { ArrowIcon } from './CTAButton';
 
 type Props = {
   /** "bar" = compact horizontal strip for the very top of the page.
@@ -72,10 +73,11 @@ function CancelledBar({ eventName, referralUrl, onNavigate }: { eventName: strin
           href={referralUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="ml-2 rounded-md border border-orange/40 px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange transition-transform hover:-translate-y-0.5"
+          className="group ml-2 inline-flex items-center gap-1.5 rounded-md border border-orange/40 px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange transition-transform hover:-translate-y-0.5"
           onClick={onNavigate}
         >
-          Claim Bonus →
+          Claim Bonus
+          <ArrowIcon className="h-3 w-3" />
         </a>
       </div>
     </div>
@@ -101,9 +103,10 @@ function Bar({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={onNavigate}
-            className="ml-2 rounded-md bg-spaceBlack px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange transition-transform hover:-translate-y-0.5"
+            className="group ml-2 inline-flex items-center gap-1.5 rounded-md bg-spaceBlack px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange transition-transform hover:-translate-y-0.5"
           >
-            Start Playing Free →
+            Start Playing Free
+            <ArrowIcon className="h-3 w-3" />
           </a>
         </div>
       </div>
@@ -196,10 +199,11 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
             href={referralUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary px-8 py-4 text-base"
+            className="group btn-primary px-8 py-4 text-base"
             onClick={onNavigate}
           >
-            Create Free Account & Claim 50,000 UEC →
+            Create Free Account — Claim 50,000 UEC
+            <ArrowIcon />
           </a>
         </div>
       </div>
@@ -228,19 +232,20 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
               href={referralUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary px-8 py-4 text-base"
+              className="group btn-primary px-8 py-4 text-base"
               onClick={onNavigate}
             >
               {bonusOverride
-                ? 'Create Free Account — Claim 50,000 UEC + Event Bonus →'
-                : 'Create Your Free Account & Claim 50,000 UEC →'}
+                ? 'Claim 50,000 UEC + Event Bonus'
+                : 'Create Free Account — Claim 50,000 UEC'}
+              <ArrowIcon />
             </a>
           </div>
 
           {/* RIGHT — event bonus panel (only when a bonus override is active) */}
           {bonusOverride && (
-            <div className="flex flex-col gap-3 rounded-xl border border-yellow-400/50 bg-yellow-400/10 p-4">
-              <div className="text-xs font-bold uppercase tracking-[0.2em] text-yellow-300">
+            <div className="flex flex-col gap-3 rounded-xl border border-orange/50 bg-orange/10 p-4">
+              <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-orange-bright">
                 Limited Signup Bonus — Through{' '}
                 {new Date(bonusOverride.expiresAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}
               </div>
@@ -250,7 +255,7 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
                   alt={bonusOverride.image.alt}
                   width={600}
                   height={338}
-                  containerClassName="rounded-lg border-4 border-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.35)]"
+                  containerClassName="rounded-lg border-2 border-orange/70 shadow-[0_0_20px_rgba(255,85,0,0.35)]"
                   className="w-full h-auto"
                 />
               )}
@@ -283,10 +288,11 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
             href={referralUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary px-8 py-4 text-base"
+            className="group btn-primary px-8 py-4 text-base"
             onClick={onNavigate}
           >
-            Pre-Register & Lock In Bonus →
+            Pre-Register — Lock In Your Bonus
+            <ArrowIcon />
           </a>
         </div>
       </div>
@@ -309,10 +315,11 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
           href={referralUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-secondary px-8 py-4 text-base"
+          className="group btn-secondary px-8 py-4 text-base"
           onClick={onNavigate}
         >
-          Create Account & Reserve Bonus →
+          Create Account — Reserve Your Bonus
+          <ArrowIcon />
         </a>
       </div>
     </div>

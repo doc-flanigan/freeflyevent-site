@@ -55,7 +55,7 @@ export function CountdownTimer({ target, variant = 'full', label, className = ''
   return (
     <div className={`flex flex-col items-center gap-3 ${className}`}>
       {label && (
-        <span className="text-xs font-semibold uppercase tracking-[0.25em] text-muted">
+        <span className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-muted">
           {label}
         </span>
       )}
@@ -78,7 +78,7 @@ function Block({ value, unit, highlight = false }: { value: number; unit: string
           : 'border-white/10 bg-blackMid/70 text-white'
       }`}
     >
-      <span className="tabular font-display text-2xl font-bold leading-none sm:text-4xl">
+      <span className="tabular font-mono text-2xl font-bold leading-none sm:text-4xl">
         {pad(value)}
       </span>
       <span className="mt-1 text-[10px] font-semibold tracking-[0.2em] text-muted">

@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { LightboxImage } from '@/components/LightboxImage';
+import { PageBackdrop } from '@/components/PageBackdrop';
 import { HUB_URL, REFERRAL_CODE } from '@/data/events';
 
 export const metadata: Metadata = {
@@ -66,6 +67,7 @@ export default function IsStarCitizenFreePage() {
     <>
       <EventStatusBanner variant="bar" />
       <NavBar />
+      <PageBackdrop seed={12} />
 
       <main className="container-narrow py-16 sm:py-24">
         <div className="mx-auto max-w-3xl">

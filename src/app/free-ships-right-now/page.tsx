@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { LightboxImage } from '@/components/LightboxImage';
+import { PageBackdrop } from '@/components/PageBackdrop';
 import { FREE_FLY_HISTORY, getEventStatus, HUB_URL } from '@/data/events';
 import { formatRangeUTC } from '@/lib/format';
 
@@ -100,6 +101,7 @@ export default function FreeShipsRightNowPage() {
     <>
       <EventStatusBanner variant="bar" />
       <NavBar />
+      <PageBackdrop seed={3} />
 
       <main className="container-narrow py-16 sm:py-24">
         <div className="mx-auto max-w-3xl">

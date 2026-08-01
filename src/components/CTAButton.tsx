@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { getRotatedReferralUrl, FALLBACK_REFERRAL_URL } from '@/lib/referral-rotator';
 import { getActiveBonusOverride } from '@/data/events';
 
-const DEFAULT_LABEL = 'Play Free — Claim Your 50,000 UEC Bonus';
+const DEFAULT_LABEL = 'Play Free — Claim 50,000 UEC';
 const BONUS_LABEL = 'Play Free — 50,000 UEC + Event Bonus';
 
 const CTA_VARIANT_KEY = 'cta_variant';
@@ -112,7 +112,7 @@ export function CTAButton({
       href={href}
       target={href.startsWith('http') ? '_blank' : undefined}
       rel={href.startsWith('http') ? 'noopener' : undefined}
-      className={`${base} ${sizeCls} ${className}`}
+      className={`group ${base} ${sizeCls} ${className}`}
       onClick={handleClick}
     >
       <span>{variants ? variants[abVariant] : (children ?? defaultLabel)}</span>
@@ -121,11 +121,11 @@ export function CTAButton({
   );
 }
 
-function ArrowIcon() {
+export function ArrowIcon({ className = 'h-4 w-4' }: { className?: string }) {
   return (
     <svg
       aria-hidden
-      className="h-4 w-4 transition-transform group-hover:translate-x-1"
+      className={`${className} transition-transform duration-300 ease-spring group-hover:translate-x-1`}
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"

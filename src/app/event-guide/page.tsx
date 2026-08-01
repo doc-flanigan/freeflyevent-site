@@ -7,6 +7,7 @@ import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { DiscordCTA } from '@/components/DiscordCTA';
 import { LightboxImage } from '@/components/LightboxImage';
+import { PageBackdrop } from '@/components/PageBackdrop';
 import { HUB_URL, REFERRAL_CODE } from '@/data/events';
 
 export const metadata: Metadata = {
@@ -228,6 +229,7 @@ export default function EventGuidePage() {
     <>
       <EventStatusBanner variant="bar" />
       <NavBar />
+      <PageBackdrop seed={2} />
 
       <main>
         <section className="container-narrow py-16 sm:py-24">

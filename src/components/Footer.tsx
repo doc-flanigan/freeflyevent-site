@@ -7,7 +7,10 @@ export function Footer() {
     <footer className="mt-24 border-t border-white/5 bg-spaceBlack">
       <div className="container-wide grid gap-10 py-14 sm:grid-cols-3">
         <div>
-          <h4 className="font-display text-base font-bold text-white">freeflyevent.com</h4>
+          <h4 className="font-display text-base font-bold text-white">
+            freefly<span className="text-orange">event</span>
+            <span className="ml-0.5 text-xs font-semibold text-muted">.com</span>
+          </h4>
           <p className="mt-3 text-sm text-muted">
             Star Citizen Free Fly tracker. Built by{' '}
             <Link
