@@ -74,7 +74,7 @@ export default function ShouldIBuyPage() {
           </h1>
           <p className="mt-5 text-lg text-muted">
             Buy Star Citizen only after you&apos;ve tried it free during a Free Fly event.
-            If you enjoyed your free trial, a starter Game Package from $45 is worth it:
+            If you enjoyed your Free Fly, a starter Game Package from $45 is worth it:
             one-time purchase, no subscription, and every future update included. If you
             haven&apos;t played yet, wait for the next Free Fly before spending anything —
             Star Citizen is one of the most ambitious games ever made, but it&apos;s a
