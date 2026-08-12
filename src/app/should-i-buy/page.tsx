@@ -359,7 +359,7 @@ export default function ShouldIBuyPage() {
                 </thead>
                 <tbody>
                   {[
-                    ['Citizen Starter Pack', '$45 (on sale from $60)', 'The most affordable entry point. A capable starter ship that gets you into the Persistent Universe without overcommitting.'],
+                    ['Citizen Starter Pack', '$60', 'The most affordable entry point. A capable starter ship that gets you into the Persistent Universe without overcommitting.'],
                     ['Generalist Starter Pack', '$60', 'A solid all-rounder for exploring multiple gameplay styles before specializing.'],
                     ['Role-specific packs (Miner, Duelist, Salvager, Hauler, Outsider, Privateer)', '$75–$125', 'Ships built for one activity. Only pick one if you already have a clear playstyle in mind.'],
                   ].map(([name, price, bestFor]) => (
