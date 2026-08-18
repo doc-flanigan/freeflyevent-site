@@ -11,9 +11,9 @@ import { PageBackdrop } from '@/components/PageBackdrop';
 import { HUB_URL } from '@/data/events';
 
 export const metadata: Metadata = {
-  title: 'Foundation Festival 2026 Free Fly — Live July 29 to August 10',
+  title: 'Foundation Festival 2026 Free Fly — July 29 to August 10',
   description:
-    'The Foundation Festival 2026 Free Fly is live: play Star Citizen free July 29 – August 10 with five ships. Referral bonus, Twitch Drops, and every confirmed detail.',
+    'The Foundation Festival 2026 Free Fly ran July 29 – August 10, 2026 with five free ships. It has ended. Full record of the ships, referral bonus, and Twitch Drops.',
   alternates: { canonical: '/foundation-festival-2026' },
   keywords: [
     'foundation festival 2026',
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     images: ['/images/hero/hero-01.jpg'],
-    title: 'Foundation Festival 2026 Free Fly — Live July 29 to August 10',
+    title: 'Foundation Festival 2026 Free Fly — July 29 to August 10',
     description:
-      'Play Star Citizen free through August 10 with five ships. The referral bonus adds a "Ready for Anything" Career Kit — the sourced breakdown.',
+      'Star Citizen was free to play July 29 – August 10, 2026 with five ships. The event has ended — the sourced record of ships, referral bonus, and Drops.',
   },
 };
 
@@ -44,12 +44,12 @@ const SOURCES = {
     'https://support.robertsspaceindustries.com/hc/en-us/articles/360037529633-Welcome-to-the-Star-Citizen-Free-Fly-Event',
 } as const;
 
-const LAST_CHECKED = 'July 29, 2026';
+const LAST_CHECKED = 'August 18, 2026';
 
 const faqs = [
   {
     q: 'Is there a Free Fly for Foundation Festival 2026?',
-    a: 'Yes — it is live right now. Cloud Imperium Games’ official announcement (Comm-Link 21211, "Foundation Festival 2026") confirms: "From July 29 through August 10, everyone can play for free and explore the \'verse with five distinct ships." No purchase is needed — create a free RSI account and download the game.',
+    a: 'There was, but it has ended. It ran from July 29 through August 10, 2026. Cloud Imperium Games’ official announcement (Comm-Link 21211, "Foundation Festival 2026") confirms: "From July 29 through August 10, everyone can play for free and explore the \'verse with five distinct ships." No purchase was needed. The window is now closed — the schedule page tracks when the next one opens.',
   },
   {
     q: 'Which ships are free to fly during Foundation Festival 2026?',
@@ -106,9 +106,9 @@ export default function FoundationFestival2026Page() {
 
           {/* GEO answer — static, honest, quotable */}
           <p className="mt-6 text-lg leading-relaxed text-white/85">
-            The Foundation Festival 2026 Free Fly is{' '}
-            <strong className="text-white">live right now</strong>: from{' '}
-            <strong className="text-white">July 29 through August 10</strong>, anyone can
+            The Foundation Festival 2026 Free Fly{' '}
+            <strong className="text-white">has ended</strong>. It ran from{' '}
+            <strong className="text-white">July 29 through August 10, 2026</strong>, when anyone could
             play Star Citizen for free with{' '}
             <strong className="text-white">five ships</strong> to try — no purchase
             required. The referral bonus adds a &ldquo;Ready for Anything&rdquo; Career Kit
@@ -121,14 +121,14 @@ export default function FoundationFestival2026Page() {
             alongside through August 12.
           </p>
 
-          {/* Free Fly confirmed — live status box */}
+          {/* Free Fly — completed event record */}
           <section className="mt-14">
             <h2 className="heading-display text-2xl sm:text-3xl">
-              The Foundation Festival 2026 Free Fly Is Live
+              The Foundation Festival 2026 Free Fly Has Ended
             </h2>
             <div className="mt-6 rounded-2xl border border-orange/30 bg-orange/10 p-6 sm:p-8">
               <p className="text-xs uppercase tracking-[0.18em] text-orange">
-                Confirmed — live through August 10
+                Ended — ran July 29 through August 10, 2026
               </p>
               <p className="mt-3 text-sm leading-relaxed text-white/85">
                 CIG&apos;s official announcement,{' '}
