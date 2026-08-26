@@ -29,6 +29,21 @@ const AI_BOTS: Array<[RegExp, string]> = [
   [/Applebot-Extended/i, 'applebot-extended'],
 ]
 
+// Canonical-hijack hardening (2026-08): a page that fails to hydrate can
+// still serve a 200 with Next's generic error shell, which Google has been
+// clustering with a spam mirror (747live.bet) and hijacking the canonical
+// from. Stamping every real HTML page with an authoritative `Link: rel=
+// canonical` header gives Google a signal that survives even a broken
+// client-side render. Convention matches the `<link rel="canonical">` tag
+// every page already emits via `alternates.canonical` in its metadata: apex
+// host, no trailing slash (root canonicalizes to the bare origin — see
+// src/app/layout.tsx SITE_URL / src/app/page.tsx alternates). Only applied
+// to actual page routes — API routes, _next assets, and anything with a
+// file extension (robots.txt, sitemap.xml, llms.txt, icons) are skipped so
+// the header never contradicts a resource that isn't an HTML page.
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://freeflyevent.com'
+const HAS_FILE_EXTENSION = /\.[a-zA-Z0-9]+$/
+
 export function middleware(req: NextRequest, event: NextFetchEvent) {
   const ua = req.headers.get('user-agent') ?? ''
   const hit = AI_BOTS.find(([re]) => re.test(ua))
@@ -58,12 +73,27 @@ export function middleware(req: NextRequest, event: NextFetchEvent) {
     )
   }
 
-  return NextResponse.next()
+  const res = NextResponse.next()
+
+  const { pathname } = req.nextUrl
+  if (
+    req.method === 'GET' &&
+    !pathname.startsWith('/api/') &&
+    !pathname.startsWith('/_next/') &&
+    !HAS_FILE_EXTENSION.test(pathname)
+  ) {
+    const canonicalPath = pathname.replace(/\/$/, '')
+    res.headers.set('Link', `<${SITE_URL}${canonicalPath}>; rel="canonical"`)
+  }
+
+  return res
 }
 
 // Pages, llms.txt, robots.txt, and sitemaps — the fetches that mean an AI is
 // reading content. Static assets and API routes are excluded to keep
-// middleware invocations (billed) near zero for human traffic.
+// middleware invocations (billed) near zero for human traffic. (The
+// canonical-header logic above further narrows itself to real page routes
+// within this same matcher scope — see HAS_FILE_EXTENSION check.)
 export const config = {
   matcher: [
     '/((?!_next/|api/|.*\\.(?:jpg|jpeg|png|gif|svg|ico|webp|avif|css|js|map|woff2?)$).*)',
