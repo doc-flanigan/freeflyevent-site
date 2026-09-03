@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { label, referralCode, page, site } = body as Record<string, unknown>
+    const { label, referralCode, page, site, referrer } = body as Record<string, unknown>
 
     if (
       typeof label !== 'string' ||
@@ -100,6 +100,11 @@ export async function POST(req: NextRequest) {
     if ([label, referralCode, page, site].some((v) => (v as string).length > MAX)) {
       return NextResponse.json({ ok: false }, { status: 400 })
     }
+
+    if (referrer !== undefined && (typeof referrer !== 'string' || referrer.length > 300)) {
+      return NextResponse.json({ ok: false }, { status: 400 })
+    }
+    const referrerValue = typeof referrer === 'string' ? referrer : ''
 
     if (!sameOrigin(req)) {
       return NextResponse.json({ ok: false }, { status: 403 })
@@ -135,6 +140,7 @@ export async function POST(req: NextRequest) {
             label: sheetLabel,
             referralCode,
             page,
+            referrer: referrerValue,
             ipHash: ipHash(ip),
             userAgent: (req.headers.get('user-agent') ?? '').slice(0, 200),
           }),
@@ -159,6 +165,7 @@ export async function POST(req: NextRequest) {
                     { name: 'CTA Label', value: label, inline: true },
                     { name: 'Referral Code', value: referralCode, inline: true },
                     { name: 'Page', value: page, inline: true },
+                    { name: 'Referrer', value: referrerValue || 'direct', inline: true },
                   ],
                   footer: { text: timestamp },
                 },
