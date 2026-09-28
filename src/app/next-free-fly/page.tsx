@@ -8,13 +8,16 @@ import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
-import { FREE_FLY_HISTORY, getEventStatus, HUB_URL } from '@/data/events';
-import { formatRangeUTC } from '@/lib/format';
+import { FREE_FLY_HISTORY, getEventStatus, HUB_URL, type EventStatus } from '@/data/events';
+import { formatDateLong, formatRangeUTC } from '@/lib/format';
+
+// Re-render hourly so the live status and FAQ flip without a redeploy.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: 'When Is the Next Star Citizen Free Fly? (July 2026)',
+  title: 'When Is the Next Star Citizen Free Fly?',
   description:
-    'A Free Fly is live right now: Foundation Festival 2026 runs July 29 – August 10 with five ships free to fly. Dates, sources, and what comes after.',
+    'When is the next Star Citizen Free Fly? Live status, the yearly pattern (IAE in late November), official sources, and how to be ready.',
   alternates: { canonical: '/next-free-fly' },
   keywords: [
     'next star citizen free fly',
@@ -29,12 +32,13 @@ export const metadata: Metadata = {
     images: ['/images/hero/hero-01.jpg'],
     title: 'When Is the Next Star Citizen Free Fly?',
     description:
-      'One is live now: Foundation Festival 2026, July 29 – August 10. After that, the most likely window is IAE in late November.',
+      'Live Free Fly status plus the yearly pattern — IAE in late November is the most dependable window.',
   },
 };
 
 // Official RSI Comm-Link sources for every historical claim on this page.
 const SOURCES = {
+  citizenCon2026NotHeld: 'https://www.youtube.com/watch?v=SsOtI2dtvBc',
   citizenConDirect2955:
     'https://robertsspaceindustries.com/comm-link/SCW/19355-API',
   iae2955:
@@ -47,32 +51,48 @@ const SOURCES = {
     'https://robertsspaceindustries.com/en/comm-link/transmission/21134-Countdown-To-DefenseCon',
 } as const;
 
-const faqs = [
-  {
-    q: 'When is the next Star Citizen Free Fly in 2026?',
-    a: 'One is live right now: the Foundation Festival 2026 Free Fly runs July 29 – August 10, 2026, with five ships free to fly and no purchase required (official Comm-Link 21211). After it ends, the most dependable window is the Intergalactic Aerospace Expo (IAE) in late November, which has run a November Free Fly every year since at least 2951 (2021). Check the live banner at the top of this page — it updates the moment CIG posts an official Comm-Link.',
-  },
-  {
-    q: 'How often does Star Citizen do Free Fly events?',
-    a: 'Typically a few times a year. The most dependable is the Intergalactic Aerospace Expo (IAE) each November. There is usually also a free-to-play flagship event in May — Invictus Launch Week in past years, replaced by DefenseCon in 2026 — plus occasional extras around patches or conventions.',
-  },
-  {
-    q: 'Is there a Free Fly happening right now?',
-    a: 'Yes — the Foundation Festival 2026 Free Fly is live from July 29 through August 10, 2026. The status banner at the top of every page on this site shows the live countdown; it updates automatically from the official event calendar.',
-  },
-  {
-    q: 'How long does a Free Fly last?',
-    a: 'Usually one to two weeks. The two most recent free-to-play events both ran about 14 days: IAE 2955 (November 20 – December 3, 2025) and DefenseCon 2956 (May 14–27, 2026).',
-  },
-  {
-    q: 'Will CitizenCon 2026 have a Free Fly?',
-    a: 'Unknown. CitizenCon 2953 and 2954 were in-person conventions, and CitizenCon Direct 2955 (October 11, 2025) was a free digital-only stream with no Free Fly attached. Whether CitizenCon 2956 happens, what format it takes, and whether a Free Fly accompanies it are all unannounced.',
-  },
-  {
-    q: 'How do I get notified about the next Free Fly?',
-    a: 'Bookmark this page and check the banner — it flips the moment an event is announced in an official RSI Comm-Link. You can also follow the new-player guides at dayonecitizen.com. CIG typically announces Free Fly dates one to two weeks before each event begins.',
-  },
-];
+// FAQs 1 and 3 depend on whether an event is live or announced, so they are
+// built from the event calendar and never go stale after an event ends.
+function buildFaqs(status: EventStatus, now: Date = new Date()) {
+  const lastEnded = FREE_FLY_HISTORY.find((ev) => new Date(ev.end) < now);
+  const lastEndedLine = lastEnded
+    ? `The most recent Free Fly was ${lastEnded.name} (${formatRangeUTC(lastEnded.start, lastEnded.end)}).`
+    : '';
+
+  let nextAnswer: string;
+  let nowAnswer: string;
+  if (status.state === 'ACTIVE' || status.state === 'CANCELLED_FREE_FLY') {
+    nextAnswer = `${status.event.name} is running now (${formatRangeUTC(status.event.start, status.event.end)}). After it ends, the most dependable window is the Intergalactic Aerospace Expo (IAE) in late November, which has run a November Free Fly every year since at least 2951 (2021).`;
+    nowAnswer = `Yes — ${status.event.name} runs ${formatRangeUTC(status.event.start, status.event.end)}. The status banner at the top of every page on this site shows the live countdown.`;
+  } else if (status.state === 'UPCOMING') {
+    nextAnswer = `The next announced Free Fly is ${status.event.name}, ${formatRangeUTC(status.event.start, status.event.end)}. The countdown is live in the banner at the top of this page.`;
+    nowAnswer = `Not yet — ${status.event.name} is announced for ${formatRangeUTC(status.event.start, status.event.end)}. The banner at the top of this page counts down to the start. ${lastEndedLine}`.trim();
+  } else {
+    nextAnswer = `CIG has not announced the next one yet. ${lastEndedLine} The most dependable next window is the Intergalactic Aerospace Expo (IAE) in late November, which has run a November Free Fly every year since at least 2951 (2021) — IAE 2955 ran November 20 – December 3, 2025. Check the live banner at the top of this page — it updates the moment CIG posts an official Comm-Link.`;
+    nowAnswer = `Not at the moment. ${lastEndedLine} The status banner at the top of every page on this site flips to a live countdown as soon as CIG announces the next event.`;
+  }
+
+  return [
+    { q: 'When is the next Star Citizen Free Fly in 2026?', a: nextAnswer },
+    {
+      q: 'How often does Star Citizen do Free Fly events?',
+      a: 'Typically a few times a year. The most dependable is the Intergalactic Aerospace Expo (IAE) each November. There is usually also a free-to-play flagship event in May — Invictus Launch Week in past years, replaced by DefenseCon in 2026 — plus a mid-year Foundation Festival and occasional extras around patches.',
+    },
+    { q: 'Is there a Free Fly happening right now?', a: nowAnswer },
+    {
+      q: 'How long does a Free Fly last?',
+      a: 'Usually one to two weeks. Recent examples: IAE 2955 (November 20 – December 3, 2025), DefenseCon 2956 (May 14–27, 2026), and Foundation Festival 2026 (July 29 – August 10, 2026).',
+    },
+    {
+      q: 'Will CitizenCon 2026 have a Free Fly?',
+      a: 'No — CIG has said it will not hold a CitizenCon in 2026 in any form (in-person, digital, or Direct), so there is no October Free Fly to wait for. For comparison, CitizenCon Direct 2955 (October 11, 2025) was a free digital-only stream with no Free Fly attached either. The next realistic window is IAE in late November.',
+    },
+    {
+      q: 'How do I get notified about the next Free Fly?',
+      a: 'Bookmark this page and check the banner — it flips the moment an event is announced in an official RSI Comm-Link. You can also follow the new-player guides at dayonecitizen.com. CIG typically announces Free Fly dates one to two weeks before each event begins.',
+    },
+  ];
+}
 
 const MONTH_NAMES = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -94,6 +114,8 @@ function SourceLink({ href, children }: { href: string; children: ReactNode }) {
 
 export default function NextFreeFlyPage() {
   const status = getEventStatus();
+  const faqs = buildFaqs(status);
+  const lastEnded = FREE_FLY_HISTORY.find((ev) => new Date(ev.end) < new Date());
   const recent = FREE_FLY_HISTORY.slice(0, 6);
 
   // Live headline adapts to the event calendar in src/data/events.ts.
@@ -126,23 +148,26 @@ export default function NextFreeFlyPage() {
             When Is the Next Star Citizen Free Fly?
           </h1>
 
-          {/* GEO answer — static, honest, quotable */}
+          {/* GEO answer — quotable. The pattern-watch copy only renders while no
+              event is live or announced; otherwise the live status box leads. */}
+          {status.state === 'INACTIVE' && (
           <p className="mt-6 text-lg leading-relaxed text-white/85">
-            You don&apos;t have to wait — a Free Fly is{' '}
-            <strong className="text-white">live right now</strong>. The{' '}
-            <strong className="text-white">Foundation Festival 2026</strong> Free Fly
-            runs <strong className="text-white">July 29 – August 10, 2026</strong>, with
-            five ships free to fly and no purchase required — see our{' '}
-            <Link href="/foundation-festival-2026" className="text-orange underline-offset-2 hover:underline">
-              Foundation Festival 2026 breakdown
-            </Link>{' '}
-            for every confirmed detail. After it ends, the most dependable yearly window
-            is the{' '}
+            CIG has not announced the next Free Fly yet.
+            {lastEnded && (
+              <>
+                {' '}The most recent one was{' '}
+                <strong className="text-white">{lastEnded.name}</strong>, which ended on{' '}
+                <strong className="text-white">{formatDateLong(new Date(lastEnded.end))}</strong>.
+              </>
+            )}
+            The most dependable next window is the{' '}
             <strong className="text-white">
               Intergalactic Aerospace Expo (IAE) in late November
             </strong>
-            , which has run a Free Fly every year since 2021.
+            , which has run a Free Fly every year since 2021. There is no CitizenCon
+            in 2026, so nothing is expected in October.
           </p>
+          )}
 
           {/* Live status — updates automatically from the event calendar */}
           <div className="mt-8 rounded-2xl border border-orange/30 bg-orange/10 p-6 sm:p-8">
@@ -151,43 +176,16 @@ export default function NextFreeFlyPage() {
             <p className="mt-3 text-white/85">{detail}</p>
           </div>
 
-          {/* Live-event callout — Foundation Festival 2026 Free Fly confirmed
-              (Comm-Link 21211). Remove this box after the event ends Aug 10
-              and the page reverts to pattern-watch framing. */}
-          <div className="mt-6 rounded-2xl border border-orange/40 bg-blackMid/60 p-6 sm:p-8">
-            <p className="text-xs uppercase tracking-[0.18em] text-orange">
-              Live now — confirmed Free Fly
-            </p>
-            <h2 className="heading-display mt-2 text-xl text-white">
-              Foundation Festival 2026 — play free July 29 through August 10
-            </h2>
-            <p className="mt-3 text-sm leading-relaxed text-white/85">
-              CIG confirmed it in Comm-Link 21211: everyone can play free with five
-              ships through August 10. The referral bonus — an Argo ATLS for the
-              recruiter, a &ldquo;Ready for Anything&rdquo; Career Kit for the new
-              player, both requiring the new player to pledge for a starter pack or
-              ship — runs until August 12, 20:00 UTC. See the{' '}
-              <Link href="/foundation-festival-2026" className="text-orange underline-offset-2 hover:underline">
-                full Foundation Festival 2026 page
-              </Link>{' '}
-              for every confirmed detail, including what&apos;s still unpublished
-              (ship names, exact end time).
-            </p>
-            <p className="mt-3 text-xs text-muted">
-              The banner above counts down to the end of the event.
-            </p>
-          </div>
-
           {/* Expected windows — pattern, not announcement */}
           <section className="mt-14">
             <h2 className="heading-display text-2xl sm:text-3xl">
-              The two windows to watch in 2026
+              What to expect for the rest of 2026
             </h2>
             <p className="mt-4 text-muted">
-              Neither of these is an announcement — CIG has confirmed nothing for
-              the rest of 2026. They are expectations based on how the event
-              calendar has repeated in past years, with the historical instances
-              sourced from official RSI Comm-Links.
+              CIG has not announced any further Free Fly for 2026. The IAE
+              expectation below is based on how the event calendar has repeated in
+              past years, with the historical instances sourced from official RSI
+              Comm-Links.
             </p>
 
             <div className="mt-6 space-y-5">
@@ -217,29 +215,27 @@ export default function NextFreeFlyPage() {
                 </p>
               </div>
 
-              {/* CitizenCon — uncertain */}
+              {/* CitizenCon — not held in 2026 (ledger: citizencon-2026-not-held) */}
               <div className="rounded-xl border border-white/10 bg-blackMid/60 p-6">
                 <div className="flex flex-wrap items-center gap-3">
                   <h3 className="heading-display text-lg text-white">
-                    CitizenCon — October
+                    CitizenCon — not happening in 2026
                   </h3>
                   <span className="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted">
-                    Uncertain
+                    Confirmed off
                   </span>
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-muted">
-                  Treat this one with caution. CitizenCon 2953 (2023) and 2954
-                  (2024) were in-person conventions, but{' '}
+                  <SourceLink href={SOURCES.citizenCon2026NotHeld}>
+                    CIG has said
+                  </SourceLink>{' '}
+                  it will not hold CitizenCon in 2026 in any form &mdash; in-person,
+                  digital, or Direct. Even in 2025,{' '}
                   <SourceLink href={SOURCES.citizenConDirect2955}>
                     CitizenCon Direct 2955
                   </SourceLink>{' '}
-                  (October 11, 2025) was a free digital-only stream with no Free
-                  Fly component at all. Whether CitizenCon 2956 happens, what
-                  format it takes, and whether any Free Fly accompanies it are
-                  all unannounced.
-                </p>
-                <p className="mt-3 text-xs text-muted">
-                  Pattern-based expectation — not an announcement.
+                  (October 11, 2025) was a digital-only stream with no Free Fly
+                  attached, so October has not been a reliable free-to-play window.
                 </p>
               </div>
             </div>

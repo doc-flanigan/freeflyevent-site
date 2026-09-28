@@ -14,9 +14,9 @@ import { formatRangeUTC } from '@/lib/format';
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: 'Star Citizen Free Fly Schedule 2026 — Every Confirmed & Expected Window',
+  title: 'Star Citizen Free Fly Schedule 2026',
   description:
-    'The full Star Citizen Free Fly schedule for 2026: confirmed event dates, the window live right now, and when the next free-to-play period is expected.',
+    'The full Star Citizen Free Fly schedule for 2026: confirmed event dates, whether one is live right now, and when the next free-to-play window is expected.',
   alternates: { canonical: '/free-fly-schedule' },
   keywords: [
     'star citizen free fly schedule',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     q: 'What is the Star Citizen Free Fly schedule for 2026?',
-    a: 'Two windows are confirmed so far: DefenseCon 2956 ran May 14–27, and the Foundation Festival 2026 Free Fly runs July 29 – August 10. Based on the yearly pattern, the next expected window is the Intergalactic Aerospace Expo (IAE) in late November — CIG has not announced IAE 2956 dates yet.',
+    a: 'Two windows are confirmed so far: DefenseCon 2956 ran May 14–27, and the Foundation Festival 2026 Free Fly ran July 29 – August 10. Based on the yearly pattern, the next expected window is the Intergalactic Aerospace Expo (IAE) in late November — CIG has not announced IAE 2956 dates yet.',
   },
   {
     q: 'Is there a fixed Free Fly schedule?',
@@ -48,7 +48,7 @@ const faqs = [
   },
   {
     q: 'How long does each Free Fly last?',
-    a: 'Usually one to two weeks. Recent examples: Foundation Festival 2026 runs 13 days (July 29 – August 10), DefenseCon 2956 ran 14 days, and IAE 2955 ran about two weeks including its finale days.',
+    a: 'Usually one to two weeks. Recent examples: Foundation Festival 2026 ran 13 days (July 29 – August 10), DefenseCon 2956 ran 14 days, and IAE 2955 ran about two weeks including its finale days.',
   },
 ];
 

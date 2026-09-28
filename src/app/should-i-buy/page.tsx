@@ -318,8 +318,9 @@ export default function ShouldIBuyPage() {
             </h2>
             <p className="mt-4 text-white/80">
               CIG opens the full game to everyone several times a year during{' '}
-              <strong className="text-white">Free Fly events</strong> — typically around
-              Invictus Launch Week (May), CitizenCon, and IAE (November). For the event
+              <strong className="text-white">Free Fly events</strong> — typically a May
+              flagship event (DefenseCon in 2026), Foundation Festival in mid-year, and
+              IAE (November). For the event
               window, usually one to two weeks, you can create a free RSI account, download
               the game, and play the full Persistent Universe at no cost. No purchase, no
               credit card.

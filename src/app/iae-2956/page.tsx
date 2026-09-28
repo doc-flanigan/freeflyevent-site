@@ -12,7 +12,7 @@ import { FREE_FLY_HISTORY, HUB_URL } from '@/data/events';
 import { formatRangeUTC } from '@/lib/format';
 
 export const metadata: Metadata = {
-  title: 'IAE 2956 — Star Citizen Free Fly Expected November 2026',
+  title: 'IAE 2956 Free Fly — Expected November 2026',
   description:
     'The Intergalactic Aerospace Expo 2956 has not been announced yet. Expected late November 2026 based on five straight years of November Free Flys — the sourced breakdown.',
   alternates: { canonical: '/iae-2956' },

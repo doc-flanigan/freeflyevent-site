@@ -15,7 +15,7 @@ import { formatRangeUTC } from '@/lib/format';
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: 'What Ships Are Free in Star Citizen Right Now? (Live List)',
+  title: 'Which Star Citizen Ships Are Free Right Now?',
   description:
     'The ships you can fly free in Star Citizen right now, straight from the current Free Fly event — plus what past events unlocked and how to fly them.',
   alternates: { canonical: '/free-ships-right-now' },

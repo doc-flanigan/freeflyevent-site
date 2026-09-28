@@ -11,7 +11,7 @@ import { PageBackdrop } from '@/components/PageBackdrop';
 import { HUB_URL } from '@/data/events';
 
 export const metadata: Metadata = {
-  title: 'Foundation Festival 2026 Free Fly — July 29 to August 10',
+  title: 'Foundation Festival 2026 Free Fly Recap',
   description:
     'The Foundation Festival 2026 Free Fly ran July 29 – August 10, 2026 with five free ships. It has ended. Full record of the ships, referral bonus, and Twitch Drops.',
   alternates: { canonical: '/foundation-festival-2026' },
