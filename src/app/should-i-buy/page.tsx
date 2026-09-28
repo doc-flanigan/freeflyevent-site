@@ -109,7 +109,7 @@ export default function ShouldIBuyPage() {
             </h2>
             <p className="mt-4 text-muted">
               The minimum purchase is called a <strong className="text-white">Game Package</strong>.
-              Starter packages run roughly $60–$125 USD. Here&apos;s what that gets you:
+              Standard starter packages run $60–$80 USD. Here&apos;s what that gets you:
             </p>
             <ul className="mt-5 space-y-3">
               {[
