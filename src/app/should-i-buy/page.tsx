@@ -117,7 +117,7 @@ export default function ShouldIBuyPage() {
                 ['Access to everything in the live game', 'All star systems, all gameplay loops, all future patches. There is no DLC. Content that ships after you buy is included.'],
                 ['3 months of insurance on your starter ship', 'Every starter pack includes 3-month insurance on the ship it comes with.'],
                 ['No subscription', 'Star Citizen has no monthly fee. You pay once.'],
-                ['1,000 aUEC — plus 50,000 UEC if you use a referral code', 'aUEC is the alpha test currency that wipes between patches. UEC is the permanent in-game currency that carries forward forever. Paste a referral code at signup and you receive 50,000 UEC on top of the starter aUEC — enough for rentals, gear, and ammo from day one.'],
+                ['10,000 UEC — plus 50,000 UEC if you use a referral code', 'UEC is the permanent account currency that carries forward forever — separate from aUEC, the alpha test currency you earn in-game that wipes between patches. Paste a referral code at signup and you receive 50,000 UEC on top of the pack\'s 10,000 UEC — enough for rentals, gear, and ammo from day one.'],
                 ['Squadron 42 — check your package', 'The single-player campaign is not included in every starter. Look for the "Squadron 42 combo" package if you want both. It\'s not required to play Star Citizen.'],
               ].map(([title, desc]) => (
                 <li key={title as string} className="flex gap-4 rounded-xl border border-white/10 bg-blackMid/60 p-5">
