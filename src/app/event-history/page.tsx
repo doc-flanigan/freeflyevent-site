@@ -9,9 +9,9 @@ import { PageBackdrop } from '@/components/PageBackdrop';
 import { FREE_FLY_HISTORY, HUB_URL } from '@/data/events';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Star Citizen Free Fly Event History (2022–2026)' },
+  title: 'Every Star Citizen Free Fly, 2022–2026',
   description:
-    'Every Star Citizen Free Fly event since 2022 — Invictus Launch Week, DefenseCon, and IAE — with verified dates, flyable ships, and official RSI Comm-Link sources.',
+    'Every Star Citizen Free Fly with exact dates, 2022–2026: Invictus, DefenseCon, Foundation Festival, and IAE — each sourced from an official RSI Comm-Link.',
   alternates: { canonical: '/event-history' },
   openGraph: {
     images: ['/images/hero/hero-01.jpg'],

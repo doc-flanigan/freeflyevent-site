@@ -8,21 +8,27 @@ import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
-import { FREE_FLY_HISTORY, HUB_URL } from '@/data/events';
+import { FREE_FLY_HISTORY, HUB_URL, type FreeFlyEvent } from '@/data/events';
 import { formatRangeUTC } from '@/lib/format';
+
+// Re-render hourly so the FAQ + status flip the moment IAE 2956 is added to
+// FREE_FLY_HISTORY — no redeploy needed. Mirrors /next-free-fly.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: 'IAE 2956 Free Fly — Expected November 2026',
   description:
-    'The Intergalactic Aerospace Expo 2956 has not been announced yet. Expected late November 2026 based on five straight years of November Free Flys — the sourced breakdown.',
+    'IAE 2956 is not announced yet. Based on the pattern, expect late November 2026 — IAE 2955 ran Nov 20–Dec 3, 2025. The sourced breakdown, updated live.',
   alternates: { canonical: '/iae-2956' },
   keywords: [
     'iae 2956',
     'star citizen iae 2026',
     'iae 2956 free fly',
     'iae 2956 dates',
+    'iae 2956 arccorp',
     'intergalactic aerospace expo 2956',
     'star citizen november free fly',
+    'when is the star citizen free to play event',
   ],
   openGraph: {
     images: ['/images/hero/hero-01.jpg'],
@@ -34,24 +40,72 @@ export const metadata: Metadata = {
 
 const LAST_CHECKED = 'July 29, 2026';
 
-const faqs = [
-  {
-    q: 'When is IAE 2956?',
-    a: 'Not announced. Cloud Imperium Games has not published dates for the Intergalactic Aerospace Expo 2956. Based on the pattern — IAE has run every year since at least 2951 (2021), always starting mid-to-late November — the expected window is late November 2026. Treat any specific dates you see elsewhere as guesses until an official RSI Comm-Link exists.',
-  },
-  {
-    q: 'Will IAE 2956 have a Free Fly?',
-    a: 'Every IAE since at least 2951 (2021) has included a Free Fly, making it the most dependable free-to-play window of the year. That is a five-year pattern, not a 2026 announcement — this page updates the moment CIG confirms.',
-  },
-  {
-    q: 'What ships will be free during IAE 2956?',
-    a: 'Unknown until CIG publishes the schedule. Historically IAE rotates 100+ ships through daily manufacturer showcases — IAE 2955 (November 2025) included a Crusader Intrepid event loaner plus a daily manufacturer rotation, with the RSI Perseus making its flyable debut on Day 1.',
-  },
-  {
-    q: 'How long does IAE usually last?',
-    a: 'About two weeks. IAE 2955 ran November 20 – December 3, 2025; IAE 2954 ran November 22 – December 5, 2024, ending with a multi-day finale where all event ships were flyable at once.',
-  },
-];
+// The IAE-2956 record this page watches for. Once CIG announces and
+// `iae-2026` is added to FREE_FLY_HISTORY (see Maintenance in CLAUDE.md),
+// this page's FAQ and status copy switch from pattern-based to confirmed
+// automatically — no other edits required.
+function findIae2956(): FreeFlyEvent | undefined {
+  return FREE_FLY_HISTORY.find((ev) => ev.id === 'iae-2026');
+}
+
+function buildFaqs(iae2956: FreeFlyEvent | undefined, now: Date = new Date()) {
+  if (iae2956) {
+    const start = new Date(iae2956.start);
+    const end = new Date(iae2956.end);
+    const range = formatRangeUTC(iae2956.start, iae2956.end);
+    const active = now >= start && now <= end;
+    const past = now > end;
+    const whenAnswer = active
+      ? `IAE 2956 is running right now, ${range}. Check the countdown banner at the top of this page for the exact time remaining.`
+      : past
+        ? `IAE 2956 ran ${range}. See the Free Fly schedule for what's next.`
+        : `Confirmed: IAE 2956 runs ${range}. The countdown banner at the top of this page tracks the time remaining until it starts.`;
+    return [
+      { q: 'When is IAE 2956?', a: whenAnswer },
+      {
+        q: 'Will IAE 2956 have a Free Fly?',
+        a: `Yes, confirmed by CIG. ${iae2956.notes ?? `IAE 2956 (${range}) is free for anyone with an RSI account.`}`,
+      },
+      {
+        q: 'What ships will be free during IAE 2956?',
+        a: iae2956.ships.length
+          ? `Confirmed so far: ${iae2956.ships.join('; ')}.`
+          : 'CIG has not published the manufacturer schedule yet — check back closer to launch.',
+      },
+      {
+        q: 'How long does IAE usually last?',
+        a: `IAE 2956 runs ${range}. Recent years ran a similar length: IAE 2955 (November 20 – December 3, 2025) and IAE 2954 (November 22 – December 5, 2024), each about two weeks.`,
+      },
+      {
+        q: 'Is IAE 2956 held at ArcCorp?',
+        a: 'No. Recent IAEs have been staged in New Babbage on microTech, not ArcCorp — check the confirmed schedule above for this year’s venue details as CIG publishes them.',
+      },
+    ];
+  }
+
+  return [
+    {
+      q: 'When is IAE 2956?',
+      a: 'Not announced. Cloud Imperium Games has not published dates for the Intergalactic Aerospace Expo 2956. Based on the pattern — IAE has run every year since at least 2951 (2021), always starting mid-to-late November, and the announcement itself has historically landed in the first week of November — the expected window is late November 2026. Treat any specific dates you see elsewhere as guesses until an official RSI Comm-Link exists.',
+    },
+    {
+      q: 'Will IAE 2956 have a Free Fly?',
+      a: 'Every IAE since at least 2951 (2021) has included a Free Fly, making it the most dependable free-to-play window of the year. That is a five-year pattern, not a 2026 announcement — this page updates the moment CIG confirms.',
+    },
+    {
+      q: 'What ships will be free during IAE 2956?',
+      a: 'Unknown until CIG publishes the schedule. Historically IAE rotates 100+ ships through daily manufacturer showcases — IAE 2955 (November 2025) included a Crusader Intrepid event loaner plus a daily manufacturer rotation, with the RSI Perseus making its flyable debut on Day 1.',
+    },
+    {
+      q: 'How long does IAE usually last?',
+      a: 'About two weeks. IAE 2955 ran November 20 – December 3, 2025; IAE 2954 ran November 22 – December 5, 2024, ending with a multi-day finale where all event ships were flyable at once.',
+    },
+    {
+      q: 'Is IAE 2956 held at ArcCorp?',
+      a: 'Not based on the recent pattern. Recent IAEs — including 2955 and 2953, shown below — were staged in New Babbage on microTech, not ArcCorp. Nothing is confirmed for 2956 until CIG publishes a schedule.',
+    },
+  ];
+}
 
 function SourceLink({ href, children }: { href: string; children: ReactNode }) {
   return (
@@ -68,6 +122,9 @@ function SourceLink({ href, children }: { href: string; children: ReactNode }) {
 
 export default function Iae2956Page() {
   const iaeHistory = FREE_FLY_HISTORY.filter((ev) => ev.id.startsWith('iae-'));
+  const iae2956 = findIae2956();
+  const faqs = buildFaqs(iae2956);
+  const iae2955 = FREE_FLY_HISTORY.find((ev) => ev.id === 'iae-2025');
 
   return (
     <>
@@ -92,7 +149,11 @@ export default function Iae2956Page() {
             <strong className="text-white">not been announced</strong>. Based on
             the yearly pattern — an IAE Free Fly every November since at least
             2951 (2021) — the expected window is{' '}
-            <strong className="text-white">late November 2026</strong>.
+            <strong className="text-white">late November 2026</strong>. Last
+            year&apos;s IAE 2955 ran{' '}
+            <strong className="text-white">November 20 – December 3, 2025</strong>,
+            and in each of the last two years CIG&apos;s announcement itself has
+            landed in the <strong className="text-white">first week of November</strong>.
             Historically it is the biggest free-to-play event of the year:
             roughly two weeks, 100+ ships rotating through daily manufacturer
             showcases, free for anyone with an RSI account.
@@ -126,16 +187,40 @@ export default function Iae2956Page() {
               </p>
               {/*
                 FLIP POINT: when CIG posts the IAE 2956 Comm-Link, add the event
-                to FREE_FLY_HISTORY in src/data/events.ts (banner/countdown/JSON-LD
-                derive automatically), replace this dashed box with a confirmed
-                live-status box (pattern: /foundation-festival-2026), and update
-                the GEO answer paragraph + FAQ #1 above.
+                to FREE_FLY_HISTORY in src/data/events.ts as id "iae-2026"
+                (banner/countdown/JSON-LD/FAQ all derive automatically via
+                findIae2956() + buildFaqs() above — pattern: /foundation-festival-2026),
+                replace this dashed box with a confirmed live-status box, and
+                update the GEO answer paragraph above.
               */}
               <p className="mt-3 text-xs text-muted">
                 Last checked {LAST_CHECKED}. Watching official RSI Comm-Links only.
               </p>
             </div>
           </section>
+
+          {/* What happened at IAE 2955 — recap, verified facts only */}
+          {iae2955 && (
+            <section className="mt-14">
+              <h2 className="heading-display text-2xl sm:text-3xl">
+                What happened at IAE 2955
+              </h2>
+              <p className="mt-4 text-muted">
+                The most recent IAE is the best evidence for what to expect.{' '}
+                <SourceLink href={iae2955.source ?? 'https://robertsspaceindustries.com/comm-link'}>
+                  IAE 2955
+                </SourceLink>{' '}
+                ran {formatRangeUTC(iae2955.start, iae2955.end)} and was free for
+                anyone with an RSI account. It included a{' '}
+                <strong className="text-white">Crusader Intrepid event loaner</strong>{' '}
+                plus a daily rotation of flyable ships across every manufacturer,
+                and saw the{' '}
+                <strong className="text-white">RSI Perseus make its flight-ready
+                debut</strong>{' '}
+                on Day 1 — the kind of surprise-ship reveal IAE is known for.
+              </p>
+            </section>
+          )}
 
           {/* The pattern, from the record */}
           <section className="mt-14">
@@ -217,10 +302,10 @@ export default function Iae2956Page() {
           <section className="mt-14 rounded-2xl border border-white/10 bg-blackMid/60 p-8 sm:p-10">
             <h2 className="heading-display text-2xl">Don&apos;t wait for November</h2>
             <p className="mt-4 text-white/80">
-              {`A Free Fly is often live sooner than you think — check the banner at
-              the top of this page. Either way, create your free RSI account with a
-              referral code now (it can't be added later) and the 50,000 UEC bonus
-              will be waiting whenever you first log in.`}
+              {`Make your free account before the Free Fly starts. A referral code
+              only works at signup — it can't be added later — so create your free
+              RSI account with one now and your 50,000 UEC bonus will be waiting
+              whenever you first log in, whether or not IAE 2956 is live yet.`}
             </p>
             <div className="mt-6">
               <CTAButton size="lg" trackingLabel="iae-2956-cta" />

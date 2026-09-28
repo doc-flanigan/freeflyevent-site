@@ -108,7 +108,12 @@ export default function FreeFlySchedulePage() {
             by official Comm-Link, usually one to two weeks ahead. The repeating
             pattern: a <strong className="text-white">May flagship event</strong>, a{' '}
             <strong className="text-white">mid-year Foundation Festival</strong>, and
-            the <strong className="text-white">IAE in late November</strong>.
+            the <strong className="text-white">IAE in late November</strong>. Between
+            windows,{' '}
+            <Link href="/is-star-citizen-free" className="text-orange underline-offset-2 hover:underline">
+              is Star Citizen free to play?
+            </Link>{' '}
+            explains what still costs money and what doesn&apos;t.
           </p>
 
           <LightboxImage

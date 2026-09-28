@@ -98,10 +98,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
   // INACTIVE / default state — between events
   return {
-    title: 'Star Citizen Free Fly Events — When Is the Next One? (2026)',
-    description: 'Star Citizen Free Fly events let anyone play free. Current event dates, included ships, and the 50,000 UEC referral bonus.',
+    title: "Star Citizen Free Fly — When's the Next One?",
+    description: 'Star Citizen Free Fly events let anyone play free, several times a year. See when the next free-to-play window opens and claim your 50,000 UEC bonus.',
     keywords: [
+      'star citizen free fly',
       'when is the next star citizen free fly',
+      'when is the star citizen free to play event',
       'star citizen free fly 2026',
       'star citizen free fly schedule',
       'star citizen free fly dates',
@@ -112,12 +114,12 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: { canonical: '/' },
     openGraph: {
       images: ['/images/hero/hero-01.jpg'],
-      title: 'Star Citizen Free Fly Events — When Is the Next One?',
+      title: "Star Citizen Free Fly — When's the Next One?",
       description: 'No Free Fly is active right now. Track when the next Star Citizen Free Fly launches and lock in your 50,000 UEC referral bonus.',
     },
     twitter: {
       card: 'summary_large_image' as const,
-      title: 'Star Citizen Free Fly Events — When Is the Next One?',
+      title: "Star Citizen Free Fly — When's the Next One?",
       description: 'Track when the next Star Citizen Free Fly launches and lock in your 50,000 UEC referral bonus.',
     },
   };
@@ -287,7 +289,12 @@ export default function HomePage() {
                 Free Fly is the moment to try Star Citizen. If you bounce off,
                 you&apos;ve lost nothing. If you&apos;re hooked, you&apos;ll know
                 it within an afternoon — and you can decide whether to grab a
-                Game Package while still inside the event window.
+                Game Package while still inside the event window. Wondering{' '}
+                <Link href="/is-star-citizen-free" className="text-orange underline-offset-2 hover:underline">
+                  is Star Citizen free to play?
+                </Link>{' '}
+                outside of Free Fly too — the honest answer is no, but here&apos;s
+                the full breakdown of what each tier gets you.
               </p>
             </div>
           </div>

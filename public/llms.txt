@@ -7,7 +7,7 @@
 - [Star Citizen Free Fly 2026](https://freeflyevent.com/): Current Free Fly status, event dates, what's included, and the 50,000 UEC referral bonus.
 - [Is Star Citizen Free?](https://freeflyevent.com/is-star-citizen-free): How Free Fly differs from free-to-play, and exactly what you can play for free.
 - [When Is the Next Free Fly?](https://freeflyevent.com/next-free-fly): The 2026 Free Fly schedule, countdown, and how to predict the next event window.
-- [Foundation Festival 2026](https://freeflyevent.com/foundation-festival-2026): The Free Fly is live July 29 – August 10, 2026 with five ships — plus the Argo ATLS / Career Kit referral bonus terms and Twitch Drops.
+- [Foundation Festival 2026](https://freeflyevent.com/foundation-festival-2026): The Free Fly ran July 29 – August 10, 2026 with five ships — plus the Argo ATLS / Career Kit referral bonus terms and Twitch Drops.
 - [Free Fly Schedule 2026](https://freeflyevent.com/free-fly-schedule): Every confirmed and expected Free Fly window in 2026, with the yearly pattern explained.
 - [Free Ships Right Now](https://freeflyevent.com/free-ships-right-now): The live list of ships anyone can fly free during the current event window.
 - [IAE 2956](https://freeflyevent.com/iae-2956): The Intergalactic Aerospace Expo 2956 — not yet announced; expected late November 2026 based on five straight years of November Free Flys.
@@ -22,6 +22,7 @@
 - Free Fly is distinct from a permanent free-to-play model: access is limited to the event window and the ships/content Cloud Imperium Games makes available for it.
 - New players who sign up with a referral code receive a 50,000 UEC in-game credit bonus.
 - Free Fly events are scheduled and run by Cloud Imperium Games; specific dates, included ships, and content vary by event and can change or be cancelled.
+- CIG will not hold a CitizenCon event in 2026 in any form (in-person, digital, or Direct), so there is no October Free Fly to wait for. The most dependable remaining 2026 window is the Intergalactic Aerospace Expo (IAE), expected late November based on a five-year pattern — see the IAE 2956 page for status.
 
 ## Related
 

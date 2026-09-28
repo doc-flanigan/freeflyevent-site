@@ -10,9 +10,9 @@ import { PageBackdrop } from '@/components/PageBackdrop';
 import { HUB_URL, REFERRAL_CODE } from '@/data/events';
 
 export const metadata: Metadata = {
-  title: 'Is Star Citizen Free? Free Fly Explained',
+  title: 'Is Star Citizen Free? Yes, During Free Fly',
   description:
-    'Star Citizen is not free-to-play — but Free Fly events let you play free. The difference, what a free account gets, and when you can play.',
+    'Star Citizen is not free-to-play — but Free Fly events let anyone play free for two weeks. Next expected window: IAE, likely late November 2026.',
   alternates: { canonical: '/is-star-citizen-free' },
   keywords: [
     'is star citizen free',
@@ -87,11 +87,16 @@ export default function IsStarCitizenFreePage() {
               Imperium runs several official{' '}
               <Link href="/" className="text-orange underline-offset-2 hover:underline">Free Fly events</Link>{' '}
               each year, when <strong className="text-white">anyone can play the full game for
-              free</strong> with nothing but a free RSI account — no purchase needed. Check{' '}
+              free</strong> with nothing but a free RSI account — no purchase needed.
+              The most dependable annual window is the{' '}
+              <Link href="/iae-2956" className="text-orange underline-offset-2 hover:underline">
+                Intergalactic Aerospace Expo in late November
+              </Link>
+              . Check{' '}
               <Link href="/next-free-fly" className="text-orange underline-offset-2 hover:underline">
                 when the next Free Fly is
               </Link>{' '}
-              to find your next free window.
+              for the live status.
             </p>
           </div>
 
