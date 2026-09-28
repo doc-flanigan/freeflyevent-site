@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     q: 'Is Star Citizen free to play?',
-    a: 'No. Star Citizen requires a Game Package purchase (from $60 for a starter pack). However, CIG runs periodic Free Fly events several times a year where anyone can play for free for a limited window — usually one to two weeks. These are the best way to try the game before buying.',
+    a: 'No. Star Citizen requires a Game Package purchase (from $45 on sale — $60 list price, as of September 2026). However, CIG runs periodic Free Fly events several times a year where anyone can play for free for a limited window — usually one to two weeks. These are the best way to try the game before buying.',
   },
   {
     q: 'Is Star Citizen fully released or still in early access?',
@@ -74,7 +74,7 @@ export default function ShouldIBuyPage() {
           </h1>
           <p className="mt-5 text-lg text-muted">
             Buy Star Citizen only after you&apos;ve tried it free during a Free Fly event.
-            If you enjoyed your Free Fly, a starter Game Package from $60 is worth it:
+            If you enjoyed your Free Fly, a starter Game Package from $45 on sale ($60 list) is worth it:
             one-time purchase, no subscription, and every future update included. If you
             haven&apos;t played yet, wait for the next Free Fly before spending anything —
             Star Citizen is one of the most ambitious games ever made, but it&apos;s a
@@ -87,8 +87,8 @@ export default function ShouldIBuyPage() {
             <h2 className="heading-display text-xl text-white">The quick answer</h2>
             <p className="mt-3 text-white/85">
               <strong className="text-orange">If you had a good time during Free Fly</strong> — buy
-              a starter package. Don&apos;t overspend — the $60 Citizen Starter or Generalist
-              starter pack is all you need to start. Give it 20 hours before judging it against finished games.
+              a starter package. Don&apos;t overspend — the $45-on-sale Citizen Starter or $60
+              Generalist pack is all you need to start. Give it 20 hours before judging it against finished games.
             </p>
             <p className="mt-3 text-white/85">
               <strong className="text-orange">If Free Fly left you cold</strong> — don&apos;t buy.
@@ -109,7 +109,7 @@ export default function ShouldIBuyPage() {
             </h2>
             <p className="mt-4 text-muted">
               The minimum purchase is called a <strong className="text-white">Game Package</strong>.
-              Standard starter packages run $60–$80 USD. Here&apos;s what that gets you:
+              Standard starter packages run $45 on sale to $80 USD ($60–$80 list price). Here&apos;s what that gets you:
             </p>
             <ul className="mt-5 space-y-3">
               {[
@@ -296,7 +296,7 @@ export default function ShouldIBuyPage() {
                     'Bounced hard during Free Fly — the paid game is the same experience',
                     'Need a polished, finished product with a complete story (Squadron 42 isn\'t out yet)',
                     'Play mostly solo, casually, 30 minutes at a time — the loop rewards longer sessions',
-                    'Are on a tight budget — for $60 you can buy many complete, award-winning games',
+                    'Are on a tight budget — for $45–60 you can buy many complete, award-winning games',
                     'Have hardware below spec — an HDD or under 16 GB RAM misrepresents the game',
                     'Need a predictable release date — CIG\'s track record on timelines is poor',
                     'Want competitive balance — this is not an esport',
@@ -360,7 +360,7 @@ export default function ShouldIBuyPage() {
                 </thead>
                 <tbody>
                   {[
-                    ['Citizen Starter Pack', '$60', 'The most affordable entry point. A capable starter ship that gets you into the Persistent Universe without overcommitting.'],
+                    ['Citizen Starter Pack', '$45 on sale ($60 list)', 'The most affordable entry point. A capable starter ship that gets you into the Persistent Universe without overcommitting.'],
                     ['Generalist Starter Pack', '$60', 'A solid all-rounder for exploring multiple gameplay styles before specializing.'],
                     ['Role-specific packs (Miner, Duelist, Salvager, Hauler, Outsider, Privateer)', '$75–$125', 'Ships built for one activity. Only pick one if you already have a clear playstyle in mind.'],
                   ].map(([name, price, bestFor]) => (
