@@ -12,7 +12,7 @@ import { HUB_URL, REFERRAL_CODE } from '@/data/events';
 export const metadata: Metadata = {
   title: 'Is Star Citizen Free? Yes, During Free Fly',
   description:
-    'Star Citizen is not free-to-play — but Free Fly events let anyone play free for two weeks. Next expected window: IAE, likely late November 2026.',
+    'Star Citizen is not free-to-play — but Free Fly events let anyone play free for a week or two. Next expected window: IAE, likely late November 2026.',
   alternates: { canonical: '/is-star-citizen-free' },
   keywords: [
     'is star citizen free',

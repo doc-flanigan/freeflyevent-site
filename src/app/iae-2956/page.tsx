@@ -77,8 +77,8 @@ function buildFaqs(iae2956: FreeFlyEvent | undefined, now: Date = new Date()) {
         a: `IAE 2956 runs ${range}. Recent years ran a similar length: IAE 2955 (November 20 – December 3, 2025) and IAE 2954 (November 22 – December 5, 2024), each about two weeks.`,
       },
       {
-        q: 'Is IAE 2956 held at ArcCorp?',
-        a: 'No. Recent IAEs have been staged in New Babbage on microTech, not ArcCorp — check the confirmed schedule above for this year’s venue details as CIG publishes them.',
+        q: 'Where is IAE 2956 held?',
+        a: 'Check the confirmed schedule above for this year’s venue. The host city has moved before: IAE 2953 and 2954 were held at the Tobin Expo Center in New Babbage on microTech, and IAE 2955 moved to Orison on Crusader.',
       },
     ];
   }
@@ -86,7 +86,7 @@ function buildFaqs(iae2956: FreeFlyEvent | undefined, now: Date = new Date()) {
   return [
     {
       q: 'When is IAE 2956?',
-      a: 'Not announced. Cloud Imperium Games has not published dates for the Intergalactic Aerospace Expo 2956. Based on the pattern — IAE has run every year since at least 2951 (2021), always starting mid-to-late November, and the announcement itself has historically landed in the first week of November — the expected window is late November 2026. Treat any specific dates you see elsewhere as guesses until an official RSI Comm-Link exists.',
+      a: 'Not announced. Cloud Imperium Games has not published dates for the Intergalactic Aerospace Expo 2956. Based on the pattern — IAE has run every year since at least 2951 (2021), always starting mid-to-late November, and CIG posted its “Save the Date” announcement on November 7 in 2024 and November 6 in 2025 — the expected window is late November 2026. Treat any specific dates you see elsewhere as guesses until an official RSI Comm-Link exists.',
     },
     {
       q: 'Will IAE 2956 have a Free Fly?',
@@ -101,8 +101,8 @@ function buildFaqs(iae2956: FreeFlyEvent | undefined, now: Date = new Date()) {
       a: 'About two weeks. IAE 2955 ran November 20 – December 3, 2025; IAE 2954 ran November 22 – December 5, 2024, ending with a multi-day finale where all event ships were flyable at once.',
     },
     {
-      q: 'Is IAE 2956 held at ArcCorp?',
-      a: 'Not based on the recent pattern. Recent IAEs — including 2955 and 2953, shown below — were staged in New Babbage on microTech, not ArcCorp. Nothing is confirmed for 2956 until CIG publishes a schedule.',
+      q: 'Where will IAE 2956 be held — ArcCorp?',
+      a: 'Not announced. The host city has moved before: IAE 2953 and 2954 were held at the Tobin Expo Center in New Babbage on microTech, and IAE 2955 moved to Orison on Crusader. CIG has not said where IAE 2956 will be, so treat any ArcCorp claims as unconfirmed until an official announcement.',
     },
   ];
 }
@@ -161,7 +161,7 @@ export default function Iae2956Page() {
 
           <LightboxImage
             src="/images/iae-2952-expo.webp"
-            alt="The IAE 2952 banner tower over New Babbage, the host city of the Intergalactic Aerospace Expo"
+            alt="The IAE 2952 banner tower over New Babbage, which hosted the Intergalactic Aerospace Expo that year"
             width={1400}
             height={788}
             containerClassName="mt-8 rounded-xl border border-white/10"
@@ -210,7 +210,8 @@ export default function Iae2956Page() {
                 <SourceLink href={iae2955.source ?? 'https://robertsspaceindustries.com/comm-link'}>
                   IAE 2955
                 </SourceLink>{' '}
-                ran {formatRangeUTC(iae2955.start, iae2955.end)} and was free for
+                ran {formatRangeUTC(iae2955.start, iae2955.end)} in Orison on
+                Crusader — the expo’s debut there — and was free for
                 anyone with an RSI account. It included a{' '}
                 <strong className="text-white">Crusader Intrepid event loaner</strong>{' '}
                 plus a daily rotation of flyable ships across every manufacturer,

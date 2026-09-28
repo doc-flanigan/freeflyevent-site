@@ -217,6 +217,33 @@
         ]
       }
     ],
+    "/iae-2956": [
+      {
+        "id": "event-iae-2955",
+        "claim": "Intergalactic Aerospace Expo 2955 ran as a Free Fly event 20 November – 3 December 2025 (UTC); the RSI Perseus made its flyable debut on Day 1.",
+        "status": "verified",
+        "sources": [
+          "https://robertsspaceindustries.com/en/comm-link/transmission/20861-Intergalactic-Aerospace-Expo-2955-Free-Fly-And-Manufacturer-Schedule"
+        ]
+      },
+      {
+        "id": "iae-save-the-date-timing",
+        "claim": "CIG first announced IAE dates with a Spectrum 'Save the Date' post on November 7, 2024 (IAE 2954, Nov 22 – Dec 5) and November 6, 2025 (IAE 2955, Nov 20 – Dec 3).",
+        "status": "verified",
+        "sources": [
+          "https://robertsspaceindustries.com/spectrum/community/SC/forum/1/thread/intergalactic-aerospace-expo-2955-save-the-date"
+        ]
+      },
+      {
+        "id": "iae-venue-history",
+        "claim": "The Intergalactic Aerospace Expo was held at the Tobin Expo Center in New Babbage (microTech) in 2953 and 2954, and moved to Orison (Crusader) for IAE 2955; the IAE 2956 venue is unannounced.",
+        "status": "verified",
+        "sources": [
+          "https://robertsspaceindustries.com/spectrum/community/SC/forum/1/thread/intergalactic-aerospace-expo-2955-save-the-date",
+          "https://robertsspaceindustries.com/en/comm-link/transmission/20861-Intergalactic-Aerospace-Expo-2955-Free-Fly-And-Manufacturer-Schedule"
+        ]
+      }
+    ],
     "/is-star-citizen-free": [
       {
         "id": "freefly-event-based-not-always-on",
@@ -276,6 +303,16 @@
         "sources": [
           "https://robertsspaceindustries.com/pledge/Packages/Citizen-Starter-Pack",
           "https://robertsspaceindustries.com/pledge/game-packages"
+        ]
+      }
+    ],
+    "/llms": [
+      {
+        "id": "citizencon-2026-not-held",
+        "claim": "CIG will not hold a CitizenCon event in 2026 in any form (in-person, digital, or Direct), a decision driven by the team's focus on shipping remaining Star Citizen 2026 content and Squadron 42.",
+        "status": "verified",
+        "sources": [
+          "https://www.youtube.com/watch?v=SsOtI2dtvBc"
         ]
       }
     ],
