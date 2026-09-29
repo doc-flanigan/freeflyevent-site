@@ -7,12 +7,31 @@ import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
-import { HUB_URL, REFERRAL_CODE } from '@/data/events';
+import { HUB_URL, REFERRAL_CODE, getIae2956 } from '@/data/events';
+import { formatRangeUTC } from '@/lib/format';
 
-export const metadata: Metadata = {
+// Hourly ISR so the "next window" line in the description tracks IAE 2956
+// from expected → announced → live → ended without a redeploy.
+export const revalidate = 3600;
+
+function nextWindowLine(now: Date = new Date()): string {
+  const iae = getIae2956();
+  if (!iae) return 'Next expected window: IAE, likely late November 2026.';
+  if (now > new Date(iae.end)) return 'CIG runs them several times a year.';
+  if (now >= new Date(iae.start) && iae.freeFlyActive !== false) {
+    const ends = new Date(iae.end).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+    return `IAE 2956 is live now through ${ends}.`;
+  }
+  if (now >= new Date(iae.start)) return 'CIG runs them several times a year.';
+  return `Next window: IAE 2956, ${formatRangeUTC(iae.start, iae.end)}.`;
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return { ...baseMetadata, description: `Star Citizen is not free-to-play — but Free Fly events let anyone play free for a week or two. ${nextWindowLine()}` };
+}
+
+const baseMetadata: Metadata = {
   title: 'Is Star Citizen Free? Yes, During Free Fly',
-  description:
-    'Star Citizen is not free-to-play — but Free Fly events let anyone play free for a week or two. Next expected window: IAE, likely late November 2026.',
   alternates: { canonical: '/is-star-citizen-free' },
   keywords: [
     'is star citizen free',

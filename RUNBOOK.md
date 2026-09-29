@@ -21,6 +21,9 @@ Close every terminal, editor, and Claude Code window afterwards — they only pi
    ```
 3. Read the proposal. Confidence `high` is usually safe; `medium` means double-check dates against the source; `low` means verify everything.
 4. Paste the entry at the top of `FREE_FLY_HISTORY` in `src/data/events.ts`. Keep the array newest-first.
+   **IAE 2956 (Nov 2026): the `id` must be exactly `iae-2026`.** `/iae-2956`, the
+   `/free-fly-schedule` "Expected" row, `/next-free-fly`, `/is-star-citizen-free`,
+   and `/llms.txt` all look up that id to switch from "expected" to confirmed copy.
 5. Commit and push:
    ```
    git add src/data/events.ts
