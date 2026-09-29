@@ -13,6 +13,11 @@ import { DiscordCTA } from '@/components/DiscordCTA';
 
 const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
 
+// Hourly ISR: metadata and Event JSON-LD are derived from getEventStatus(),
+// so they must re-render when an event starts or ends, not only on deploy.
+// (The banner is client-side and already flips on its own.)
+export const revalidate = 3600;
+
 export async function generateMetadata(): Promise<Metadata> {
   const status = getEventStatus();
   if (status.state === 'ACTIVE') {
@@ -47,7 +52,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (status.state === 'CANCELLED_FREE_FLY') {
     return {
       title: `${status.event.name} Free Fly Cancelled — 50,000 UEC Still Active`,
-      description: `CIG cancelled the ${status.event.name} Free Fly — a first. You can still create a free RSI account and claim 50,000 UEC with a referral code.`,
+      description: `CIG cancelled the ${status.event.name} Free Fly. You can still create a free RSI account and claim 50,000 UEC with a referral code.`,
       keywords: [
         'Star Citizen free fly cancelled',
         `${status.event.name} free fly cancelled`,
@@ -60,12 +65,12 @@ export async function generateMetadata(): Promise<Metadata> {
       openGraph: {
         images: ['/images/hero/hero-01.jpg'],
         title: `${status.event.name} Free Fly Cancelled — 50,000 UEC Still Available`,
-        description: `CIG pulled the Free Fly for ${status.event.name} due to server load — a first in Star Citizen history. Your 50,000 UEC referral bonus still works. Sign up now.`,
+        description: `CIG pulled the Free Fly for ${status.event.name}. ${status.event.cancelledNote ?? ''} Your 50,000 UEC referral bonus still works. Sign up now.`.replace(/\s+/g, ' '),
       },
       twitter: {
         card: 'summary_large_image',
         title: `Star Citizen Free Fly Cancelled (${status.event.name})`,
-        description: "First ever Free Fly cancellation. Server issues forced CIG's hand — but your 50,000 UEC signup bonus still works.",
+        description: `CIG pulled the ${status.event.name} Free Fly — but your 50,000 UEC signup bonus still works.`,
       },
     };
   }
@@ -168,8 +173,10 @@ export default function HomePage() {
           <EventStatusBanner variant="hero" />
         </section>
 
-        {/* DEFENSECON CANCELLATION — visible only when free fly was pulled */}
-        {status.state === 'CANCELLED_FREE_FLY' && (
+        {/* DEFENSECON CANCELLATION — DefenseCon-specific story (Twitch clip,
+            quotes), so only shown for that event. Any other cancelled event
+            is covered by the banner's cancelledNote. */}
+        {status.state === 'CANCELLED_FREE_FLY' && status.event.id === 'defensecon-2026' && (
           <section id="cancellation" className="container-narrow py-16 sm:py-20">
             <div className="rounded-2xl border border-white/10 bg-blackMid/60 p-8 sm:p-12">
 

@@ -7,7 +7,7 @@ import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
-import { FREE_FLY_HISTORY, getEventStatus, HUB_URL } from '@/data/events';
+import { FREE_FLY_HISTORY, getEventStatus, getIae2956, HUB_URL } from '@/data/events';
 import { formatRangeUTC } from '@/lib/format';
 
 // Re-render hourly so "Live now" / "Ended" states flip without a redeploy.
@@ -33,11 +33,30 @@ export const metadata: Metadata = {
   },
 };
 
-const faqs = [
-  {
-    q: 'What is the Star Citizen Free Fly schedule for 2026?',
-    a: 'Two windows are confirmed so far: DefenseCon 2956 ran May 14–27, and the Foundation Festival 2026 Free Fly ran July 29 – August 10. Based on the yearly pattern, the next expected window is the Intergalactic Aerospace Expo (IAE) in late November — CIG has not announced IAE 2956 dates yet.',
-  },
+// FAQ 1 is built from the event calendar so it picks up IAE 2956 (and any
+// other 2026 event) the moment it is added to FREE_FLY_HISTORY.
+function scheduleAnswer(now: Date = new Date()): string {
+  const confirmed = FREE_FLY_HISTORY
+    .filter((ev) => new Date(ev.start).getUTCFullYear() === 2026)
+    .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime());
+  const count = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six'][confirmed.length] ?? String(confirmed.length);
+  const lines = confirmed.map((ev) => {
+    const range = formatRangeUTC(ev.start, ev.end);
+    if (now > new Date(ev.end)) return `${ev.name} ran ${range}`;
+    if (now >= new Date(ev.start)) return `${ev.name} is live now (${range})`;
+    return `${ev.name} is scheduled for ${range}`;
+  });
+  const list =
+    lines.length > 2
+      ? `${lines.slice(0, -1).join(', ')}, and ${lines[lines.length - 1]}`
+      : lines.join(' and ');
+  const tail = getIae2956()
+    ? ''
+    : ' Based on the yearly pattern, the next expected window is the Intergalactic Aerospace Expo (IAE) in late November — CIG has not announced IAE 2956 dates yet.';
+  return `${count} ${confirmed.length === 1 ? 'window is' : 'windows are'} confirmed so far: ${list}.${tail}`;
+}
+
+const staticFaqs = [
   {
     q: 'Is there a fixed Free Fly schedule?',
     a: 'No. Cloud Imperium Games does not publish an annual calendar. Each Free Fly is announced through an official Comm-Link, usually one to two weeks before the event starts. What repeats is the pattern: a May flagship event, a mid-year Foundation Festival, and the IAE in late November.',
@@ -52,9 +71,11 @@ const faqs = [
   },
 ];
 
-/** Expected-but-unannounced windows shown after the confirmed rows. */
+/** Expected-but-unannounced windows shown after the confirmed rows. Each
+ *  row drops out automatically once its event id is in FREE_FLY_HISTORY. */
 const EXPECTED = [
   {
+    id: 'iae-2026',
     name: 'Intergalactic Aerospace Expo 2956',
     window: 'Late November 2026 (expected)',
     note: 'Not announced. IAE has run a November Free Fly every year since at least 2951 (2021).',
@@ -65,6 +86,11 @@ const EXPECTED = [
 export default function FreeFlySchedulePage() {
   const status = getEventStatus();
   const now = new Date();
+  const faqs = [
+    { q: 'What is the Star Citizen Free Fly schedule for 2026?', a: scheduleAnswer(now) },
+    ...staticFaqs,
+  ];
+  const expected = EXPECTED.filter((row) => !FREE_FLY_HISTORY.some((ev) => ev.id === row.id));
 
   // Confirmed 2026 windows, oldest first for calendar reading order.
   const confirmed2026 = FREE_FLY_HISTORY
@@ -156,7 +182,7 @@ export default function FreeFlySchedulePage() {
                       </tr>
                     );
                   })}
-                  {EXPECTED.map((row) => (
+                  {expected.map((row) => (
                     <tr key={row.name} className="border-b border-white/5 hover:bg-orange/5">
                       <td className="px-4 py-3 text-muted">{row.window}</td>
                       <td className="px-4 py-3 font-semibold text-white">
@@ -175,8 +201,10 @@ export default function FreeFlySchedulePage() {
               </table>
             </div>
             <p className="mt-4 text-xs text-muted">
-              &ldquo;Expected&rdquo; rows are pattern-based, not announcements. Every
-              confirmed row is sourced from an official RSI Comm-Link — see the full{' '}
+              {expected.length > 0 && (
+                <>&ldquo;Expected&rdquo; rows are pattern-based, not announcements. </>
+              )}
+              Every confirmed row is sourced from an official RSI Comm-Link — see the full{' '}
               <Link href="/event-history" className="text-orange underline-offset-2 hover:underline">
                 event history
               </Link>{' '}

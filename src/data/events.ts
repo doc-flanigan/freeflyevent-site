@@ -198,8 +198,31 @@ export function getEventStatus(now: Date = new Date()): EventStatus {
 
   return {
     state: 'INACTIVE',
-    nextLikely: 'Next Free Fly TBD — historically Invictus (May) and IAE (November).',
+    nextLikely: iaeStillAheadThisYear(now)
+      ? 'No Free Fly is announced yet — the next expected window is the Intergalactic Aerospace Expo (IAE) in late November, which has had a Free Fly every year since 2021.'
+      : 'Next Free Fly TBD — historically a May flagship event (Invictus / DefenseCon) and IAE (November).',
   };
+}
+
+/** ID convention for each year's IAE entry: `iae-<real-world year>`. */
+export function iaeIdForYear(year: number): string {
+  return `iae-${year}`;
+}
+
+/**
+ * The IAE 2956 entry (`iae-2026`) once CIG announces it and it is added to
+ * FREE_FLY_HISTORY. Pages that pre-announce IAE 2956 key their copy off this,
+ * so adding the entry is the only edit needed when the Comm-Link lands.
+ */
+export function getIae2956(): FreeFlyEvent | undefined {
+  return FREE_FLY_HISTORY.find((ev) => ev.id === iaeIdForYear(2026));
+}
+
+/** True until this year's IAE has ended (or December arrives without one). */
+function iaeStillAheadThisYear(now: Date): boolean {
+  const iae = FREE_FLY_HISTORY.find((ev) => ev.id === iaeIdForYear(now.getUTCFullYear()));
+  if (iae) return now < new Date(iae.end);
+  return now.getUTCMonth() <= 10; // Jan–Nov
 }
 
 /**

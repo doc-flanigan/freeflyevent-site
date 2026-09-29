@@ -8,7 +8,7 @@ import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
-import { FREE_FLY_HISTORY, getEventStatus, HUB_URL, type EventStatus } from '@/data/events';
+import { FREE_FLY_HISTORY, getEventStatus, getIae2956, HUB_URL, type EventStatus } from '@/data/events';
 import { formatDateLong, formatRangeUTC } from '@/lib/format';
 
 // Re-render hourly so the live status and FAQ flip without a redeploy.
@@ -51,6 +51,12 @@ const SOURCES = {
     'https://robertsspaceindustries.com/en/comm-link/transmission/21134-Countdown-To-DefenseCon',
 } as const;
 
+/** After IAE 2956 ends, "IAE in late November" is no longer the next window. */
+function iae2956Ended(now: Date = new Date()): boolean {
+  const iae = getIae2956();
+  return !!iae && now > new Date(iae.end);
+}
+
 // FAQs 1 and 3 depend on whether an event is live or announced, so they are
 // built from the event calendar and never go stale after an event ends.
 function buildFaqs(status: EventStatus, now: Date = new Date()) {
@@ -62,11 +68,17 @@ function buildFaqs(status: EventStatus, now: Date = new Date()) {
   let nextAnswer: string;
   let nowAnswer: string;
   if (status.state === 'ACTIVE' || status.state === 'CANCELLED_FREE_FLY') {
-    nextAnswer = `${status.event.name} is running now (${formatRangeUTC(status.event.start, status.event.end)}). After it ends, the most dependable window is the Intergalactic Aerospace Expo (IAE) in late November, which has run a November Free Fly every year since at least 2951 (2021).`;
+    const afterIt = status.event.id.startsWith('iae-')
+      ? 'After it ends, CIG has not announced the next one — historically the next window is a May flagship event (Invictus Launch Week, or DefenseCon in 2026).'
+      : 'After it ends, the most dependable window is the Intergalactic Aerospace Expo (IAE) in late November, which has run a November Free Fly every year since at least 2951 (2021).';
+    nextAnswer = `${status.event.name} is running now (${formatRangeUTC(status.event.start, status.event.end)}). ${afterIt}`;
     nowAnswer = `Yes — ${status.event.name} runs ${formatRangeUTC(status.event.start, status.event.end)}. The status banner at the top of every page on this site shows the live countdown.`;
   } else if (status.state === 'UPCOMING') {
     nextAnswer = `The next announced Free Fly is ${status.event.name}, ${formatRangeUTC(status.event.start, status.event.end)}. The countdown is live in the banner at the top of this page.`;
     nowAnswer = `Not yet — ${status.event.name} is announced for ${formatRangeUTC(status.event.start, status.event.end)}. The banner at the top of this page counts down to the start. ${lastEndedLine}`.trim();
+  } else if (iae2956Ended(now)) {
+    nextAnswer = `CIG has not announced the next one yet. ${lastEndedLine} Historically the next window is a May flagship event — Invictus Launch Week in past years, DefenseCon in 2026. Check the live banner at the top of this page — it updates the moment CIG posts an official Comm-Link.`;
+    nowAnswer = `Not at the moment. ${lastEndedLine} The status banner at the top of every page on this site flips to a live countdown as soon as CIG announces the next event.`;
   } else {
     nextAnswer = `CIG has not announced the next one yet. ${lastEndedLine} The most dependable next window is the Intergalactic Aerospace Expo (IAE) in late November, which has run a November Free Fly every year since at least 2951 (2021) — IAE 2955 ran November 20 – December 3, 2025. Check the live banner at the top of this page — it updates the moment CIG posts an official Comm-Link.`;
     nowAnswer = `Not at the moment. ${lastEndedLine} The status banner at the top of every page on this site flips to a live countdown as soon as CIG announces the next event.`;
@@ -117,11 +129,15 @@ export default function NextFreeFlyPage() {
   const faqs = buildFaqs(status);
   const lastEnded = FREE_FLY_HISTORY.find((ev) => new Date(ev.end) < new Date());
   const recent = FREE_FLY_HISTORY.slice(0, 6);
+  const iae2956 = getIae2956();
 
   // Live headline adapts to the event calendar in src/data/events.ts.
   let headline: string;
   let detail: string;
-  if (status.state === 'ACTIVE') {
+  if (status.state === 'CANCELLED_FREE_FLY') {
+    headline = `${status.event.name}: the Free Fly was cancelled`;
+    detail = `CIG pulled free access for ${status.event.name} (${formatRangeUTC(status.event.start, status.event.end)}). ${status.event.cancelledNote ?? ''} You can still create a free RSI account and claim the 50,000 UEC referral bonus.`.replace(/\s+/g, ' ');
+  } else if (status.state === 'ACTIVE') {
     headline = `A Free Fly is live right now: ${status.event.name}`;
     detail = `It runs ${formatRangeUTC(status.event.start, status.event.end)}. Make a free account and play the full game at no cost before it ends.`;
   } else if (status.state === 'UPCOMING') {
@@ -130,7 +146,9 @@ export default function NextFreeFlyPage() {
     detail = `It begins in ${startMonth} — ${formatRangeUTC(status.event.start, status.event.end)}. The countdown is live in the banner above.`;
   } else {
     headline = 'No Free Fly is scheduled at this moment';
-    detail = 'CIG has not announced the next event. Based on the yearly pattern, the strongest candidate is the Intergalactic Aerospace Expo (IAE) in late November. The banner above updates the instant a new event is announced.';
+    detail = iae2956Ended()
+      ? 'CIG has not announced the next event. Based on the yearly pattern, the strongest candidate is the May flagship event (Invictus Launch Week in past years, DefenseCon in 2026). The banner above updates the instant a new event is announced.'
+      : 'CIG has not announced the next event. Based on the yearly pattern, the strongest candidate is the Intergalactic Aerospace Expo (IAE) in late November. The banner above updates the instant a new event is announced.';
   }
 
   return (
@@ -160,12 +178,22 @@ export default function NextFreeFlyPage() {
                 <strong className="text-white">{formatDateLong(new Date(lastEnded.end))}</strong>.
               </>
             )}
-            The most dependable next window is the{' '}
-            <strong className="text-white">
-              Intergalactic Aerospace Expo (IAE) in late November
-            </strong>
-            , which has run a Free Fly every year since 2021. There is no CitizenCon
-            in 2026, so nothing is expected in October.
+            {iae2956Ended() ? (
+              <>
+                {' '}Historically the next window is a{' '}
+                <strong className="text-white">May flagship event</strong> —
+                Invictus Launch Week in past years, DefenseCon in 2026.
+              </>
+            ) : (
+              <>
+                The most dependable next window is the{' '}
+                <strong className="text-white">
+                  Intergalactic Aerospace Expo (IAE) in late November
+                </strong>
+                , which has run a Free Fly every year since 2021. There is no CitizenCon
+                in 2026, so nothing is expected in October.
+              </>
+            )}
           </p>
           )}
 
@@ -182,10 +210,11 @@ export default function NextFreeFlyPage() {
               What to expect for the rest of 2026
             </h2>
             <p className="mt-4 text-muted">
-              CIG has not announced any further Free Fly for 2026. The IAE
-              expectation below is based on how the event calendar has repeated in
-              past years, with the historical instances sourced from official RSI
-              Comm-Links.
+              {iae2956 && iae2956Ended()
+                ? 'IAE 2956 has ended, and CIG has not announced any further Free Fly for 2026.'
+                : iae2956
+                ? 'IAE 2956 is officially confirmed — details below. Beyond it, CIG has not announced any further Free Fly for 2026.'
+                : 'CIG has not announced any further Free Fly for 2026. The IAE expectation below is based on how the event calendar has repeated in past years, with the historical instances sourced from official RSI Comm-Links.'}
             </p>
 
             <div className="mt-6 space-y-5">
@@ -193,12 +222,32 @@ export default function NextFreeFlyPage() {
               <div className="rounded-xl border border-orange/30 bg-blackMid/60 p-6">
                 <div className="flex flex-wrap items-center gap-3">
                   <h3 className="heading-display text-lg text-white">
-                    Intergalactic Aerospace Expo (IAE) — late November
+                    {iae2956
+                      ? `Intergalactic Aerospace Expo 2956 — ${formatRangeUTC(iae2956.start, iae2956.end)}`
+                      : 'Intergalactic Aerospace Expo (IAE) — late November'}
                   </h3>
                   <span className="rounded-full border border-orange/40 bg-orange/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-orange">
-                    Strong yearly pattern
+                    {iae2956 ? 'Confirmed' : 'Strong yearly pattern'}
                   </span>
                 </div>
+                {iae2956 ? (
+                  <p className="mt-3 text-sm leading-relaxed text-muted">
+                    {iae2956.source ? (
+                      <SourceLink href={iae2956.source}>CIG confirmed</SourceLink>
+                    ) : (
+                      'CIG confirmed'
+                    )}{' '}
+                    the IAE 2956 Free Fly for{' '}
+                    {formatRangeUTC(iae2956.start, iae2956.end)}, free for anyone with
+                    an RSI account. Full details, free ships, and the{' '}
+                    {iae2956Ended() ? 'recap' : 'live status'} are on the{' '}
+                    <Link href="/iae-2956" className="text-orange underline-offset-2 hover:underline">
+                      IAE 2956 page
+                    </Link>
+                    .
+                  </p>
+                ) : (
+                <>
                 <p className="mt-3 text-sm leading-relaxed text-muted">
                   IAE has run a November Free Fly every year since at least 2951
                   (2021), making it the most dependable free-to-play window on the
@@ -213,6 +262,8 @@ export default function NextFreeFlyPage() {
                 <p className="mt-3 text-xs text-muted">
                   Pattern-based expectation — not an announcement.
                 </p>
+                </>
+                )}
               </div>
 
               {/* CitizenCon — not held in 2026 (ledger: citizencon-2026-not-held) */}

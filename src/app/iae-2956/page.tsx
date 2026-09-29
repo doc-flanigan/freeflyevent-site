@@ -8,44 +8,97 @@ import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
-import { FREE_FLY_HISTORY, HUB_URL, type FreeFlyEvent } from '@/data/events';
+import { HUB_URL, FREE_FLY_HISTORY, getIae2956, type FreeFlyEvent } from '@/data/events';
 import { formatRangeUTC } from '@/lib/format';
 
-// Re-render hourly so the FAQ + status flip the moment IAE 2956 is added to
-// FREE_FLY_HISTORY — no redeploy needed. Mirrors /next-free-fly.
+// Re-render hourly so every state-dependent string on this page (metadata,
+// headline, status box, FAQ, JSON-LD) flips the moment IAE 2956 is added to
+// FREE_FLY_HISTORY, and again when it starts and ends — no redeploy needed.
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
-  title: 'IAE 2956 Free Fly — Expected November 2026',
-  description:
-    'IAE 2956 is not announced yet. Based on the pattern, expect late November 2026 — IAE 2955 ran Nov 20–Dec 3, 2025. The sourced breakdown, updated live.',
-  alternates: { canonical: '/iae-2956' },
-  keywords: [
-    'iae 2956',
-    'star citizen iae 2026',
-    'iae 2956 free fly',
-    'iae 2956 dates',
-    'iae 2956 arccorp',
-    'intergalactic aerospace expo 2956',
-    'star citizen november free fly',
-    'when is the star citizen free to play event',
-  ],
-  openGraph: {
-    images: ['/images/hero/hero-01.jpg'],
-    title: 'IAE 2956 — Star Citizen Free Fly Expected November 2026',
-    description:
-      'IAE 2956 is unannounced. Here is what five years of November Free Flys say to expect — and how to be ready.',
-  },
-};
+// Only meaningful while IAE 2956 is unannounced — bump it whenever the
+// official Comm-Links are re-checked.
+const LAST_CHECKED = 'September 29, 2026';
 
-const LAST_CHECKED = 'July 29, 2026';
+type Phase = 'unannounced' | 'upcoming' | 'active' | 'cancelled' | 'ended';
 
-// The IAE-2956 record this page watches for. Once CIG announces and
-// `iae-2026` is added to FREE_FLY_HISTORY (see Maintenance in CLAUDE.md),
-// this page's FAQ and status copy switch from pattern-based to confirmed
-// automatically — no other edits required.
-function findIae2956(): FreeFlyEvent | undefined {
-  return FREE_FLY_HISTORY.find((ev) => ev.id === 'iae-2026');
+function phaseOf(iae: FreeFlyEvent | undefined, now: Date = new Date()): Phase {
+  if (!iae) return 'unannounced';
+  const start = new Date(iae.start);
+  const end = new Date(iae.end);
+  if (now > end) return 'ended';
+  if (now >= start) return iae.freeFlyActive === false ? 'cancelled' : 'active';
+  return 'upcoming';
+}
+
+function endDay(iae: FreeFlyEvent): string {
+  return new Date(iae.end).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+}
+
+const KEYWORDS = [
+  'iae 2956',
+  'star citizen iae 2026',
+  'iae 2956 free fly',
+  'iae 2956 dates',
+  'iae 2956 arccorp',
+  'intergalactic aerospace expo 2956',
+  'star citizen november free fly',
+  'when is the star citizen free to play event',
+];
+
+export async function generateMetadata(): Promise<Metadata> {
+  const iae = getIae2956();
+  const phase = phaseOf(iae);
+  const base = {
+    alternates: { canonical: '/iae-2956' },
+    keywords: KEYWORDS,
+  };
+
+  if (!iae || phase === 'unannounced') {
+    return {
+      ...base,
+      title: 'IAE 2956 Free Fly — Expected November 2026',
+      description:
+        'IAE 2956 is not announced yet. Based on the pattern, expect late November 2026 — IAE 2955 ran Nov 20–Dec 3, 2025. The sourced breakdown, updated live.',
+      openGraph: {
+        images: ['/images/hero/hero-01.jpg'],
+        title: 'IAE 2956 — Star Citizen Free Fly Expected November 2026',
+        description:
+          'IAE 2956 is unannounced. Here is what five years of November Free Flys say to expect — and how to be ready.',
+      },
+    };
+  }
+
+  const range = formatRangeUTC(iae.start, iae.end);
+  const copy: Record<Exclude<Phase, 'unannounced'>, { title: string; description: string }> = {
+    upcoming: {
+      title: `IAE 2956 Free Fly Confirmed — ${range}`,
+      description: `CIG has confirmed the IAE 2956 Free Fly: ${range}. Free for anyone with an RSI account — dates, free ships, and how to claim 50,000 UEC before it starts.`,
+    },
+    active: {
+      title: `IAE 2956 Free Fly Is Live — Ends ${endDay(iae)}`,
+      description: `The IAE 2956 Free Fly is live now through ${endDay(iae)}. Play Star Citizen free with an RSI account — what's free to fly and how to claim 50,000 UEC.`,
+    },
+    cancelled: {
+      title: 'IAE 2956 Free Fly Cancelled — What Still Works',
+      description: `CIG pulled the Free Fly portion of IAE 2956 (${range}). New RSI accounts can still claim 50,000 UEC with a referral code — here is what changed and what still works.`,
+    },
+    ended: {
+      title: `IAE 2956 Free Fly Recap — ${range}`,
+      description: `The IAE 2956 Free Fly ran ${range} and has ended. Full record of the dates and free ships, sourced from CIG's official Comm-Link — plus when to expect the next one.`,
+    },
+  };
+  const { title, description } = copy[phase];
+  return {
+    ...base,
+    title,
+    description,
+    openGraph: { images: ['/images/hero/hero-01.jpg'], title, description },
+  };
 }
 
 function buildFaqs(iae2956: FreeFlyEvent | undefined, now: Date = new Date()) {
@@ -55,16 +108,22 @@ function buildFaqs(iae2956: FreeFlyEvent | undefined, now: Date = new Date()) {
     const range = formatRangeUTC(iae2956.start, iae2956.end);
     const active = now >= start && now <= end;
     const past = now > end;
+    const cancelled = iae2956.freeFlyActive === false;
     const whenAnswer = active
       ? `IAE 2956 is running right now, ${range}. Check the countdown banner at the top of this page for the exact time remaining.`
       : past
         ? `IAE 2956 ran ${range}. See the Free Fly schedule for what's next.`
         : `Confirmed: IAE 2956 runs ${range}. The countdown banner at the top of this page tracks the time remaining until it starts.`;
+    const bonus = iae2956.bonusOverride
+      ? ` New accounts created with a referral code during the event get ${iae2956.bonusOverride.text}.`
+      : ' New accounts created with a referral code get 50,000 UEC.';
     return [
       { q: 'When is IAE 2956?', a: whenAnswer },
       {
         q: 'Will IAE 2956 have a Free Fly?',
-        a: `Yes, confirmed by CIG. ${iae2956.notes ?? `IAE 2956 (${range}) is free for anyone with an RSI account.`}`,
+        a: cancelled
+          ? `CIG announced a Free Fly for IAE 2956 (${range}) but then pulled free access. ${iae2956.cancelledNote ?? ''}`.trim()
+          : `Yes, confirmed by CIG in an official Comm-Link. IAE 2956 (${range}) is free for anyone with an RSI account — no purchase needed.${bonus}`,
       },
       {
         q: 'What ships will be free during IAE 2956?',
@@ -78,7 +137,7 @@ function buildFaqs(iae2956: FreeFlyEvent | undefined, now: Date = new Date()) {
       },
       {
         q: 'Where is IAE 2956 held?',
-        a: 'Check the confirmed schedule above for this year’s venue. The host city has moved before: IAE 2953 and 2954 were held at the Tobin Expo Center in New Babbage on microTech, and IAE 2955 moved to Orison on Crusader.',
+        a: 'CIG’s official IAE 2956 Comm-Link (linked above) names this year’s venue. The host city has moved before: IAE 2953 and 2954 were held at the Tobin Expo Center in New Babbage on microTech, and IAE 2955 moved to Orison on Crusader.',
       },
     ];
   }
@@ -122,9 +181,19 @@ function SourceLink({ href, children }: { href: string; children: ReactNode }) {
 
 export default function Iae2956Page() {
   const iaeHistory = FREE_FLY_HISTORY.filter((ev) => ev.id.startsWith('iae-'));
-  const iae2956 = findIae2956();
+  const iae2956 = getIae2956();
+  const phase = phaseOf(iae2956);
   const faqs = buildFaqs(iae2956);
   const iae2955 = FREE_FLY_HISTORY.find((ev) => ev.id === 'iae-2025');
+  const range = iae2956 ? formatRangeUTC(iae2956.start, iae2956.end) : '';
+
+  const headline: Record<Phase, string> = {
+    unannounced: 'IAE 2956: The Next Big Star Citizen Free Fly (Expected November)',
+    upcoming: `IAE 2956 Free Fly: Confirmed for ${range}`,
+    active: 'The IAE 2956 Free Fly Is Live Now',
+    cancelled: 'IAE 2956: The Free Fly Was Cancelled',
+    ended: `IAE 2956 Free Fly Recap (${range})`,
+  };
 
   return (
     <>
@@ -137,13 +206,52 @@ export default function Iae2956Page() {
 
           <span className="eyebrow">IAE 2956</span>
           <h1 className="heading-display mt-4 text-4xl sm:text-5xl">
-            IAE 2956: The Next Big Star Citizen Free Fly (Expected November)
+            {headline[phase]}
           </h1>
           <p className="mt-3 text-xs uppercase tracking-[0.18em] text-muted">
-            Last checked {LAST_CHECKED} &middot; status: not announced
+            {iae2956
+              ? <>Confirmed by official RSI Comm-Link &middot; status: {phase === 'upcoming' ? 'announced' : phase === 'active' ? 'live now' : phase}</>
+              : <>Last checked {LAST_CHECKED} &middot; status: not announced</>}
           </p>
 
-          {/* GEO answer — static, honest, quotable */}
+          {/* GEO answer — honest, quotable, derived from the event calendar */}
+          {iae2956 ? (
+            <p className="mt-6 text-lg leading-relaxed text-white/85">
+              {phase === 'upcoming' && (
+                <>
+                  <strong className="text-white">Confirmed:</strong> the
+                  Intergalactic Aerospace Expo 2956 Free Fly runs{' '}
+                  <strong className="text-white">{range}</strong>, per CIG&apos;s
+                  official Comm-Link. It is free for anyone with an RSI account — no
+                  purchase needed.{' '}
+                </>
+              )}
+              {phase === 'active' && (
+                <>
+                  The Intergalactic Aerospace Expo 2956 Free Fly is{' '}
+                  <strong className="text-white">live right now</strong> and runs
+                  through <strong className="text-white">{endDay(iae2956)}</strong>{' '}
+                  ({range}). Anyone with a free RSI account can play — no purchase
+                  needed.{' '}
+                </>
+              )}
+              {phase === 'cancelled' && (
+                <>
+                  CIG pulled the Free Fly portion of the Intergalactic Aerospace Expo
+                  2956 ({range}). {iae2956.cancelledNote ?? ''}{' '}
+                </>
+              )}
+              {phase === 'ended' && (
+                <>
+                  The Intergalactic Aerospace Expo 2956 Free Fly ran{' '}
+                  <strong className="text-white">{range}</strong> and has ended.{' '}
+                </>
+              )}
+              {iae2956.ships.length > 0 && phase !== 'cancelled' && (
+                <>Free to fly: {iae2956.ships.join('; ')}.</>
+              )}
+            </p>
+          ) : (
           <p className="mt-6 text-lg leading-relaxed text-white/85">
             The Intergalactic Aerospace Expo 2956 has{' '}
             <strong className="text-white">not been announced</strong>. Based on
@@ -158,6 +266,7 @@ export default function Iae2956Page() {
             roughly two weeks, 100+ ships rotating through daily manufacturer
             showcases, free for anyone with an RSI account.
           </p>
+          )}
 
           <LightboxImage
             src="/images/iae-2952-expo.webp"
@@ -168,7 +277,51 @@ export default function Iae2956Page() {
             className="h-auto w-full rounded-xl"
           />
 
-          {/* Not announced box */}
+          {/* Confirmed box — derived from the iae-2026 entry once it exists */}
+          {iae2956 ? (
+            <section className="mt-14">
+              <h2 className="heading-display text-2xl sm:text-3xl">
+                What&apos;s confirmed
+              </h2>
+              <div className="mt-6 rounded-2xl border border-orange/40 bg-orange/10 p-6 sm:p-8">
+                <p className="text-xs uppercase tracking-[0.18em] text-orange">
+                  {phase === 'active' ? 'Live now' : phase === 'ended' ? 'Ended' : phase === 'cancelled' ? 'Free Fly cancelled' : 'Officially announced'}
+                </p>
+                <dl className="mt-4 space-y-4 text-sm leading-relaxed">
+                  <div>
+                    <dt className="font-semibold text-white">Dates (UTC)</dt>
+                    <dd className="mt-1 text-white/85">{range}</dd>
+                  </div>
+                  {iae2956.ships.length > 0 && (
+                    <div>
+                      <dt className="font-semibold text-white">Free to fly</dt>
+                      <dd className="mt-1">
+                        <ul className="list-disc space-y-1 pl-5 text-white/85">
+                          {iae2956.ships.map((ship) => (
+                            <li key={ship}>{ship}</li>
+                          ))}
+                        </ul>
+                      </dd>
+                    </div>
+                  )}
+                  <div>
+                    <dt className="font-semibold text-white">Signup bonus</dt>
+                    <dd className="mt-1 text-white/85">
+                      {iae2956.bonusOverride
+                        ? iae2956.bonusOverride.text
+                        : '50,000 UEC when you create your free RSI account with a referral code.'}
+                    </dd>
+                  </div>
+                </dl>
+                {iae2956.source && (
+                  <p className="mt-5 text-xs text-muted">
+                    Source:{' '}
+                    <SourceLink href={iae2956.source}>official RSI Comm-Link</SourceLink>
+                  </p>
+                )}
+              </div>
+            </section>
+          ) : (
           <section className="mt-14">
             <h2 className="heading-display text-2xl sm:text-3xl">
               What&apos;s confirmed so far
@@ -187,17 +340,16 @@ export default function Iae2956Page() {
               </p>
               {/*
                 FLIP POINT: when CIG posts the IAE 2956 Comm-Link, add the event
-                to FREE_FLY_HISTORY in src/data/events.ts as id "iae-2026"
-                (banner/countdown/JSON-LD/FAQ all derive automatically via
-                findIae2956() + buildFaqs() above — pattern: /foundation-festival-2026),
-                replace this dashed box with a confirmed live-status box, and
-                update the GEO answer paragraph above.
+                to FREE_FLY_HISTORY in src/data/events.ts as id "iae-2026".
+                Everything on this page (metadata, headline, this box, FAQ,
+                Event JSON-LD) switches to the confirmed copy automatically.
               */}
               <p className="mt-3 text-xs text-muted">
                 Last checked {LAST_CHECKED}. Watching official RSI Comm-Links only.
               </p>
             </div>
           </section>
+          )}
 
           {/* What happened at IAE 2955 — recap, verified facts only */}
           {iae2955 && (
@@ -206,7 +358,9 @@ export default function Iae2956Page() {
                 What happened at IAE 2955
               </h2>
               <p className="mt-4 text-muted">
-                The most recent IAE is the best evidence for what to expect.{' '}
+                {iae2956
+                  ? 'Last year’s expo is a good guide to the format.'
+                  : 'The most recent IAE is the best evidence for what to expect.'}{' '}
                 <SourceLink href={iae2955.source ?? 'https://robertsspaceindustries.com/comm-link'}>
                   IAE 2955
                 </SourceLink>{' '}
@@ -278,11 +432,13 @@ export default function Iae2956Page() {
           {/* What to expect */}
           <section className="mt-14">
             <h2 className="heading-display text-2xl sm:text-3xl">
-              What IAE 2956 will probably look like
+              {iae2956 ? 'How IAE usually works' : 'What IAE 2956 will probably look like'}
             </h2>
             <p className="mt-4 text-muted">
-              If the pattern holds: roughly two weeks starting mid-to-late
-              November, a convention-hall showcase with a different ship
+              {iae2956
+                ? 'Past IAEs have followed a familiar format: roughly two weeks, '
+                : 'If the pattern holds: roughly two weeks starting mid-to-late November, '}
+              a convention-hall showcase with a different ship
               manufacturer featured each day, that manufacturer&apos;s ships free
               to fly for 48 hours, and a finale stretch where everything flies at
               once. Recent IAEs have also debuted brand-new flyable ships on Day 1
@@ -301,12 +457,19 @@ export default function Iae2956Page() {
 
           {/* CTA */}
           <section className="mt-14 rounded-2xl border border-white/10 bg-blackMid/60 p-8 sm:p-10">
-            <h2 className="heading-display text-2xl">Don&apos;t wait for November</h2>
+            <h2 className="heading-display text-2xl">
+              {phase === 'unannounced'
+                ? 'Don’t wait for November'
+                : phase === 'upcoming'
+                  ? 'Get your account ready before IAE 2956 starts'
+                  : phase === 'active'
+                    ? 'IAE 2956 is live — play free now'
+                    : 'Be ready for the next Free Fly'}
+            </h2>
             <p className="mt-4 text-white/80">
-              {`Make your free account before the Free Fly starts. A referral code
-              only works at signup — it can't be added later — so create your free
-              RSI account with one now and your 50,000 UEC bonus will be waiting
-              whenever you first log in, whether or not IAE 2956 is live yet.`}
+              {phase === 'active'
+                ? `Create your free RSI account, download the launcher, and you're in until ${iae2956 ? endDay(iae2956) : 'the event ends'}. A referral code only works at signup — it can't be added later — so use one now and your 50,000 UEC bonus is waiting when you first log in.`
+                : `Make your free account before the Free Fly starts. A referral code only works at signup — it can't be added later — so create your free RSI account with one now and your 50,000 UEC bonus will be waiting whenever you first log in${phase === 'unannounced' || phase === 'upcoming' ? ', whether or not IAE 2956 is live yet' : ''}.`}
             </p>
             <div className="mt-6">
               <CTAButton size="lg" trackingLabel="iae-2956-cta" />
@@ -366,6 +529,38 @@ export default function Iae2956Page() {
           }),
         }}
       />
+      {iae2956 && phase !== 'cancelled' && (
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Event',
+              name: `${iae2956.name} Free Fly`,
+              startDate: iae2956.start,
+              endDate: iae2956.end,
+              eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+              eventStatus: 'https://schema.org/EventScheduled',
+              location: { '@type': 'VirtualLocation', url: 'https://freeflyevent.com/iae-2956' },
+              description: `Star Citizen Free Fly during the Intergalactic Aerospace Expo 2956 — free to play for anyone with an RSI account, ${range}.`,
+              organizer: {
+                '@type': 'Organization',
+                name: 'Cloud Imperium Games',
+                url: 'https://www.robertsspaceindustries.com/',
+              },
+              offers: {
+                '@type': 'Offer',
+                price: '0',
+                priceCurrency: 'USD',
+                availability: 'https://schema.org/InStock',
+                url: 'https://freeflyevent.com/iae-2956',
+                validFrom: iae2956.start,
+              },
+            }),
+          }}
+        />
+      )}
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger

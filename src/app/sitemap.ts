@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { FREE_FLY_HISTORY } from '@/data/events';
+import { FREE_FLY_HISTORY, getIae2956 } from '@/data/events';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://freeflyevent.com';
 
@@ -60,9 +60,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${SITE_URL}/iae-2956`,
       // Pre-announcement watch page — flips to confirmed when CIG posts the
-      // Comm-Link (expected ~November 2026).
-      lastModified: new Date('2026-07-29'),
-      changeFrequency: 'weekly',
+      // Comm-Link (expected ~November 2026). Once `iae-2026` exists the page
+      // content is live-status driven, so signal today's date.
+      lastModified: getIae2956() ? homepageModified : new Date('2026-09-29'),
+      changeFrequency: getIae2956() ? 'daily' : 'weekly',
       priority: 0.8,
     },
     {

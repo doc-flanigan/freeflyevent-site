@@ -1,4 +1,39 @@
-# Star Citizen Free Fly Events
+import { getIae2956 } from '@/data/events';
+import { formatRangeUTC } from '@/lib/format';
+
+// Served as a route (not public/llms.txt) so the IAE 2956 lines follow
+// FREE_FLY_HISTORY: expected → confirmed → live → ended, with no manual edit
+// when the event is added. Hourly ISR, same as the pages it summarizes.
+export const revalidate = 3600;
+
+function iaeLine(now: Date = new Date()): string {
+  const iae = getIae2956();
+  const label = '- [IAE 2956](https://freeflyevent.com/iae-2956): The Intergalactic Aerospace Expo 2956';
+  if (!iae) {
+    return `${label} — not yet announced; expected late November 2026 based on five straight years of November Free Flys.`;
+  }
+  const range = formatRangeUTC(iae.start, iae.end);
+  if (now > new Date(iae.end)) return `${label} — the Free Fly ran ${range} (ended), per CIG's official Comm-Link.`;
+  if (now >= new Date(iae.start)) {
+    return iae.freeFlyActive === false
+      ? `${label} (${range}) — CIG cancelled the Free Fly portion.`
+      : `${label} — the Free Fly is live now, ${range}, free for anyone with an RSI account.`;
+  }
+  return `${label} — confirmed by CIG: the Free Fly runs ${range}, free for anyone with an RSI account.`;
+}
+
+function iaeFact(now: Date = new Date()): string {
+  const iae = getIae2956();
+  if (!iae) {
+    return 'The most dependable remaining 2026 window is the Intergalactic Aerospace Expo (IAE), expected late November based on a five-year pattern — see the IAE 2956 page for status.';
+  }
+  const range = formatRangeUTC(iae.start, iae.end);
+  if (now > new Date(iae.end)) return `The IAE 2956 Free Fly ran ${range}.`;
+  return `CIG has confirmed the IAE 2956 Free Fly for ${range} — see the IAE 2956 page for live status.`;
+}
+
+export function GET() {
+  const body = `# Star Citizen Free Fly Events
 
 > Unofficial, plain-English guide to Star Citizen Free Fly events — the recurring windows when anyone can download and play Star Citizen for free with no purchase required. Covers current and upcoming event dates, what's included, how the free-to-play periods work, and how to claim the 50,000 UEC referral bonus at signup. Built for brand-new and returning players deciding whether to jump in. Not affiliated with or endorsed by Cloud Imperium Games or Roberts Space Industries.
 
@@ -10,7 +45,7 @@
 - [Foundation Festival 2026](https://freeflyevent.com/foundation-festival-2026): The Free Fly ran July 29 – August 10, 2026 with five ships — plus the Argo ATLS / Career Kit referral bonus terms and Twitch Drops.
 - [Free Fly Schedule 2026](https://freeflyevent.com/free-fly-schedule): Every confirmed and expected Free Fly window in 2026, with the yearly pattern explained.
 - [Free Ships Right Now](https://freeflyevent.com/free-ships-right-now): The live list of ships anyone can fly free during the current event window.
-- [IAE 2956](https://freeflyevent.com/iae-2956): The Intergalactic Aerospace Expo 2956 — not yet announced; expected late November 2026 based on five straight years of November Free Flys.
+${iaeLine()}
 - [Free Fly Event Guide](https://freeflyevent.com/event-guide): What to do first during a Free Fly — a step-by-step guide for new players.
 - [Free Fly Event History](https://freeflyevent.com/event-history): A record of past Star Citizen Free Fly events and their dates.
 - [Glossary](https://freeflyevent.com/glossary): Plain-English definitions of Free Fly and Star Citizen terms for newcomers.
@@ -22,9 +57,14 @@
 - Free Fly is distinct from a permanent free-to-play model: access is limited to the event window and the ships/content Cloud Imperium Games makes available for it.
 - New players who sign up with a referral code receive a 50,000 UEC in-game credit bonus.
 - Free Fly events are scheduled and run by Cloud Imperium Games; specific dates, included ships, and content vary by event and can change or be cancelled.
-- CIG will not hold a CitizenCon event in 2026 in any form (in-person, digital, or Direct), so there is no October Free Fly to wait for. The most dependable remaining 2026 window is the Intergalactic Aerospace Expo (IAE), expected late November based on a five-year pattern — see the IAE 2956 page for status.
+- CIG will not hold a CitizenCon event in 2026 in any form (in-person, digital, or Direct), so there is no October Free Fly to wait for. ${iaeFact()}
 
 ## Related
 
 - [dayonecitizen.com](https://dayonecitizen.com): Plain-English getting-started guide for brand-new Star Citizen players.
 - [iheldtheline.com](https://iheldtheline.com): Squadron 42 release-date tracking, developer news, and FAQ.
+`;
+  return new Response(body, {
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+  });
+}

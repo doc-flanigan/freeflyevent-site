@@ -121,6 +121,13 @@ The banner state, countdown, homepage hero card, and Event JSON-LD schema all
 derive from `FREE_FLY_HISTORY` via `getEventStatus()` in `src/data/events.ts` —
 no other files need editing when an event is added.
 
+**IAE 2956:** use id `iae-2026` exactly. `getIae2956()` keys the pre-announcement
+copy on `/iae-2956`, `/free-fly-schedule`, `/next-free-fly`,
+`/is-star-citizen-free`, and `/llms.txt` (now a route at
+`src/app/llms.txt/route.ts`, not a static file) off that id, and each page
+re-renders hourly (ISR), so the copy follows announced → live → ended with
+no further edits.
+
 ## Data Verification Rule (READ THIS BEFORE EDITING src/data/events.ts)
 
 Every entry in `FREE_FLY_HISTORY` must be verifiable against an official RSI
