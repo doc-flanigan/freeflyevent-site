@@ -219,7 +219,7 @@ export function getIae2956(): FreeFlyEvent | undefined {
 }
 
 /** True until this year's IAE has ended (or December arrives without one). */
-function iaeStillAheadThisYear(now: Date): boolean {
+export function iaeStillAheadThisYear(now: Date = new Date()): boolean {
   const iae = FREE_FLY_HISTORY.find((ev) => ev.id === iaeIdForYear(now.getUTCFullYear()));
   if (iae) return now < new Date(iae.end);
   return now.getUTCMonth() <= 10; // Jan–Nov

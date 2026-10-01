@@ -8,7 +8,8 @@ import { HeroCarousel } from '@/components/HeroCarousel';
 import { CTAButton, ArrowIcon } from '@/components/CTAButton';
 import { FreeFlyGuide } from '@/components/FreeFlyGuide';
 import { TwitchClip } from '@/components/TwitchClip';
-import { getEventStatus, getActiveBonusOverride, REFERRAL_URL } from '@/data/events';
+import { getEventStatus, getActiveBonusOverride, iaeStillAheadThisYear, REFERRAL_URL } from '@/data/events';
+import { formatRangeUTC } from '@/lib/format';
 import { DiscordCTA } from '@/components/DiscordCTA';
 
 const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
@@ -76,9 +77,14 @@ export async function generateMetadata(): Promise<Metadata> {
   }
   // UPCOMING state — event announced but not started
   if (status.state === 'UPCOMING') {
+    // Put the dates in the snippet itself — "when" queries were getting
+    // impressions but no clicks when the title only said "Coming Soon".
+    const range = formatRangeUTC(status.event.start, status.event.end);
     return {
-      title: `Next Star Citizen Free Fly — ${status.event.name} Coming Soon`,
-      description: `The next Star Citizen Free Fly is ${status.event.name}. Track the countdown and lock in your 50,000 UEC referral bonus before it starts.`,
+      title: `Next Star Citizen Free Fly — ${status.event.name}, ${range}`,
+      description: status.event.freeFlyActive === false
+        ? `The next Star Citizen Free Fly is ${status.event.name}. Track the countdown and lock in your 50,000 UEC referral bonus before it starts.`
+        : `Star Citizen is free to play ${range} during ${status.event.name} — no purchase needed. Track the countdown and lock in 50,000 UEC before it starts.`,
       keywords: [
         'next star citizen free fly',
         'when is the next star citizen free fly',
@@ -101,11 +107,20 @@ export async function generateMetadata(): Promise<Metadata> {
     };
   }
 
-  // INACTIVE / default state — between events
+  // INACTIVE / default state — between events.
+  // Bing serves the homepage for "is star citizen free" and "when is the star
+  // citizen free to play event" (Oct 2026 BWT pull: 0.4% and 0% CTR), so the
+  // snippet answers both questions outright.
+  const iaeAhead = iaeStillAheadThisYear();
+  const title = `Star Citizen Free Fly: When You Can Play Free (Next: ${iaeAhead ? 'IAE, Nov' : 'May'})`;
+  const description = `Is Star Citizen free? Only during Free Fly events — a week or two of free play. Next expected: ${
+    iaeAhead ? 'IAE, late November' : 'a May flagship event, then IAE in November'
+  }. Live status + 50,000 UEC bonus.`;
   return {
-    title: "Star Citizen Free Fly — When's the Next One?",
-    description: 'Star Citizen Free Fly events let anyone play free, several times a year. See when the next free-to-play window opens and claim your 50,000 UEC bonus.',
+    title,
+    description,
     keywords: [
+      'is star citizen free',
       'star citizen free fly',
       'when is the next star citizen free fly',
       'when is the star citizen free to play event',
@@ -119,13 +134,13 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: { canonical: '/' },
     openGraph: {
       images: ['/images/hero/hero-01.jpg'],
-      title: "Star Citizen Free Fly — When's the Next One?",
-      description: 'No Free Fly is active right now. Track when the next Star Citizen Free Fly launches and lock in your 50,000 UEC referral bonus.',
+      title,
+      description,
     },
     twitter: {
       card: 'summary_large_image' as const,
-      title: "Star Citizen Free Fly — When's the Next One?",
-      description: 'Track when the next Star Citizen Free Fly launches and lock in your 50,000 UEC referral bonus.',
+      title,
+      description,
     },
   };
 }
