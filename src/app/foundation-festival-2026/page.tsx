@@ -10,6 +10,10 @@ import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
 import { HUB_URL } from '@/data/events';
 
+// Hourly ISR: the server-rendered EventStatusBanner must flip when an event
+// starts or ends, not only on deploy.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'Foundation Festival 2026 Free Fly Recap',
   description:
