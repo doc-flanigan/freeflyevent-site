@@ -101,7 +101,7 @@ function buildFaqs(status: EventStatus, now: Date = new Date()) {
     },
     {
       q: 'How do I get notified about the next Free Fly?',
-      a: 'Bookmark this page and check the banner — it flips the moment an event is announced in an official RSI Comm-Link. You can also follow the new-player guides at dayonecitizen.com. CIG typically announces Free Fly dates one to two weeks before each event begins.',
+      a: 'Bookmark this page and check the banner — it flips the moment an event is announced in an official RSI Comm-Link. You can also subscribe to the free Free Fly calendar feed at freeflyevent.com/free-fly.ics, which adds each confirmed window to Apple Calendar, Outlook, or Google Calendar. CIG typically announces Free Fly dates one to two weeks before each event begins.',
     },
   ];
 }

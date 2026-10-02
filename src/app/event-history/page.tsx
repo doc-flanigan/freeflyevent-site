@@ -6,7 +6,7 @@ import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { EventHistoryTable } from '@/components/EventHistoryTable';
 import { PageBackdrop } from '@/components/PageBackdrop';
-import { FREE_FLY_HISTORY, HUB_URL } from '@/data/events';
+import { FREE_FLY_HISTORY } from '@/data/events';
 
 export const metadata: Metadata = {
   title: 'Every Star Citizen Free Fly, 2022–2026',
@@ -110,18 +110,24 @@ export default function EventHistoryPage() {
               Get notified when the next Free Fly opens.
             </h2>
             <p className="mt-3 text-muted">
-              We post date confirmations and full event roundups on
-              dayonecitizen.com. Subscribe there for event alerts and
-              beginner-friendly Star Citizen guides.
+              Subscribe to the free Free Fly calendar. Each window lands in
+              your calendar app as soon as CIG announces it in a Comm-Link —
+              confirmed dates only, never guesses. Works with Apple Calendar,
+              Outlook, and Google Calendar (in Google, choose{' '}
+              <em>Other calendars → From URL</em> and paste{' '}
+              <code className="rounded bg-spaceBlack/60 px-1.5 py-0.5 font-mono text-xs text-orange">
+                https://freeflyevent.com/free-fly.ics
+              </code>
+              ).
             </p>
-            <Link
-              href={HUB_URL}
-              target="_blank"
-              rel="noopener"
-              className="btn-secondary mt-6"
-            >
-              Subscribe at dayonecitizen.com →
-            </Link>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href="webcal://freeflyevent.com/free-fly.ics" className="btn-secondary">
+                Subscribe to the calendar →
+              </a>
+              <a href="/free-fly.ics" className="btn-secondary" download>
+                Download .ics
+              </a>
+            </div>
           </div>
         </section>
       </main>

@@ -57,7 +57,7 @@ const faqs = [
   },
   {
     q: 'When can I play Star Citizen for free?',
-    a: 'During official Free Fly events, which run several times a year for roughly two weeks each. The most reliable windows are Invictus Launch Week in May and the Intergalactic Aerospace Expo (IAE) in November. Recent examples: DefenseCon 2956 (May 14-27, 2026), IAE 2955 (Nov 20-Dec 3, 2025), and Invictus Launch Week 2955 (May 15-27, 2025).',
+    a: 'During official Free Fly events, which run several times a year for roughly two weeks each. The most reliable windows are the May flagship event (Invictus Launch Week, run as DefenseCon in 2026) and the Intergalactic Aerospace Expo (IAE) in November. Recent examples: Foundation Festival 2026 (July 29-August 10, 2026), DefenseCon 2956 (May 14-27, 2026), and IAE 2955 (Nov 20-Dec 3, 2025).',
   },
   {
     q: 'Do I need to buy anything during a Free Fly?',
@@ -120,7 +120,7 @@ export default function IsStarCitizenFreePage() {
           </div>
 
           <p className="mt-4 text-xs text-muted">
-            Page reviewed July 18, 2026 — pricing and Free Fly details below are
+            Page reviewed October 2, 2026 — pricing and Free Fly details below are
             checked against official Cloud Imperium announcements.
           </p>
 
@@ -195,7 +195,8 @@ export default function IsStarCitizenFreePage() {
             <p className="mt-4 text-muted">
               Free Fly events are official Cloud Imperium events, announced on the RSI
               Comm-Link. They typically run about two weeks, and the two most reliable
-              windows each year are <strong className="text-white">Invictus Launch Week in May</strong>{' '}
+              windows each year are{' '}
+              <strong className="text-white">the May flagship event (Invictus Launch Week, run as DefenseCon in 2026)</strong>{' '}
               and the <strong className="text-white">Intergalactic Aerospace Expo (IAE) in November</strong>.
               Recent Free Fly windows:
             </p>
@@ -210,6 +211,7 @@ export default function IsStarCitizenFreePage() {
                 </thead>
                 <tbody>
                   {[
+                    ['Foundation Festival 2026', 'Jul 29 – Aug 10, 2026', 'https://robertsspaceindustries.com/en/comm-link/transmission/21211-Foundation-Festival-2026'],
                     ['DefenseCon 2956', 'May 14 – 27, 2026', 'https://robertsspaceindustries.com/en/comm-link/transmission/21147-DefenseCon-2956-About'],
                     ['Intergalactic Aerospace Expo 2955', 'Nov 20 – Dec 3, 2025', 'https://robertsspaceindustries.com/en/comm-link/transmission/20861-Intergalactic-Aerospace-Expo-2955-Free-Fly-And-Manufacturer-Schedule'],
                     ['Invictus Launch Week 2955', 'May 15 – 27, 2025', 'https://robertsspaceindustries.com/en/comm-link/transmission/20491-About-Invictus-Launch-Week-2955'],

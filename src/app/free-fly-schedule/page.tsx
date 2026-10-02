@@ -243,14 +243,15 @@ export default function FreeFlySchedulePage() {
               The status banner at the top of every page here flips the moment an
               event is announced. You can also subscribe to the free{' '}
               <a
-                href="https://dayonecitizen.com/api/calendar/free-fly"
+                href="webcal://freeflyevent.com/free-fly.ics"
                 className="text-orange underline-offset-2 hover:underline"
               >
                 Free Fly calendar feed (.ics)
               </a>{' '}
-              maintained by our sister site dayonecitizen.com — it carries the
-              current confirmed window and works with Google Calendar, Outlook,
-              and Apple Calendar.
+              — it carries every confirmed window, adds new ones as CIG announces
+              them, and works with Apple Calendar, Outlook, and Google Calendar
+              (in Google, add <span className="font-mono text-white/80">https://freeflyevent.com/free-fly.ics</span>{' '}
+              under <em>Other calendars → From URL</em>).
             </p>
           </section>
 

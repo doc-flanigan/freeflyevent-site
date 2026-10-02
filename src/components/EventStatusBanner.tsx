@@ -166,8 +166,8 @@ function ReferralCodePanel() {
       <div className="mt-1.5 font-mono text-xl font-bold text-orange">{REFERRAL_CODE}</div>
       <p className="mt-2 text-xs leading-relaxed text-white/70">
         Paste it into the <span className="font-mono">Referral Code</span> field on the
-        signup form. After 24 hours it cannot be added — the 50,000 UEC is forfeited
-        permanently. Full details on{' '}
+        signup form. The code cannot be added after about 24 hours, so the bonus
+        never attaches. Full details on{' '}
         <a
           href="https://dayonecitizen.com/referral-code"
           target="_blank"

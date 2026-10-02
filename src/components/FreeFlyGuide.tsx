@@ -8,11 +8,11 @@ type Step = {
 const STEPS: Step[] = [
   {
     title: 'Create your free RSI account',
-    body: 'Use a referral code at signup so 50,000 UEC lands in your account when you log in. During some events CIG adds a limited extra signup bonus on top — the banner at the top of this site shows one when it is live. You cannot add the code after the 24-hour grace window — get it right the first time.',
+    body: 'Use a referral code at signup so 50,000 UEC lands in your account when you log in. During some events CIG adds a limited extra signup bonus on top — the banner at the top of this site shows one when it is live. The code cannot be added after about 24 hours, so enter it at signup.',
   },
   {
     title: 'Download the launcher',
-    body: 'Grab the RSI Launcher from your account page. It downloads the game client (~100 GB). Start this early — the launcher will keep running while you read on.',
+    body: 'Grab the RSI Launcher from your account page. The game client is about a 100 GB download; plan on 150 GB free on an SSD. Start this early — the launcher will keep running while you read on.',
   },
   {
     title: 'Pick a ship from the Free Fly list',
@@ -28,7 +28,7 @@ const STEPS: Step[] = [
   },
   {
     title: 'Try a delivery mission',
-    body: 'Easiest first earner. Pick up boxes on one moon, drop them on another. Pays well, low risk, and you see a lot of the universe quickly.',
+    body: 'Easiest first earner. Press F1 for your mobiGlas, open the Contract Manager, and accept a delivery. Pick up boxes on one moon, drop them on another. Pays well, low risk, and you see a lot of the universe quickly.',
   },
   {
     title: 'Explore a major planet',
@@ -36,7 +36,7 @@ const STEPS: Step[] = [
   },
   {
     title: 'Group up with friends',
-    body: 'Star Citizen is unforgivingly fun in groups. Use chat or Spectrum to find a crew. Friend other players and queue into shared instances.',
+    body: 'Star Citizen is unforgivingly fun in groups. Use in-game chat, or Spectrum (RSI’s forum and chat site) in your browser, to find a crew. Friend other players and queue into shared instances.',
   },
   {
     title: 'Decide before the event ends',

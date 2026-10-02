@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Event guide is static reference content. Use the date it was last
   // substantively edited rather than pretending it changes daily.
-  const guideModified = new Date('2026-01-15');
+  const guideModified = new Date('2026-10-02');
 
   // Event history reflects the most recent FREE_FLY_HISTORY entry's end date
   // as a proxy for when the table last changed meaningfully.
@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/is-star-citizen-free`,
-      lastModified: new Date('2026-06-29'),
+      lastModified: new Date('2026-10-02'),
       changeFrequency: 'monthly',
       priority: 0.9,
     },

@@ -8,7 +8,7 @@ import { CTAButton } from '@/components/CTAButton';
 import { DiscordCTA } from '@/components/DiscordCTA';
 import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
-import { HUB_URL, REFERRAL_CODE } from '@/data/events';
+import { REFERRAL_CODE } from '@/data/events';
 
 export const metadata: Metadata = {
   title: 'Free Fly Event Guide — What to Do First',
@@ -61,18 +61,6 @@ const STEPS: Step[] = [
         </code>{' '}
         into the <strong>Referral Code</strong> field on the signup form. This
         is the only reliable way to lock in your 50,000 UEC bonus.
-        <p className="text-muted text-sm mt-4">
-          Once you&apos;re signed up,{' '}
-          <a
-            href="https://dayonecitizen.com"
-            className="text-orange underline hover:text-orange-dark"
-            target="_blank"
-            rel="noopener"
-          >
-            DayOneCitizen.com
-          </a>{' '}
-          will walk you through your first 30 days step by step.
-        </p>
       </>
     ),
     image: {
@@ -90,9 +78,10 @@ const STEPS: Step[] = [
     body: (
       <>
         After verifying your email, log into your RSI dashboard. The 50,000 UEC
-        will appear as a credit on your account. If it didn&apos;t, you have
-        ~24 hours to add the code in account settings — but don&apos;t rely on
-        it.
+        will appear as a credit on your account. If it didn&apos;t, you can
+        still add the code in account settings for about 24 hours after
+        signup. After that the code can&apos;t be added, so the bonus never
+        attaches.
       </>
     ),
   },
@@ -101,8 +90,9 @@ const STEPS: Step[] = [
     title: 'Download the RSI Launcher',
     body: (
       <>
-        From your account dashboard, download the launcher. It installs the
-        Star Citizen client (~100 GB). Start the download immediately —
+        From your account dashboard, download the launcher. The Star Citizen
+        client is about a 100 GB download, and RSI&apos;s minimum spec asks
+        for 150 GB free on an SSD. Start the download immediately —
         you&apos;ll spend the wait reading the rest of this guide.
       </>
     ),
@@ -144,17 +134,33 @@ const STEPS: Step[] = [
     title: 'Try a delivery mission',
     body: (
       <>
-        Open the contracts terminal at any station and pick a delivery
-        mission. Pick up boxes on one moon, deliver to another. You&apos;ll
+        Press <strong>F1</strong> to open your mobiGlas, open the{' '}
+        <strong>Contract Manager</strong> app, and accept a delivery
+        contract. Pick up boxes on one moon, deliver to another. You&apos;ll
         learn quantum jumps, planetary landing, and basic UI flow — and
         you&apos;ll get paid.
+      </>
+    ),
+    tip: (
+      <>
+        Finished your first delivery? That&apos;s the core loop.{' '}
+        <a
+          href="https://dayonecitizen.com/day-one-citizen"
+          className="text-orange underline hover:text-orange-dark"
+          target="_blank"
+          rel="noopener"
+        >
+          DayOneCitizen.com
+        </a>{' '}
+        picks up from here and walks you through your first 30 days, step by
+        step.
       </>
     ),
     image: {
       src: '/images/guides/first-days-mobiglas-mission-manager.jpg',
       alt: 'mobiGlas mission manager in Star Citizen showing available delivery contracts',
       caption:
-        'The mobiGlas mission manager (press F1) — browse contracts, accept a delivery, and the route markers do the rest.',
+        'The Contract Manager app in your mobiGlas (press F1) — browse contracts, accept a delivery, and the route markers do the rest.',
       width: 1200,
       height: 669,
     },
@@ -205,9 +211,11 @@ const STEPS: Step[] = [
     title: 'Group up',
     body: (
       <>
-        Star Citizen is at its best with friends. Use Spectrum (in-game chat)
-        or join a Star Citizen Discord. Multi-crew ships need crews — that&apos;s
-        the magic of the game.
+        Star Citizen is at its best with friends. In game, use the chat
+        window and your friends list. Outside the game, Spectrum (RSI&apos;s
+        official forum and chat site, in your browser) and Star Citizen
+        Discords are where people look for crews. Multi-crew ships need
+        crews — that&apos;s the magic of the game.
       </>
     ),
   },
@@ -248,7 +256,7 @@ export default function EventGuidePage() {
 
         <section className="container-narrow pb-20">
           <ol className="space-y-5">
-            {STEPS.map((s, i) => (
+            {STEPS.map((s) => (
               <>
                 <li key={s.num} className="card flex gap-5 sm:gap-7">
                   <div className="flex-shrink-0">
@@ -305,7 +313,7 @@ export default function EventGuidePage() {
                     )}
                   </div>
                 </li>
-                {i === 0 && (
+                {s.num === '08' && (
                   <li key="discord-cta" className="list-none">
                     <DiscordCTA />
                   </li>
@@ -322,17 +330,11 @@ export default function EventGuidePage() {
               Confused by terms like <em>UEC, pledge, aUEC, AC?</em>
             </h2>
             <p className="mt-3 text-muted">
-              We keep the plain-English glossary on the main hub. Free Fly is
-              packed with acronyms — when you hit one you don&apos;t know,
-              dayonecitizen.com has the answer.
+              Free Fly is packed with acronyms. When you hit one you don&apos;t
+              know, the plain-English glossary here has the answer.
             </p>
-            <Link
-              href={HUB_URL}
-              target="_blank"
-              rel="noopener"
-              className="btn-secondary mt-6"
-            >
-              Open the dayonecitizen.com Glossary →
+            <Link href="/glossary" className="btn-secondary mt-6">
+              Open the Glossary →
             </Link>
           </div>
         </section>
