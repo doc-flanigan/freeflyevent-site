@@ -65,7 +65,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         'IAE 2956 is not announced yet. Based on the pattern, expect late November 2026 — IAE 2955 ran Nov 20–Dec 3, 2025. The sourced breakdown, updated live.',
       openGraph: {
-        images: ['/images/hero/hero-01.jpg'],
+        images: ['/images/og-image.png'],
         title: 'IAE 2956 — Star Citizen Free Fly Expected November 2026',
         description:
           'IAE 2956 is unannounced. Here is what five years of November Free Flys say to expect — and how to be ready.',
@@ -97,7 +97,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ...base,
     title,
     description,
-    openGraph: { images: ['/images/hero/hero-01.jpg'], title, description },
+    openGraph: { images: ['/images/og-image.png'], title, description },
   };
 }
 

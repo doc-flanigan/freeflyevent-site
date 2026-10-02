@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     'star citizen iae 2956 free fly',
   ],
   openGraph: {
-    images: ['/images/hero/hero-01.jpg'],
+    images: ['/images/og-image.png'],
     title: 'When Is the Next Star Citizen Free Fly?',
     description:
       'Live Free Fly status plus the yearly pattern — IAE in late November is the most dependable window.',

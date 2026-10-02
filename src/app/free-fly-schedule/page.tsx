@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     'star citizen event schedule 2026',
   ],
   openGraph: {
-    images: ['/images/hero/hero-01.jpg'],
+    images: ['/images/og-image.png'],
     title: 'Star Citizen Free Fly Schedule 2026',
     description:
       'Every confirmed and expected Star Citizen Free Fly window in 2026, kept current from official RSI Comm-Links.',

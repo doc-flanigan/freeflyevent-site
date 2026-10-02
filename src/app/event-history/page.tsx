@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     'Every Star Citizen Free Fly with exact dates, 2022–2026: Invictus, DefenseCon, Foundation Festival, and IAE — each sourced from an official RSI Comm-Link.',
   alternates: { canonical: '/event-history' },
   openGraph: {
-    images: ['/images/hero/hero-01.jpg'],
+    images: ['/images/og-image.png'],
     title: 'Star Citizen Free Fly Event History (2022–2026)',
     description:
       'Sortable archive of every Star Citizen Free Fly event with verified dates, flyable ships, and official RSI Comm-Link sources.',

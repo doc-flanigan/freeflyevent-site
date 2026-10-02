@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     'foundation festival 2026 dates',
   ],
   openGraph: {
-    images: ['/images/hero/hero-01.jpg'],
+    images: ['/images/og-image.png'],
     title: 'Foundation Festival 2026 Free Fly — July 29 to August 10',
     description:
       'Star Citizen was free to play July 29 – August 10, 2026 with five ships. The event has ended — the sourced record of ships, referral bonus, and Drops.',
