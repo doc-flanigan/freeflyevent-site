@@ -39,7 +39,7 @@ export async function generateMetadata(): Promise<Metadata> {
       ],
       alternates: { canonical: '/' },
       openGraph: {
-        images: ['/images/hero/hero-01.jpg'],
+        images: ['/images/og-image.png'],
         title: `Star Citizen Free Fly is LIVE — ${status.event.name} Through ${ends}`,
         description: `Star Citizen is free to play right now. ${status.event.name} Free Fly runs through ${ends} — create your free account and lock in 50,000 UEC before it ends.`,
       },
@@ -64,7 +64,7 @@ export async function generateMetadata(): Promise<Metadata> {
       ],
       alternates: { canonical: '/' },
       openGraph: {
-        images: ['/images/hero/hero-01.jpg'],
+        images: ['/images/og-image.png'],
         title: `${status.event.name} Free Fly Cancelled — 50,000 UEC Still Available`,
         description: `CIG pulled the Free Fly for ${status.event.name}. ${status.event.cancelledNote ?? ''} Your 50,000 UEC referral bonus still works. Sign up now.`.replace(/\s+/g, ' '),
       },
@@ -95,7 +95,7 @@ export async function generateMetadata(): Promise<Metadata> {
       ],
       alternates: { canonical: '/' },
       openGraph: {
-        images: ['/images/hero/hero-01.jpg'],
+        images: ['/images/og-image.png'],
         title: `Next Star Citizen Free Fly — ${status.event.name} Coming Soon`,
         description: `The next Star Citizen Free Fly is ${status.event.name}. Lock in your 50,000 UEC referral bonus before the event starts.`,
       },
@@ -133,7 +133,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ],
     alternates: { canonical: '/' },
     openGraph: {
-      images: ['/images/hero/hero-01.jpg'],
+      images: ['/images/og-image.png'],
       title,
       description,
     },

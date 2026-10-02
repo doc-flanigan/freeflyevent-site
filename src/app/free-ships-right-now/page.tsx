@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     'star citizen ships you can fly free',
   ],
   openGraph: {
-    images: ['/images/hero/hero-01.jpg'],
+    images: ['/images/og-image.png'],
     title: 'What Ships Are Free in Star Citizen Right Now?',
     description:
       'The live list of ships you can fly free during the current Star Citizen Free Fly event.',
