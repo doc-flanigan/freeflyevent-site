@@ -30,10 +30,15 @@ export const metadata: Metadata = {
   },
 };
 
+
 const faqs = [
   {
     q: 'Is Star Citizen free to play?',
     a: 'No. Star Citizen requires a Game Package purchase (from $45 on sale — $60 list price, as of September 2026). However, CIG runs periodic Free Fly events several times a year where anyone can play for free for a limited window — usually one to two weeks. These are the best way to try the game before buying.',
+  },
+  {
+    q: 'Should I buy Star Citizen during a Free Fly event?',
+    a: 'Only if you have played it and liked it. Play for about 20 hours first. If you had a good time, buy a starter Game Package. If Free Fly left you cold, do not buy: the paid game is the same game, minus the event ships. If you have not played yet, wait for the next Free Fly.',
   },
   {
     q: 'Is Star Citizen fully released or still in early access?',
@@ -42,18 +47,6 @@ const faqs = [
   {
     q: 'Do I lose my ships and progress if there is a wipe?',
     a: 'Ships you purchased with real money (pledged ships) are never wiped — they are permanently on your account. In-game currency (aUEC), some earned items, and reputation progress can be wiped during major patch updates. Wipes are announced in advance and are a normal part of alpha development.',
-  },
-  {
-    q: 'Can you earn ships in-game without spending real money?',
-    a: 'Yes — you can rent ships in-game using aUEC (in-game currency earned through missions, trading, and other activities), and CIG has stated that all ships will eventually be earnable in-game at full release. In the current alpha, some ships can be bought outright with aUEC, while others are rent-only or pledge-only. The rental system lets you try many ships without spending real money.',
-  },
-  {
-    q: 'Is Star Citizen pay-to-win?',
-    a: 'This is debated in the community. Larger ships bought with real money do give an advantage in cargo capacity and capability. However, skill, teamwork, and knowledge of game systems matter significantly, starter ships can take on larger gameplay loops than you would expect, and the most effective PvP ships are not always the most expensive ones. CIG has stated that everything will be earnable in-game at full release. For a casual player it does not feel pay-to-win; for a competitive PvP player, the advantage of pledged ship variety is real.',
-  },
-  {
-    q: 'What is the minimum PC spec to play Star Citizen?',
-    a: 'For a playable experience in 2026: CPU — Ryzen 5 3600 or Intel i7-9700K or better; RAM — 32 GB (16 GB is the listed minimum but 32 GB is strongly recommended); Storage — NVMe SSD required, as HDDs produce extremely long load times; GPU — GTX 1080 Ti / RX 5700 XT or better for medium settings at 1080p. Check the official RSI minimum specs page for current requirements, as these are updated with major patches.',
   },
 ];
 
@@ -68,18 +61,16 @@ export default function ShouldIBuyPage() {
         <div className="mx-auto max-w-3xl">
 
           {/* Header */}
-          <span className="eyebrow">Honest take</span>
+          <span className="eyebrow">Free Fly decision</span>
           <h1 className="heading-display mt-4 text-4xl sm:text-5xl">
             Should I Buy Star Citizen?
           </h1>
           <p className="mt-5 text-lg text-muted">
-            Buy Star Citizen only after you&apos;ve tried it free during a Free Fly event.
-            If you enjoyed your Free Fly, a starter Game Package from $45 on sale ($60 list) is worth it:
-            one-time purchase, no subscription, and every future update included. If you
-            haven&apos;t played yet, wait for the next Free Fly before spending anything —
-            Star Citizen is one of the most ambitious games ever made, but it&apos;s a
-            genuinely unfinished alpha with real bugs. Below: the unfiltered pros, cons,
-            prices, and who it&apos;s actually for.
+            Playing Free Fly now, or about to? Buy only after you&apos;ve tried it.
+            If you enjoyed your Free Fly, a starter Game Package from $45 on sale ($60 list,
+            as of September 2026) is worth it: one-time purchase, no subscription, and every
+            future update included. If you haven&apos;t played yet, wait for the next Free Fly
+            before spending anything. Star Citizen is a genuinely unfinished alpha with real bugs.
           </p>
 
           {/* Quick verdict */}
@@ -102,23 +93,18 @@ export default function ShouldIBuyPage() {
             </p>
           </div>
 
-          {/* What you actually get */}
+          {/* Event-window checklist */}
           <section className="mt-14">
             <h2 className="heading-display text-2xl sm:text-3xl">
-              What a Game Package actually includes
+              Using the Free Fly window to decide
             </h2>
-            <p className="mt-4 text-muted">
-              The minimum purchase is called a <strong className="text-white">Game Package</strong>.
-              Standard starter packages run $45 on sale to $80 USD ($60–$80 list price). Here&apos;s what that gets you:
-            </p>
             <ul className="mt-5 space-y-3">
               {[
-                ['A starter ship', 'A flyable, capable solo ship — usable in-game, not just cosmetic. Any other ship in the game can be rented in-game with UEC — you don\'t need to buy additional ships.'],
-                ['Access to everything in the live game', 'All star systems, all gameplay loops, all future patches. There is no DLC. Content that ships after you buy is included.'],
-                ['3 months of insurance on your starter ship', 'Every starter pack includes 3-month insurance on the ship it comes with.'],
-                ['No subscription', 'Star Citizen has no monthly fee. You pay once.'],
-                ['10,000 UEC — plus 50,000 UEC if you use a referral code', 'UEC is the permanent account currency that carries forward forever — separate from aUEC, the alpha test currency you earn in-game that wipes between patches. Paste a referral code at signup and you receive 50,000 UEC on top of the pack\'s 10,000 UEC — enough for rentals, gear, and ammo from day one.'],
-                ['Squadron 42 — check your package', 'The single-player campaign is not included in every starter. Look for the "Squadron 42 combo" package if you want both. It\'s not required to play Star Citizen.'],
+                ['Play first, then decide', 'Give it about 20 hours before judging it against finished games. Free Fly is the only free way to find out if it clicks for you.'],
+                ['Test your PC for free', 'Star Citizen is demanding. A bad run on weak hardware says little about the game. 32 GB of RAM and an NVMe SSD are recommended; check the official specs on robertsspaceindustries.com.'],
+                ['Expect rough edges', 'It is an alpha. Crashes and broken missions happen. If that bothers you, that is your answer.'],
+                ['Buy a starter pack, nothing bigger', 'The Citizen or Generalist starter pack is all you need. Other ships can be rented in-game with UEC (the in-game currency).'],
+                ['Use a referral code at signup', 'Enter it when you create the account, or within 24 hours. It cannot be added later. It is the one deadline that matters.'],
               ].map(([title, desc]) => (
                 <li key={title as string} className="flex gap-4 rounded-xl border border-white/10 bg-blackMid/60 p-5">
                   <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-orange" aria-hidden />
@@ -129,186 +115,42 @@ export default function ShouldIBuyPage() {
                 </li>
               ))}
             </ul>
-            <p className="mt-5 text-muted">
-              One thing worth understanding before checkout: your purchase is not a typical
-              one. CIG calls it a <strong className="text-white">pledge</strong>, because
-              you&apos;re funding the ongoing development of an alpha game. In return you get
-              access to the current alpha and all future updates to the base game — no
-              subscription, no expansion paywalls.
+          </section>
+
+          {/* Handoff to the full answer */}
+          <section className="mt-14 rounded-2xl border border-orange/30 bg-orange/10 p-6 sm:p-8">
+            <span className="eyebrow">The full answer</span>
+            <p className="mt-3 text-lg text-white/90">
+              The full answer — what&apos;s in a package, wipes, PC requirements — is in the{' '}
+              <a
+                href="https://dayonecitizen.com/day-one-citizen/worth-buying"
+                className="font-semibold text-orange underline hover:text-orange-dark"
+                target="_blank"
+                rel="noopener"
+              >
+                Day One Citizen guide
+              </a>
+              .
             </p>
           </section>
 
-          {/* State of the game */}
+          {/* Short summary of the evergreen points */}
           <section className="mt-14">
             <h2 className="heading-display text-2xl sm:text-3xl">
-              The honest state of the game in 2026
+              The short version of the rest
             </h2>
-            <p className="mt-4 text-muted">
-              Star Citizen is in alpha. That word means something real here — not
-              &ldquo;early access with a PR problem&rdquo; but a genuinely unfinished product
-              with missing features and rough edges. That said:
-            </p>
-            <div className="mt-6 grid gap-5 sm:grid-cols-2">
-              <div className="rounded-xl border border-orange/30 bg-orange/5 p-6">
-                <h3 className="font-display text-base font-bold text-orange uppercase tracking-wide">What works well</h3>
-                <ul className="mt-3 space-y-2 text-sm text-white/80">
-                  {[
-                    'Two full star systems (Stanton + Pyro)',
-                    'Seamless orbit-to-surface-to-interior travel — no loading screens',
-                    'Space flight and ship combat',
-                    'Mining, cargo trading, bounty hunting, salvage',
-                    'On-foot FPS in stations and bunkers',
-                    'Server meshing — the universe is technically persistent, and stability is the best it has ever been',
-                    'Major patches roughly quarterly, with a public roadmap',
-                    'It looks extraordinary',
-                    'Multi-crew gameplay with friends',
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <span className="text-orange mt-0.5">✓</span> {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="rounded-xl border border-white/10 bg-blackMid/60 p-6">
-                <h3 className="font-display text-base font-bold text-muted uppercase tracking-wide">What&apos;s still rough</h3>
-                <ul className="mt-3 space-y-2 text-sm text-white/80">
-                  {[
-                    'Crashes and server resets happen',
-                    'Some missions are broken at any given patch',
-                    'Performance varies significantly by hardware',
-                    'The new-player experience has gaps',
-                    'Some purchased ships are not yet flight ready',
-                    'Long-term progression systems (housing, full economy, base building) are incomplete',
-                    'Economy balance changes between patches',
-                    'UI/UX is inconsistent across systems',
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <span className="text-muted mt-0.5">–</span> {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="mt-6 rounded-xl border border-white/10 bg-blackMid/60 p-6">
-              <h3 className="font-display text-base font-bold text-white uppercase tracking-wide">
-                The timeline, honestly
-              </h3>
-              <p className="mt-3 text-sm text-muted">
-                Star Citizen has been in development since 2012, has raised more than
-                $1 billion in crowdfunding — the most of any game in history — and
-                remains unfinished. Squadron 42 — the
-                single-player campaign — is in late development and not yet released.
-                CIG has repeatedly missed its own target windows, so don&apos;t buy
-                expecting a full release on any particular date. Buy for what the game
-                is today, not what it might become.
-              </p>
-            </div>
-            <div className="mt-4 rounded-xl border border-white/10 bg-blackMid/60 p-6">
-              <h3 className="font-display text-base font-bold text-white uppercase tracking-wide">
-                Wipes: what you keep, what you lose
-              </h3>
-              <p className="mt-3 text-sm text-muted">
-                During some major patches CIG wipes in-game progress: earned aUEC, some
-                inventory items, and reputation reset. Anything bought with real money —
-                your ships and your Game Package — is <strong className="text-white">never
-                wiped</strong>. Wipes are announced in advance and are a normal part of
-                alpha development, but they sting if you&apos;ve spent weeks grinding credits.
-              </p>
-            </div>
-          </section>
-
-          {/* Hardware */}
-          <section className="mt-14">
-            <h2 className="heading-display text-2xl sm:text-3xl">
-              Can your PC actually run it?
-            </h2>
-            <p className="mt-4 text-muted">
-              Star Citizen is one of the most hardware-intensive games available. If your
-              system is under spec, performance will be rough regardless of settings — and
-              the game will feel much worse than it actually is. Don&apos;t buy (or judge)
-              it on hardware that can&apos;t run it. A realistic baseline for a playable
-              experience in 2026:
-            </p>
-            <ul className="mt-5 space-y-3">
+            <ul className="mt-5 space-y-2 text-muted">
               {[
-                ['CPU', 'Ryzen 5 3600 or Intel i7-9700K, or better'],
-                ['RAM', '32 GB recommended — 16 GB is the listed minimum, but 32 GB is strongly recommended for stability'],
-                ['Storage', 'NVMe SSD required. HDDs produce extremely long load times and are not practically viable'],
-                ['GPU', 'GTX 1080 Ti / RX 5700 XT or better for medium settings at 1080p'],
-              ].map(([part, spec]) => (
-                <li key={part as string} className="flex gap-4 rounded-xl border border-white/10 bg-blackMid/60 p-5">
-                  <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-orange" aria-hidden />
-                  <div>
-                    <strong className="text-white">{part}</strong>
-                    <p className="mt-1 text-sm text-muted">{spec}</p>
-                  </div>
+                'A Game Package gives you a starter ship and access to the live game. There is no subscription. Squadron 42, the single-player campaign, is not in every package, so check before you buy.',
+                'Star Citizen is an alpha. CIG has no confirmed full-release date, so buy for what the game is today.',
+                'Ships and packages bought with real money are never wiped. In-game aUEC and some progress can reset in major updates.',
+                'It needs a strong PC. Check the official specs before you buy.',
+              ].map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="text-orange flex-shrink-0">→</span> {item}
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-xs text-muted">
-              Requirements shift with major patches — check the official specs on{' '}
-              <a
-                href="https://robertsspaceindustries.com/download"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-orange hover:underline"
-              >
-                robertsspaceindustries.com
-              </a>{' '}
-              before buying.
-            </p>
-          </section>
-
-          {/* Who it's for */}
-          <section className="mt-14">
-            <h2 className="heading-display text-2xl sm:text-3xl">
-              Who Star Citizen is for
-            </h2>
-            <div className="mt-6 grid gap-5 sm:grid-cols-2">
-              <div>
-                <h3 className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-orange">
-                  You&apos;ll love it if you…
-                </h3>
-                <ul className="space-y-2 text-sm text-white/85">
-                  {[
-                    'Enjoy open-world sandboxes with minimal hand-holding',
-                    'Played Elite Dangerous, No Man\'s Sky, Eve Online, or X4 and wanted more',
-                    'Like the feeling of piloting a real spacecraft — controls, physics, fuel',
-                    'Have friends to play with (multi-crew is where it shines)',
-                    'Want to be part of something being built — testing systems, watching features arrive patch by patch',
-                    'Can tolerate alpha-level jank in exchange for ambition',
-                    'Enjoy emergent stories — the best moments aren\'t scripted',
-                    'Want a welcoming community — player organizations run their own events and genuinely take new players in',
-                    'Had any fun during Free Fly and want more of it',
-                  ].map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <span className="text-orange flex-shrink-0">→</span> {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-muted">
-                  You should wait if you…
-                </h3>
-                <ul className="space-y-2 text-sm text-white/85">
-                  {[
-                    'Bounced hard during Free Fly — the paid game is the same experience',
-                    'Need a polished, finished product with a complete story (Squadron 42 isn\'t out yet)',
-                    'Play mostly solo, casually, 30 minutes at a time — the loop rewards longer sessions',
-                    'Are on a tight budget — for $45–60 you can buy many complete, award-winning games',
-                    'Have hardware below spec — an HDD or under 16 GB RAM misrepresents the game',
-                    'Need a predictable release date — CIG\'s track record on timelines is poor',
-                    'Want competitive balance — this is not an esport',
-                    'Get frustrated by bugs and instability',
-                  ].map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <span className="text-muted flex-shrink-0">–</span> {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
           </section>
 
           {/* Try before you buy — the spine */}
@@ -341,13 +183,11 @@ export default function ShouldIBuyPage() {
           {/* Pricing */}
           <section className="mt-14">
             <h2 className="heading-display text-2xl sm:text-3xl">
-              How to buy without overspending
+              Starter pack prices
             </h2>
             <p className="mt-4 text-muted">
-              This is the most important advice on this page: buy a starter package and
-              stop there. The single most common regret in the SC community is
-              buying a large ship too early. You can earn ships in-game with
-              UEC and try every profession before committing real money.
+              Buy a starter package and stop there. The most common regret in the Star Citizen
+              community is buying a large ship too early. Prices below are as of September 2026.
             </p>
             <div className="mt-6 overflow-hidden rounded-xl border border-white/10">
               <table className="w-full text-left text-sm">
@@ -389,7 +229,8 @@ export default function ShouldIBuyPage() {
               </figcaption>
             </figure>
             <p className="mt-4 text-xs text-muted">
-              For most new players the Citizen or Generalist pack is the better first buy —{' '}
+              Prices vary by sale. CIG runs sales around Invictus and IAE. Never pay above
+              these ranges for a starter.{' '}
               <a
                 href="https://dayonecitizen.com/day-one-citizen/starter-package"
                 className="text-orange underline hover:text-orange-dark"
@@ -398,11 +239,7 @@ export default function ShouldIBuyPage() {
               >
                 dayonecitizen.com&apos;s starter package guide
               </a>{' '}
-              compares them in plain English.
-              Prices vary by sale — CIG runs sales around Invictus and IAE. Never pay above
-              these ranges for a starter. Squadron 42 (the single-player campaign, not yet
-              released) is not included in every package — if you want it, confirm your
-              package includes SQ42 before purchasing.
+              compares the starter packs in plain English.
             </p>
           </section>
 

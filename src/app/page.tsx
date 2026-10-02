@@ -339,22 +339,36 @@ export default function HomePage() {
             </div>
             <FreeFlyGuide />
 
-            {/* SEO cross-link: dayonecitizen */}
-            <section className="mt-12 rounded-lg border border-orange/30 bg-blackMid px-6 py-5">
-              <h2 className="text-lg font-bold text-white mb-2">New to Star Citizen?</h2>
-              <p className="text-muted text-sm leading-relaxed">
-                Free Fly is a great time to start. If you&apos;ve never played before,{' '}
+            {/* Funnel handoff: after signup, send visitors to dayonecitizen */}
+            <aside className="card mt-12 border-orange/30 sm:p-8" aria-labelledby="next-step-heading">
+              <span className="eyebrow">Signed up? Your next step</span>
+              <h2 id="next-step-heading" className="heading-display mt-4 text-2xl sm:text-3xl">
+                New to Star Citizen? Start here
+              </h2>
+              <p className="mt-3 max-w-2xl text-muted">
+                DayOneCitizen walks you through your first 30 days in the game. It also
+                helps you decide whether to buy.
+              </p>
+              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
                 <a
-                  href="https://dayonecitizen.com"
-                  className="text-orange underline hover:text-orange-dark"
+                  href="https://dayonecitizen.com/day-one-citizen"
+                  className="group btn-primary"
                   target="_blank"
                   rel="noopener"
                 >
-                  DayOneCitizen.com
-                </a>{' '}
-                has a plain-English guide for your first 30 days in the &apos;Verse.
-              </p>
-            </section>
+                  Start your first 30 days
+                  <ArrowIcon />
+                </a>
+                <a
+                  href="https://dayonecitizen.com/day-one-citizen/worth-buying"
+                  className="text-sm text-orange underline underline-offset-2 hover:text-orange-dark"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Is Star Citizen worth buying?
+                </a>
+              </div>
+            </aside>
           </div>
         </section>
 
