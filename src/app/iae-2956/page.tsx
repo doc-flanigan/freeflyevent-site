@@ -549,14 +549,17 @@ export default function Iae2956Page() {
                 name: 'Cloud Imperium Games',
                 url: 'https://www.robertsspaceindustries.com/',
               },
-              offers: {
-                '@type': 'Offer',
-                price: '0',
-                priceCurrency: 'USD',
-                availability: 'https://schema.org/InStock',
-                url: 'https://freeflyevent.com/iae-2956',
-                validFrom: iae2956.start,
-              },
+              // Free access is no longer available once the window has closed.
+              ...(phase !== 'ended' && {
+                offers: {
+                  '@type': 'Offer',
+                  price: '0',
+                  priceCurrency: 'USD',
+                  availability: 'https://schema.org/InStock',
+                  url: 'https://freeflyevent.com/iae-2956',
+                  validFrom: iae2956.start,
+                },
+              }),
             }),
           }}
         />

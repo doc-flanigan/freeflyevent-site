@@ -21,6 +21,24 @@ export function formatRangeUTC(startISO: string, endISO: string): string {
   return `${monthShort(start)} ${day(start)} – ${monthShort(end)} ${day(end)}, ${year}`;
 }
 
+/** "Jul 29 – Aug 10, 2026" / "May 14 – 27, 2026" (spaced dash, UTC). */
+export function formatRangeSpacedUTC(startISO: string, endISO: string): string {
+  const start = new Date(startISO);
+  const end = new Date(endISO);
+  const monthShort = (d: Date) =>
+    d.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' });
+  const year = end.getUTCFullYear();
+  if (start.getUTCMonth() === end.getUTCMonth()) {
+    return `${monthShort(start)} ${start.getUTCDate()} – ${end.getUTCDate()}, ${year}`;
+  }
+  return `${monthShort(start)} ${start.getUTCDate()} – ${monthShort(end)} ${end.getUTCDate()}, ${year}`;
+}
+
+/** "August 10" (long month, UTC). */
+export function formatMonthDayUTC(d: Date): string {
+  return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', timeZone: 'UTC' });
+}
+
 export function formatDateLong(d: Date): string {
   return d.toLocaleString('en-US', {
     weekday: 'long',

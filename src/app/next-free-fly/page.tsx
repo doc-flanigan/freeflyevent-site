@@ -9,32 +9,74 @@ import { CTAButton } from '@/components/CTAButton';
 import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
 import { FREE_FLY_HISTORY, getEventStatus, getIae2956, HUB_URL, type EventStatus } from '@/data/events';
-import { formatDateLong, formatRangeUTC } from '@/lib/format';
+import { formatDateLong, formatMonthDayUTC, formatRangeUTC } from '@/lib/format';
 
 // Re-render hourly so the live status and FAQ flip without a redeploy.
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
-  title: 'When Is the Next Star Citizen Free Fly?',
-  description:
-    'When is the next Star Citizen Free Fly? Live status, the yearly pattern (IAE in late November), official sources, and how to be ready.',
-  alternates: { canonical: '/next-free-fly' },
-  keywords: [
-    'next star citizen free fly',
-    'when is the next star citizen free fly',
-    'star citizen free fly dates',
-    'star citizen next free fly 2026',
-    'star citizen free fly schedule',
-    'upcoming star citizen free fly',
-    'star citizen iae 2956 free fly',
-  ],
-  openGraph: {
-    images: ['/images/og-image.png'],
+/**
+ * The "next window" wording, derived from the event calendar so it follows
+ * IAE 2956 through unannounced -> announced -> live -> ended.
+ */
+function nextWindow(now: Date = new Date()) {
+  const status = getEventStatus(now);
+  const iae = getIae2956();
+  const iaeEnded = !!iae && now > new Date(iae.end);
+
+  if (status.state === 'ACTIVE') {
+    const ends = formatMonthDayUTC(status.endsAt);
+    return {
+      meta: `${status.event.name} Free Fly is live now, through ${ends}. Live status, official sources, and how to be ready.`,
+      og: `${status.event.name} Free Fly is live now — ends ${ends}.`,
+      sentence: `${status.event.name} is live now, through ${ends}.`,
+    };
+  }
+  if (status.state === 'UPCOMING' || (iae && !iaeEnded && status.state === 'INACTIVE')) {
+    const ev = status.state === 'UPCOMING' ? status.event : iae!;
+    const range = formatRangeUTC(ev.start, ev.end);
+    return {
+      meta: `When is the next Star Citizen Free Fly? ${ev.name} is confirmed for ${range}. Live status, official sources, and how to be ready.`,
+      og: `${ev.name} Free Fly is confirmed for ${range}.`,
+      sentence: `The next realistic window is ${ev.name} (${range}).`,
+    };
+  }
+  if (iae && iaeEnded) {
+    const range = formatRangeUTC(iae.start, iae.end);
+    return {
+      meta: `When is the next Star Citizen Free Fly? IAE 2956 ran ${range}; next window TBD. Live status, official sources, and how to be ready.`,
+      og: `IAE 2956 ran ${range} — the next Free Fly window is TBD.`,
+      sentence: 'IAE 2956 has ended, so the next realistic window is the May flagship event, which CIG has not announced yet.',
+    };
+  }
+  return {
+    meta: 'When is the next Star Citizen Free Fly? Live status, the yearly pattern (IAE in late November), official sources, and how to be ready.',
+    og: 'Live Free Fly status plus the yearly pattern — IAE in late November is the most dependable window.',
+    sentence: 'The next realistic window is IAE in late November.',
+  };
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { meta, og } = nextWindow();
+  return {
     title: 'When Is the Next Star Citizen Free Fly?',
-    description:
-      'Live Free Fly status plus the yearly pattern — IAE in late November is the most dependable window.',
-  },
-};
+    description: meta,
+    alternates: { canonical: '/next-free-fly' },
+    keywords: [
+      'next star citizen free fly',
+      'when is the next star citizen free fly',
+      'star citizen free fly dates',
+      'star citizen next free fly 2026',
+      'star citizen free fly schedule',
+      'upcoming star citizen free fly',
+      'star citizen iae 2956 free fly',
+    ],
+    openGraph: {
+      images: ['/images/og-image.png'],
+      title: 'When Is the Next Star Citizen Free Fly?',
+      description: og,
+    },
+  };
+}
 
 // Official RSI Comm-Link sources for every historical claim on this page.
 const SOURCES = {
@@ -97,7 +139,7 @@ function buildFaqs(status: EventStatus, now: Date = new Date()) {
     },
     {
       q: 'Will CitizenCon 2026 have a Free Fly?',
-      a: 'No — CIG has said it will not hold a CitizenCon in 2026 in any form (in-person, digital, or Direct), so there is no October Free Fly to wait for. For comparison, CitizenCon Direct 2955 (October 11, 2025) was a free digital-only stream with no Free Fly attached either. The next realistic window is IAE in late November.',
+      a: `No — CIG has said it will not hold a CitizenCon in 2026 in any form (in-person, digital, or Direct), so there is no October Free Fly to wait for. For comparison, CitizenCon Direct 2955 (October 11, 2025) was a free digital-only stream with no Free Fly attached either. ${nextWindow(now).sentence}`,
     },
     {
       q: 'How do I get notified about the next Free Fly?',
