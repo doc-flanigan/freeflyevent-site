@@ -92,8 +92,8 @@ export default function ShouldIBuyPage() {
             </p>
             <p className="mt-3 text-white/85">
               <strong className="text-orange">If you weren&apos;t sure</strong> — wait for the
-              next Free Fly. IAE in November is coming, and it&apos;s usually the bigger of
-              the two annual events.
+              next Free Fly. IAE in late November is the usual next window (CIG has not announced IAE 2956 dates yet),
+              and it&apos;s usually the bigger of the two annual events.
             </p>
           </div>
 
@@ -233,7 +233,7 @@ export default function ShouldIBuyPage() {
               </figcaption>
             </figure>
             <p className="mt-4 text-xs text-muted">
-              Prices vary by sale. CIG runs sales around Invictus and IAE. Never pay above
+              Prices vary by sale. CIG runs sales around its big May event and IAE. Never pay above
               these ranges for a starter.{' '}
               <a
                 href="https://dayonecitizen.com/day-one-citizen/starter-package"

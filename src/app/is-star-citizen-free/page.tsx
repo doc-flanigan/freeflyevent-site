@@ -102,7 +102,7 @@ export default function IsStarCitizenFreePage() {
             <p className="text-lg text-white/90">
               Star Citizen is <strong className="text-white">a paid game, not free-to-play</strong> —
               playing year-round requires a one-time{' '}
-              <strong className="text-white">~$45 Game Package</strong> (on sale — $60 list) purchase. But Cloud
+              <strong className="text-white">Game Package</strong> purchase (from $45 on sale — $60 list price, as of September 2026). But Cloud
               Imperium runs several official{' '}
               <Link href="/" className="text-orange underline-offset-2 hover:underline">Free Fly events</Link>{' '}
               each year, when <strong className="text-white">anyone can play the full game for
@@ -174,7 +174,7 @@ export default function IsStarCitizenFreePage() {
               {[
                 ['Free RSI account', 'Free forever. Lets you reserve a username, claim a 50,000 UEC referral bonus, and download the launcher — but you cannot launch into the game without either a Game Package or an active Free Fly event.'],
                 ['Free Fly event', 'A limited window (~10 days, several times a year) when your free account can play the entire live game at no cost. No purchase required. This is the answer to "how do I play Star Citizen for free."'],
-                ['Game Package (~$45 on sale, $60+ list)', 'A one-time purchase that lets you play any time, keeps a starter ship, and includes all future updates. No subscription, no DLC.'],
+                ['Game Package ($45 on sale, $60 list, as of September 2026)', 'A one-time purchase that lets you play any time, keeps a starter ship, and includes all future updates. No subscription, no DLC.'],
               ].map(([title, desc]) => (
                 <li key={title as string} className="flex gap-4 rounded-xl border border-white/10 bg-blackMid/60 p-5">
                   <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-orange" aria-hidden />
