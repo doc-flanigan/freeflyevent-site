@@ -61,15 +61,15 @@ const faqs = [
   },
   {
     q: 'When does the Foundation Festival 2026 Free Fly end?',
-    a: 'August 10, 2026, per Comm-Link 21211 ("From July 29 through August 10"). CIG has not published an exact end time, so treat the end of August 10 (UTC) as the cutoff and don’t leave it to the last hours. The referral bonus promo runs longer — until August 12 at 20:00 UTC — and the Twitch Drops campaign also ends August 12.',
+    a: 'August 10, 2026, per Comm-Link 21211 ("From July 29 through August 10"). CIG has not published an exact end time, so treat the end of August 10 (UTC) as the cutoff and don’t leave it to the last hours. The referral bonus promo ran longer — until August 12 at 20:00 UTC — and the Twitch Drops campaign also ended August 12.',
   },
   {
     q: 'What are the Foundation Festival 2026 Twitch Drops?',
-    a: 'A separate promotional campaign running July 29 – August 12, 2026. Watching 4 total hours on any Drops-Enabled Star Citizen stream earns an ATLS Foundation Fest Livery. A new recurring or gift subscription to a participating Star Citizen streamer earns a Banu Lockbox Replica. Prime subs, renewals, and sub tokens do not count toward the subscription drop. You need linked Twitch and RSI accounts, and only one Twitch account can be linked per RSI account.',
+    a: 'A separate promotional campaign that ran July 29 – August 12, 2026. Watching 4 total hours on any Drops-Enabled Star Citizen stream earns an ATLS Foundation Fest Livery. A new recurring or gift subscription to a participating Star Citizen streamer earns a Banu Lockbox Replica. Prime subs, renewals, and sub tokens do not count toward the subscription drop. You need linked Twitch and RSI accounts, and only one Twitch account can be linked per RSI account.',
   },
   {
     q: 'How does the Argo ATLS referral bonus work?',
-    a: 'The full terms are now published in Comm-Link 21225. The veteran player earns an Argo ATLS power suit (with Lifetime Insurance, non-meltable, non-giftable, one per player) when a new player uses their referral code and pledges for a starter pack or ship on the Pledge Store. The new player earns a "Ready for Anything" Career Kit: an RSI Venture armor set and undersuit, RSI MacFlex backpack, Pyro RYT Multi-Tool with mining, tractor beam, and healing attachments, a Greycat Cambio-Lite SRT attachment and canister, a Behring P4-AR rifle, and an all-purpose container. The new player’s kit is granted after the promotion ends on August 12; the veteran’s ATLS is granted immediately on the qualifying pledge. The standard 50,000 UEC signup bonus still applies with no purchase. The promotion runs until August 12, 2026, 20:00 UTC.',
+    a: 'The full terms are now published in Comm-Link 21225. The veteran player earns an Argo ATLS power suit (with Lifetime Insurance, non-meltable, non-giftable, one per player) when a new player uses their referral code and pledges for a starter pack or ship on the Pledge Store. The new player earns a "Ready for Anything" Career Kit: an RSI Venture armor set and undersuit, RSI MacFlex backpack, Pyro RYT Multi-Tool with mining, tractor beam, and healing attachments, a Greycat Cambio-Lite SRT attachment and canister, a Behring P4-AR rifle, and an all-purpose container. The new player’s kit is granted after the promotion ends on August 12; the veteran’s ATLS is granted immediately on the qualifying pledge. The standard 50,000 UEC signup bonus still applies with no purchase. The promotion ran until August 12, 2026, 20:00 UTC.',
   },
 ];
 
@@ -118,10 +118,10 @@ export default function FoundationFestival2026Page() {
             required. The referral bonus adds a &ldquo;Ready for Anything&rdquo; Career Kit
             for the new player and an Argo ATLS for the recruiter —{' '}
             <strong className="text-white">
-              both granted only if the new player pledges for a starter pack or ship
+              both granted only if the new player pledged for a starter pack or ship
             </strong>{' '}
             before <strong className="text-white">August 12, 20:00 UTC</strong>; the
-            50,000 UEC signup bonus needs no purchase. A Twitch Drops campaign runs
+            50,000 UEC signup bonus needs no purchase. A Twitch Drops campaign ran
             alongside through August 12.
           </p>
 
@@ -146,8 +146,7 @@ export default function FoundationFestival2026Page() {
                 the final hours of August 10.
               </p>
               <p className="mt-3 text-xs text-muted">
-                Last checked {LAST_CHECKED}. The end time will be added when CIG
-                publishes it.
+                Last checked {LAST_CHECKED}. This event is over; CIG never published an exact end time.
               </p>
             </div>
           </section>
@@ -161,10 +160,10 @@ export default function FoundationFestival2026Page() {
               <strong className="text-white">July 29 – August 10, 2026</strong> for the
               Free Fly, per{' '}
               <SourceLink href={SOURCES.foundationFestival2026}>Comm-Link 21211</SourceLink>.
-              Two companion promotions run longer: the{' '}
+              Two companion promotions ran longer: the{' '}
               <SourceLink href={SOURCES.referralBonus2026}>referral bonus</SourceLink>{' '}
               until August 12 at 20:00 UTC, and the Twitch Drops campaign through
-              August 12.
+              August 12 (both are over).
             </p>
           </section>
 
@@ -174,9 +173,9 @@ export default function FoundationFestival2026Page() {
               What Are the Foundation Festival 2026 Twitch Drops?
             </h2>
             <p className="mt-4 text-muted">
-              A Twitch Drops campaign runs{' '}
+              A Twitch Drops campaign ran{' '}
               <strong className="text-white">July 29 – August 12, 2026</strong> —
-              this is the Drops window, not a stated end date for the festival itself.
+              that was the Drops window, not an end date for the festival itself.
             </p>
             <div className="mt-6 space-y-5">
               <div className="rounded-xl border border-orange/30 bg-blackMid/60 p-6">
@@ -234,7 +233,7 @@ export default function FoundationFestival2026Page() {
                   MacFlex backpack, Pyro RYT Multi-Tool with mining, tractor beam, and
                   healing attachments, a Greycat Cambio-Lite SRT attachment and canister, a
                   Behring P4-AR rifle, and an all-purpose container. Granted after the
-                  promotion ends on August 12.
+                  promotion ended on August 12.
                 </li>
                 <li>
                   <strong className="text-white">Recruiter:</strong> an Argo ATLS power
@@ -252,7 +251,7 @@ export default function FoundationFestival2026Page() {
                   with a referral code, as always.
                 </li>
                 <li>
-                  Promotion runs until{' '}
+                  The promotion ran until{' '}
                   <strong className="text-white">August 12, 2026, 20:00 UTC</strong>.
                 </li>
               </ul>
@@ -266,11 +265,12 @@ export default function FoundationFestival2026Page() {
 
           {/* CTA */}
           <section className="mt-14 rounded-2xl border border-white/10 bg-blackMid/60 p-8 sm:p-10">
-            <h2 className="heading-display text-2xl">Play free right now</h2>
+            <h2 className="heading-display text-2xl">Get ready for the next Free Fly</h2>
             <p className="mt-4 text-white/80">
-              The Free Fly ends August 10 — and a referral code only works at signup, not
-              after. Create your free RSI account with a code, claim your 50,000 UEC
-              bonus, and you&apos;re set for the Career Kit if you decide to pledge later.
+              This Free Fly is over, and the next one has not been announced. A referral
+              code only works at signup, not after, so create your free RSI account with
+              a code now and claim your 50,000 UEC bonus. It stays on your account
+              until the next event.
             </p>
             <div className="mt-6">
               <CTAButton size="lg" trackingLabel="foundation-festival-2026-cta" />
