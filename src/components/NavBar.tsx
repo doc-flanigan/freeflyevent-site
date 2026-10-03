@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { CTAButton } from './CTAButton';
 
 const LINKS = [
   { href: '/', label: 'Home' },
@@ -39,7 +40,7 @@ export function NavBar() {
           <Logo />
           <span className="font-display text-lg font-bold tracking-tight text-white">
             freefly<span className="text-orange">event</span>
-            <span className="ml-0.5 text-xs font-semibold text-muted">.com</span>
+            <span className="ml-0.5 hidden text-xs font-semibold text-muted sm:inline">.com</span>
           </span>
         </Link>
 
@@ -60,30 +61,38 @@ export function NavBar() {
               </Link>
             );
           })}
+          <CTAButton size="sm" trackingLabel="nav" trackImpression={false} className="ml-3">
+            Play Free
+          </CTAButton>
         </div>
 
-        <button
-          type="button"
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          onClick={() => setOpen((o) => !o)}
-          className="lg:hidden rounded-md border border-white/10 p-2 text-white"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            {open ? (
-              <>
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </>
-            ) : (
-              <>
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="18" x2="21" y2="18" />
-              </>
-            )}
-          </svg>
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <CTAButton size="sm" trackingLabel="nav-mobile" trackImpression={false}>
+            Play Free
+          </CTAButton>
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            aria-expanded={open}
+            onClick={() => setOpen((o) => !o)}
+            className="rounded-md border border-white/10 p-2 text-white"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              {open ? (
+                <>
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </>
+              ) : (
+                <>
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="18" x2="21" y2="18" />
+                </>
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {open && (

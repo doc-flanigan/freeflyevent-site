@@ -31,11 +31,13 @@ type Props = {
   children?: React.ReactNode;
   href?: string;
   variant?: 'primary' | 'secondary';
-  size?: 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg';
   className?: string;
   trackingLabel?: string;
   /** A/B copy test: two button-text variants. Assignment is sticky per visitor. */
   variants?: { a: string; b: string };
+  /** Log a viewport impression. Off for always-visible buttons (nav), where it would just mirror pageviews. */
+  trackImpression?: boolean;
 };
 
 export function CTAButton({
@@ -46,6 +48,7 @@ export function CTAButton({
   className = '',
   trackingLabel,
   variants,
+  trackImpression = true,
 }: Props) {
   const [referralUrl, setReferralUrl] = useState(FALLBACK_REFERRAL_URL);
   const [defaultLabel, setDefaultLabel] = useState(DEFAULT_LABEL);
@@ -59,14 +62,15 @@ export function CTAButton({
   const variantSuffix = variants ? `~${abVariant}` : '';
 
   const href = hrefProp ?? referralUrl;
-  const sizeCls = size === 'lg' ? 'px-8 py-4 text-base' : 'px-6 py-3 text-sm';
+  const sizeCls =
+    size === 'lg' ? 'px-8 py-4 text-base' : size === 'sm' ? 'px-4 py-2 text-xs' : 'px-6 py-3 text-sm';
   const base = variant === 'primary' ? 'btn-primary' : 'btn-secondary';
 
   const linkRef = useRef<HTMLAnchorElement>(null);
   const impressionFired = useRef(false);
   useEffect(() => {
     const el = linkRef.current;
-    if (!el) return;
+    if (!el || !trackImpression) return;
     const observer = new IntersectionObserver(
       (entries) => {
         if (impressionFired.current) return;
@@ -90,7 +94,7 @@ export function CTAButton({
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [href, trackingLabel, variants, abVariant, variantSuffix]);
+  }, [href, trackingLabel, variants, abVariant, variantSuffix, trackImpression]);
 
   const handleClick = () => {
     const code = href.split('referral=')[1] ?? ''

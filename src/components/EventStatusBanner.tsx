@@ -17,9 +17,14 @@ type Props = {
 type SlotProps = { status: EventStatus; referralUrl: string; onNavigate: () => void; bonusOverride: BonusOverride | null };
 
 export function EventStatusBanner({ variant = 'bar' }: Props) {
-  const [status, setStatus] = useState<EventStatus | null>(null);
+  // Initial state is computed during the server render (pages using the banner
+  // revalidate hourly), so the real banner ships in the HTML: no placeholder
+  // swap, so no layout shift (CLS was 0.22 on the desktop homepage), and
+  // crawlers see the status and signup link. The effect re-checks on mount and
+  // every minute.
+  const [status, setStatus] = useState<EventStatus>(() => getEventStatus());
   const [referralUrl, setReferralUrl] = useState(FALLBACK_REFERRAL_URL);
-  const [bonusOverride, setBonusOverride] = useState<BonusOverride | null>(null);
+  const [bonusOverride, setBonusOverride] = useState<BonusOverride | null>(() => getActiveBonusOverride());
 
   useEffect(() => {
     setStatus(getEventStatus());
@@ -48,15 +53,6 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
       }),
     }).catch(() => {});
   };
-
-  if (!status) {
-    // Render a stable, accessible placeholder that occupies the same space.
-    return variant === 'bar' ? (
-      <div className="h-10 w-full bg-blackMid" aria-hidden />
-    ) : (
-      <div className="h-48 w-full rounded-2xl border border-white/10 bg-blackMid" aria-hidden />
-    );
-  }
 
   const slotProps: SlotProps = { status, referralUrl, onNavigate: handleNavigate, bonusOverride };
   if (variant === 'bar') return <Bar {...slotProps} />;
@@ -166,8 +162,8 @@ function ReferralCodePanel() {
       <div className="mt-1.5 font-mono text-xl font-bold text-orange">{REFERRAL_CODE}</div>
       <p className="mt-2 text-xs leading-relaxed text-white/70">
         Paste it into the <span className="font-mono">Referral Code</span> field on the
-        signup form. After 24 hours it cannot be added — the 50,000 UEC is forfeited
-        permanently. Full details on{' '}
+        signup form. The code cannot be added after about 24 hours, so the bonus
+        never attaches. Full details on{' '}
         <a
           href="https://dayonecitizen.com/referral-code"
           target="_blank"

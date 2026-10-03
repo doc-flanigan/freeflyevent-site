@@ -27,11 +27,13 @@ export function LightboxImage({ src, alt, width, height, className = '', contain
 
   return (
     <>
-      {/* Thumbnail */}
+      {/* Thumbnail. w-full matters: a <button> shrinks to fit its content, so
+          without it the w-full image has no width (and no reserved height)
+          until it loads, which pushed the page down (CLS) on /event-guide. */}
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={`group relative block cursor-zoom-in text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-orange ${containerClassName}`}
+        className={`group relative block w-full cursor-zoom-in text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-orange ${containerClassName}`}
         aria-label={`View ${alt} full size`}
       >
         <Image
