@@ -9,7 +9,7 @@ import { CTAButton, ArrowIcon } from '@/components/CTAButton';
 import { FreeFlyGuide } from '@/components/FreeFlyGuide';
 import { TwitchClip } from '@/components/TwitchClip';
 import { getEventStatus, getActiveBonusOverride, iaeStillAheadThisYear, REFERRAL_URL } from '@/data/events';
-import { formatRangeUTC } from '@/lib/format';
+import { formatMonthDayUTC, formatRangeUTC } from '@/lib/format';
 import { DiscordCTA } from '@/components/DiscordCTA';
 
 const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const status = getEventStatus();
   if (status.state === 'ACTIVE') {
     const bonus = getActiveBonusOverride();
-    const ends = status.endsAt.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+    const ends = formatMonthDayUTC(status.endsAt);
     return {
       title: `Star Citizen Free Fly Active — Ends ${ends}`,
       description: bonus

@@ -7,8 +7,8 @@ import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
-import { HUB_URL, REFERRAL_CODE, getIae2956 } from '@/data/events';
-import { formatRangeUTC } from '@/lib/format';
+import { FREE_FLY_HISTORY, HUB_URL, REFERRAL_CODE, getIae2956, type FreeFlyEvent } from '@/data/events';
+import { formatRangeSpacedUTC, formatRangeUTC } from '@/lib/format';
 
 // Hourly ISR so the "next window" line in the description tracks IAE 2956
 // from expected → announced → live → ended without a redeploy.
@@ -50,14 +50,31 @@ const baseMetadata: Metadata = {
   },
 };
 
-const faqs = [
+/**
+ * Newest events that have started, were not cancelled, and have a source.
+ * FREE_FLY_HISTORY is newest-first; future events are excluded.
+ */
+function recentWindows(limit: number, now: Date = new Date()): (FreeFlyEvent & { source: string })[] {
+  return FREE_FLY_HISTORY.filter(
+    (ev): ev is FreeFlyEvent & { source: string } =>
+      !!ev.source && ev.freeFlyActive !== false && new Date(ev.start) <= now,
+  ).slice(0, limit);
+}
+
+function buildFaqs(now: Date = new Date()) {
+  const items = recentWindows(3, now).map(
+    (ev) => `${ev.name} (${formatRangeSpacedUTC(ev.start, ev.end).replace(' – ', '-')})`,
+  );
+  const examples =
+    items.length > 1 ? `${items.slice(0, -1).join(', ')}, and ${items[items.length - 1]}` : items.join('');
+  return [
   {
     q: 'Is Star Citizen free?',
     a: 'No. Star Citizen is a paid game — playing whenever you want requires a one-time Game Package purchase starting around $45 (on sale — $60 list price, as of September 2026). There is no monthly subscription. However, you can play the full game for free during official Free Fly events, which Cloud Imperium runs several times a year.',
   },
   {
     q: 'When can I play Star Citizen for free?',
-    a: 'During official Free Fly events, which run several times a year for roughly two weeks each. The most reliable windows are the May flagship event (Invictus Launch Week, run as DefenseCon in 2026) and the Intergalactic Aerospace Expo (IAE) in November. Recent examples: Foundation Festival 2026 (July 29-August 10, 2026), DefenseCon 2956 (May 14-27, 2026), and IAE 2955 (Nov 20-Dec 3, 2025).',
+    a: `During official Free Fly events, which run several times a year for roughly two weeks each. The most reliable windows are the May flagship event (Invictus Launch Week, run as DefenseCon in 2026) and the Intergalactic Aerospace Expo (IAE) in November. Recent examples: ${examples}.`,
   },
   {
     q: 'Do I need to buy anything during a Free Fly?',
@@ -79,9 +96,11 @@ const faqs = [
     q: 'Do you have to pay monthly for Star Citizen?',
     a: 'No. Star Citizen has no subscription. A Game Package is a one-time purchase, and all future content updates are included at no extra cost.',
   },
-];
+  ];
+}
 
 export default function IsStarCitizenFreePage() {
+  const faqs = buildFaqs();
   return (
     <>
       <EventStatusBanner variant="bar" />
@@ -210,18 +229,13 @@ export default function IsStarCitizenFreePage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {[
-                    ['Foundation Festival 2026', 'Jul 29 – Aug 10, 2026', 'https://robertsspaceindustries.com/en/comm-link/transmission/21211-Foundation-Festival-2026'],
-                    ['DefenseCon 2956', 'May 14 – 27, 2026', 'https://robertsspaceindustries.com/en/comm-link/transmission/21147-DefenseCon-2956-About'],
-                    ['Intergalactic Aerospace Expo 2955', 'Nov 20 – Dec 3, 2025', 'https://robertsspaceindustries.com/en/comm-link/transmission/20861-Intergalactic-Aerospace-Expo-2955-Free-Fly-And-Manufacturer-Schedule'],
-                    ['Invictus Launch Week 2955', 'May 15 – 27, 2025', 'https://robertsspaceindustries.com/en/comm-link/transmission/20491-About-Invictus-Launch-Week-2955'],
-                  ].map(([name, dates, source]) => (
-                    <tr key={name} className="border-b border-white/5">
-                      <td className="px-4 py-3 font-semibold text-white">{name}</td>
-                      <td className="px-4 py-3 text-muted">{dates}</td>
+                  {recentWindows(4).map((ev) => (
+                    <tr key={ev.id} className="border-b border-white/5">
+                      <td className="px-4 py-3 font-semibold text-white">{ev.name}</td>
+                      <td className="px-4 py-3 text-muted">{formatRangeSpacedUTC(ev.start, ev.end)}</td>
                       <td className="px-4 py-3">
                         <a
-                          href={source}
+                          href={ev.source}
                           target="_blank"
                           rel="noopener"
                           className="text-orange underline-offset-2 hover:underline"
