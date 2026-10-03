@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { LightboxImage } from './LightboxImage';
 import { getEventStatus, getActiveBonusOverride, REFERRAL_CODE, type EventStatus, type BonusOverride } from '@/data/events';
@@ -38,6 +38,37 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
     return () => clearInterval(id);
   }, []);
 
+  // Tracking labels: the bar keeps the original 'EventStatusBanner' label and
+  // logs clicks only (it sits on every page, so impressions would just mirror
+  // pageviews). The homepage hero card logs clicks + one impression per view
+  // under 'EventStatusBanner-hero' so cta-report can compute its CTR.
+  const label = variant === 'hero' ? 'EventStatusBanner-hero' : 'EventStatusBanner';
+  const heroRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = heroRef.current;
+    if (variant !== 'hero' || !el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        observer.disconnect();
+        fetch('/api/log', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            label: `impression:${label}`,
+            referralCode: referralUrl.split('referral=')[1] ?? '',
+            page: window.location.pathname,
+            site: window.location.hostname,
+            referrer: (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('lref')) || '',
+          }),
+        }).catch(() => {});
+      },
+      { threshold: 0.5 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [variant, label, referralUrl]);
+
   const handleNavigate = () => {
     const code = referralUrl.split('referral=')[1] ?? '';
     fetch('/api/log', {
@@ -45,7 +76,7 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
       keepalive: true,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        label: 'EventStatusBanner',
+        label,
         referralCode: code,
         page: window.location.pathname,
         site: window.location.hostname,
@@ -56,7 +87,11 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
 
   const slotProps: SlotProps = { status, referralUrl, onNavigate: handleNavigate, bonusOverride };
   if (variant === 'bar') return <Bar {...slotProps} />;
-  return <Hero {...slotProps} />;
+  return (
+    <div ref={heroRef}>
+      <Hero {...slotProps} />
+    </div>
+  );
 }
 
 function CancelledBar({ eventName, referralUrl, onNavigate }: { eventName: string; referralUrl: string; onNavigate: () => void }) {
