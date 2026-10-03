@@ -16,7 +16,7 @@ const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF'
 
 // Hourly ISR: metadata and Event JSON-LD are derived from getEventStatus(),
 // so they must re-render when an event starts or ends, not only on deploy.
-// (The banner is client-side and already flips on its own.)
+// (The banner re-checks client-side every minute as well.)
 export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {

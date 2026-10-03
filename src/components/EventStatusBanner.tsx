@@ -17,9 +17,14 @@ type Props = {
 type SlotProps = { status: EventStatus; referralUrl: string; onNavigate: () => void; bonusOverride: BonusOverride | null };
 
 export function EventStatusBanner({ variant = 'bar' }: Props) {
-  const [status, setStatus] = useState<EventStatus | null>(null);
+  // Initial state is computed during the server render (pages using the banner
+  // revalidate hourly), so the real banner ships in the HTML: no placeholder
+  // swap, so no layout shift (CLS was 0.22 on the desktop homepage), and
+  // crawlers see the status and signup link. The effect re-checks on mount and
+  // every minute.
+  const [status, setStatus] = useState<EventStatus>(() => getEventStatus());
   const [referralUrl, setReferralUrl] = useState(FALLBACK_REFERRAL_URL);
-  const [bonusOverride, setBonusOverride] = useState<BonusOverride | null>(null);
+  const [bonusOverride, setBonusOverride] = useState<BonusOverride | null>(() => getActiveBonusOverride());
 
   useEffect(() => {
     setStatus(getEventStatus());
@@ -48,15 +53,6 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
       }),
     }).catch(() => {});
   };
-
-  if (!status) {
-    // Render a stable, accessible placeholder that occupies the same space.
-    return variant === 'bar' ? (
-      <div className="h-10 w-full bg-blackMid" aria-hidden />
-    ) : (
-      <div className="h-48 w-full rounded-2xl border border-white/10 bg-blackMid" aria-hidden />
-    );
-  }
 
   const slotProps: SlotProps = { status, referralUrl, onNavigate: handleNavigate, bonusOverride };
   if (variant === 'bar') return <Bar {...slotProps} />;

@@ -8,6 +8,10 @@ import { EventHistoryTable } from '@/components/EventHistoryTable';
 import { PageBackdrop } from '@/components/PageBackdrop';
 import { FREE_FLY_HISTORY } from '@/data/events';
 
+// Hourly ISR: the server-rendered EventStatusBanner must flip when an event
+// starts or ends, not only on deploy.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'Every Star Citizen Free Fly, 2022–2026',
   description:

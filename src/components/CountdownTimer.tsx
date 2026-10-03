@@ -46,6 +46,8 @@ export function CountdownTimer({ target, variant = 'full', label, className = ''
       <span
         className={`tabular rounded-md bg-spaceBlack/60 px-2 py-1 font-mono text-sm text-orange ${className}`}
         aria-label="time remaining"
+        // Server and client render different seconds; the effect corrects it.
+        suppressHydrationWarning
       >
         {display}
       </span>
@@ -78,7 +80,7 @@ function Block({ value, unit, highlight = false }: { value: number; unit: string
           : 'border-white/10 bg-blackMid/70 text-white'
       }`}
     >
-      <span className="tabular font-mono text-2xl font-bold leading-none sm:text-4xl">
+      <span className="tabular font-mono text-2xl font-bold leading-none sm:text-4xl" suppressHydrationWarning>
         {pad(value)}
       </span>
       <span className="mt-1 text-[10px] font-semibold tracking-[0.2em] text-muted">
