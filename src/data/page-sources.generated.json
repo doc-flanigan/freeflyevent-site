@@ -11,6 +11,14 @@
           "https://robertsspaceindustries.com/en/comm-link/transmission/21147-DefenseCon-2956-About",
           "https://robertsspaceindustries.com/en/comm-link/transmission/20861-Intergalactic-Aerospace-Expo-2955-Free-Fly-And-Manufacturer-Schedule"
         ]
+      },
+      {
+        "id": "referral-code-24h-window",
+        "claim": "A referral code must be applied at account signup or within ~24 hours in account settings — it cannot be added after that window.",
+        "status": "verified",
+        "sources": [
+          "https://robertsspaceindustries.com/en/referral-program"
+        ]
       }
     ],
     "/event-guide": [
@@ -37,6 +45,14 @@
         "status": "verified",
         "sources": [
           "https://robertsspaceindustries.com/en/referral-program"
+        ]
+      },
+      {
+        "id": "sc-minimum-system-requirements",
+        "claim": "Star Citizen's official minimum system requirements are published in RSI support article 360042417374; site spec listings must mirror that article verbatim.",
+        "status": "verified",
+        "sources": [
+          "https://support.robertsspaceindustries.com/hc/en-us/articles/360042417374-Star-Citizen-Minimum-System-Requirements"
         ]
       }
     ],
@@ -188,6 +204,25 @@
           "https://robertsspaceindustries.com/en/comm-link/transmission/21225-Foundation-Festival-2026-Referral-Bonus",
           "https://robertsspaceindustries.com/en/comm-link/transmission/21237-Twitch-Drops-Foundation-Festival-2026",
           "https://support.robertsspaceindustries.com/hc/en-us/articles/360037529633-Welcome-to-the-Star-Citizen-Free-Fly-Event"
+        ]
+      },
+      {
+        "id": "rsi-discovery-month-centaurus-rental",
+        "claim": "During RSI Discovery Month, every pilot who completes the in-game 'RSI Discovery Month: Rental Offer' contract receives five days of free rental access to the RSI Constellation Mk V Centaurus and the Skylark.",
+        "status": "verified",
+        "sources": [
+          "https://robertsspaceindustries.com/spectrum/community/SC/forum/1/thread/alpha-4-10-2-rsi-discovery-month",
+          "https://robertsspaceindustries.com/spectrum/community/SC/forum/4/thread/4-10-2-live-feedback-rsi-centaurus/9168311"
+        ]
+      },
+      {
+        "id": "rsi-discovery-month-event",
+        "claim": "RSI Discovery Month is an in-game Star Citizen event that began with Alpha 4.10.2 on October 9, 2026, in which all pilots across Stanton can run RSI-themed contracts (defence, supply runs, salvage and lost-cargo collection) to earn rewards across four mobiGlas reward tracks — ship paints, flight blades, components, armor and weapons.",
+        "status": "verified",
+        "sources": [
+          "https://robertsspaceindustries.com/spectrum/community/SC/forum/1/thread/alpha-4-10-2-rsi-discovery-month",
+          "https://robertsspaceindustries.com/en/comm-link/transmission/21334",
+          "https://robertsspaceindustries.com/en/comm-link/transmission/21350-FAQ-RSI-Discovery-Month"
         ]
       }
     ],

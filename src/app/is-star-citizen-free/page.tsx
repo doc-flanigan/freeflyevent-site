@@ -7,7 +7,7 @@ import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
-import { FREE_FLY_HISTORY, HUB_URL, REFERRAL_CODE, getIae2956, type FreeFlyEvent } from '@/data/events';
+import { FREE_FLY_HISTORY, HUB_URL, REFERRAL_CODE, getEventStatus, getIae2956, type FreeFlyEvent } from '@/data/events';
 import { formatRangeSpacedUTC, formatRangeUTC } from '@/lib/format';
 
 // Hourly ISR so the "next window" line in the description tracks IAE 2956
@@ -101,6 +101,8 @@ function buildFaqs(now: Date = new Date()) {
 
 export default function IsStarCitizenFreePage() {
   const faqs = buildFaqs();
+  const status = getEventStatus();
+  const noFreeFlyNow = status.state === 'INACTIVE' || status.state === 'UPCOMING';
   return (
     <>
       <EventStatusBanner variant="bar" />
@@ -137,6 +139,22 @@ export default function IsStarCitizenFreePage() {
               for the live status.
             </p>
           </div>
+
+          <p className="mt-4 text-sm text-white/80">
+            {noFreeFlyNow && <>No Free Fly is running right now. </>}
+            Players who already own the game can still earn a free five-day ship
+            rental during RSI Discovery Month, which began October 9, 2026. A free
+            account does not qualify.{' '}
+            <a
+              href="https://starcitizenhelp.com/game-guides/rsi-discovery-month"
+              target="_blank"
+              rel="noopener"
+              className="text-orange underline-offset-2 hover:underline"
+            >
+              See the Discovery Month guide on Star Citizen Help
+            </a>
+            .
+          </p>
 
           <p className="mt-4 text-xs text-muted">
             Page reviewed October 2, 2026 — pricing and Free Fly details below are

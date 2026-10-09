@@ -75,6 +75,10 @@ const STATIC_FAQS = [
     a: 'Create a free RSI account (use a referral code at signup — it cannot be added later), download the launcher and the game, and the event ships appear in your hangar for the duration of the Free Fly. No purchase is required.',
   },
   {
+    q: 'Can I fly a ship for free without a Free Fly event?',
+    a: 'Only if you already own a game package. During RSI Discovery Month, an in-game event that began with Alpha 4.10.2 on October 9, 2026, completing the in-game contract "RSI Discovery Month: Rental Offer" gives five days of free rental access to the Constellation Mk V Centaurus and the Skylark. It is not a Free Fly, so a free account does not qualify.'
+  },
+  {
     q: 'Which events unlock the most ships?',
     a: 'The Intergalactic Aerospace Expo (IAE) every November is the biggest — historically 100+ ships free across rotating manufacturer days. May flagship events like DefenseCon 2956 have run similar large rotations. Mid-year events like Foundation Festival offer a smaller, curated lineup aimed at new players.',
   },
@@ -167,6 +171,37 @@ export default function FreeShipsRightNowPage() {
               </div>
             </>
           )}
+
+          {/* Discovery Month rental callout — NOT a Free Fly; kept out of FREE_FLY_HISTORY on purpose */}
+          <aside
+            aria-labelledby="discovery-month-rental"
+            className="mt-10 rounded-2xl border border-white/15 bg-blackMid/60 p-6 sm:p-8"
+          >
+            <p className="text-xs uppercase tracking-[0.18em] text-orange">
+              Not a Free Fly — for players who already own the game
+            </p>
+            <h2 id="discovery-month-rental" className="heading-display mt-3 text-xl sm:text-2xl">
+              Free five-day ship rental during RSI Discovery Month
+            </h2>
+            <p className="mt-3 text-white/85">
+              RSI Discovery Month is an in-game event that began with Alpha 4.10.2 on
+              October 9, 2026. Any player who owns a game package can complete the
+              in-game contract &ldquo;RSI Discovery Month: Rental Offer&rdquo; to get
+              five days of free rental access to the Constellation Mk V Centaurus (a
+              new large multi-crew ship) and the Skylark. A free account does not
+              qualify, because this is not a Free Fly.
+            </p>
+            <p className="mt-3 text-sm text-muted">
+              <a
+                href="https://starcitizenhelp.com/game-guides/rsi-discovery-month"
+                target="_blank"
+                rel="noopener"
+                className="text-orange underline-offset-2 hover:underline"
+              >
+                How to get the rental, step by step, on Star Citizen Help →
+              </a>
+            </p>
+          </aside>
 
           {/* What free means */}
           <section className="mt-14">

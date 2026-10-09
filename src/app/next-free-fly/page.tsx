@@ -245,6 +245,22 @@ export default function NextFreeFlyPage() {
             <h2 className="heading-display mt-2 text-xl text-white">{headline}</h2>
             <p className="mt-3 text-white/85">{detail}</p>
           </div>
+          {(status.state === 'INACTIVE' || status.state === 'UPCOMING') && (
+            <p className="mt-4 text-sm text-white/80">
+              No Free Fly is running right now. Players who already own the game can
+              earn a free five-day ship rental during RSI Discovery Month, which
+              began October 9, 2026. A free account does not qualify.{' '}
+              <a
+                href="https://starcitizenhelp.com/game-guides/rsi-discovery-month"
+                target="_blank"
+                rel="noopener"
+                className="text-orange underline-offset-2 hover:underline"
+              >
+                See the Discovery Month guide on Star Citizen Help
+              </a>
+              .
+            </p>
+          )}
 
           {/* Expected windows — pattern, not announcement */}
           <section className="mt-14">
