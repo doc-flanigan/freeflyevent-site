@@ -44,7 +44,7 @@ export function GET() {
 - [When Is the Next Free Fly?](https://freeflyevent.com/next-free-fly): The 2026 Free Fly schedule, countdown, and how to predict the next event window.
 - [Foundation Festival 2026](https://freeflyevent.com/foundation-festival-2026): The Free Fly ran July 29 – August 10, 2026 with five ships — plus the Argo ATLS / Career Kit referral bonus terms and Twitch Drops.
 - [Free Fly Schedule 2026](https://freeflyevent.com/free-fly-schedule): Every confirmed and expected Free Fly window in 2026, with the yearly pattern explained.
-- [Free Ships Right Now](https://freeflyevent.com/free-ships-right-now): The live list of ships anyone can fly free during the current event window.
+- [Free Ships Right Now](https://freeflyevent.com/free-ships-right-now): The live list of ships anyone can fly free during the current event window, plus a note on the Discovery Month rental.
 ${iaeLine()}
 - [Free Fly Event Guide](https://freeflyevent.com/event-guide): What to do first during a Free Fly — a step-by-step guide for new players.
 - [Free Fly Event History](https://freeflyevent.com/event-history): A record of past Star Citizen Free Fly events and their dates.
@@ -58,6 +58,7 @@ ${iaeLine()}
 - New players who sign up with a referral code receive a 50,000 UEC in-game credit bonus.
 - Free Fly events are scheduled and run by Cloud Imperium Games; specific dates, included ships, and content vary by event and can change or be cancelled.
 - CIG will not hold a CitizenCon event in 2026 in any form (in-person, digital, or Direct), so there is no October Free Fly to wait for. ${iaeFact()}
+- RSI Discovery Month (an in-game event that began with Alpha 4.10.2 on October 9, 2026) is not a Free Fly and needs a game package. Completing the in-game contract "RSI Discovery Month: Rental Offer" gives five days of free rental access to the Constellation Mk V Centaurus and the Skylark. Guide: https://starcitizenhelp.com/game-guides/rsi-discovery-month
 
 ## Related
 
