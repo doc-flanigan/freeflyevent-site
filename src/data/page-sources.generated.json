@@ -332,6 +332,24 @@
         ]
       },
       {
+        "id": "sc-pc-only-rsi-launcher",
+        "claim": "Star Citizen is available only for Windows PC through the RSI Launcher, purchased directly from robertsspaceindustries.com — it is not sold on Steam, Epic, or GOG, and does not run on PlayStation, Xbox, or Game Pass (as of October 2026). Squadron 42, CIG's separate single-player game, does have a Steam page (wishlist only).",
+        "status": "verified",
+        "sources": [
+          "https://support.robertsspaceindustries.com/hc/en-us/articles/360042417374-Star-Citizen-Minimum-System-Requirements",
+          "https://robertsspaceindustries.com/download"
+        ]
+      },
+      {
+        "id": "sq42-steam-page-wishlist",
+        "claim": "Squadron 42 has an official Steam store page (app 4045720, published by Roberts Space Industries, developed by Cloud Imperium Games) that went live on October 10, 2026; it can be wishlisted but not bought, lists a planned release of Q2 2027, Windows only, and notes support for linking a Roberts Space Industries account to a Steam account.",
+        "status": "verified",
+        "sources": [
+          "https://store.steampowered.com/app/4045720/",
+          "https://store.steampowered.com/api/appdetails?appids=4045720&cc=us&l=en"
+        ]
+      },
+      {
         "id": "starter-package-from-45-usd",
         "claim": "The cheapest Star Citizen game package, the Citizen Starter Pack (RSI Aurora Mk II), lists at $60 USD and was on sale for $45 (25% off) as of September 2026; no subscription is required to play.",
         "status": "verified",
