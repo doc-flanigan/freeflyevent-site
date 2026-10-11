@@ -86,7 +86,7 @@ function buildFaqs(now: Date = new Date()) {
   },
   {
     q: 'Is Star Citizen free on Steam?',
-    a: 'Star Citizen is not on Steam at all. It is only available through the official Roberts Space Industries site (robertsspaceindustries.com). Any "Star Citizen on Steam" listing is not legitimate.',
+    a: 'Star Citizen is not on Steam. It is only available through the official Roberts Space Industries site (robertsspaceindustries.com). There is no Star Citizen page on Steam, so a listing claiming to sell Star Citizen there is not from Cloud Imperium Games (CIG), the developer. Squadron 42, the separate single-player game, does have an official Steam page you can wishlist (planned release Q2 2027): iheldtheline.com/steam.',
   },
   {
     q: 'Will Star Citizen ever be free-to-play?',
@@ -285,20 +285,33 @@ export default function IsStarCitizenFreePage() {
               &ldquo;Free Star Citizen download&rdquo; results are usually wrong
             </h2>
             <p className="mt-4 text-muted">
-              If a search result promises a permanent free copy, a Steam download, or a
+              If a search result promises a permanent free copy, a Star Citizen Steam download, or a
               &ldquo;free key,&rdquo; treat it as a red flag. The only legitimate ways to
               play Star Citizen for free are:
             </p>
             <ul className="mt-4 space-y-2 text-sm text-white/85">
               {[
                 'During an official Free Fly event on robertsspaceindustries.com',
-                'There is no Steam version, no free permanent copy, and no legitimate free key',
+                'There is no Star Citizen version on Steam, no free permanent copy, and no legitimate free key',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2">
                   <span className="text-orange mt-0.5">✓</span> {item}
                 </li>
               ))}
             </ul>
+            <p className="mt-4 text-sm text-muted">
+              Squadron 42, the separate single-player game, does have an official Steam page you
+              can wishlist (planned release Q2 2027).{' '}
+              <a
+                href="https://iheldtheline.com/steam"
+                className="text-orange underline"
+                target="_blank"
+                rel="noopener"
+              >
+                See the Steam page details
+              </a>
+              .
+            </p>
           </section>
 
           {/* Referral bonus — earned mention */}
