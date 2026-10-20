@@ -5,7 +5,6 @@ import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
-import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
 import { HUB_URL, REFERRAL_CODE } from '@/data/events';
 
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
     'should I buy Star Citizen',
     'is Star Citizen worth it 2026',
     'Star Citizen review 2026',
-    'Star Citizen starter pack',
+    'Star Citizen First Flight Pack',
     'Star Citizen free fly worth buying',
     'Star Citizen alpha worth it',
   ],
@@ -38,11 +37,11 @@ export const metadata: Metadata = {
 const faqs = [
   {
     q: 'Is Star Citizen free to play?',
-    a: 'No. Star Citizen requires a Game Package purchase (from $45 on sale — $60 list price, as of September 2026). However, CIG runs periodic Free Fly events several times a year where anyone can play for free for a limited window — usually one to two weeks. These are the best way to try the game before buying.',
+    a: 'No. Star Citizen requires a Game Package purchase. RSI now sells one, the First Flight Pack ($60 list, often on sale for $45, as of October 2026). However, CIG runs periodic Free Fly events several times a year where anyone can play for free for a limited window — usually one to two weeks. These are the best way to try the game before buying.',
   },
   {
     q: 'Should I buy Star Citizen during a Free Fly event?',
-    a: 'Only if you have played it and liked it. Play for about 20 hours first. If you had a good time, buy a starter Game Package. If Free Fly left you cold, do not buy: the paid game is the same game, minus the event ships. If you have not played yet, wait for the next Free Fly.',
+    a: 'Only if you have played it and liked it. Play for about 20 hours first. If you had a good time, buy the First Flight Pack. If Free Fly left you cold, do not buy: the paid game is the same game, minus the event ships. If you have not played yet, wait for the next Free Fly.',
   },
   {
     q: 'Is Star Citizen fully released or still in early access?',
@@ -71,8 +70,8 @@ export default function ShouldIBuyPage() {
           </h1>
           <p className="mt-5 text-lg text-muted">
             Playing Free Fly now, or about to? Buy only after you&apos;ve tried it.
-            If you enjoyed your Free Fly, a starter Game Package from $45 on sale ($60 list,
-            as of September 2026) is worth it: one-time purchase, no subscription, and every
+            If you enjoyed your Free Fly, the First Flight Pack ($60 list, often on sale for $45,
+            as of October 2026) is worth it: one-time purchase, no subscription, and every
             future update included. If you haven&apos;t played yet, wait for the next Free Fly
             before spending anything. Star Citizen is a genuinely unfinished alpha with real bugs.
           </p>
@@ -82,8 +81,7 @@ export default function ShouldIBuyPage() {
             <h2 className="heading-display text-xl text-white">The quick answer</h2>
             <p className="mt-3 text-white/85">
               <strong className="text-orange">If you had a good time during Free Fly</strong> — buy
-              a starter package. Don&apos;t overspend — the $45-on-sale Citizen Starter or $60
-              Generalist pack is all you need to start. Give it 20 hours before judging it against finished games.
+              the First Flight Pack. Don&apos;t overspend — it is the only starter package RSI sells, and it is all you need to start. Give it 20 hours before judging it against finished games.
             </p>
             <p className="mt-3 text-white/85">
               <strong className="text-orange">If Free Fly left you cold</strong> — don&apos;t buy.
@@ -107,7 +105,7 @@ export default function ShouldIBuyPage() {
                 ['Play first, then decide', 'Give it about 20 hours before judging it against finished games. Free Fly is the only free way to find out if it clicks for you.'],
                 ['Test your PC for free', 'Star Citizen is demanding. A bad run on weak hardware says little about the game. 32 GB of RAM and an NVMe SSD are recommended; check the official specs on robertsspaceindustries.com.'],
                 ['Expect rough edges', 'It is an alpha. Crashes and broken missions happen. If that bothers you, that is your answer.'],
-                ['Buy a starter pack, nothing bigger', 'The Citizen or Generalist starter pack is all you need. Other ships can be rented in-game with UEC (the in-game currency).'],
+                ['Buy the First Flight Pack, nothing bigger', 'It is the only starter package RSI sells now, and it includes three 30-day loaner ships to try mining, salvage and cargo. Other ships can be rented in-game with UEC (the in-game currency).'],
                 ['Use a referral code at signup', 'Enter it when you create the account, or within 24 hours. It cannot be added later. It is the one deadline that matters.'],
               ].map(([title, desc]) => (
                 <li key={title as string} className="flex gap-4 rounded-xl border border-white/10 bg-blackMid/60 p-5">
@@ -145,7 +143,7 @@ export default function ShouldIBuyPage() {
             </h2>
             <ul className="mt-5 space-y-2 text-muted">
               {[
-                'A Game Package gives you a starter ship and access to the live game. There is no subscription. Squadron 42, the single-player campaign, is not in every package, so check before you buy.',
+                'The First Flight Pack gives you a starter ship and access to the live game. There is no subscription. It does not include Squadron 42, the single-player campaign.',
                 'Star Citizen is an alpha. CIG has no confirmed full-release date, so buy for what the game is today.',
                 'Ships and packages bought with real money are never wiped. In-game aUEC and some progress can reset in major updates.',
                 'It needs a strong PC. Check the official specs before you buy.',
@@ -187,54 +185,24 @@ export default function ShouldIBuyPage() {
           {/* Pricing */}
           <section className="mt-14">
             <h2 className="heading-display text-2xl sm:text-3xl">
-              Starter pack prices
+              What to buy after Free Fly ends
             </h2>
             <p className="mt-4 text-muted">
-              Buy a starter package and stop there. The most common regret in the Star Citizen
-              community is buying a large ship too early. Prices below are as of September 2026.
+              Updated October 2026: RSI now sells one starter package, the Star Citizen First
+              Flight Pack. It costs $60 list and is often on sale for $45 (as of October 2026).
+              It includes the game download, an Aurora Mk II starter ship, six months of
+              insurance, and 10,000 UEC. It also gives you 30-day loaner access to three more
+              starter ships: a Drake Golem for mining, a MISC Fortune for salvage, and a
+              Crusader Intrepid for cargo hauling. It is Star Citizen only and does not include
+              Squadron 42.
             </p>
-            <div className="mt-6 overflow-hidden rounded-xl border border-white/10">
-              <table className="w-full text-left text-sm">
-                <thead>
-                  <tr className="border-b border-white/10 bg-spaceBlack/60 text-xs uppercase tracking-[0.18em] text-muted">
-                    <th className="px-4 py-3">Package</th>
-                    <th className="px-4 py-3">Price</th>
-                    <th className="px-4 py-3">Best for</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    ['Citizen Starter Pack', '$45 on sale ($60 list)', 'The most affordable entry point. A capable starter ship that gets you into the Persistent Universe without overcommitting.'],
-                    ['Generalist Starter Pack', '$60', 'A solid all-rounder for exploring multiple gameplay styles before specializing.'],
-                    ['Role-specific packs (Miner, Duelist, Salvager, Hauler, Outsider, Privateer)', '$75–$125', 'Ships built for one activity. Only pick one if you already have a clear playstyle in mind.'],
-                  ].map(([name, price, bestFor]) => (
-                    <tr key={name as string} className="border-b border-white/5 hover:bg-orange/5">
-                      <td className="px-4 py-3 font-semibold text-white">{name}</td>
-                      <td className="px-4 py-3 text-orange">{price}</td>
-                      <td className="px-4 py-3 text-muted">{bestFor}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <figure className="mt-6">
-              <LightboxImage
-                src="/images/guides/getting-started-game-package-starter-packs-list.jpg"
-                alt="RSI Getting Started page listing the current Star Citizen starter Game Packages with prices"
-                width={1200}
-                height={561}
-                containerClassName="block overflow-hidden rounded-xl border border-white/10"
-                className="w-full h-auto"
-              />
-              <figcaption className="mt-2 text-xs text-muted">
-                The starter Game Package list on RSI&apos;s Getting Started page —
-                this is the screen you&apos;ll see at checkout. Stick to the
-                starter tier.
-              </figcaption>
-            </figure>
+            <p className="mt-4 text-muted">
+              Buy that package and stop there. The most common regret in the Star Citizen
+              community is buying a large ship too early. Other ships, including the Mustang
+              Alpha, can be bought or upgraded to later if you find a playstyle you like.
+            </p>
             <p className="mt-4 text-xs text-muted">
-              Prices vary by sale. CIG runs sales around its big May event and IAE. Never pay above
-              these ranges for a starter.{' '}
+              Prices vary by sale. Check RSI&apos;s pledge store for today&apos;s price.{' '}
               <a
                 href="https://dayonecitizen.com/day-one-citizen/starter-package"
                 className="text-orange underline hover:text-orange-dark"
@@ -243,7 +211,7 @@ export default function ShouldIBuyPage() {
               >
                 dayonecitizen.com&apos;s starter package guide
               </a>{' '}
-              compares the starter packs in plain English.
+              explains what the First Flight Pack includes in plain English.
             </p>
           </section>
 
