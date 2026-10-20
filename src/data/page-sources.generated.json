@@ -281,6 +281,15 @@
     ],
     "/is-star-citizen-free": [
       {
+        "id": "first-flight-pack-60-usd-aurora",
+        "claim": "RSI's Star Citizen First Flight Pack is a Star Citizen-only game package that includes one Aurora Mk II, 6 Month Insurance, a Self-Land Hangar, 10,000 UEC and the Star Citizen digital download, plus 30-day loaner access to three more starter ships: Drake Golem (mining), MISC Fortune (salvage) and Crusader Intrepid (cargo hauling).",
+        "status": "verified",
+        "sources": [
+          "https://robertsspaceindustries.com/en/pledge/Packages/Star-Citizen-First-Flight-Pack",
+          "https://robertsspaceindustries.com/en/store/pledge/browse/game-packages"
+        ]
+      },
+      {
         "id": "freefly-event-based-not-always-on",
         "claim": "Free Fly access is event-based, not always-on — CIG runs scheduled windows a few times per year (typically Invictus/DefenseCon in May and IAE in November); outside an event, playing requires a Game Package.",
         "status": "verified",
@@ -345,17 +354,9 @@
         "claim": "Squadron 42 has an official Steam store page (app 4045720, published by Roberts Space Industries, developed by Cloud Imperium Games) that went live on October 10, 2026; it can be wishlisted but not bought, lists a planned release of Q2 2027, Windows only, and notes support for linking a Roberts Space Industries account to a Steam account.",
         "status": "verified",
         "sources": [
+          "https://robertsspaceindustries.com/en/comm-link/transmission/21374-This-Week-In-Star-Citizen",
           "https://store.steampowered.com/app/4045720/",
           "https://store.steampowered.com/api/appdetails?appids=4045720&cc=us&l=en"
-        ]
-      },
-      {
-        "id": "starter-package-from-45-usd",
-        "claim": "The cheapest Star Citizen game package, the Citizen Starter Pack (RSI Aurora Mk II), lists at $60 USD and was on sale for $45 (25% off) as of September 2026; no subscription is required to play.",
-        "status": "verified",
-        "sources": [
-          "https://robertsspaceindustries.com/pledge/Packages/Citizen-Starter-Pack",
-          "https://robertsspaceindustries.com/pledge/game-packages"
         ]
       }
     ],
@@ -409,11 +410,12 @@
     ],
     "/should-i-buy": [
       {
-        "id": "citizen-starter-pack-10000-uec-6mo-insurance",
-        "claim": "The Citizen Starter Pack includes 10,000 UEC (account currency) and six months of hull insurance on the Aurora Mk II — not Lifetime Insurance.",
+        "id": "first-flight-pack-60-usd-aurora",
+        "claim": "RSI's Star Citizen First Flight Pack is a Star Citizen-only game package that includes one Aurora Mk II, 6 Month Insurance, a Self-Land Hangar, 10,000 UEC and the Star Citizen digital download, plus 30-day loaner access to three more starter ships: Drake Golem (mining), MISC Fortune (salvage) and Crusader Intrepid (cargo hauling).",
         "status": "verified",
         "sources": [
-          "https://robertsspaceindustries.com/pledge/Packages/Citizen-Starter-Pack"
+          "https://robertsspaceindustries.com/en/pledge/Packages/Star-Citizen-First-Flight-Pack",
+          "https://robertsspaceindustries.com/en/store/pledge/browse/game-packages"
         ]
       },
       {
@@ -430,15 +432,6 @@
         "status": "verified",
         "sources": [
           "https://support.robertsspaceindustries.com/hc/en-us/articles/4412777637271-Does-Star-Citizen-offer-a-free-trial"
-        ]
-      },
-      {
-        "id": "starter-package-from-45-usd",
-        "claim": "The cheapest Star Citizen game package, the Citizen Starter Pack (RSI Aurora Mk II), lists at $60 USD and was on sale for $45 (25% off) as of September 2026; no subscription is required to play.",
-        "status": "verified",
-        "sources": [
-          "https://robertsspaceindustries.com/pledge/Packages/Citizen-Starter-Pack",
-          "https://robertsspaceindustries.com/pledge/game-packages"
         ]
       }
     ]
