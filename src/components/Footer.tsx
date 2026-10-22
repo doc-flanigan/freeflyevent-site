@@ -79,25 +79,60 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/5">
-        <div className="container-wide flex flex-col gap-4 py-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
-            <Image
-              src="/images/made-by-community.png"
-              alt="Made by the Community — RSI Fankit"
-              width={160}
-              height={160}
-              className="h-10 w-auto opacity-80"
-            />
-            <span>
+        <div className="container-wide grid gap-0 py-8 text-xs leading-relaxed text-muted md:grid-cols-3 md:gap-10">
+          <section
+            aria-labelledby="footer-fan-site"
+            className="border-b border-border/60 pb-6 md:border-b-0 md:pb-0"
+          >
+            <h5
+              id="footer-fan-site"
+              className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-accent"
+            >
+              Unofficial fan site
+            </h5>
+            <p className="mt-2">
               This is an unofficial Star Citizen fansite, not affiliated with the
               Cloud Imperium group of companies. All content not authored by
-              Doc_Flanigan is property of its respective owners.{' '}
+              Doc_Flanigan is property of its respective owners.
+            </p>
+          </section>
+
+          <section
+            aria-labelledby="footer-affiliate"
+            className="border-b border-border/60 py-6 md:border-b-0 md:border-l md:py-0 md:pl-10"
+          >
+            <h5
+              id="footer-affiliate"
+              className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-accent"
+            >
+              Affiliate disclosure
+            </h5>
+            <p className="mt-2">
               Affiliate disclosure: If you create a Star Citizen account using referral code STAR-GCQJ-N6NC, the site owner may receive an in-game bonus. Your 50,000 UEC new-player bonus is not affected.
-            </span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span>© {new Date().getUTCFullYear()} Doc_Flanigan</span>
-          </div>
+            </p>
+          </section>
+
+          <section
+            aria-labelledby="footer-fankit"
+            className="pt-6 md:border-l md:border-border/60 md:pl-10 md:pt-0"
+          >
+            <h5
+              id="footer-fankit"
+              className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-accent"
+            >
+              Fan Kit &amp; copyright
+            </h5>
+            <div className="mt-3 flex items-center gap-4">
+              <Image
+                src="/images/made-by-community.png"
+                alt="Made by the Community — RSI Fankit"
+                width={160}
+                height={160}
+                className="h-24 w-24 shrink-0 opacity-90"
+              />
+              <span>© {new Date().getUTCFullYear()} Doc_Flanigan</span>
+            </div>
+          </section>
         </div>
       </div>
     </footer>
