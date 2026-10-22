@@ -11,6 +11,9 @@ import { ctaLabel, type EventState } from '@/lib/cta-label';
 const PRE_STEP_BODY =
   'Use a referral code at signup so 50,000 UEC lands in your account when you log in. During some events CIG adds a limited extra signup bonus on top — the banner at the top of this site shows one when it is live. The code cannot be added after about 24 hours, so enter it at signup.';
 
+const PRE_STEP_CONFIRM =
+  "after verifying your email, log into your RSI dashboard — the 50,000 UEC appears as a credit on your account. If it didn't, you can still add the code in account settings for about 24 hours after signup.";
+
 export function PreEventStep({
   state,
   copyLocation = 'guide-pre-step',
@@ -32,6 +35,10 @@ export function PreEventStep({
         Lock in your 50,000 UEC bonus first
       </h3>
       <p className="mt-2 max-w-2xl text-sm text-white/80">{PRE_STEP_BODY}</p>
+      <p className="mt-2 max-w-2xl text-sm text-white/80">
+        <strong className="font-semibold text-white">Then confirm it posted:</strong>{' '}
+        {PRE_STEP_CONFIRM}
+      </p>
       <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2">
         <code data-ref-code className="font-mono text-lg font-bold text-gold">{REFERRAL_CODE}</code>
         <CopyCodeButton location={copyLocation} size="sm" />

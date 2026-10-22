@@ -50,19 +50,6 @@ type Step = {
 const STEPS: Step[] = [
   {
     num: '01',
-    title: 'Confirm the bonus posted',
-    body: (
-      <>
-        After verifying your email, log into your RSI dashboard. The 50,000 UEC
-        will appear as a credit on your account. If it didn&apos;t, you can
-        still add the code in account settings for about 24 hours after
-        signup. After that the code can&apos;t be added, so the bonus never
-        attaches.
-      </>
-    ),
-  },
-  {
-    num: '02',
     title: 'Download the RSI Launcher',
     body: (
       <>
@@ -83,7 +70,7 @@ const STEPS: Step[] = [
     },
   },
   {
-    num: '03',
+    num: '02',
     title: 'Pick a ship from the Free Fly roster',
     body: (
       <>
@@ -95,7 +82,7 @@ const STEPS: Step[] = [
     ),
   },
   {
-    num: '04',
+    num: '03',
     title: 'Run the new-player tutorial',
     body: (
       <>
@@ -106,7 +93,7 @@ const STEPS: Step[] = [
     ),
   },
   {
-    num: '05',
+    num: '04',
     title: 'Try a delivery mission',
     body: (
       <>
@@ -142,7 +129,7 @@ const STEPS: Step[] = [
     },
   },
   {
-    num: '06',
+    num: '05',
     title: 'Visit a major planet',
     body: (
       <>
@@ -183,7 +170,7 @@ const STEPS: Step[] = [
     ],
   },
   {
-    num: '07',
+    num: '06',
     title: 'Group up',
     body: (
       <>
@@ -196,7 +183,7 @@ const STEPS: Step[] = [
     ),
   },
   {
-    num: '08',
+    num: '07',
     title: 'Decide before the event ends',
     body: (
       <>
@@ -308,7 +295,7 @@ export default function EventGuidePage() {
                     )}
                   </div>
                 </li>
-                {s.num === '07' && (
+                {s.num === '06' && (
                   <li key="discord-cta" className="list-none">
                     <DiscordCTA />
                   </li>
