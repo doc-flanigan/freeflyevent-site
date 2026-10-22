@@ -1,7 +1,7 @@
 import type { EventStatus } from '@/data/events';
 
 export type EventState = EventStatus['state'];
-export type CtaLocation = 'nav' | 'hero' | 'statusCard' | 'iae' | 'stickyBar';
+export type CtaLocation = 'nav' | 'statusCard' | 'preStep' | 'iae' | 'stickyBar';
 
 type LabelPair = { live: string; notLive: string };
 
@@ -12,8 +12,8 @@ type LabelPair = { live: string; notLive: string };
  */
 const LABELS: Record<CtaLocation, LabelPair> = {
   nav: { notLive: 'Get 50,000 UEC', live: 'Play Free Now' },
-  hero: { notLive: 'Create Free Account — Lock In 50,000 UEC', live: 'Play Free Now — Claim 50,000 UEC' },
   statusCard: { notLive: 'Don’t Wait — Lock In Your Bonus Today', live: 'Start Playing Free — Code Pre-Filled' },
+  preStep: { notLive: 'Lock In Your Bonus Before It Starts', live: 'Not Signed Up Yet? Do It Now' },
   iae: { notLive: 'Be Ready for IAE — Create Your Account', live: 'Jump In Before the Free Fly Ends' },
   stickyBar: { notLive: 'Sign Up Free', live: 'Play Free' },
 };
@@ -23,7 +23,3 @@ export function ctaLabel(location: CtaLocation, state: EventState): string {
   return state === 'ACTIVE' ? pair.live : pair.notLive;
 }
 
-/** @deprecated kept as an alias; prefer ctaLabel(location, state). */
-export function primaryCtaLabel(status: EventStatus): string {
-  return ctaLabel('hero', status.state);
-}

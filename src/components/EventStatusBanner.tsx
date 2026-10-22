@@ -256,16 +256,18 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
 
           <ReferralCodePanel />
 
-          <a
-            href={referralUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group btn-primary px-8 py-4 text-base"
-            onClick={onNavigate}
-          >
-            {ctaLabel('statusCard', status.state)}
-            <ArrowIcon />
-          </a>
+          <div data-hero-cta>
+            <a
+              href={referralUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group btn-primary px-8 py-4 text-base"
+              onClick={onNavigate}
+            >
+              {ctaLabel('statusCard', status.state)}
+              <ArrowIcon />
+            </a>
+          </div>
         </div>
       </div>
     );
@@ -290,17 +292,19 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
             </p>
             <CountdownTimer target={status.endsAt} label="Event ends in" />
             <ReferralCodePanel />
-            <a
-              href={referralUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group btn-primary px-8 py-4 text-base"
-              onClick={onNavigate}
-            >
-              {ctaLabel('statusCard', 'ACTIVE')}
-              {bonusOverride ? ' + Event Bonus' : ''}
-              <ArrowIcon />
-            </a>
+            <div data-hero-cta>
+              <a
+                href={referralUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group btn-primary px-8 py-4 text-base"
+                onClick={onNavigate}
+              >
+                {ctaLabel('statusCard', 'ACTIVE')}
+                {bonusOverride ? ' + Event Bonus' : ''}
+                <ArrowIcon />
+              </a>
+            </div>
           </div>
 
           {/* RIGHT — event bonus panel (only when a bonus override is active) */}
@@ -346,16 +350,18 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
           </p>
           <CountdownTimer target={status.startsAt} label="Begins in" />
           <ReferralCodePanel />
-          <a
-            href={referralUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group btn-primary px-8 py-4 text-base"
-            onClick={onNavigate}
-          >
-            {ctaLabel('statusCard', status.state)}
-            <ArrowIcon />
-          </a>
+          <div data-hero-cta>
+            <a
+              href={referralUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group btn-primary px-8 py-4 text-base"
+              onClick={onNavigate}
+            >
+              {ctaLabel('statusCard', status.state)}
+              <ArrowIcon />
+            </a>
+          </div>
         </div>
       </div>
     );
@@ -374,16 +380,18 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
           50,000 UEC bonus — your account will be ready the moment the event opens.
         </p>
         <ReferralCodePanel />
-        <a
-          href={referralUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group btn-primary px-8 py-4 text-base"
-          onClick={onNavigate}
-        >
-          {ctaLabel('statusCard', status.state)}
-          <ArrowIcon />
-        </a>
+        <div data-hero-cta>
+          <a
+            href={referralUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group btn-primary px-8 py-4 text-base"
+            onClick={onNavigate}
+          >
+            {ctaLabel('statusCard', status.state)}
+            <ArrowIcon />
+          </a>
+        </div>
       </div>
     </div>
   );

@@ -12,8 +12,6 @@ import { getEventStatus, getActiveBonusOverride, iaeStillAheadThisYear, REFERRAL
 import { formatMonthDayUTC, formatRangeUTC } from '@/lib/format';
 import { DiscordCTA } from '@/components/DiscordCTA';
 import { IaeReadyBlock } from '@/components/IaeReadyBlock';
-import { CopyCodeButton } from '@/components/CopyCodeButton';
-import { ctaLabel } from '@/lib/cta-label';
 
 const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
 
@@ -174,20 +172,7 @@ export default function HomePage() {
                 your free account with our code first — the 50,000 UEC bonus can&apos;t
                 be added later.
               </p>
-              <div data-hero-cta className="mt-8 max-w-md">
-                <CTAButton
-                  size="lg"
-                  trackingLabel="home-hero"
-                  trackImpression
-                  className="w-full md:whitespace-nowrap"
-                >
-                  {ctaLabel('hero', status.state)}
-                </CTAButton>
-                <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-white/70">
-                  <span>Code:</span>
-                  <code data-ref-code className="font-mono font-bold text-gold">{REFERRAL_CODE}</code>
-                  <CopyCodeButton location="hero" size="sm" />
-                </div>
+              <div className="mt-8 max-w-md">
                 <Link
                   href="#current-event"
                   className="mt-5 inline-block text-sm text-white/60 hover:text-accent"
@@ -353,10 +338,12 @@ export default function HomePage() {
               <p className="mt-4 text-muted">
                 Use this checklist whether the event is live now or you&apos;re
                 preparing for the next one. Each step is bite-sized — get
-                through them and you&apos;ll have a real sense of the game.
+                through them and you&apos;ll have a real sense of the game.{' '}
+                Everything below happens once the event is live. The account step
+                above is the only part you should do beforehand.
               </p>
             </div>
-            <FreeFlyGuide />
+            <FreeFlyGuide state={status.state} />
             <DiscordCTA />
 
             {/* Funnel handoff: after signup, send visitors to dayonecitizen */}
