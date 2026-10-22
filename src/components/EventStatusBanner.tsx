@@ -3,10 +3,12 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { LightboxImage } from './LightboxImage';
-import { getEventStatus, getActiveBonusOverride, REFERRAL_CODE, type EventStatus, type BonusOverride } from '@/data/events';
+import { getEventStatus, getActiveBonusOverride, FREE_FLY_HISTORY, REFERRAL_CODE, type EventStatus, type BonusOverride } from '@/data/events';
 import { getRotatedReferralUrl, FALLBACK_REFERRAL_URL } from '@/lib/referral-rotator';
 import { CountdownTimer } from './CountdownTimer';
 import { ArrowIcon } from './CTAButton';
+import { CopyCodeButton } from './CopyCodeButton';
+import { logClick } from '@/lib/log-click';
 
 type Props = {
   /** "bar" = compact horizontal strip for the very top of the page.
@@ -15,6 +17,20 @@ type Props = {
 };
 
 type SlotProps = { status: EventStatus; referralUrl: string; onNavigate: () => void; bonusOverride: BonusOverride | null };
+
+/**
+ * Dev-only: `?ffstate=active|upcoming|inactive|cancelled` forces a state for
+ * screenshots. Dead code in production builds (NODE_ENV is inlined).
+ */
+function devStatusOverride(): EventStatus | undefined {
+  if (process.env.NODE_ENV === 'production') return undefined;
+  const q = new URLSearchParams(window.location.search).get('ffstate');
+  const at = { active: '2026-08-01T00:00:00Z', upcoming: '2026-07-15T00:00:00Z', inactive: '2026-09-15T00:00:00Z' }[q ?? ''];
+  if (at) return getEventStatus(new Date(at));
+  if (q !== 'cancelled') return undefined;
+  const event = { ...FREE_FLY_HISTORY[0], freeFlyActive: false, cancelledNote: 'Dev preview of the cancelled state.' };
+  return { state: 'CANCELLED_FREE_FLY', event, endsAt: new Date(event.end) };
+}
 
 export function EventStatusBanner({ variant = 'bar' }: Props) {
   // Initial state is computed during the server render (pages using the banner
@@ -27,12 +43,13 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
   const [bonusOverride, setBonusOverride] = useState<BonusOverride | null>(() => getActiveBonusOverride());
 
   useEffect(() => {
-    setStatus(getEventStatus());
+    const dev = devStatusOverride();
+    setStatus(dev ?? getEventStatus());
     setReferralUrl(getRotatedReferralUrl());
     setBonusOverride(getActiveBonusOverride());
     // refresh every minute so banner state flips automatically
     const id = setInterval(() => {
-      setStatus(getEventStatus());
+      setStatus(devStatusOverride() ?? getEventStatus());
       setBonusOverride(getActiveBonusOverride());
     }, 60_000);
     return () => clearInterval(id);
@@ -51,17 +68,7 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
       (entries) => {
         if (!entries.some((e) => e.isIntersecting)) return;
         observer.disconnect();
-        fetch('/api/log', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            label: `impression:${label}`,
-            referralCode: referralUrl.split('referral=')[1] ?? '',
-            page: window.location.pathname,
-            site: window.location.hostname,
-            referrer: (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('lref')) || '',
-          }),
-        }).catch(() => {});
+        logClick(`impression:${label}`, referralUrl);
       },
       { threshold: 0.5 },
     );
@@ -69,21 +76,7 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
     return () => observer.disconnect();
   }, [variant, label, referralUrl]);
 
-  const handleNavigate = () => {
-    const code = referralUrl.split('referral=')[1] ?? '';
-    fetch('/api/log', {
-      method: 'POST',
-      keepalive: true,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        label,
-        referralCode: code,
-        page: window.location.pathname,
-        site: window.location.hostname,
-        referrer: (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('lref')) || '',
-      }),
-    }).catch(() => {});
-  };
+  const handleNavigate = () => logClick(label, referralUrl);
 
   const slotProps: SlotProps = { status, referralUrl, onNavigate: handleNavigate, bonusOverride };
   if (variant === 'bar') return <Bar {...slotProps} />;
@@ -194,7 +187,10 @@ function ReferralCodePanel() {
       <div className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-muted">
         Use this code at signup — 50,000 UEC
       </div>
-      <div className="mt-1.5 font-mono text-xl font-bold text-gold">{REFERRAL_CODE}</div>
+      <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-2">
+        <code data-ref-code className="font-mono text-xl font-bold text-gold">{REFERRAL_CODE}</code>
+        <CopyCodeButton location="status-card" size="sm" />
+      </div>
       <p className="mt-2 text-xs leading-relaxed text-white/70">
         Paste it into the <span className="font-mono">Referral Code</span> field on the
         signup form. The code cannot be added after about 24 hours, so the bonus
