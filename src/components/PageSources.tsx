@@ -63,7 +63,7 @@ export function PageSources({ route }: { route: string }) {
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-mono text-xs text-orange hover:underline"
+                    className="font-mono text-xs text-accent hover:underline"
                   >
                     {sourceLabel(url)} ↗
                   </a>

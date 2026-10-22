@@ -50,8 +50,8 @@ export default function GlobalError({
           justifyContent: 'center',
           textAlign: 'center',
           padding: '5rem 1.5rem',
-          background: '#080c14',
-          color: '#f5f8ff',
+          background: '#0a0e17',
+          color: '#e8eef7',
           fontFamily:
             'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
         }}
@@ -60,14 +60,14 @@ export default function GlobalError({
           style={{
             display: 'inline-flex',
             borderRadius: 999,
-            border: '1px solid rgba(255,85,0,0.3)',
-            background: 'rgba(255,85,0,0.05)',
+            border: '1px solid rgba(0,212,255,0.3)',
+            background: 'rgba(0,212,255,0.05)',
             padding: '0.25rem 0.75rem',
             fontSize: '0.75rem',
             fontWeight: 700,
             textTransform: 'uppercase',
             letterSpacing: '0.24em',
-            color: '#ff5500',
+            color: '#00d4ff',
           }}
         >
           Error
@@ -75,7 +75,7 @@ export default function GlobalError({
         <h1 style={{ marginTop: '1.25rem', fontSize: '2.5rem', fontWeight: 700 }}>
           freeflyevent.com hit a temporary error
         </h1>
-        <p style={{ marginTop: '1.25rem', maxWidth: 420, color: '#6b7890' }}>
+        <p style={{ marginTop: '1.25rem', maxWidth: 420, color: '#94a3b8' }}>
           Free Fly event info is still here — this page just tripped over
           itself. Reload to try again.
         </p>
@@ -92,8 +92,8 @@ export default function GlobalError({
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.02em',
-              color: '#080c14',
-              background: 'linear-gradient(to bottom, #ff8a3d, #ff5500 55%, #cc4400)',
+              color: '#0a0e17',
+              background: '#ffb800',
               border: 'none',
               cursor: 'pointer',
             }}

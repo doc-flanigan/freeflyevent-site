@@ -114,26 +114,26 @@ export default function IsStarCitizenFreePage() {
 
           {/* Header */}
           <span className="eyebrow">Straight answer</span>
-          <h1 className="heading-display mt-4 text-4xl sm:text-5xl">
+          <h1 className="heading-display mt-4 text-[clamp(2rem,5vw,3.25rem)]">
             Is Star Citizen Free?
           </h1>
 
           {/* TL;DR direct answer */}
-          <div className="mt-8 rounded-2xl border border-orange/30 bg-orange/10 p-6 sm:p-8">
+          <div className="mt-8 rounded-2xl border border-accent/30 bg-accent/10 p-6 sm:p-8">
             <p className="text-lg text-white/90">
               Star Citizen is <strong className="text-white">a paid game, not free-to-play</strong> —
               playing year-round requires a one-time{' '}
               <strong className="text-white">Game Package</strong> purchase (RSI&apos;s First Flight Pack, $60 list, often on sale for $45, as of October 2026). But Cloud
               Imperium runs several official{' '}
-              <Link href="/" className="text-orange underline-offset-2 hover:underline">Free Fly events</Link>{' '}
+              <Link href="/" className="text-accent underline-offset-2 hover:underline">Free Fly events</Link>{' '}
               each year, when <strong className="text-white">anyone can play the full game for
               free</strong> with nothing but a free RSI account — no purchase needed.
               The most dependable annual window is the{' '}
-              <Link href="/iae-2956" className="text-orange underline-offset-2 hover:underline">
+              <Link href="/iae-2956" className="text-accent underline-offset-2 hover:underline">
                 Intergalactic Aerospace Expo in late November
               </Link>
               . Check{' '}
-              <Link href="/next-free-fly" className="text-orange underline-offset-2 hover:underline">
+              <Link href="/next-free-fly" className="text-accent underline-offset-2 hover:underline">
                 when the next Free Fly is
               </Link>{' '}
               for the live status.
@@ -149,7 +149,7 @@ export default function IsStarCitizenFreePage() {
               href="https://starcitizenhelp.com/game-guides/rsi-discovery-month"
               target="_blank"
               rel="noopener"
-              className="text-orange underline-offset-2 hover:underline"
+              className="text-accent underline-offset-2 hover:underline"
             >
               See the Discovery Month guide on Star Citizen Help
             </a>
@@ -214,7 +214,7 @@ export default function IsStarCitizenFreePage() {
                 ['Game Package (First Flight Pack, $60 list, often $45 on sale, as of October 2026)', 'A one-time purchase that lets you play any time, keeps a starter ship, and includes all future updates. It also adds 30-day loaner access to three more starter ships. No subscription, no DLC.'],
               ].map(([title, desc]) => (
                 <li key={title as string} className="flex gap-4 rounded-xl border border-white/10 bg-blackMid/60 p-5">
-                  <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-orange" aria-hidden />
+                  <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-accent" aria-hidden />
                   <div>
                     <strong className="text-white">{title}</strong>
                     <p className="mt-1 text-sm text-muted">{desc}</p>
@@ -256,7 +256,7 @@ export default function IsStarCitizenFreePage() {
                           href={ev.source}
                           target="_blank"
                           rel="noopener"
-                          className="text-orange underline-offset-2 hover:underline"
+                          className="text-accent underline-offset-2 hover:underline"
                         >
                           Official announcement
                         </a>
@@ -268,11 +268,11 @@ export default function IsStarCitizenFreePage() {
             </div>
             <p className="mt-5 text-muted">
               To find the current window, see{' '}
-              <Link href="/next-free-fly" className="text-orange underline-offset-2 hover:underline">
+              <Link href="/next-free-fly" className="text-accent underline-offset-2 hover:underline">
                 when the next Star Citizen Free Fly is
               </Link>
               . And if a Free Fly is live right now, our{' '}
-              <Link href="/event-guide" className="text-orange underline-offset-2 hover:underline">
+              <Link href="/event-guide" className="text-accent underline-offset-2 hover:underline">
                 Free Fly event guide
               </Link>{' '}
               walks you from free account to first takeoff, step by step.
@@ -295,7 +295,7 @@ export default function IsStarCitizenFreePage() {
                 'There is no Star Citizen version on Steam, no free permanent copy, and no legitimate free key',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2">
-                  <span className="text-orange mt-0.5">✓</span> {item}
+                  <span className="text-accent mt-0.5">✓</span> {item}
                 </li>
               ))}
             </ul>
@@ -304,7 +304,7 @@ export default function IsStarCitizenFreePage() {
               can wishlist (planned release Q2 2027).{' '}
               <a
                 href="https://iheldtheline.com/steam"
-                className="text-orange underline"
+                className="text-accent underline"
                 target="_blank"
                 rel="noopener"
               >
@@ -328,10 +328,10 @@ export default function IsStarCitizenFreePage() {
             </p>
             <p className="mt-3 text-white/80">
               Use{' '}
-              <span className="font-mono font-bold text-orange">{REFERRAL_CODE}</span>{' '}
+              <span className="font-mono font-bold text-gold">{REFERRAL_CODE}</span>{' '}
               at signup.
             </p>
-            <div className="mt-4 rounded-lg border border-orange/30 bg-spaceBlack/60 p-3 text-xs text-muted">
+            <div className="mt-4 rounded-lg border border-accent/30 bg-spaceBlack/60 p-3 text-xs text-muted">
               ⚠️ The code must be entered at signup or within 24 hours — it cannot be added later.
             </div>
             <figure className="mt-6">
@@ -340,7 +340,7 @@ export default function IsStarCitizenFreePage() {
                 alt="RSI account signup form with the Referral Code field highlighted and code STAR-GCQJ-N6NC entered"
                 width={1200}
                 height={1069}
-                containerClassName="block overflow-hidden rounded-xl border border-orange/40"
+                containerClassName="block overflow-hidden rounded-xl border border-accent/40"
                 className="w-full h-auto"
               />
               <figcaption className="mt-2 text-xs text-muted">

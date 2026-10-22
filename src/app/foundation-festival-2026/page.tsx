@@ -79,7 +79,7 @@ function SourceLink({ href, children }: { href: string; children: ReactNode }) {
       href={href}
       target="_blank"
       rel="noopener"
-      className="text-orange underline-offset-2 hover:underline"
+      className="text-accent underline-offset-2 hover:underline"
     >
       {children}
     </a>
@@ -98,7 +98,7 @@ export default function FoundationFestival2026Page() {
 
           {/* Header */}
           <span className="eyebrow">Foundation Festival 2026</span>
-          <h1 className="heading-display mt-4 text-4xl sm:text-5xl">
+          <h1 className="heading-display mt-4 text-[clamp(2rem,5vw,3.25rem)]">
             Foundation Festival 2026: Free Fly Dates, Ships &amp; Twitch Drops
           </h1>
           <p className="mt-3 text-xs uppercase tracking-[0.18em] text-muted">
@@ -130,8 +130,8 @@ export default function FoundationFestival2026Page() {
             <h2 className="heading-display text-2xl sm:text-3xl">
               The Foundation Festival 2026 Free Fly Has Ended
             </h2>
-            <div className="mt-6 rounded-2xl border border-orange/30 bg-orange/10 p-6 sm:p-8">
-              <p className="text-xs uppercase tracking-[0.18em] text-orange">
+            <div className="mt-6 rounded-2xl border border-accent/30 bg-accent/10 p-6 sm:p-8">
+              <p className="text-xs uppercase tracking-[0.18em] text-accent">
                 Ended — ran July 29 through August 10, 2026
               </p>
               <p className="mt-3 text-sm leading-relaxed text-white/85">
@@ -178,7 +178,7 @@ export default function FoundationFestival2026Page() {
               that was the Drops window, not an end date for the festival itself.
             </p>
             <div className="mt-6 space-y-5">
-              <div className="rounded-xl border border-orange/30 bg-blackMid/60 p-6">
+              <div className="rounded-xl border border-accent/30 bg-blackMid/60 p-6">
                 <h3 className="heading-display text-lg text-white">
                   Watch 4 hours → ATLS Foundation Fest Livery
                 </h3>
@@ -187,7 +187,7 @@ export default function FoundationFestival2026Page() {
                   to earn an Anvil ATLS Foundation Fest livery.
                 </p>
               </div>
-              <div className="rounded-xl border border-orange/30 bg-blackMid/60 p-6">
+              <div className="rounded-xl border border-accent/30 bg-blackMid/60 p-6">
                 <h3 className="heading-display text-lg text-white">
                   New sub → Banu Lockbox Replica
                 </h3>
@@ -223,7 +223,7 @@ export default function FoundationFestival2026Page() {
                 alt='New recruit wearing the "Ready for Anything" Career Kit — RSI Venture armor set, MacFlex backpack, and rifle from the Foundation Festival 2026 referral bonus'
                 width={1200}
                 height={1082}
-                containerClassName="mt-5 rounded-xl border border-orange/30"
+                containerClassName="mt-5 rounded-xl border border-accent/30"
                 className="h-auto w-full rounded-xl"
               />
               <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-muted">

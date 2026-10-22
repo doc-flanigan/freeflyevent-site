@@ -60,7 +60,7 @@ const STEPS: Step[] = [
     tip: (
       <>
         Paste{' '}
-        <code className="rounded bg-spaceBlack/60 px-1.5 py-0.5 font-mono text-orange">
+        <code className="rounded bg-spaceBlack/60 px-1.5 py-0.5 font-mono text-accent">
           {REFERRAL_CODE}
         </code>{' '}
         into the <strong>Referral Code</strong> field on the signup form. This
@@ -150,7 +150,7 @@ const STEPS: Step[] = [
         Finished your first delivery? That&apos;s the core loop.{' '}
         <a
           href="https://dayonecitizen.com/day-one-citizen"
-          className="text-orange underline hover:text-orange-dark"
+          className="text-accent underline hover:text-accent-hover"
           target="_blank"
           rel="noopener"
         >
@@ -247,7 +247,7 @@ export default function EventGuidePage() {
         <section className="container-narrow py-16 sm:py-24">
           <div className="mx-auto max-w-3xl">
             <span className="eyebrow">Beginner&apos;s Guide</span>
-            <h1 className="heading-display mt-4 text-4xl sm:text-6xl">
+            <h1 className="heading-display mt-4 text-[clamp(2rem,5vw,3.25rem)]">
               Your First Free Fly
             </h1>
             <p className="mt-5 text-lg text-muted">
@@ -264,7 +264,7 @@ export default function EventGuidePage() {
               <>
                 <li key={s.num} className="card flex gap-5 sm:gap-7">
                   <div className="flex-shrink-0">
-                    <span className="font-display text-2xl font-bold tracking-tight text-orange/70">
+                    <span className="font-display text-2xl font-bold tracking-tight text-accent/70">
                       {s.num}
                     </span>
                   </div>
@@ -274,8 +274,8 @@ export default function EventGuidePage() {
                     </h2>
                     <div className="mt-2 text-white/85">{s.body}</div>
                     {s.tip && (
-                      <div className="mt-4 rounded-md border-l-2 border-orange bg-orange/5 px-4 py-3 text-sm text-white/85">
-                        <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.2em] text-orange">
+                      <div className="mt-4 rounded-md border-l-2 border-accent bg-accent/5 px-4 py-3 text-sm text-white/85">
+                        <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.2em] text-accent">
                           Tip
                         </span>
                         {s.tip}

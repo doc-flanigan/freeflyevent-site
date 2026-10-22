@@ -8,9 +8,12 @@ import { HeroCarousel } from '@/components/HeroCarousel';
 import { CTAButton, ArrowIcon } from '@/components/CTAButton';
 import { FreeFlyGuide } from '@/components/FreeFlyGuide';
 import { TwitchClip } from '@/components/TwitchClip';
-import { getEventStatus, getActiveBonusOverride, iaeStillAheadThisYear, REFERRAL_URL } from '@/data/events';
+import { getEventStatus, getActiveBonusOverride, iaeStillAheadThisYear, REFERRAL_URL, REFERRAL_CODE } from '@/data/events';
 import { formatMonthDayUTC, formatRangeUTC } from '@/lib/format';
 import { DiscordCTA } from '@/components/DiscordCTA';
+import { IaeReadyBlock } from '@/components/IaeReadyBlock';
+import { CopyCodeButton } from '@/components/CopyCodeButton';
+import { ctaLabel } from '@/lib/cta-label';
 
 const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
 
@@ -163,18 +166,31 @@ export default function HomePage() {
           <HeroCarousel>
             <div className="max-w-3xl">
               <span className="eyebrow mb-5">Star Citizen · Free Fly Tracker</span>
-              <h1 className="heading-display text-4xl leading-[1.05] sm:text-6xl lg:text-7xl">
-                Star Citizen <span className="text-orange">Free Fly</span> Events
+              <h1 className="heading-display text-[clamp(2rem,5vw,3.25rem)]">
+                Star Citizen <span className="text-accent">Free Fly</span> Events
               </h1>
               <p className="mt-5 max-w-xl text-base text-white/85 sm:text-lg">
-                Anyone can play Star Citizen for free during Free Fly events. Find
-                out when the next one is, what&apos;s included, and how to lock in
-                a 50,000 UEC referral bonus before you launch.
+                Anyone can play Star Citizen for free during Free Fly events. Create
+                your free account with our code first — the 50,000 UEC bonus can&apos;t
+                be added later.
               </p>
-              <div className="mt-8">
+              <div data-hero-cta className="mt-8 max-w-md">
+                <CTAButton
+                  size="lg"
+                  trackingLabel="home-hero"
+                  trackImpression
+                  className="w-full md:whitespace-nowrap"
+                >
+                  {ctaLabel('hero', status.state)}
+                </CTAButton>
+                <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-white/70">
+                  <span>Code:</span>
+                  <code data-ref-code className="font-mono font-bold text-gold">{REFERRAL_CODE}</code>
+                  <CopyCodeButton location="hero" size="sm" />
+                </div>
                 <Link
                   href="#current-event"
-                  className="text-sm font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-orange"
+                  className="mt-5 inline-block text-sm text-white/60 hover:text-accent"
                 >
                   See current event status ↓
                 </Link>
@@ -187,6 +203,9 @@ export default function HomePage() {
         <section id="current-event" className="container-wide -mt-8 sm:-mt-12 relative z-10">
           <EventStatusBanner variant="hero" />
         </section>
+
+        {/* IAE 2956 READINESS — only while this year's IAE is still ahead */}
+        {iaeStillAheadThisYear() && <IaeReadyBlock />}
 
         {/* DEFENSECON CANCELLATION — DefenseCon-specific story (Twitch clip,
             quotes), so only shown for that event. Any other cancelled event
@@ -260,7 +279,7 @@ export default function HomePage() {
                     What you can still do
                   </div>
                   <p className="text-sm text-white/80">
-                    The <strong className="text-orange">50,000 UEC referral bonus</strong> is
+                    The <strong className="text-accent">50,000 UEC referral bonus</strong> is
                     still available — create a free RSI account now and it&apos;s locked in
                     for the next Free Fly. Buying a Game Package during DefenseCon still
                     earns the <strong className="text-white">referral clothing pack</strong>.
@@ -301,9 +320,9 @@ export default function HomePage() {
                 in.
               </p>
               <p>
-                The two main events are <strong className="text-orange">Invictus
+                The two main events are <strong className="text-accent">Invictus
                 Launch Week</strong> in May (a Navy fleet showcase) and the{' '}
-                <strong className="text-orange">Intergalactic Aerospace Expo
+                <strong className="text-accent">Intergalactic Aerospace Expo
                 (IAE)</strong> in November (the largest ship show of the year,
                 with 100+ ships rotating through the free roster).
               </p>
@@ -312,7 +331,7 @@ export default function HomePage() {
                 you&apos;ve lost nothing. If you&apos;re hooked, you&apos;ll know
                 it within an afternoon — and you can decide whether to grab a
                 Game Package while still inside the event window. Wondering{' '}
-                <Link href="/is-star-citizen-free" className="text-orange underline-offset-2 hover:underline">
+                <Link href="/is-star-citizen-free" className="text-accent underline-offset-2 hover:underline">
                   is Star Citizen free to play?
                 </Link>{' '}
                 outside of Free Fly too — the honest answer is no, but here&apos;s
@@ -338,9 +357,10 @@ export default function HomePage() {
               </p>
             </div>
             <FreeFlyGuide />
+            <DiscordCTA />
 
             {/* Funnel handoff: after signup, send visitors to dayonecitizen */}
-            <aside className="card mt-12 border-orange/30 sm:p-8" aria-labelledby="next-step-heading">
+            <aside className="card mt-12 border-accent/30 sm:p-8" aria-labelledby="next-step-heading">
               <span className="eyebrow">Signed up? Your next step</span>
               <h2 id="next-step-heading" className="heading-display mt-4 text-2xl sm:text-3xl">
                 New to Star Citizen? Start here
@@ -361,7 +381,7 @@ export default function HomePage() {
                 </a>
                 <a
                   href="https://dayonecitizen.com/day-one-citizen/worth-buying"
-                  className="text-sm text-orange underline underline-offset-2 hover:text-orange-dark"
+                  className="text-sm text-accent underline underline-offset-2 hover:text-accent-hover"
                   target="_blank"
                   rel="noopener"
                 >

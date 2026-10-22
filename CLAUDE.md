@@ -20,19 +20,17 @@ Incremental agents. Confirm each before proceeding.
 
 ### Agent 1 — Scaffold
 - Next.js 14, TypeScript, Tailwind CSS, framer-motion
-- Color palette:
-    spaceBlack: '#080c14'
-    blackMid: '#0f1520'
-    orange: '#ff5500'
-    orangeDark: '#cc4400'
-    white: '#f5f8ff'
-    muted: '#6b7890'
+- Color palette (updated 2026-10 navy/cyan/gold theme; see tailwind.config.ts):
+    spaceBlack #0a0e17, blackMid #111827, card #1a2234, border #2d3a4f
+    accent #00d4ff (emphasis/links/glow), gold #ffb800 (primary action + referral code)
+    white #e8eef7, muted #94a3b8
+    fonts: Inter (body), Orbitron (display), JetBrains Mono (code)
 - 12 hero image placeholders
 - Confirm dev server
 
 ### Agent 2 — Components
 - HeroCarousel.tsx (12 slides)
-- EventStatusBanner.tsx: ACTIVE (orange pulse) / UPCOMING (countdown) /
+- EventStatusBanner.tsx: ACTIVE (accent pulse) / UPCOMING (countdown) /
   INACTIVE (next event TBD) states. This is the most important component.
 - CountdownTimer.tsx: days/hours/minutes/seconds to event end or start
 - CTAButton.tsx: "Play Free — Claim Your 50,000 UEC Bonus"
@@ -83,12 +81,14 @@ like a landing page, not a content site.
   - npm run build passes
 
 ## Color Palette
-  --space-black: #080c14
-  --black-mid: #0f1520
-  --orange: #ff5500
-  --orange-dark: #cc4400
-  --white: #f5f8ff
-  --muted: #6b7890
+  --space-black: #0a0e17
+  --black-mid: #111827
+  --card: #1a2234
+  --border: #2d3a4f
+  --accent: #00d4ff
+  --gold: #ffb800
+  --white: #e8eef7
+  --muted: #94a3b8
 
 ## Urgency Note
 During active Free Fly events this site is the #1 conversion opportunity in

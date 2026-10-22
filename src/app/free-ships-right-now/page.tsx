@@ -111,7 +111,7 @@ export default function FreeShipsRightNowPage() {
         <div className="mx-auto max-w-3xl">
 
           <span className="eyebrow">Free ships</span>
-          <h1 className="heading-display mt-4 text-4xl sm:text-5xl">
+          <h1 className="heading-display mt-4 text-[clamp(2rem,5vw,3.25rem)]">
             What Ships Are Free in Star Citizen Right Now?
           </h1>
 
@@ -124,8 +124,8 @@ export default function FreeShipsRightNowPage() {
                 {formatRangeUTC(status.event.start, status.event.end)}, no purchase
                 required.
               </p>
-              <div className="mt-8 rounded-2xl border border-orange/30 bg-orange/10 p-6 sm:p-8">
-                <p className="text-xs uppercase tracking-[0.18em] text-orange">
+              <div className="mt-8 rounded-2xl border border-accent/30 bg-accent/10 p-6 sm:p-8">
+                <p className="text-xs uppercase tracking-[0.18em] text-accent">
                   Free to fly during {status.event.name}
                 </p>
                 <ul className="mt-4 space-y-3">
@@ -157,7 +157,7 @@ export default function FreeShipsRightNowPage() {
                 free access only exists during Free Fly event windows, and none is
                 live at this moment. The banner above flips the instant one is
                 announced, and the{' '}
-                <Link href="/free-fly-schedule" className="text-orange underline-offset-2 hover:underline">
+                <Link href="/free-fly-schedule" className="text-accent underline-offset-2 hover:underline">
                   2026 schedule
                 </Link>{' '}
                 shows the next expected window.
@@ -177,7 +177,7 @@ export default function FreeShipsRightNowPage() {
             aria-labelledby="discovery-month-rental"
             className="mt-10 rounded-2xl border border-white/15 bg-blackMid/60 p-6 sm:p-8"
           >
-            <p className="text-xs uppercase tracking-[0.18em] text-orange">
+            <p className="text-xs uppercase tracking-[0.18em] text-accent">
               Not a Free Fly — for players who already own the game
             </p>
             <h2 id="discovery-month-rental" className="heading-display mt-3 text-xl sm:text-2xl">
@@ -196,7 +196,7 @@ export default function FreeShipsRightNowPage() {
                 href="https://starcitizenhelp.com/game-guides/rsi-discovery-month"
                 target="_blank"
                 rel="noopener"
-                className="text-orange underline-offset-2 hover:underline"
+                className="text-accent underline-offset-2 hover:underline"
               >
                 How to get the rental, step by step, on Star Citizen Help →
               </a>
@@ -213,7 +213,7 @@ export default function FreeShipsRightNowPage() {
               including brand-new accounts that have never spent a dollar. You fly
               them for the length of the event; when it ends, so does access. Big
               events like the{' '}
-              <Link href="/iae-2956" className="text-orange underline-offset-2 hover:underline">
+              <Link href="/iae-2956" className="text-accent underline-offset-2 hover:underline">
                 Intergalactic Aerospace Expo
               </Link>{' '}
               rotate 100+ ships through manufacturer showcase days, while smaller
@@ -237,9 +237,9 @@ export default function FreeShipsRightNowPage() {
                 </thead>
                 <tbody>
                   {recentPast.map((ev) => (
-                    <tr key={ev.id} className="border-b border-white/5 hover:bg-orange/5">
+                    <tr key={ev.id} className="border-b border-white/5 hover:bg-accent/5">
                       <td className="px-4 py-3 font-semibold text-white">{ev.name}</td>
-                      <td className="px-4 py-3 text-orange">{formatRangeUTC(ev.start, ev.end)}</td>
+                      <td className="px-4 py-3 text-accent">{formatRangeUTC(ev.start, ev.end)}</td>
                       <td className="px-4 py-3 text-muted">{ev.ships[0] ?? '—'}</td>
                     </tr>
                   ))}

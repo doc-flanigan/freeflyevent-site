@@ -3,10 +3,13 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { LightboxImage } from './LightboxImage';
-import { getEventStatus, getActiveBonusOverride, REFERRAL_CODE, type EventStatus, type BonusOverride } from '@/data/events';
+import { getEventStatus, getActiveBonusOverride, FREE_FLY_HISTORY, REFERRAL_CODE, type EventStatus, type BonusOverride } from '@/data/events';
 import { getRotatedReferralUrl, FALLBACK_REFERRAL_URL } from '@/lib/referral-rotator';
 import { CountdownTimer } from './CountdownTimer';
 import { ArrowIcon } from './CTAButton';
+import { CopyCodeButton } from './CopyCodeButton';
+import { logClick } from '@/lib/log-click';
+import { ctaLabel } from '@/lib/cta-label';
 
 type Props = {
   /** "bar" = compact horizontal strip for the very top of the page.
@@ -15,6 +18,20 @@ type Props = {
 };
 
 type SlotProps = { status: EventStatus; referralUrl: string; onNavigate: () => void; bonusOverride: BonusOverride | null };
+
+/**
+ * Dev-only: `?ffstate=active|upcoming|inactive|cancelled` forces a state for
+ * screenshots. Dead code in production builds (NODE_ENV is inlined).
+ */
+function devStatusOverride(): EventStatus | undefined {
+  if (process.env.NODE_ENV === 'production') return undefined;
+  const q = new URLSearchParams(window.location.search).get('ffstate');
+  const at = { active: '2026-08-01T00:00:00Z', upcoming: '2026-07-15T00:00:00Z', inactive: '2026-09-15T00:00:00Z' }[q ?? ''];
+  if (at) return getEventStatus(new Date(at));
+  if (q !== 'cancelled') return undefined;
+  const event = { ...FREE_FLY_HISTORY[0], freeFlyActive: false, cancelledNote: 'Dev preview of the cancelled state.' };
+  return { state: 'CANCELLED_FREE_FLY', event, endsAt: new Date(event.end) };
+}
 
 export function EventStatusBanner({ variant = 'bar' }: Props) {
   // Initial state is computed during the server render (pages using the banner
@@ -27,12 +44,13 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
   const [bonusOverride, setBonusOverride] = useState<BonusOverride | null>(() => getActiveBonusOverride());
 
   useEffect(() => {
-    setStatus(getEventStatus());
+    const dev = devStatusOverride();
+    setStatus(dev ?? getEventStatus());
     setReferralUrl(getRotatedReferralUrl());
     setBonusOverride(getActiveBonusOverride());
     // refresh every minute so banner state flips automatically
     const id = setInterval(() => {
-      setStatus(getEventStatus());
+      setStatus(devStatusOverride() ?? getEventStatus());
       setBonusOverride(getActiveBonusOverride());
     }, 60_000);
     return () => clearInterval(id);
@@ -51,17 +69,7 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
       (entries) => {
         if (!entries.some((e) => e.isIntersecting)) return;
         observer.disconnect();
-        fetch('/api/log', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            label: `impression:${label}`,
-            referralCode: referralUrl.split('referral=')[1] ?? '',
-            page: window.location.pathname,
-            site: window.location.hostname,
-            referrer: (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('lref')) || '',
-          }),
-        }).catch(() => {});
+        logClick(`impression:${label}`, referralUrl);
       },
       { threshold: 0.5 },
     );
@@ -69,21 +77,7 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
     return () => observer.disconnect();
   }, [variant, label, referralUrl]);
 
-  const handleNavigate = () => {
-    const code = referralUrl.split('referral=')[1] ?? '';
-    fetch('/api/log', {
-      method: 'POST',
-      keepalive: true,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        label,
-        referralCode: code,
-        page: window.location.pathname,
-        site: window.location.hostname,
-        referrer: (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('lref')) || '',
-      }),
-    }).catch(() => {});
-  };
+  const handleNavigate = () => logClick(label, referralUrl);
 
   const slotProps: SlotProps = { status, referralUrl, onNavigate: handleNavigate, bonusOverride };
   if (variant === 'bar') return <Bar {...slotProps} />;
@@ -96,16 +90,16 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
 
 function CancelledBar({ eventName, referralUrl, onNavigate }: { eventName: string; referralUrl: string; onNavigate: () => void }) {
   return (
-    <div className="w-full border-b border-orange/30 bg-blackMid text-white">
+    <div className="w-full border-b border-accent/30 bg-blackMid text-white">
       <div className="container-wide flex flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-2 text-center text-sm">
-        <span className="font-semibold text-orange">{eventName} Free Fly Cancelled</span>
+        <span className="font-semibold text-accent">{eventName} Free Fly Cancelled</span>
         <span className="opacity-60 hidden sm:inline">·</span>
         <span className="text-muted">50,000 UEC referral bonus still available at signup.</span>
         <a
           href={referralUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group ml-2 inline-flex items-center gap-1.5 rounded-md border border-orange/40 px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange transition-transform hover:-translate-y-0.5"
+          className="group ml-2 inline-flex items-center gap-1.5 rounded-md border border-accent/40 px-3 py-1 text-xs font-bold uppercase tracking-wide text-accent transition-transform hover:-translate-y-0.5"
           onClick={onNavigate}
         >
           Claim Bonus
@@ -123,8 +117,8 @@ function Bar({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
 
   if (status.state === 'ACTIVE') {
     return (
-      <div className="relative w-full overflow-hidden border-b border-orange/40 bg-orange text-spaceBlack">
-        <div className="absolute inset-0 animate-pulse-orange" aria-hidden />
+      <div className="relative w-full overflow-hidden border-b border-accent/40 bg-accent text-spaceBlack">
+        <div className="absolute inset-0 animate-pulse-accent" aria-hidden />
         <div className="container-wide relative flex flex-wrap items-center justify-center gap-x-4 gap-y-1 px-4 py-2 text-center text-sm font-semibold">
           <span className="inline-flex h-2 w-2 animate-ping rounded-full bg-spaceBlack" aria-hidden />
           <span className="uppercase tracking-[0.2em]">Free Fly Active</span>
@@ -135,7 +129,7 @@ function Bar({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={onNavigate}
-            className="group ml-2 inline-flex items-center gap-1.5 rounded-md bg-spaceBlack px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange transition-transform hover:-translate-y-0.5"
+            className="group ml-2 inline-flex items-center gap-1.5 rounded-md bg-spaceBlack px-3 py-1 text-xs font-bold uppercase tracking-wide text-accent transition-transform hover:-translate-y-0.5"
           >
             Start Playing Free
             <ArrowIcon className="h-3 w-3" />
@@ -147,10 +141,10 @@ function Bar({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
 
   if (status.state === 'UPCOMING') {
     return (
-      <div className="w-full border-b border-orange/30 bg-blackMid text-white">
+      <div className="w-full border-b border-accent/30 bg-blackMid text-white">
         <div className="container-wide flex flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-2 text-center text-sm">
-          <span className="text-orange">●</span>
-          <span className="font-semibold uppercase tracking-[0.2em] text-orange">
+          <span className="text-accent">●</span>
+          <span className="font-semibold uppercase tracking-[0.2em] text-accent">
             Upcoming
           </span>
           <span>{status.event.name} starts in</span>
@@ -164,7 +158,7 @@ function Bar({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
     <div className="w-full border-b border-white/10 bg-blackMid text-muted">
       <div className="container-wide px-4 py-2 text-center text-sm">
         No Free Fly currently active —{' '}
-        <Link href="/event-history" className="text-orange hover:underline">
+        <Link href="/event-history" className="text-accent hover:underline">
           see past events
         </Link>{' '}
         or{' '}
@@ -173,7 +167,7 @@ function Bar({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
           target="_blank"
           rel="noopener noreferrer"
           onClick={onNavigate}
-          className="text-orange hover:underline"
+          className="text-accent hover:underline"
         >
           sign up now and lock in your referral bonus
         </a>
@@ -190,11 +184,14 @@ function Bar({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
  */
 function ReferralCodePanel() {
   return (
-    <div className="w-full max-w-md rounded-lg border border-orange/40 bg-spaceBlack/60 p-4">
+    <div className="w-full max-w-md rounded-lg border border-accent/40 bg-spaceBlack/60 p-4">
       <div className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-muted">
         Use this code at signup — 50,000 UEC
       </div>
-      <div className="mt-1.5 font-mono text-xl font-bold text-orange">{REFERRAL_CODE}</div>
+      <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-2">
+        <code data-ref-code className="font-mono text-xl font-bold text-gold">{REFERRAL_CODE}</code>
+        <CopyCodeButton location="status-card" size="sm" />
+      </div>
       <p className="mt-2 text-xs leading-relaxed text-white/70">
         Paste it into the <span className="font-mono">Referral Code</span> field on the
         signup form. The code cannot be added after about 24 hours, so the bonus
@@ -203,7 +200,7 @@ function ReferralCodePanel() {
           href="https://dayonecitizen.com/referral-code"
           target="_blank"
           rel="noopener"
-          className="text-orange underline underline-offset-2 hover:text-orange-bright"
+          className="text-accent underline underline-offset-2 hover:text-accent"
         >
           our referral code page
         </a>
@@ -223,21 +220,21 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
           </span>
           <h2 className="heading-display text-3xl sm:text-4xl">
             First ever Free Fly cancellation.<br />
-            <span className="text-orange">The bonus still works.</span>
+            <span className="text-gold">The bonus still works.</span>
           </h2>
           <p className="max-w-xl text-white/80">
             CIG pulled the Free Fly portion of {status.event.name} due to server performance issues —
             the first time this has happened in Star Citizen history. The event and ship
             showcases continue, but free public access was removed.{' '}
-            <a href="#cancellation" className="text-orange underline underline-offset-2 hover:text-orange/80">
+            <a href="#cancellation" className="text-accent underline underline-offset-2 hover:text-accent/80">
               Watch CIG&apos;s official explanation ↓
             </a>
           </p>
 
           {/* Two-column value props */}
           <div className="grid gap-4 sm:grid-cols-2 w-full max-w-2xl">
-            <div className="rounded-xl border border-orange/30 bg-orange/10 p-5">
-              <div className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-orange">
+            <div className="rounded-xl border border-accent/30 bg-accent/10 p-5">
+              <div className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">
                 Still Available — Free Account
               </div>
               <p className="text-sm text-white/85">
@@ -266,7 +263,7 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
             className="group btn-primary px-8 py-4 text-base"
             onClick={onNavigate}
           >
-            Create Free Account — Claim 50,000 UEC
+            {ctaLabel('statusCard', status.state)}
             <ArrowIcon />
           </a>
         </div>
@@ -276,13 +273,13 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
 
   if (status.state === 'ACTIVE') {
     return (
-      <div className="relative overflow-hidden rounded-2xl border border-orange/60 bg-gradient-to-br from-orange/20 via-spaceBlack to-spaceBlack p-8 sm:p-10">
-        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-orange/30 blur-3xl" aria-hidden />
+      <div className="relative overflow-hidden rounded-2xl border border-accent/60 bg-gradient-to-br from-accent/20 via-spaceBlack to-spaceBlack p-8 sm:p-10">
+        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-accent/30 blur-3xl" aria-hidden />
         <div className={`relative grid gap-8 lg:items-start ${bonusOverride ? 'lg:grid-cols-2' : ''}`}>
 
           {/* LEFT — identity + countdown + CTA */}
           <div className="flex flex-col items-start gap-5">
-            <span className="inline-flex items-center gap-2 rounded-full border border-orange bg-orange px-4 py-1.5 text-xs font-bold uppercase tracking-[0.25em] text-spaceBlack">
+            <span className="inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-4 py-1.5 text-xs font-bold uppercase tracking-[0.25em] text-spaceBlack">
               <span className="h-2 w-2 animate-ping rounded-full bg-spaceBlack" aria-hidden />
               Active Now — Play Free
             </span>
@@ -300,17 +297,16 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
               className="group btn-primary px-8 py-4 text-base"
               onClick={onNavigate}
             >
-              {bonusOverride
-                ? 'Claim 50,000 UEC + Event Bonus'
-                : 'Create Free Account — Claim 50,000 UEC'}
+              {ctaLabel('statusCard', 'ACTIVE')}
+              {bonusOverride ? ' + Event Bonus' : ''}
               <ArrowIcon />
             </a>
           </div>
 
           {/* RIGHT — event bonus panel (only when a bonus override is active) */}
           {bonusOverride && (
-            <div className="flex flex-col gap-3 rounded-xl border border-orange/50 bg-orange/10 p-4">
-              <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-orange-bright">
+            <div className="flex flex-col gap-3 rounded-xl border border-accent/50 bg-accent/10 p-4">
+              <div className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
                 Limited Signup Bonus — Through{' '}
                 {new Date(bonusOverride.expiresAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}
               </div>
@@ -320,7 +316,7 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
                   alt={bonusOverride.image.alt}
                   width={600}
                   height={338}
-                  containerClassName="rounded-lg border-2 border-orange/70 shadow-[0_0_20px_rgba(255,85,0,0.35)]"
+                  containerClassName="rounded-lg border-2 border-accent/70 shadow-[0_0_20px_rgba(0,212,255,0.35)]"
                   className="w-full h-auto"
                 />
               )}
@@ -339,7 +335,7 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
 
   if (status.state === 'UPCOMING') {
     return (
-      <div className="relative overflow-hidden rounded-2xl border border-orange/30 bg-blackMid p-8 sm:p-10">
+      <div className="relative overflow-hidden rounded-2xl border border-accent/30 bg-blackMid p-8 sm:p-10">
         <div className="flex flex-col items-start gap-5">
           <span className="eyebrow">Next Free Fly</span>
           <h2 className="heading-display text-3xl sm:text-4xl">{status.event.name}</h2>
@@ -357,7 +353,7 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
             className="group btn-primary px-8 py-4 text-base"
             onClick={onNavigate}
           >
-            Pre-Register — Lock In Your Bonus
+            {ctaLabel('statusCard', status.state)}
             <ArrowIcon />
           </a>
         </div>
@@ -382,10 +378,10 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
           href={referralUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group btn-secondary px-8 py-4 text-base"
+          className="group btn-primary px-8 py-4 text-base"
           onClick={onNavigate}
         >
-          Create Account — Reserve Your Bonus
+          {ctaLabel('statusCard', status.state)}
           <ArrowIcon />
         </a>
       </div>

@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { getRotatedReferralUrl, FALLBACK_REFERRAL_URL } from '@/lib/referral-rotator';
 import { getActiveBonusOverride } from '@/data/events';
+import { logClick } from '@/lib/log-click';
 
 const DEFAULT_LABEL = 'Play Free — Claim 50,000 UEC';
 const BONUS_LABEL = 'Play Free — 50,000 UEC + Event Bonus';
@@ -77,18 +78,7 @@ export function CTAButton({
         if (!entries.some((entry) => entry.isIntersecting)) return;
         impressionFired.current = true;
         observer.disconnect();
-        const code = href.split('referral=')[1] ?? ''
-        fetch('/api/log', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            label: `impression:${trackingLabel ?? 'unknown'}${variantSuffix}`,
-            referralCode: code,
-            page: window.location.pathname,
-            site: window.location.hostname,
-            referrer: (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('lref')) || '',
-          }),
-        }).catch(() => {})
+        logClick(`impression:${trackingLabel ?? 'unknown'}${variantSuffix}`, href);
       },
       { threshold: 0.5 }
     );
@@ -97,20 +87,8 @@ export function CTAButton({
   }, [href, trackingLabel, variants, abVariant, variantSuffix, trackImpression]);
 
   const handleClick = () => {
-    const code = href.split('referral=')[1] ?? ''
-    fetch('/api/log', {
-      method: 'POST',
-      keepalive: true,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        label: `${trackingLabel ?? 'unknown'}${variantSuffix}`,
-        referralCode: code,
-        page: window.location.pathname,
-        site: window.location.hostname,
-        referrer: (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('lref')) || '',
-      }),
-    }).catch(() => {})
-  }
+    logClick(`${trackingLabel ?? 'unknown'}${variantSuffix}`, href);
+  };
 
   return (
     <Link

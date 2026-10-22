@@ -9,15 +9,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        spaceBlack: '#080c14',
-        blackMid: '#0f1520',
-        orange: {
-          DEFAULT: '#ff5500',
-          dark: '#cc4400',
-          bright: '#ff8a3d',
+        spaceBlack: '#0a0e17',
+        blackMid: '#111827',
+        card: '#1a2234',
+        border: '#2d3a4f',
+        accent: {
+          DEFAULT: '#00d4ff',
+          hover: '#00b8e6',
         },
-        white: '#f5f8ff',
-        muted: '#6b7890',
+        gold: {
+          DEFAULT: '#ffb800',
+          hover: '#e6a600',
+        },
+        white: '#e8eef7',
+        muted: '#94a3b8',
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
@@ -28,15 +33,15 @@ const config: Config = {
         spring: 'cubic-bezier(0.22, 1, 0.36, 1)',
       },
       animation: {
-        'pulse-orange': 'pulseOrange 2s ease-in-out infinite',
+        'pulse-accent': 'pulseAccent 2s ease-in-out infinite',
         'slow-zoom': 'slowZoom 12s ease-in-out infinite alternate',
         'fade-in': 'fadeIn 0.6s ease-out both',
         'fade-up': 'fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both',
       },
       keyframes: {
-        pulseOrange: {
-          '0%, 100%': { boxShadow: '0 0 0 0 rgba(255, 85, 0, 0.55)' },
-          '50%': { boxShadow: '0 0 0 18px rgba(255, 85, 0, 0)' },
+        pulseAccent: {
+          '0%, 100%': { boxShadow: '0 0 0 0 rgba(0, 212, 255, 0.55)' },
+          '50%': { boxShadow: '0 0 0 18px rgba(0, 212, 255, 0)' },
         },
         slowZoom: {
           '0%': { transform: 'scale(1)' },
@@ -53,12 +58,12 @@ const config: Config = {
       },
       backgroundImage: {
         'radial-spotlight':
-          'radial-gradient(circle at 50% 30%, rgba(255,85,0,0.18), transparent 60%)',
+          'radial-gradient(circle at 50% 30%, rgba(0,212,255,0.18), transparent 60%)',
         'grid-faint':
           'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
       },
       boxShadow: {
-        orange: '0 18px 50px -18px rgba(255, 85, 0, 0.6)',
+        accent: '0 18px 50px -18px rgba(0, 212, 255, 0.6)',
       },
     },
   },

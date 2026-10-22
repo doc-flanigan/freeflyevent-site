@@ -60,7 +60,7 @@ export function GlossaryClient({ terms }: Props) {
             placeholder="Search terms…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full rounded-lg border border-white/10 bg-blackMid py-2.5 pl-9 pr-4 text-sm text-white placeholder-muted outline-none focus:border-orange/50"
+            className="w-full rounded-lg border border-white/10 bg-blackMid py-2.5 pl-9 pr-4 text-sm text-white placeholder-muted outline-none focus:border-accent/50"
           />
         </div>
         <div className="flex flex-wrap gap-2">
@@ -71,8 +71,8 @@ export function GlossaryClient({ terms }: Props) {
               onClick={() => setActiveCategory(cat)}
               className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] transition-colors ${
                 activeCategory === cat
-                  ? 'bg-orange text-spaceBlack'
-                  : 'border border-white/10 text-muted hover:border-orange/40 hover:text-orange'
+                  ? 'bg-accent text-spaceBlack'
+                  : 'border border-white/10 text-muted hover:border-accent/40 hover:text-accent'
               }`}
             >
               {cat}
@@ -88,7 +88,7 @@ export function GlossaryClient({ terms }: Props) {
           href={`${HUB_URL}/glossary`}
           target="_blank"
           rel="noopener"
-          className="text-orange hover:underline"
+          className="text-accent hover:underline"
         >
           Full glossary (200+ terms) at dayonecitizen.com →
         </Link>
@@ -97,7 +97,7 @@ export function GlossaryClient({ terms }: Props) {
       {filtered.length === 0 ? (
         <div className="rounded-xl border border-white/10 bg-blackMid/60 p-10 text-center text-muted">
           No terms match &ldquo;{query}&rdquo;.{' '}
-          <Link href={`${HUB_URL}/glossary`} target="_blank" rel="noopener" className="text-orange hover:underline">
+          <Link href={`${HUB_URL}/glossary`} target="_blank" rel="noopener" className="text-accent hover:underline">
             Try the full glossary →
           </Link>
         </div>
@@ -109,7 +109,7 @@ export function GlossaryClient({ terms }: Props) {
               className="rounded-xl border border-white/10 bg-blackMid/60 p-5"
             >
               <div className="mb-2 flex items-start justify-between gap-2">
-                <span className="font-display text-base font-bold text-orange leading-tight">
+                <span className="font-display text-base font-bold text-accent leading-tight">
                   {t.term}
                 </span>
                 <span className="mt-0.5 flex-shrink-0 rounded-full border border-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-muted">

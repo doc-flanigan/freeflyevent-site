@@ -145,3 +145,6 @@ vite.config.ts.timestamp-*
 # Claude Code local session state
 .claude/
 .vercel
+
+# Playwright screenshots (local only)
+.screenshots/

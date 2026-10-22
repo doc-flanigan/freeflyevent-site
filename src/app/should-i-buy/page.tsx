@@ -65,7 +65,7 @@ export default function ShouldIBuyPage() {
 
           {/* Header */}
           <span className="eyebrow">Free Fly decision</span>
-          <h1 className="heading-display mt-4 text-4xl sm:text-5xl">
+          <h1 className="heading-display mt-4 text-[clamp(2rem,5vw,3.25rem)]">
             Should I Buy Star Citizen?
           </h1>
           <p className="mt-5 text-lg text-muted">
@@ -77,19 +77,19 @@ export default function ShouldIBuyPage() {
           </p>
 
           {/* Quick verdict */}
-          <div className="mt-10 rounded-2xl border border-orange/30 bg-orange/10 p-6 sm:p-8">
+          <div className="mt-10 rounded-2xl border border-accent/30 bg-accent/10 p-6 sm:p-8">
             <h2 className="heading-display text-xl text-white">The quick answer</h2>
             <p className="mt-3 text-white/85">
-              <strong className="text-orange">If you had a good time during Free Fly</strong> — buy
+              <strong className="text-accent">If you had a good time during Free Fly</strong> — buy
               the First Flight Pack. Don&apos;t overspend — it is the only starter package RSI sells, and it is all you need to start. Give it 20 hours before judging it against finished games.
             </p>
             <p className="mt-3 text-white/85">
-              <strong className="text-orange">If Free Fly left you cold</strong> — don&apos;t buy.
+              <strong className="text-accent">If Free Fly left you cold</strong> — don&apos;t buy.
               The paid game is the same game, minus the event ships. Nothing has changed
               about whether it clicks for you.
             </p>
             <p className="mt-3 text-white/85">
-              <strong className="text-orange">If you weren&apos;t sure</strong> — wait for the
+              <strong className="text-accent">If you weren&apos;t sure</strong> — wait for the
               next Free Fly. IAE in late November is the usual next window (CIG has not announced IAE 2956 dates yet),
               and it&apos;s usually the bigger of the two annual events.
             </p>
@@ -109,7 +109,7 @@ export default function ShouldIBuyPage() {
                 ['Use a referral code at signup', 'Enter it when you create the account, or within 24 hours. It cannot be added later. It is the one deadline that matters.'],
               ].map(([title, desc]) => (
                 <li key={title as string} className="flex gap-4 rounded-xl border border-white/10 bg-blackMid/60 p-5">
-                  <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-orange" aria-hidden />
+                  <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-accent" aria-hidden />
                   <div>
                     <strong className="text-white">{title}</strong>
                     <p className="mt-1 text-sm text-muted">{desc}</p>
@@ -120,13 +120,13 @@ export default function ShouldIBuyPage() {
           </section>
 
           {/* Handoff to the full answer */}
-          <section className="mt-14 rounded-2xl border border-orange/30 bg-orange/10 p-6 sm:p-8">
+          <section className="mt-14 rounded-2xl border border-accent/30 bg-accent/10 p-6 sm:p-8">
             <span className="eyebrow">The full answer</span>
             <p className="mt-3 text-lg text-white/90">
               The full answer — what&apos;s in a package, wipes, PC requirements — is in the{' '}
               <a
                 href="https://dayonecitizen.com/day-one-citizen/worth-buying"
-                className="font-semibold text-orange underline hover:text-orange-dark"
+                className="font-semibold text-accent underline hover:text-accent-hover"
                 target="_blank"
                 rel="noopener"
               >
@@ -149,14 +149,14 @@ export default function ShouldIBuyPage() {
                 'It needs a strong PC. Check the official specs before you buy.',
               ].map((item) => (
                 <li key={item} className="flex gap-2">
-                  <span className="text-orange flex-shrink-0">→</span> {item}
+                  <span className="text-accent flex-shrink-0">→</span> {item}
                 </li>
               ))}
             </ul>
           </section>
 
           {/* Try before you buy — the spine */}
-          <section className="mt-14 rounded-2xl border border-orange/30 bg-orange/5 p-8 sm:p-10">
+          <section className="mt-14 rounded-2xl border border-accent/30 bg-accent/5 p-8 sm:p-10">
             <h2 className="heading-display text-2xl">
               Haven&apos;t played yet? Don&apos;t buy — try it free first
             </h2>
@@ -205,7 +205,7 @@ export default function ShouldIBuyPage() {
               Prices vary by sale. Check RSI&apos;s pledge store for today&apos;s price.{' '}
               <a
                 href="https://dayonecitizen.com/day-one-citizen/starter-package"
-                className="text-orange underline hover:text-orange-dark"
+                className="text-accent underline hover:text-accent-hover"
                 target="_blank"
                 rel="noopener"
               >
@@ -226,14 +226,14 @@ export default function ShouldIBuyPage() {
             </p>
             <p className="mt-3 text-white/80">
               Paste{' '}
-              <span className="font-mono font-bold text-orange">{REFERRAL_CODE}</span> into
+              <span className="font-mono font-bold text-gold">{REFERRAL_CODE}</span> into
               the <strong>Referral Code</strong> field on the RSI signup form. Your account
               gets credited with{' '}
               <strong className="text-white">50,000 UEC</strong> — in-game currency worth roughly
               $5 — the moment you log in. It&apos;s available even for free accounts; you
               don&apos;t need to buy anything to claim it.
             </p>
-            <div className="mt-4 rounded-lg border border-orange/30 bg-spaceBlack/60 p-3 text-xs text-muted">
+            <div className="mt-4 rounded-lg border border-accent/30 bg-spaceBlack/60 p-3 text-xs text-muted">
               ⚠️ The code must be entered at signup or within 24 hours. It cannot be
               added after that window — no support ticket can override it.
             </div>
@@ -277,7 +277,7 @@ export default function ShouldIBuyPage() {
               Weighing Star Citizen against the rest of the genre first?{' '}
               <a
                 href="https://bestspacesim.com/is-star-citizen-worth-it"
-                className="text-orange underline hover:text-orange-dark"
+                className="text-accent underline hover:text-accent-hover"
               >
                 bestspacesim.com&apos;s honest worth-it verdict
               </a>{' '}
