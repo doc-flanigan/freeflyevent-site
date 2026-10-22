@@ -339,8 +339,8 @@ export default function HomePage() {
                 Use this checklist whether the event is live now or you&apos;re
                 preparing for the next one. Each step is bite-sized — get
                 through them and you&apos;ll have a real sense of the game.{' '}
-                Everything below happens once the event is live. The account step
-                above is the only part you should do beforehand.
+                The numbered steps happen once the event is live. The gold box is
+                the one thing to do beforehand.
               </p>
             </div>
             <FreeFlyGuide state={status.state} />
