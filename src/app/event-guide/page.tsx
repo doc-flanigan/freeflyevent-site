@@ -8,7 +8,8 @@ import { CTAButton } from '@/components/CTAButton';
 import { DiscordCTA } from '@/components/DiscordCTA';
 import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
-import { REFERRAL_CODE } from '@/data/events';
+import { PreEventStep } from '@/components/PreEventStep';
+import { getEventStatus } from '@/data/events';
 
 // Hourly ISR: the server-rendered EventStatusBanner must flip when an event
 // starts or ends, not only on deploy.
@@ -49,35 +50,6 @@ type Step = {
 const STEPS: Step[] = [
   {
     num: '01',
-    title: 'Make a free RSI account',
-    body: (
-      <>
-        Go to robertsspaceindustries.com and click <em>Enlist Now</em>. Use a
-        real email — your account is permanent and your in-game progress is
-        tied to it.
-      </>
-    ),
-    tip: (
-      <>
-        Paste{' '}
-        <code className="rounded bg-spaceBlack/60 px-1.5 py-0.5 font-mono text-accent">
-          {REFERRAL_CODE}
-        </code>{' '}
-        into the <strong>Referral Code</strong> field on the signup form. This
-        is the only reliable way to lock in your 50,000 UEC bonus.
-      </>
-    ),
-    image: {
-      src: '/images/guides/rsi-signup-referral-code-field.jpg',
-      alt: 'RSI account signup form with the Referral Code field highlighted and code STAR-GCQJ-N6NC entered',
-      caption:
-        'The RSI signup form. The Referral Code field is on the form itself — paste the code here before you click Enlist.',
-      width: 1200,
-      height: 1069,
-    },
-  },
-  {
-    num: '02',
     title: 'Confirm the bonus posted',
     body: (
       <>
@@ -90,7 +62,7 @@ const STEPS: Step[] = [
     ),
   },
   {
-    num: '03',
+    num: '02',
     title: 'Download the RSI Launcher',
     body: (
       <>
@@ -111,7 +83,7 @@ const STEPS: Step[] = [
     },
   },
   {
-    num: '04',
+    num: '03',
     title: 'Pick a ship from the Free Fly roster',
     body: (
       <>
@@ -123,7 +95,7 @@ const STEPS: Step[] = [
     ),
   },
   {
-    num: '05',
+    num: '04',
     title: 'Run the new-player tutorial',
     body: (
       <>
@@ -134,7 +106,7 @@ const STEPS: Step[] = [
     ),
   },
   {
-    num: '06',
+    num: '05',
     title: 'Try a delivery mission',
     body: (
       <>
@@ -170,7 +142,7 @@ const STEPS: Step[] = [
     },
   },
   {
-    num: '07',
+    num: '06',
     title: 'Visit a major planet',
     body: (
       <>
@@ -211,7 +183,7 @@ const STEPS: Step[] = [
     ],
   },
   {
-    num: '08',
+    num: '07',
     title: 'Group up',
     body: (
       <>
@@ -224,7 +196,7 @@ const STEPS: Step[] = [
     ),
   },
   {
-    num: '09',
+    num: '08',
     title: 'Decide before the event ends',
     body: (
       <>
@@ -237,6 +209,7 @@ const STEPS: Step[] = [
 ];
 
 export default function EventGuidePage() {
+  const status = getEventStatus();
   return (
     <>
       <EventStatusBanner variant="bar" />
@@ -252,13 +225,31 @@ export default function EventGuidePage() {
             </h1>
             <p className="mt-5 text-lg text-muted">
               A complete, no-jargon walkthrough for first-time Star Citizen
-              players. Follow it in order — each step assumes you finished the
-              previous one.
+              players. Start with the gold box below, then follow the steps in
+              order — each step assumes you finished the previous one.
             </p>
           </div>
         </section>
 
         <section className="container-narrow pb-20">
+          <PreEventStep
+            state={status.state}
+            copyLocation="event-guide-pre-step"
+            trackingLabel="event-guide-pre-step"
+          />
+          <figure className="mb-8 max-w-xl">
+            <LightboxImage
+              src="/images/guides/rsi-signup-referral-code-field.jpg"
+              alt="RSI account signup form with the Referral Code field highlighted and code STAR-GCQJ-N6NC entered"
+              width={1200}
+              height={1069}
+              containerClassName="block overflow-hidden rounded-lg border border-white/10"
+              className="w-full h-auto"
+            />
+            <figcaption className="mt-2 text-xs text-muted">
+              The RSI signup form. The Referral Code field is on the form itself — paste the code here before you click Enlist.
+            </figcaption>
+          </figure>
           <ol className="space-y-5">
             {STEPS.map((s) => (
               <>
@@ -317,7 +308,7 @@ export default function EventGuidePage() {
                     )}
                   </div>
                 </li>
-                {s.num === '08' && (
+                {s.num === '07' && (
                   <li key="discord-cta" className="list-none">
                     <DiscordCTA />
                   </li>
