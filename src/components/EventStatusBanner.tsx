@@ -9,6 +9,7 @@ import { CountdownTimer } from './CountdownTimer';
 import { ArrowIcon } from './CTAButton';
 import { CopyCodeButton } from './CopyCodeButton';
 import { logClick } from '@/lib/log-click';
+import { ctaLabel } from '@/lib/cta-label';
 
 type Props = {
   /** "bar" = compact horizontal strip for the very top of the page.
@@ -262,7 +263,7 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
             className="group btn-primary px-8 py-4 text-base"
             onClick={onNavigate}
           >
-            Create Free Account — Claim 50,000 UEC
+            {ctaLabel('statusCard', status.state)}
             <ArrowIcon />
           </a>
         </div>
@@ -296,9 +297,8 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
               className="group btn-primary px-8 py-4 text-base"
               onClick={onNavigate}
             >
-              {bonusOverride
-                ? 'Claim 50,000 UEC + Event Bonus'
-                : 'Create Free Account — Claim 50,000 UEC'}
+              {ctaLabel('statusCard', 'ACTIVE')}
+              {bonusOverride ? ' + Event Bonus' : ''}
               <ArrowIcon />
             </a>
           </div>
@@ -353,7 +353,7 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
             className="group btn-primary px-8 py-4 text-base"
             onClick={onNavigate}
           >
-            Pre-Register — Lock In Your Bonus
+            {ctaLabel('statusCard', status.state)}
             <ArrowIcon />
           </a>
         </div>
@@ -378,10 +378,10 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
           href={referralUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group btn-secondary px-8 py-4 text-base"
+          className="group btn-primary px-8 py-4 text-base"
           onClick={onNavigate}
         >
-          Create Account — Reserve Your Bonus
+          {ctaLabel('statusCard', status.state)}
           <ArrowIcon />
         </a>
       </div>

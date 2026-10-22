@@ -13,7 +13,7 @@ import { formatMonthDayUTC, formatRangeUTC } from '@/lib/format';
 import { DiscordCTA } from '@/components/DiscordCTA';
 import { IaeReadyBlock } from '@/components/IaeReadyBlock';
 import { CopyCodeButton } from '@/components/CopyCodeButton';
-import { primaryCtaLabel } from '@/lib/cta-label';
+import { ctaLabel } from '@/lib/cta-label';
 
 const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
 
@@ -181,7 +181,7 @@ export default function HomePage() {
                   trackImpression
                   className="w-full md:whitespace-nowrap"
                 >
-                  {primaryCtaLabel(status)}
+                  {ctaLabel('hero', status.state)}
                 </CTAButton>
                 <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-white/70">
                   <span>Code:</span>

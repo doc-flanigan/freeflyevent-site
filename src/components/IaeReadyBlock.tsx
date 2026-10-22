@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { CTAButton, ArrowIcon } from './CTAButton';
 import { FREE_FLY_HISTORY, getEventStatus, getIae2956 } from '@/data/events';
 import { formatRangeSpacedUTC } from '@/lib/format';
-import { primaryCtaLabel } from '@/lib/cta-label';
+import { ctaLabel } from '@/lib/cta-label';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -72,7 +72,7 @@ export function IaeReadyBlock() {
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
           <CTAButton size="lg" trackingLabel="home-iae" className="w-full sm:w-auto md:whitespace-nowrap">
-            {primaryCtaLabel(status)}
+            {ctaLabel('iae', status.state)}
           </CTAButton>
           <Link href="/iae-2956" className="group btn-secondary w-full px-8 py-4 text-base sm:w-auto">
             IAE 2956 Free Fly guide
