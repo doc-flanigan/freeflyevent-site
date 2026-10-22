@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { HUB_URL, REFERRAL_CODE } from '@/data/events';
+import { CopyCodeButton } from './CopyCodeButton';
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-white/5 bg-spaceBlack">
+    <footer className="mt-24 border-t border-white/5 bg-spaceBlack pb-[72px] md:pb-0">
       <div className="container-wide grid gap-10 py-14 sm:grid-cols-3">
         <div>
           <h4 className="font-display text-base font-bold text-white">
@@ -57,8 +58,11 @@ export function Footer() {
           <h4 className="font-display text-sm font-bold uppercase tracking-[0.2em] text-muted">
             Referral Code
           </h4>
-          <div className="mt-3 rounded-lg border border-accent/30 bg-accent/5 p-3">
-            <div className="font-mono text-base text-gold">{REFERRAL_CODE}</div>
+          <div data-final-cta className="mt-3 rounded-lg border border-accent/30 bg-accent/5 p-3">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <code data-ref-code className="font-mono text-base text-gold">{REFERRAL_CODE}</code>
+              <CopyCodeButton location="footer" size="sm" />
+            </div>
             <div className="mt-1 text-xs text-muted">
               Use at signup for 50,000 UEC bonus.
             </div>

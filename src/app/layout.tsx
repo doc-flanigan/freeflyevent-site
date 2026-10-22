@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Analytics } from '@vercel/analytics/next';
 import OutboundLinkTracker from '@/components/OutboundLinkTracker';
+import { StickyCTABar } from '@/components/StickyCTABar';
 import { Inter, Orbitron, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
@@ -114,6 +115,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         {children}
+        <StickyCTABar />
         <Analytics />
         <OutboundLinkTracker />
         <script

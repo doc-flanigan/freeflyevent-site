@@ -61,21 +61,18 @@ export function NavBar() {
               </Link>
             );
           })}
-          <CTAButton size="sm" trackingLabel="nav" trackImpression={false} className="ml-3">
-            Play Free
-          </CTAButton>
         </div>
 
-        <div className="flex items-center gap-2 lg:hidden">
-          <CTAButton size="sm" trackingLabel="nav-mobile" trackImpression={false}>
-            Play Free
+        <div className="flex items-center gap-2">
+          <CTAButton size="sm" trackingLabel="sticky-nav" trackImpression={false} className="hidden md:inline-flex">
+            Get 50,000 UEC
           </CTAButton>
           <button
             type="button"
             aria-label="Toggle menu"
             aria-expanded={open}
             onClick={() => setOpen((o) => !o)}
-            className="rounded-md border border-white/10 p-2 text-white"
+            className="rounded-md border border-white/10 p-2 text-white lg:hidden"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               {open ? (
@@ -98,6 +95,14 @@ export function NavBar() {
       {open && (
         <div className="border-t border-white/5 bg-spaceBlack lg:hidden">
           <div className="container-wide flex flex-col py-3">
+            <CTAButton
+              size="md"
+              trackingLabel="sticky-nav-menu"
+              trackImpression={false}
+              className="mb-2 w-full"
+            >
+              Get 50,000 UEC
+            </CTAButton>
             {LINKS.map((l) => (
               <Link
                 key={l.href}
@@ -121,7 +126,7 @@ function Logo() {
   return (
     <span
       aria-hidden
-      className="flex h-8 w-8 items-center justify-center rounded-md bg-gold shadow-[0_4px_16px_-6px_rgba(255,184,0,0.6)] transition-transform duration-300 ease-spring group-hover:-translate-y-0.5"
+      className="flex h-8 w-8 items-center justify-center rounded-md bg-accent shadow-[0_4px_16px_-6px_rgba(0,212,255,0.6)] transition-transform duration-300 ease-spring group-hover:-translate-y-0.5"
     >
       <svg width="18" height="18" viewBox="0 0 512 512" fill="none">
         <path d="M416 96 L112 248 L246 284 Z" fill="#0a0e17" />
