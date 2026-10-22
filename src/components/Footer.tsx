@@ -108,7 +108,7 @@ export function Footer() {
               Affiliate disclosure
             </h5>
             <p className="mt-2">
-              Affiliate disclosure: If you create a Star Citizen account using referral code STAR-GCQJ-N6NC, the site owner may receive an in-game bonus. Your 50,000 UEC new-player bonus is not affected.
+              If you create a Star Citizen account using referral code STAR-GCQJ-N6NC, the site owner may receive an in-game bonus. Your 50,000 UEC new-player bonus is not affected.
             </p>
           </section>
 
