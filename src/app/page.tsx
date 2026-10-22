@@ -8,9 +8,12 @@ import { HeroCarousel } from '@/components/HeroCarousel';
 import { CTAButton, ArrowIcon } from '@/components/CTAButton';
 import { FreeFlyGuide } from '@/components/FreeFlyGuide';
 import { TwitchClip } from '@/components/TwitchClip';
-import { getEventStatus, getActiveBonusOverride, iaeStillAheadThisYear, REFERRAL_URL } from '@/data/events';
+import { getEventStatus, getActiveBonusOverride, iaeStillAheadThisYear, REFERRAL_URL, REFERRAL_CODE } from '@/data/events';
 import { formatMonthDayUTC, formatRangeUTC } from '@/lib/format';
 import { DiscordCTA } from '@/components/DiscordCTA';
+import { IaeReadyBlock } from '@/components/IaeReadyBlock';
+import { CopyCodeButton } from '@/components/CopyCodeButton';
+import { primaryCtaLabel } from '@/lib/cta-label';
 
 const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
 
@@ -167,14 +170,27 @@ export default function HomePage() {
                 Star Citizen <span className="text-accent">Free Fly</span> Events
               </h1>
               <p className="mt-5 max-w-xl text-base text-white/85 sm:text-lg">
-                Anyone can play Star Citizen for free during Free Fly events. Find
-                out when the next one is, what&apos;s included, and how to lock in
-                a 50,000 UEC referral bonus before you launch.
+                Anyone can play Star Citizen for free during Free Fly events. Create
+                your free account with our code first — the 50,000 UEC bonus can&apos;t
+                be added later.
               </p>
-              <div className="mt-8">
+              <div data-hero-cta className="mt-8 max-w-md">
+                <CTAButton
+                  size="lg"
+                  trackingLabel="home-hero"
+                  trackImpression
+                  className="w-full"
+                >
+                  {primaryCtaLabel(status)}
+                </CTAButton>
+                <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-white/70">
+                  <span>Code:</span>
+                  <code data-ref-code className="font-mono font-bold text-gold">{REFERRAL_CODE}</code>
+                  <CopyCodeButton location="hero" size="sm" />
+                </div>
                 <Link
                   href="#current-event"
-                  className="text-sm font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-accent"
+                  className="mt-5 inline-block text-sm text-white/60 hover:text-accent"
                 >
                   See current event status ↓
                 </Link>
@@ -187,6 +203,9 @@ export default function HomePage() {
         <section id="current-event" className="container-wide -mt-8 sm:-mt-12 relative z-10">
           <EventStatusBanner variant="hero" />
         </section>
+
+        {/* IAE 2956 READINESS — only while this year's IAE is still ahead */}
+        {iaeStillAheadThisYear() && <IaeReadyBlock />}
 
         {/* DEFENSECON CANCELLATION — DefenseCon-specific story (Twitch clip,
             quotes), so only shown for that event. Any other cancelled event
@@ -338,6 +357,7 @@ export default function HomePage() {
               </p>
             </div>
             <FreeFlyGuide />
+            <DiscordCTA />
 
             {/* Funnel handoff: after signup, send visitors to dayonecitizen */}
             <aside className="card mt-12 border-accent/30 sm:p-8" aria-labelledby="next-step-heading">
