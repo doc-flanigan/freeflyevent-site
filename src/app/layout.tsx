@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Analytics } from '@vercel/analytics/next';
+import OutboundLinkTracker from '@/components/OutboundLinkTracker';
 import { Archivo, Chakra_Petch, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
@@ -109,6 +110,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         {children}
         <Analytics />
+        <OutboundLinkTracker />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
