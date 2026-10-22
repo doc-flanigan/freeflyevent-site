@@ -71,7 +71,7 @@ export function IaeReadyBlock() {
         </div>
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-          <CTAButton size="lg" trackingLabel="home-iae" className="w-full sm:w-auto">
+          <CTAButton size="lg" trackingLabel="home-iae" className="w-full sm:w-auto md:whitespace-nowrap">
             {primaryCtaLabel(status)}
           </CTAButton>
           <Link href="/iae-2956" className="group btn-secondary w-full px-8 py-4 text-base sm:w-auto">

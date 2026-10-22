@@ -179,7 +179,7 @@ export default function HomePage() {
                   size="lg"
                   trackingLabel="home-hero"
                   trackImpression
-                  className="w-full"
+                  className="w-full md:whitespace-nowrap"
                 >
                   {primaryCtaLabel(status)}
                 </CTAButton>

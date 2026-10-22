@@ -55,7 +55,7 @@ export function CopyCodeButton({ location, size = 'md', className = '', codeRef 
       type="button"
       onClick={onClick}
       aria-live="polite"
-      className={`inline-flex min-w-[5.5rem] items-center justify-center rounded-md border border-accent/50 font-semibold uppercase tracking-wide text-accent transition-colors hover:bg-accent/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${sizeCls} ${className}`}
+      className={`inline-flex min-w-[5.5rem] items-center justify-center rounded-md border border-accent/50 font-sans font-semibold text-accent transition-colors hover:bg-accent/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${sizeCls} ${className}`}
     >
       {copied ? 'Copied!' : 'Copy code'}
     </button>

@@ -65,8 +65,8 @@ export function StickyCTABar() {
           animate ? 'transition-[transform,visibility] duration-300 ease-out' : ''
         } ${show ? 'translate-y-0' : 'invisible translate-y-full'}`}
       >
-        <code className="min-w-0 flex-1 truncate font-mono text-sm font-bold text-gold">{REFERRAL_CODE}</code>
-        <CTAButton size="sm" trackingLabel="sticky-bar" trackImpression={false} className="shrink-0">
+        <code className="shrink-0 whitespace-nowrap font-mono text-xs font-bold text-gold">{REFERRAL_CODE}</code>
+        <CTAButton size="sm" trackingLabel="sticky-bar" trackImpression={false} className="min-w-0 flex-1 !text-sm">
           Create Free Account
         </CTAButton>
       </div>
