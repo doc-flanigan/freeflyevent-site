@@ -163,8 +163,8 @@ export default function HomePage() {
           <HeroCarousel>
             <div className="max-w-3xl">
               <span className="eyebrow mb-5">Star Citizen · Free Fly Tracker</span>
-              <h1 className="heading-display text-4xl leading-[1.05] sm:text-6xl lg:text-7xl">
-                Star Citizen <span className="text-orange">Free Fly</span> Events
+              <h1 className="heading-display text-[clamp(2rem,5vw,3.25rem)]">
+                Star Citizen <span className="text-accent">Free Fly</span> Events
               </h1>
               <p className="mt-5 max-w-xl text-base text-white/85 sm:text-lg">
                 Anyone can play Star Citizen for free during Free Fly events. Find
@@ -174,7 +174,7 @@ export default function HomePage() {
               <div className="mt-8">
                 <Link
                   href="#current-event"
-                  className="text-sm font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-orange"
+                  className="text-sm font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-accent"
                 >
                   See current event status ↓
                 </Link>
@@ -260,7 +260,7 @@ export default function HomePage() {
                     What you can still do
                   </div>
                   <p className="text-sm text-white/80">
-                    The <strong className="text-orange">50,000 UEC referral bonus</strong> is
+                    The <strong className="text-accent">50,000 UEC referral bonus</strong> is
                     still available — create a free RSI account now and it&apos;s locked in
                     for the next Free Fly. Buying a Game Package during DefenseCon still
                     earns the <strong className="text-white">referral clothing pack</strong>.
@@ -301,9 +301,9 @@ export default function HomePage() {
                 in.
               </p>
               <p>
-                The two main events are <strong className="text-orange">Invictus
+                The two main events are <strong className="text-accent">Invictus
                 Launch Week</strong> in May (a Navy fleet showcase) and the{' '}
-                <strong className="text-orange">Intergalactic Aerospace Expo
+                <strong className="text-accent">Intergalactic Aerospace Expo
                 (IAE)</strong> in November (the largest ship show of the year,
                 with 100+ ships rotating through the free roster).
               </p>
@@ -312,7 +312,7 @@ export default function HomePage() {
                 you&apos;ve lost nothing. If you&apos;re hooked, you&apos;ll know
                 it within an afternoon — and you can decide whether to grab a
                 Game Package while still inside the event window. Wondering{' '}
-                <Link href="/is-star-citizen-free" className="text-orange underline-offset-2 hover:underline">
+                <Link href="/is-star-citizen-free" className="text-accent underline-offset-2 hover:underline">
                   is Star Citizen free to play?
                 </Link>{' '}
                 outside of Free Fly too — the honest answer is no, but here&apos;s
@@ -340,7 +340,7 @@ export default function HomePage() {
             <FreeFlyGuide />
 
             {/* Funnel handoff: after signup, send visitors to dayonecitizen */}
-            <aside className="card mt-12 border-orange/30 sm:p-8" aria-labelledby="next-step-heading">
+            <aside className="card mt-12 border-accent/30 sm:p-8" aria-labelledby="next-step-heading">
               <span className="eyebrow">Signed up? Your next step</span>
               <h2 id="next-step-heading" className="heading-display mt-4 text-2xl sm:text-3xl">
                 New to Star Citizen? Start here
@@ -361,7 +361,7 @@ export default function HomePage() {
                 </a>
                 <a
                   href="https://dayonecitizen.com/day-one-citizen/worth-buying"
-                  className="text-sm text-orange underline underline-offset-2 hover:text-orange-dark"
+                  className="text-sm text-accent underline underline-offset-2 hover:text-accent-hover"
                   target="_blank"
                   rel="noopener"
                 >

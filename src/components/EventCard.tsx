@@ -9,16 +9,16 @@ type Props = {
 
 export function EventCard({ event, status, highlight = false }: Props) {
   const statusBadge = {
-    ACTIVE: { text: 'ACTIVE NOW', cls: 'bg-orange text-spaceBlack' },
+    ACTIVE: { text: 'ACTIVE NOW', cls: 'bg-gold text-spaceBlack' },
     CANCELLED_FREE_FLY: { text: 'FREE FLY CANCELLED', cls: 'bg-white/5 text-muted border border-white/15' },
-    UPCOMING: { text: 'UPCOMING', cls: 'bg-orange/15 text-orange border border-orange/40' },
+    UPCOMING: { text: 'UPCOMING', cls: 'bg-accent/15 text-accent border border-accent/40' },
     PAST: { text: 'PAST', cls: 'bg-white/5 text-muted border border-white/10' },
   }[status];
 
   return (
     <article
       className={`card flex flex-col gap-4 ${
-        highlight ? 'border-orange/50 shadow-orange' : ''
+        highlight ? 'border-accent/50 shadow-accent' : ''
       }`}
     >
       <div className="flex items-center justify-between gap-3">
@@ -40,7 +40,7 @@ export function EventCard({ event, status, highlight = false }: Props) {
           <ul className="space-y-1 text-sm text-white/85">
             {event.ships.map((s) => (
               <li key={s} className="flex items-start gap-2">
-                <span className="mt-1 h-1 w-1 flex-shrink-0 rounded-full bg-orange" aria-hidden />
+                <span className="mt-1 h-1 w-1 flex-shrink-0 rounded-full bg-accent" aria-hidden />
                 <span>{s}</span>
               </li>
             ))}
@@ -56,11 +56,11 @@ export function EventCard({ event, status, highlight = false }: Props) {
         <span
           className={`inline-flex items-center gap-1.5 rounded-full px-2 py-1 ${
             status === 'ACTIVE'
-              ? 'border border-orange/40 bg-orange/10 text-orange'
+              ? 'border border-accent/40 bg-accent/10 text-accent'
               : status === 'CANCELLED_FREE_FLY'
-                ? 'border border-orange/30 bg-orange/10 text-orange'
+                ? 'border border-accent/30 bg-accent/10 text-accent'
                 : status === 'UPCOMING'
-                  ? 'border border-orange/40 bg-orange/10 text-orange'
+                  ? 'border border-accent/40 bg-accent/10 text-accent'
                   : 'border border-white/10 bg-white/5 text-muted'
           }`}
         >

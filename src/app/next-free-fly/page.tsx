@@ -159,7 +159,7 @@ function SourceLink({ href, children }: { href: string; children: ReactNode }) {
       href={href}
       target="_blank"
       rel="noopener"
-      className="text-orange underline-offset-2 hover:underline"
+      className="text-accent underline-offset-2 hover:underline"
     >
       {children}
     </a>
@@ -204,7 +204,7 @@ export default function NextFreeFlyPage() {
 
           {/* Header */}
           <span className="eyebrow">Free Fly schedule</span>
-          <h1 className="heading-display mt-4 text-4xl sm:text-5xl">
+          <h1 className="heading-display mt-4 text-[clamp(2rem,5vw,3.25rem)]">
             When Is the Next Star Citizen Free Fly?
           </h1>
 
@@ -240,7 +240,7 @@ export default function NextFreeFlyPage() {
           )}
 
           {/* Live status — updates automatically from the event calendar */}
-          <div className="mt-8 rounded-2xl border border-orange/30 bg-orange/10 p-6 sm:p-8">
+          <div className="mt-8 rounded-2xl border border-accent/30 bg-accent/10 p-6 sm:p-8">
             <p className="text-xs uppercase tracking-[0.18em] text-muted">Live status</p>
             <h2 className="heading-display mt-2 text-xl text-white">{headline}</h2>
             <p className="mt-3 text-white/85">{detail}</p>
@@ -254,7 +254,7 @@ export default function NextFreeFlyPage() {
                 href="https://starcitizenhelp.com/game-guides/rsi-discovery-month"
                 target="_blank"
                 rel="noopener"
-                className="text-orange underline-offset-2 hover:underline"
+                className="text-accent underline-offset-2 hover:underline"
               >
                 See the Discovery Month guide on Star Citizen Help
               </a>
@@ -277,14 +277,14 @@ export default function NextFreeFlyPage() {
 
             <div className="mt-6 space-y-5">
               {/* IAE — strong pattern */}
-              <div className="rounded-xl border border-orange/30 bg-blackMid/60 p-6">
+              <div className="rounded-xl border border-accent/30 bg-blackMid/60 p-6">
                 <div className="flex flex-wrap items-center gap-3">
                   <h3 className="heading-display text-lg text-white">
                     {iae2956
                       ? `Intergalactic Aerospace Expo 2956 — ${formatRangeUTC(iae2956.start, iae2956.end)}`
                       : 'Intergalactic Aerospace Expo (IAE) — late November'}
                   </h3>
-                  <span className="rounded-full border border-orange/40 bg-orange/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-orange">
+                  <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-accent">
                     {iae2956 ? 'Confirmed' : 'Strong yearly pattern'}
                   </span>
                 </div>
@@ -299,7 +299,7 @@ export default function NextFreeFlyPage() {
                     {formatRangeUTC(iae2956.start, iae2956.end)}, free for anyone with
                     an RSI account. Full details, free ships, and the{' '}
                     {iae2956Ended() ? 'recap' : 'live status'} are on the{' '}
-                    <Link href="/iae-2956" className="text-orange underline-offset-2 hover:underline">
+                    <Link href="/iae-2956" className="text-accent underline-offset-2 hover:underline">
                       IAE 2956 page
                     </Link>
                     .
@@ -386,7 +386,7 @@ export default function NextFreeFlyPage() {
               </SourceLink>{' '}
               and DefenseCon replaced it as the May flagship. Every past event is
               logged on our{' '}
-              <Link href="/event-history" className="text-orange underline-offset-2 hover:underline">
+              <Link href="/event-history" className="text-accent underline-offset-2 hover:underline">
                 event history page
               </Link>
               .
@@ -422,9 +422,9 @@ export default function NextFreeFlyPage() {
                 </thead>
                 <tbody>
                   {recent.map((ev) => (
-                    <tr key={ev.id} className="border-b border-white/5 hover:bg-orange/5">
+                    <tr key={ev.id} className="border-b border-white/5 hover:bg-accent/5">
                       <td className="px-4 py-3 font-semibold text-white">{ev.name}</td>
-                      <td className="px-4 py-3 text-orange">{formatRangeUTC(ev.start, ev.end)}</td>
+                      <td className="px-4 py-3 text-accent">{formatRangeUTC(ev.start, ev.end)}</td>
                       <td className="px-4 py-3 text-muted">{ev.ships[0] ?? '—'}</td>
                     </tr>
                   ))}
@@ -433,7 +433,7 @@ export default function NextFreeFlyPage() {
             </div>
             <p className="mt-4 text-xs text-muted">
               See the{' '}
-              <Link href="/event-history" className="text-orange underline-offset-2 hover:underline">
+              <Link href="/event-history" className="text-accent underline-offset-2 hover:underline">
                 full event history
               </Link>{' '}
               for every Free Fly on record.

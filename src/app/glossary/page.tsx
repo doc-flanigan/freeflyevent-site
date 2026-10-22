@@ -74,8 +74,8 @@ export default async function GlossaryPage() {
         <section className="container-narrow py-16 sm:py-24">
           <div className="max-w-3xl">
             <span className="eyebrow">Reference</span>
-            <h1 className="heading-display mt-4 text-4xl sm:text-6xl">
-              Star Citizen <span className="text-orange">Free Fly</span> Glossary
+            <h1 className="heading-display mt-4 text-[clamp(2rem,5vw,3.25rem)]">
+              Star Citizen <span className="text-accent">Free Fly</span> Glossary
             </h1>
             <p className="mt-5 text-lg text-muted">
               The {FREE_FLY_TERMS.size} terms a new player is most likely to hit
@@ -85,7 +85,7 @@ export default async function GlossaryPage() {
                 href={`${HUB_URL}/glossary`}
                 target="_blank"
                 rel="noopener"
-                className="text-orange hover:underline"
+                className="text-accent hover:underline"
               >
                 full 200+ term glossary
               </Link>{' '}
@@ -106,7 +106,7 @@ export default async function GlossaryPage() {
                   href={`${HUB_URL}/glossary`}
                   target="_blank"
                   rel="noopener"
-                  className="text-orange hover:underline"
+                  className="text-accent hover:underline"
                 >
                   Visit dayonecitizen.com for the full glossary →
                 </Link>
@@ -117,7 +117,7 @@ export default async function GlossaryPage() {
 
         {/* Referral nudge */}
         <section className="container-narrow pb-24">
-          <div className="rounded-2xl border border-orange/30 bg-gradient-to-br from-orange/10 via-blackMid to-spaceBlack p-8 sm:p-10">
+          <div className="rounded-2xl border border-accent/30 bg-gradient-to-br from-accent/10 via-blackMid to-spaceBlack p-8 sm:p-10">
             <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
               <div>
                 <span className="eyebrow">One more thing</span>
@@ -125,7 +125,7 @@ export default async function GlossaryPage() {
                   Use a referral code when you sign up.
                 </h2>
                 <p className="mt-3 text-muted">
-                  Paste <span className="font-mono text-orange">STAR-GCQJ-N6NC</span> into
+                  Paste <span className="font-mono text-gold">STAR-GCQJ-N6NC</span> into
                   the Referral Code field when creating your RSI account. You get{' '}
                   <strong className="text-white">50,000 UEC</strong> — that&apos;s in-game
                   currency — instantly. It cannot be added after 24 hours.

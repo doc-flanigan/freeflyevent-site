@@ -44,7 +44,7 @@ export function CountdownTimer({ target, variant = 'full', label, className = ''
       : `${pad(parts.days)}:${pad(parts.hours)}:${pad(parts.minutes)}:${pad(parts.seconds)}`;
     return (
       <span
-        className={`tabular rounded-md bg-spaceBlack/60 px-2 py-1 font-mono text-sm text-orange ${className}`}
+        className={`tabular rounded-md bg-spaceBlack/60 px-2 py-1 font-mono text-sm text-accent ${className}`}
         aria-label="time remaining"
         // Server and client render different seconds; the effect corrects it.
         suppressHydrationWarning
@@ -76,7 +76,7 @@ function Block({ value, unit, highlight = false }: { value: number; unit: string
     <div
       className={`flex min-w-[64px] flex-col items-center justify-center rounded-lg border px-3 py-3 sm:min-w-[88px] sm:px-5 sm:py-4 ${
         highlight
-          ? 'border-orange/50 bg-orange/10 text-orange'
+          ? 'border-accent/50 bg-accent/10 text-accent'
           : 'border-white/10 bg-blackMid/70 text-white'
       }`}
     >

@@ -38,7 +38,7 @@ export default function Error({
   return (
     <main className="container-narrow flex min-h-[60vh] flex-col items-center justify-center py-20 text-center">
       <span className="eyebrow">Error</span>
-      <h1 className="heading-display mt-5 text-4xl sm:text-6xl">
+      <h1 className="heading-display mt-5 text-[clamp(2rem,5vw,3.25rem)]">
         freeflyevent.com hit a temporary error
       </h1>
       <p className="mt-5 max-w-md text-muted">

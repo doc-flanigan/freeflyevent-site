@@ -113,7 +113,7 @@ export default function FreeFlySchedulePage() {
         <div className="mx-auto max-w-3xl">
 
           <span className="eyebrow">Free Fly schedule</span>
-          <h1 className="heading-display mt-4 text-4xl sm:text-5xl">
+          <h1 className="heading-display mt-4 text-[clamp(2rem,5vw,3.25rem)]">
             Star Citizen Free Fly Schedule 2026
           </h1>
 
@@ -136,7 +136,7 @@ export default function FreeFlySchedulePage() {
             <strong className="text-white">mid-year Foundation Festival</strong>, and
             the <strong className="text-white">IAE in late November</strong>. Between
             windows,{' '}
-            <Link href="/is-star-citizen-free" className="text-orange underline-offset-2 hover:underline">
+            <Link href="/is-star-citizen-free" className="text-accent underline-offset-2 hover:underline">
               is Star Citizen free to play?
             </Link>{' '}
             explains what still costs money and what doesn&apos;t.
@@ -167,12 +167,12 @@ export default function FreeFlySchedulePage() {
                   {confirmed2026.map((ev) => {
                     const s = rowStatus(ev.start, ev.end);
                     return (
-                      <tr key={ev.id} className="border-b border-white/5 hover:bg-orange/5">
-                        <td className="px-4 py-3 text-orange">{formatRangeUTC(ev.start, ev.end)}</td>
+                      <tr key={ev.id} className="border-b border-white/5 hover:bg-accent/5">
+                        <td className="px-4 py-3 text-accent">{formatRangeUTC(ev.start, ev.end)}</td>
                         <td className="px-4 py-3 font-semibold text-white">{ev.name}</td>
                         <td className="px-4 py-3">
                           {s === 'LIVE NOW' ? (
-                            <span className="rounded-full border border-orange bg-orange/20 px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange">
+                            <span className="rounded-full border border-accent bg-accent/20 px-3 py-1 text-xs font-bold uppercase tracking-wide text-accent">
                               Live now
                             </span>
                           ) : (
@@ -183,10 +183,10 @@ export default function FreeFlySchedulePage() {
                     );
                   })}
                   {expected.map((row) => (
-                    <tr key={row.name} className="border-b border-white/5 hover:bg-orange/5">
+                    <tr key={row.name} className="border-b border-white/5 hover:bg-accent/5">
                       <td className="px-4 py-3 text-muted">{row.window}</td>
                       <td className="px-4 py-3 font-semibold text-white">
-                        <Link href={row.href} className="hover:text-orange">
+                        <Link href={row.href} className="hover:text-accent">
                           {row.name} →
                         </Link>
                       </td>
@@ -205,7 +205,7 @@ export default function FreeFlySchedulePage() {
                 <>&ldquo;Expected&rdquo; rows are pattern-based, not announcements. </>
               )}
               Every confirmed row is sourced from an official RSI Comm-Link — see the full{' '}
-              <Link href="/event-history" className="text-orange underline-offset-2 hover:underline">
+              <Link href="/event-history" className="text-accent underline-offset-2 hover:underline">
                 event history
               </Link>{' '}
               for past years.
@@ -244,7 +244,7 @@ export default function FreeFlySchedulePage() {
               event is announced. You can also subscribe to the free{' '}
               <a
                 href="webcal://freeflyevent.com/free-fly.ics"
-                className="text-orange underline-offset-2 hover:underline"
+                className="text-accent underline-offset-2 hover:underline"
               >
                 Free Fly calendar feed (.ics)
               </a>{' '}

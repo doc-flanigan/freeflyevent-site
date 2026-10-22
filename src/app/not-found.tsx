@@ -11,7 +11,7 @@ export default function NotFound() {
       <PageBackdrop seed={7} />
       <main className="container-narrow flex min-h-[60vh] flex-col items-center justify-center py-20 text-center">
         <span className="eyebrow">404</span>
-        <h1 className="heading-display mt-5 text-5xl sm:text-7xl">Lost in quantum.</h1>
+        <h1 className="heading-display mt-5 text-[clamp(2rem,5vw,3.25rem)]">Lost in quantum.</h1>
         <p className="mt-5 max-w-md text-muted">
           That page didn&apos;t make the jump. Try the homepage or the event
           guide.

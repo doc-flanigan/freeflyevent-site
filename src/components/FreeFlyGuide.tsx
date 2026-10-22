@@ -53,7 +53,7 @@ export function FreeFlyGuide() {
           className="card flex gap-4"
         >
           <div className="flex-shrink-0">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-orange/40 bg-orange/10 font-display font-bold text-orange">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-accent/40 bg-accent/10 font-display font-bold text-accent">
               {i + 1}
             </span>
           </div>
@@ -65,7 +65,7 @@ export function FreeFlyGuide() {
                 href={step.link.href}
                 target="_blank"
                 rel="noopener"
-                className="mt-1.5 inline-block text-sm text-orange underline hover:text-orange-dark"
+                className="mt-1.5 inline-block text-sm text-accent underline hover:text-accent-hover"
               >
                 {step.link.label}
               </a>

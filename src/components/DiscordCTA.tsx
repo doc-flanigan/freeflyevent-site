@@ -5,7 +5,7 @@ const DISCORD_URL = process.env.NEXT_PUBLIC_DISCORD_INVITE_URL ?? 'https://disco
 export function DiscordCTA() {
   return (
     <div className="mt-3 text-center">
-      <p className="text-sm" style={{ color: '#6b7890' }}>
+      <p className="text-sm" style={{ color: '#94a3b8' }}>
         Already signed up?{' '}
         <Link
           href={DISCORD_URL}

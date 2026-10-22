@@ -12,7 +12,7 @@ export const HERO_SLIDES: HeroSlide[] = [
   { src: '/images/hero/hero-04.jpg', alt: 'The interior of a capital-ship hangar with docked spacecraft' },
   { src: '/images/hero/hero-05.jpg', alt: 'A spacecraft in orbit above a cloud-wrapped planet' },
   { src: '/images/hero/hero-06.jpg', alt: 'A starship and ground rover on a misty frontier moon' },
-  { src: '/images/hero/hero-07.jpg', alt: 'A pilot beside a ship in an orange desert dust storm' },
+  { src: '/images/hero/hero-07.jpg', alt: 'A pilot beside a ship in an amber desert dust storm' },
   { src: '/images/hero/hero-08.jpg', alt: 'A glowing blue orbital hologram inside a space station' },
   { src: '/images/hero/hero-09.jpg', alt: 'A large industrial capital ship seen up close' },
   { src: '/images/hero/hero-10.jpg', alt: 'A banded gas giant framed by a rocky canyon arch' },

@@ -172,7 +172,7 @@ function SourceLink({ href, children }: { href: string; children: ReactNode }) {
       href={href}
       target="_blank"
       rel="noopener"
-      className="text-orange underline-offset-2 hover:underline"
+      className="text-accent underline-offset-2 hover:underline"
     >
       {children}
     </a>
@@ -205,7 +205,7 @@ export default function Iae2956Page() {
         <div className="mx-auto max-w-3xl">
 
           <span className="eyebrow">IAE 2956</span>
-          <h1 className="heading-display mt-4 text-4xl sm:text-5xl">
+          <h1 className="heading-display mt-4 text-[clamp(2rem,5vw,3.25rem)]">
             {headline[phase]}
           </h1>
           <p className="mt-3 text-xs uppercase tracking-[0.18em] text-muted">
@@ -283,8 +283,8 @@ export default function Iae2956Page() {
               <h2 className="heading-display text-2xl sm:text-3xl">
                 What&apos;s confirmed
               </h2>
-              <div className="mt-6 rounded-2xl border border-orange/40 bg-orange/10 p-6 sm:p-8">
-                <p className="text-xs uppercase tracking-[0.18em] text-orange">
+              <div className="mt-6 rounded-2xl border border-accent/40 bg-accent/10 p-6 sm:p-8">
+                <p className="text-xs uppercase tracking-[0.18em] text-accent">
                   {phase === 'active' ? 'Live now' : phase === 'ended' ? 'Ended' : phase === 'cancelled' ? 'Free Fly cancelled' : 'Officially announced'}
                 </p>
                 <dl className="mt-4 space-y-4 text-sm leading-relaxed">
@@ -326,8 +326,8 @@ export default function Iae2956Page() {
             <h2 className="heading-display text-2xl sm:text-3xl">
               What&apos;s confirmed so far
             </h2>
-            <div className="mt-6 rounded-2xl border border-dashed border-orange/40 bg-blackMid/60 p-6 sm:p-8">
-              <p className="text-xs uppercase tracking-[0.18em] text-orange">
+            <div className="mt-6 rounded-2xl border border-dashed border-accent/40 bg-blackMid/60 p-6 sm:p-8">
+              <p className="text-xs uppercase tracking-[0.18em] text-accent">
                 Nothing yet — pattern only
               </p>
               <p className="mt-3 text-sm leading-relaxed text-white/85">
@@ -404,7 +404,7 @@ export default function Iae2956Page() {
                 </thead>
                 <tbody>
                   {iaeHistory.map((ev) => (
-                    <tr key={ev.id} className="border-b border-white/5 hover:bg-orange/5">
+                    <tr key={ev.id} className="border-b border-white/5 hover:bg-accent/5">
                       <td className="px-4 py-3 font-semibold text-white">
                         {ev.source ? (
                           <SourceLink href={ev.source}>{ev.name}</SourceLink>
@@ -412,7 +412,7 @@ export default function Iae2956Page() {
                           ev.name
                         )}
                       </td>
-                      <td className="px-4 py-3 text-orange">{formatRangeUTC(ev.start, ev.end)}</td>
+                      <td className="px-4 py-3 text-accent">{formatRangeUTC(ev.start, ev.end)}</td>
                       <td className="px-4 py-3 text-muted">{ev.ships[0] ?? '—'}</td>
                     </tr>
                   ))}
@@ -422,7 +422,7 @@ export default function Iae2956Page() {
             <p className="mt-4 text-xs text-muted">
               IAE 2951 (2021) and 2952 (2022) also ran November Free Flys — the
               table shows the events tracked in our{' '}
-              <Link href="/event-history" className="text-orange underline-offset-2 hover:underline">
+              <Link href="/event-history" className="text-accent underline-offset-2 hover:underline">
                 full event history
               </Link>
               .

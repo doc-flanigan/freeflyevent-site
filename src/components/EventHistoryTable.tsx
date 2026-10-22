@@ -71,7 +71,7 @@ export function EventHistoryTable({ limit }: { limit?: number }) {
             {rows.map((ev) => (
               <tr
                 key={ev.id}
-                className="border-b border-white/5 transition-colors hover:bg-orange/5"
+                className="border-b border-white/5 transition-colors hover:bg-accent/5"
               >
                 <td className="px-4 py-3 font-semibold text-white">{ev.name}</td>
                 <td className="px-4 py-3 text-muted">{formatRangeUTC(ev.start, ev.end)}</td>
@@ -93,7 +93,7 @@ export function EventHistoryTable({ limit }: { limit?: number }) {
                       href={ev.source}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="whitespace-nowrap text-orange transition-colors hover:text-white"
+                      className="whitespace-nowrap text-accent transition-colors hover:text-white"
                     >
                       RSI Comm-Link ↗
                     </a>
@@ -127,7 +127,7 @@ function Th({
         type="button"
         onClick={onClick}
         className={`inline-flex items-center gap-1 transition-colors ${
-          active ? 'text-orange' : 'hover:text-white'
+          active ? 'text-accent' : 'hover:text-white'
         }`}
       >
         {label}

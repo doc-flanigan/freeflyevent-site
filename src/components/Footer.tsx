@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container-wide grid gap-10 py-14 sm:grid-cols-3">
         <div>
           <h4 className="font-display text-base font-bold text-white">
-            freefly<span className="text-orange">event</span>
+            freefly<span className="text-accent">event</span>
             <span className="ml-0.5 text-xs font-semibold text-muted">.com</span>
           </h4>
           <p className="mt-3 text-sm text-muted">
@@ -17,7 +17,7 @@ export function Footer() {
               href={HUB_URL}
               target="_blank"
               rel="noopener"
-              className="text-orange hover:underline"
+              className="text-accent hover:underline"
             >
               Doc_Flanigan
             </Link>{' '}
@@ -31,22 +31,22 @@ export function Footer() {
           </h4>
           <ul className="mt-3 space-y-2 text-sm">
             <li>
-              <Link href="/" className="text-white/80 hover:text-orange">
+              <Link href="/" className="text-white/80 hover:text-accent">
                 Current Event
               </Link>
             </li>
             <li>
-              <Link href="/event-guide" className="text-white/80 hover:text-orange">
+              <Link href="/event-guide" className="text-white/80 hover:text-accent">
                 Event Guide
               </Link>
             </li>
             <li>
-              <Link href="/event-history" className="text-white/80 hover:text-orange">
+              <Link href="/event-history" className="text-white/80 hover:text-accent">
                 Event History
               </Link>
             </li>
             <li>
-              <Link href="/event-guide" className="text-white/80 hover:text-orange">
+              <Link href="/event-guide" className="text-white/80 hover:text-accent">
                 How to claim your bonus
               </Link>
             </li>
@@ -57,8 +57,8 @@ export function Footer() {
           <h4 className="font-display text-sm font-bold uppercase tracking-[0.2em] text-muted">
             Referral Code
           </h4>
-          <div className="mt-3 rounded-lg border border-orange/30 bg-orange/5 p-3">
-            <div className="font-mono text-base text-orange">{REFERRAL_CODE}</div>
+          <div className="mt-3 rounded-lg border border-accent/30 bg-accent/5 p-3">
+            <div className="font-mono text-base text-gold">{REFERRAL_CODE}</div>
             <div className="mt-1 text-xs text-muted">
               Use at signup for 50,000 UEC bonus.
             </div>
@@ -67,7 +67,7 @@ export function Footer() {
             href={HUB_URL}
             target="_blank"
             rel="noopener"
-            className="mt-4 inline-block text-sm text-muted hover:text-orange"
+            className="mt-4 inline-block text-sm text-muted hover:text-accent"
           >
             Visit dayonecitizen.com ↗
           </Link>

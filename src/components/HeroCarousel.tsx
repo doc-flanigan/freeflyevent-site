@@ -64,7 +64,7 @@ export function HeroCarousel({ children }: { children?: React.ReactNode }) {
             aria-label={`Show slide ${i + 1}`}
             onClick={() => setIndex(i)}
             className={`h-1 rounded-full transition-all ${
-              i === index ? 'w-8 bg-orange' : 'w-2 bg-white/30 hover:bg-white/60'
+              i === index ? 'w-8 bg-accent' : 'w-2 bg-white/30 hover:bg-white/60'
             }`}
           />
         ))}

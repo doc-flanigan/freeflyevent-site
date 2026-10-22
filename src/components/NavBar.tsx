@@ -31,7 +31,7 @@ export function NavBar() {
     <nav
       className={`sticky top-0 z-40 transition-all duration-300 ${
         scrolled || open
-          ? 'border-b border-orange/10 bg-spaceBlack/85 shadow-[0_12px_40px_-20px_rgba(0,0,0,0.9)] backdrop-blur-xl'
+          ? 'border-b border-accent/10 bg-spaceBlack/85 shadow-[0_12px_40px_-20px_rgba(0,0,0,0.9)] backdrop-blur-xl'
           : 'border-b border-white/5 bg-spaceBlack/60 backdrop-blur-md'
       }`}
     >
@@ -39,7 +39,7 @@ export function NavBar() {
         <Link href="/" className="group flex items-center gap-2.5">
           <Logo />
           <span className="font-display text-lg font-bold tracking-tight text-white">
-            freefly<span className="text-orange">event</span>
+            freefly<span className="text-accent">event</span>
             <span className="ml-0.5 hidden text-xs font-semibold text-muted sm:inline">.com</span>
           </span>
         </Link>
@@ -51,10 +51,10 @@ export function NavBar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className={`relative rounded-md px-3 py-2 text-sm transition-colors after:absolute after:inset-x-3 after:bottom-0.5 after:h-px after:origin-left after:bg-orange after:transition-transform after:duration-300 after:ease-spring ${
+                className={`relative rounded-md px-3 py-2 text-sm transition-colors after:absolute after:inset-x-3 after:bottom-0.5 after:h-px after:origin-left after:bg-accent after:transition-transform after:duration-300 after:ease-spring ${
                   active
-                    ? 'text-orange after:scale-x-100'
-                    : 'text-white/80 after:scale-x-0 hover:bg-white/5 hover:text-orange hover:after:scale-x-100'
+                    ? 'text-accent after:scale-x-100'
+                    : 'text-white/80 after:scale-x-0 hover:bg-white/5 hover:text-accent hover:after:scale-x-100'
                 }`}
               >
                 {l.label}
@@ -103,8 +103,8 @@ export function NavBar() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className={`rounded-md px-3 py-3 text-sm hover:bg-white/5 hover:text-orange ${
-                  pathname === l.href ? 'text-orange' : 'text-white/80'
+                className={`rounded-md px-3 py-3 text-sm hover:bg-white/5 hover:text-accent ${
+                  pathname === l.href ? 'text-accent' : 'text-white/80'
                 }`}
               >
                 {l.label}
@@ -121,11 +121,11 @@ function Logo() {
   return (
     <span
       aria-hidden
-      className="flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-b from-orange-bright via-orange to-orange-dark shadow-[0_4px_16px_-6px_rgba(255,85,0,0.7)] transition-transform duration-300 ease-spring group-hover:-translate-y-0.5"
+      className="flex h-8 w-8 items-center justify-center rounded-md bg-gold shadow-[0_4px_16px_-6px_rgba(255,184,0,0.6)] transition-transform duration-300 ease-spring group-hover:-translate-y-0.5"
     >
       <svg width="18" height="18" viewBox="0 0 512 512" fill="none">
-        <path d="M416 96 L112 248 L246 284 Z" fill="#080c14" />
-        <path d="M416 96 L246 284 L278 400 L330 302 Z" fill="#080c14" fillOpacity="0.75" />
+        <path d="M416 96 L112 248 L246 284 Z" fill="#0a0e17" />
+        <path d="M416 96 L246 284 L278 400 L330 302 Z" fill="#0a0e17" fillOpacity="0.75" />
       </svg>
     </span>
   );

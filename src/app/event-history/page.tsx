@@ -62,7 +62,7 @@ export default function EventHistoryPage() {
         <section className="container-narrow py-16 sm:py-20">
           <div className="max-w-3xl">
             <span className="eyebrow">Archive</span>
-            <h1 className="heading-display mt-4 text-4xl sm:text-6xl">
+            <h1 className="heading-display mt-4 text-[clamp(2rem,5vw,3.25rem)]">
               Free Fly Event History
             </h1>
             {mostRecent && (
@@ -85,11 +85,11 @@ export default function EventHistoryPage() {
               Comm-Link announcement linked in its row, so you can check the
               dates and ship lineups at the source. Wondering when the next
               window opens? See our{' '}
-              <Link href="/next-free-fly" className="text-orange hover:text-white">
+              <Link href="/next-free-fly" className="text-accent hover:text-white">
                 next Free Fly forecast
               </Link>
               , and if you&apos;re planning to jump in, the{' '}
-              <Link href="/event-guide" className="text-orange hover:text-white">
+              <Link href="/event-guide" className="text-accent hover:text-white">
                 event guide
               </Link>{' '}
               walks you through your first session step by step.
@@ -119,7 +119,7 @@ export default function EventHistoryPage() {
               confirmed dates only, never guesses. Works with Apple Calendar,
               Outlook, and Google Calendar (in Google, choose{' '}
               <em>Other calendars → From URL</em> and paste{' '}
-              <code className="rounded bg-spaceBlack/60 px-1.5 py-0.5 font-mono text-xs text-orange">
+              <code className="rounded bg-spaceBlack/60 px-1.5 py-0.5 font-mono text-xs text-accent">
                 https://freeflyevent.com/free-fly.ics
               </code>
               ).
@@ -171,7 +171,7 @@ export default function EventHistoryPage() {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-xl border border-white/10 bg-blackMid/60 p-5">
-      <div className="font-display text-3xl font-bold text-orange">{value}</div>
+      <div className="font-display text-3xl font-bold text-accent">{value}</div>
       <div className="mt-1 text-xs uppercase tracking-[0.2em] text-muted">{label}</div>
     </div>
   );

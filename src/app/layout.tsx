@@ -1,20 +1,25 @@
 import type { Metadata, Viewport } from 'next';
 import { Analytics } from '@vercel/analytics/next';
 import OutboundLinkTracker from '@/components/OutboundLinkTracker';
-import { Archivo, Chakra_Petch, JetBrains_Mono } from 'next/font/google';
+import { Inter, Orbitron, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
 /**
- * Type system: Chakra Petch — angular, HUD-like display face for headings
- * and buttons (fits the in-game ship-computer aesthetic); Archivo — clean
- * grotesk body; JetBrains Mono — countdown digits, codes, and eyebrow labels.
+ * Type system: Orbitron — wide, techy display face for headings, logo and
+ * eyebrows; Inter — clean body sans; JetBrains Mono — countdown digits and
+ * the referral code.
  */
-const archivo = Archivo({ subsets: ['latin'], display: 'swap', variable: '--font-sans' });
-const chakra = Chakra_Petch({
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-sans',
+  weight: ['400', '500', '600', '700', '800'],
+});
+const orbitron = Orbitron({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-display',
-  weight: ['500', '600', '700'],
+  weight: ['500', '700'],
 });
 const jetbrains = JetBrains_Mono({ subsets: ['latin'], display: 'swap', variable: '--font-mono' });
 
@@ -65,7 +70,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#080c14',
+  themeColor: '#0a0e17',
   width: 'device-width',
   initialScale: 1,
 };
@@ -98,7 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`bg-spaceBlack ${archivo.variable} ${chakra.variable} ${jetbrains.variable}`}
+      className={`bg-spaceBlack ${inter.variable} ${orbitron.variable} ${jetbrains.variable}`}
     >
       <body className="min-h-screen font-sans text-white antialiased">
         <script

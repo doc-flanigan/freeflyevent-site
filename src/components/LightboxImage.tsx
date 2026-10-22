@@ -33,7 +33,7 @@ export function LightboxImage({ src, alt, width, height, className = '', contain
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={`group relative block w-full cursor-zoom-in text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-orange ${containerClassName}`}
+        className={`group relative block w-full cursor-zoom-in text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${containerClassName}`}
         aria-label={`View ${alt} full size`}
       >
         <Image
@@ -66,7 +66,7 @@ export function LightboxImage({ src, alt, width, height, className = '', contain
             className="relative max-h-[90vh] max-w-[90vw]"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="rounded-xl border border-white/20 shadow-[0_0_60px_rgba(255,85,0,0.25)]">
+            <div className="rounded-xl border border-white/20 shadow-[0_0_60px_rgba(0,212,255,0.25)]">
               <Image
                 src={src}
                 alt={alt}
@@ -79,7 +79,7 @@ export function LightboxImage({ src, alt, width, height, className = '', contain
               type="button"
               onClick={close}
               aria-label="Close"
-              className="absolute -right-3 -top-3 flex h-8 w-8 items-center justify-center rounded-full bg-orange text-xs font-bold text-spaceBlack shadow-lg transition-transform hover:scale-110"
+              className="absolute -right-3 -top-3 flex h-8 w-8 items-center justify-center rounded-full bg-accent text-xs font-bold text-spaceBlack shadow-lg transition-transform hover:scale-110"
             >
               ✕
             </button>
