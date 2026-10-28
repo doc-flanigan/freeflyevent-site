@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import OutboundLinkTracker from '@/components/OutboundLinkTracker';
 import { StickyCTABar } from '@/components/StickyCTABar';
 import { Inter, Orbitron, JetBrains_Mono } from 'next/font/google';
@@ -117,6 +118,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <StickyCTABar />
         <Analytics />
+        <SpeedInsights />
         <OutboundLinkTracker />
         <script
           type="application/ld+json"
