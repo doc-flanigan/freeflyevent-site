@@ -241,11 +241,9 @@ export default function ShouldIBuyPage() {
               <CTAButton
                 size="lg"
                 trackingLabel="should-i-buy-referral"
-                variants={{
-                  a: 'Play Free — Claim Your 50,000 UEC Bonus',
-                  b: 'Create Your Account — Claim 50,000 UEC',
-                }}
-              />
+              >
+                Create Your Account — Claim 50,000 UEC
+              </CTAButton>
             </div>
           </section>
 
