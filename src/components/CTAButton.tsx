@@ -2,11 +2,13 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { getRotatedReferralUrl, FALLBACK_REFERRAL_URL } from '@/lib/referral-rotator';
-import { getActiveBonusOverride } from '@/data/events';
+import { getActiveBonusOverride, getEventStatus } from '@/data/events';
 import { logClick } from '@/lib/log-click';
+import { ctaLabel } from '@/lib/cta-label';
 
-const DEFAULT_LABEL = 'Play Free — Claim 50,000 UEC';
-const BONUS_LABEL = 'Play Free — 50,000 UEC + Event Bonus';
+// Server HTML (and crawlers) get the not-live label; the effect below switches
+// to "Play Free" only while a Free Fly is actually ACTIVE.
+const DEFAULT_LABEL = ctaLabel('button', 'INACTIVE');
 
 const CTA_VARIANT_KEY = 'cta_variant';
 
@@ -56,7 +58,8 @@ export function CTAButton({
   const [abVariant, setAbVariant] = useState<'a' | 'b'>('a');
   useEffect(() => {
     setReferralUrl(getRotatedReferralUrl());
-    setDefaultLabel(getActiveBonusOverride() ? BONUS_LABEL : DEFAULT_LABEL);
+    const state = getEventStatus().state;
+    setDefaultLabel(ctaLabel(getActiveBonusOverride() ? 'buttonBonus' : 'button', state));
     if (variants) setAbVariant(getCtaVariant());
   }, [variants]);
 

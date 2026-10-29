@@ -1,7 +1,7 @@
 import type { EventStatus } from '@/data/events';
 
 export type EventState = EventStatus['state'];
-export type CtaLocation = 'nav' | 'statusCard' | 'preStep' | 'iae' | 'stickyBar';
+export type CtaLocation = 'nav' | 'statusCard' | 'preStep' | 'iae' | 'stickyBar' | 'button' | 'buttonBonus';
 
 type LabelPair = { live: string; notLive: string };
 
@@ -16,6 +16,9 @@ const LABELS: Record<CtaLocation, LabelPair> = {
   preStep: { notLive: 'Lock In Your Bonus Before It Starts', live: 'Not Signed Up Yet? Do It Now' },
   iae: { notLive: 'Be Ready for IAE — Create Your Account', live: 'Jump In Before the Free Fly Ends' },
   stickyBar: { notLive: 'Sign Up Free', live: 'Play Free' },
+  // CTAButton's default text when a page passes no children (/iae-2956, /next-free-fly, ...).
+  button: { notLive: 'Sign Up — Claim 50,000 UEC', live: 'Play Free — Claim 50,000 UEC' },
+  buttonBonus: { notLive: 'Sign Up — 50,000 UEC + Event Bonus', live: 'Play Free — 50,000 UEC + Event Bonus' },
 };
 
 export function ctaLabel(location: CtaLocation, state: EventState): string {

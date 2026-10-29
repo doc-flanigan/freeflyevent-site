@@ -333,11 +333,9 @@ export default function EventGuidePage() {
             <CTAButton
               size="lg"
               trackingLabel="event-guide-footer"
-              variants={{
-                a: 'Play Free — Claim Your 50,000 UEC Bonus',
-                b: 'Sign Up Now — Lock In Your 50,000 UEC',
-              }}
-            />
+            >
+              Sign Up Now — Lock In Your 50,000 UEC
+            </CTAButton>
           </div>
         </section>
       </main>

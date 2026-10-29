@@ -352,10 +352,6 @@ export default function IsStarCitizenFreePage() {
               <CTAButton
                 size="lg"
                 trackingLabel="is-free-referral"
-                variants={{
-                  a: 'Play Free — Claim Your 50,000 UEC Bonus',
-                  b: 'Start Free — 50,000 UEC Bonus Included',
-                }}
               />
             </div>
           </section>
