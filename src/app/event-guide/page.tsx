@@ -45,6 +45,8 @@ type Step = {
   tip?: React.ReactNode;
   /** Single full-width screenshot below the step text */
   image?: StepImage;
+  /** Multiple sequential full-width screenshots below the step text */
+  images?: StepImage[];
   /** Multi-tile image strip (e.g. the four planets) */
   gallery?: StepImage[];
 };
@@ -121,14 +123,23 @@ const STEPS: Step[] = [
         step.
       </>
     ),
-    image: {
-      src: '/images/guides/first-days-mobiglas-mission-manager.jpg',
-      alt: 'mobiGlas mission manager in Star Citizen showing available delivery contracts',
-      caption:
-        'The Contract Manager app in your mobiGlas (press F1) — browse contracts, accept a delivery, and the route markers do the rest.',
-      width: 1200,
-      height: 669,
-    },
+    images: [
+      {
+        src: '/images/guides/mobiglas-f1-contract-manager-app.webp',
+        alt: 'mobiGlas open with the Contract Manager app highlighted',
+        caption: 'Press F1 to open mobiGlas, then select the Contract Manager app.',
+        width: 1920,
+        height: 804,
+      },
+      {
+        src: '/images/guides/first-days-mobiglas-mission-manager.jpg',
+        alt: 'mobiGlas mission manager in Star Citizen showing available delivery contracts',
+        caption:
+          'The Contract Manager app in your mobiGlas (press F1) — browse contracts, accept a delivery, and the route markers do the rest.',
+        width: 1200,
+        height: 669,
+      },
+    ],
   },
   {
     num: '05',
@@ -183,6 +194,13 @@ const STEPS: Step[] = [
         crews — that&apos;s the magic of the game.
       </>
     ),
+    image: {
+      src: '/images/guides/friends-list-party-invite.webp',
+      alt: 'In-game friends list with party invite',
+      caption: 'The in-game friends list — send a party invite to group up before you fly.',
+      width: 1920,
+      height: 804,
+    },
   },
   {
     num: '07',
@@ -276,6 +294,21 @@ export default function EventGuidePage() {
                         </figcaption>
                       </figure>
                     )}
+                    {s.images && s.images.map((img) => (
+                      <figure key={img.src} className="mt-5 max-w-xl">
+                        <LightboxImage
+                          src={img.src}
+                          alt={img.alt}
+                          width={img.width}
+                          height={img.height}
+                          containerClassName="block overflow-hidden rounded-lg border border-white/10"
+                          className="w-full h-auto"
+                        />
+                        <figcaption className="mt-2 text-xs text-muted">
+                          {img.caption}
+                        </figcaption>
+                      </figure>
+                    ))}
                     {s.gallery && (
                       <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
                         {s.gallery.map((g) => (
