@@ -18,6 +18,8 @@ export const metadata: Metadata = {
     'Every Star Citizen Free Fly with exact dates, 2022–2026: Invictus, DefenseCon, Foundation Festival, and IAE — each sourced from an official RSI Comm-Link.',
   alternates: { canonical: '/event-history' },
   openGraph: {
+    type: 'article',
+    siteName: 'freeflyevent.com',
     images: ['/images/og-image.png'],
     title: 'Star Citizen Free Fly Event History (2022–2026)',
     description:
@@ -140,6 +142,22 @@ export default function EventHistoryPage() {
 
       <Footer />
 
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: 'Star Citizen Free Fly Event History (2022–2026)',
+            description:
+              'Sortable archive of every Star Citizen Free Fly event with verified dates, flyable ships, and official RSI Comm-Link sources.',
+            author: { '@type': 'Person', name: 'Doc_Flanigan' },
+            publisher: { '@type': 'Organization', name: 'freeflyevent.com', url: 'https://freeflyevent.com' },
+            mainEntityOfPage: 'https://freeflyevent.com/event-history',
+          }),
+        }}
+      />
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger

@@ -21,6 +21,8 @@ export const metadata: Metadata = {
     'Sign up, claim the 50,000 UEC referral bonus, download the launcher, and know what to do first in your Star Citizen Free Fly.',
   alternates: { canonical: '/event-guide' },
   openGraph: {
+    type: 'article',
+    siteName: 'freeflyevent.com',
     images: ['/images/og-image.png'],
     title: 'Star Citizen Free Fly Event Guide — What to Do First',
     description:
@@ -344,6 +346,22 @@ export default function EventGuidePage() {
 
       <Footer />
 
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': ['Article', 'HowTo'],
+            headline: 'Star Citizen Free Fly Event Guide — What to Do First',
+            description:
+              'Sign up, claim 50,000 UEC, download, and what to do first during a Star Citizen Free Fly.',
+            author: { '@type': 'Person', name: 'Doc_Flanigan' },
+            publisher: { '@type': 'Organization', name: 'freeflyevent.com', url: 'https://freeflyevent.com' },
+            mainEntityOfPage: 'https://freeflyevent.com/event-guide',
+          }),
+        }}
+      />
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger

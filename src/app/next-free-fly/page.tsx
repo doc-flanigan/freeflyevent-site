@@ -71,6 +71,8 @@ export async function generateMetadata(): Promise<Metadata> {
       'star citizen iae 2956 free fly',
     ],
     openGraph: {
+      type: 'website',
+      siteName: 'freeflyevent.com',
       images: ['/images/og-image.png'],
       title: 'When Is the Next Star Citizen Free Fly?',
       description: og,

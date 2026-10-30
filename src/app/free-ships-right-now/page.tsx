@@ -27,6 +27,8 @@ export const metadata: Metadata = {
     'star citizen ships you can fly free',
   ],
   openGraph: {
+    type: 'article',
+    siteName: 'freeflyevent.com',
     images: ['/images/og-image.png'],
     title: 'What Ships Are Free in Star Citizen Right Now?',
     description:
@@ -302,6 +304,22 @@ export default function FreeShipsRightNowPage() {
       <PageSources route="/free-ships-right-now" />
       <Footer />
 
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: 'What Ships Are Free in Star Citizen Right Now?',
+            description:
+              'The live list of ships you can fly free during the current Star Citizen Free Fly event.',
+            author: { '@type': 'Person', name: 'Doc_Flanigan' },
+            publisher: { '@type': 'Organization', name: 'freeflyevent.com', url: 'https://freeflyevent.com' },
+            mainEntityOfPage: 'https://freeflyevent.com/free-ships-right-now',
+          }),
+        }}
+      />
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger

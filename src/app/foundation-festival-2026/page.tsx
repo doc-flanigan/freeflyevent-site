@@ -29,6 +29,8 @@ export const metadata: Metadata = {
     'foundation festival 2026 dates',
   ],
   openGraph: {
+    type: 'article',
+    siteName: 'freeflyevent.com',
     images: ['/images/og-image.png'],
     title: 'Foundation Festival 2026 Free Fly — July 29 to August 10',
     description:
@@ -316,6 +318,22 @@ export default function FoundationFestival2026Page() {
 
       <Footer />
 
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: 'Foundation Festival 2026 Free Fly — July 29 to August 10',
+            description:
+              'Star Citizen was free to play July 29 – August 10, 2026 with five ships. The event has ended — the sourced record of ships, referral bonus, and Drops.',
+            author: { '@type': 'Person', name: 'Doc_Flanigan' },
+            publisher: { '@type': 'Organization', name: 'freeflyevent.com', url: 'https://freeflyevent.com' },
+            mainEntityOfPage: 'https://freeflyevent.com/foundation-festival-2026',
+          }),
+        }}
+      />
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger

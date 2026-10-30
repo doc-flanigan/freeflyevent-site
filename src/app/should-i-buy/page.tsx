@@ -26,6 +26,8 @@ export const metadata: Metadata = {
     'Star Citizen alpha worth it',
   ],
   openGraph: {
+    type: 'article',
+    siteName: 'freeflyevent.com',
     images: ['/images/og-image.png'],
     title: 'Should I Buy Star Citizen? An Honest Answer',
     description:
@@ -290,6 +292,22 @@ export default function ShouldIBuyPage() {
 
       <Footer />
 
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: 'Should I Buy Star Citizen? An Honest Answer',
+            description:
+              'Try Star Citizen free during a Free Fly event before you buy: an honest breakdown of the pros, cons, alpha state, prices, and who it\'s really for.',
+            author: { '@type': 'Person', name: 'Doc_Flanigan' },
+            publisher: { '@type': 'Organization', name: 'freeflyevent.com', url: 'https://freeflyevent.com' },
+            mainEntityOfPage: 'https://freeflyevent.com/should-i-buy',
+          }),
+        }}
+      />
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger

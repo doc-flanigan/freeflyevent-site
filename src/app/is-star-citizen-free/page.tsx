@@ -43,6 +43,8 @@ const baseMetadata: Metadata = {
     'star citizen free account',
   ],
   openGraph: {
+    type: 'article',
+    siteName: 'freeflyevent.com',
     images: ['/images/og-image.png'],
     title: 'Is Star Citizen Free? Free-to-Play vs Free Fly',
     description:
@@ -392,6 +394,22 @@ export default function IsStarCitizenFreePage() {
 
       <Footer />
 
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: 'Is Star Citizen Free? Free-to-Play vs Free Fly',
+            description:
+              'No, Star Citizen is not free-to-play — but you can play it free during Free Fly events. Here\'s the honest breakdown.',
+            author: { '@type': 'Person', name: 'Doc_Flanigan' },
+            publisher: { '@type': 'Organization', name: 'freeflyevent.com', url: 'https://freeflyevent.com' },
+            mainEntityOfPage: 'https://freeflyevent.com/is-star-citizen-free',
+          }),
+        }}
+      />
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger

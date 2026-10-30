@@ -15,6 +15,8 @@ export const metadata: Metadata = {
     'Plain-English definitions for the Star Citizen terms new players hit during Free Fly events — UEC, aUEC, Game Package, LTI, quantum travel, and more.',
   alternates: { canonical: '/glossary' },
   openGraph: {
+    type: 'article',
+    siteName: 'freeflyevent.com',
     images: ['/images/og-image.png'],
     title: 'Star Citizen Free Fly Glossary',
     description:
@@ -155,6 +157,28 @@ export default async function GlossaryPage() {
 
       <Footer />
 
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': ['Article', 'DefinedTermSet'],
+            headline: 'Star Citizen Free Fly Glossary',
+            description:
+              'Quick definitions for the jargon every new Free Fly player needs. No wiki-crawling required.',
+            author: { '@type': 'Person', name: 'Doc_Flanigan' },
+            publisher: { '@type': 'Organization', name: 'freeflyevent.com', url: 'https://freeflyevent.com' },
+            mainEntityOfPage: 'https://freeflyevent.com/glossary',
+            hasDefinedTerm: terms.map((t) => ({
+              '@type': 'DefinedTerm',
+              name: t.term,
+              description: t.definition,
+              inDefinedTermSet: 'https://freeflyevent.com/glossary',
+            })),
+          }),
+        }}
+      />
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
