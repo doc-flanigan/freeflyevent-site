@@ -1,18 +1,8 @@
 import { CTAButton } from '@/components/CTAButton';
 import { upcomingHelpNights } from '@/data/help-nights';
+import { LocalTimeRange } from '@/components/LocalTimeRange';
 
 const DISCORD_URL = process.env.NEXT_PUBLIC_DISCORD_INVITE_URL ?? 'https://discord.gg/MpAUJs9xet';
-
-// Rendered in UTC (matches the site's other date displays) so the server and
-// every visitor see the same string; the offset is shown explicitly.
-const whenFmt = new Intl.DateTimeFormat('en-US', {
-  weekday: 'short',
-  month: 'short',
-  day: 'numeric',
-  hour: 'numeric',
-  minute: '2-digit',
-  timeZone: 'UTC',
-});
 
 export function HelpNights() {
   const upcoming = upcomingHelpNights();
@@ -32,7 +22,6 @@ export function HelpNights() {
         {upcoming.length > 0 ? (
           <ul className="mt-6 space-y-4">
             {upcoming.map((night) => {
-              const start = new Date(night.startsAt);
               return (
                 <li
                   key={night.startsAt + night.title}
@@ -41,9 +30,7 @@ export function HelpNights() {
                   <div>
                     <div className="font-semibold text-white">{night.title}</div>
                     <div className="text-sm text-muted">
-                      <time dateTime={start.toISOString()}>{whenFmt.format(start)} UTC</time>
-                      {' · '}
-                      {night.durationMinutes} min
+                      <LocalTimeRange startsAt={night.startsAt} durationMinutes={night.durationMinutes} />
                     </div>
                     {night.note && <div className="mt-1 text-sm text-white/70">{night.note}</div>}
                   </div>

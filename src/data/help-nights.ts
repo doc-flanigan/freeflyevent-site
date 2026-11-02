@@ -27,28 +27,28 @@ export const HELP_NIGHTS: HelpNight[] = [
     startsAt: '2026-11-14T13:00:00-06:00',
     durationMinutes: 120,
     discordEventUrl: 'https://discord.gg/MpAUJs9xet?event=1566899366805897246',
-    note: '1–3pm US Central · 7–9pm UK · 8–10pm Central Europe. Events voice channel on Discord.',
+    note: 'Events voice channel on Discord.',
   },
   {
     title: 'New Player Help Night',
     startsAt: '2026-11-21T13:00:00-06:00',
     durationMinutes: 120,
     discordEventUrl: 'https://discord.gg/MpAUJs9xet?event=1566899421801881620',
-    note: '1–3pm US Central · 7–9pm UK · 8–10pm Central Europe. Events voice channel on Discord.',
+    note: 'Events voice channel on Discord.',
   },
   {
     title: 'New Player Help Night',
     startsAt: '2026-11-28T13:00:00-06:00',
     durationMinutes: 120,
     discordEventUrl: 'https://discord.gg/MpAUJs9xet?event=1566899429716271134',
-    note: '1–3pm US Central · 7–9pm UK · 8–10pm Central Europe. Events voice channel on Discord.',
+    note: 'Events voice channel on Discord.',
   },
   {
     title: 'New Player Help Night',
     startsAt: '2026-12-05T13:00:00-06:00',
     durationMinutes: 120,
     discordEventUrl: 'https://discord.gg/MpAUJs9xet?event=1566899437434048614',
-    note: '1–3pm US Central · 7–9pm UK · 8–10pm Central Europe. Events voice channel on Discord.',
+    note: 'Events voice channel on Discord.',
   },
 ];
 
