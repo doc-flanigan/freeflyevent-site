@@ -12,6 +12,7 @@ import { getEventStatus, getActiveBonusOverride, iaeStillAheadThisYear, REFERRAL
 import { formatMonthDayUTC, formatRangeUTC } from '@/lib/format';
 import { DiscordCTA } from '@/components/DiscordCTA';
 import { IaeReadyBlock } from '@/components/IaeReadyBlock';
+import { HelpNights } from '@/components/HelpNights';
 
 const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
 
@@ -294,6 +295,8 @@ export default function HomePage() {
             </div>
           </section>
         )}
+
+        <HelpNights />
 
         {/* WHAT IS A FREE FLY */}
         <section className="container-narrow py-16 sm:py-20">

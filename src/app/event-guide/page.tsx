@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { DiscordCTA } from '@/components/DiscordCTA';
+import { HelpNights } from '@/components/HelpNights';
 import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
 import { PreEventStep } from '@/components/PreEventStep';
@@ -355,6 +356,8 @@ export default function EventGuidePage() {
             </Link>
           </div>
         </section>
+
+        <HelpNights />
 
         <section className="container-narrow pb-24 text-center">
           <h2 className="heading-display text-3xl sm:text-4xl">
