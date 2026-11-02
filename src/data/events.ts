@@ -204,6 +204,22 @@ export function getEventStatus(now: Date = new Date()): EventStatus {
   };
 }
 
+/** How long before a Free Fly ends the "ending soon" copy takes over. */
+export const ENDING_SOON_MS = 72 * 60 * 60 * 1000;
+
+/**
+ * True in the last 72 hours of an ACTIVE Free Fly. Free Fly signups mostly buy
+ * near the end of the window or not at all (26% of 2026 Free Fly signups bought
+ * vs 44% outside events), so the final days switch the banner's pitch from
+ * "start playing free" to "keep playing after it ends".
+ */
+export function isEndingSoon(status: EventStatus, now: Date = new Date()): boolean {
+  return status.state === 'ACTIVE' && status.endsAt.getTime() - now.getTime() <= ENDING_SOON_MS;
+}
+
+/** dayonecitizen.com owns "should I buy"; the ending-soon link hands off there. */
+export const STARTER_PACKS_URL = 'https://dayonecitizen.com/day-one-citizen/starter-package?utm_source=freeflyevent&utm_medium=referral&utm_campaign=free-fly-ending#sale';
+
 /** ID convention for each year's IAE entry: `iae-<real-world year>`. */
 export function iaeIdForYear(year: number): string {
   return `iae-${year}`;
