@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { LightboxImage } from './LightboxImage';
-import { getEventStatus, getActiveBonusOverride, FREE_FLY_HISTORY, REFERRAL_CODE, type EventStatus, type BonusOverride } from '@/data/events';
+import { getEventStatus, getActiveBonusOverride, isEndingSoon, FREE_FLY_HISTORY, REFERRAL_CODE, STARTER_PACKS_URL, type EventStatus, type BonusOverride } from '@/data/events';
 import { getRotatedReferralUrl, FALLBACK_REFERRAL_URL } from '@/lib/referral-rotator';
 import { CountdownTimer } from './CountdownTimer';
 import { ArrowIcon } from './CTAButton';
@@ -17,18 +17,24 @@ type Props = {
   variant?: 'bar' | 'hero';
 };
 
-type SlotProps = { status: EventStatus; referralUrl: string; onNavigate: () => void; bonusOverride: BonusOverride | null };
+type SlotProps = { status: EventStatus; referralUrl: string; onNavigate: () => void; bonusOverride: BonusOverride | null; endingSoon: boolean; onKeepPlaying: () => void };
 
 /**
- * Dev-only: `?ffstate=active|upcoming|inactive|cancelled` forces a state for
- * screenshots. Dead code in production builds (NODE_ENV is inlined).
+ * Dev-only: `?ffstate=active|ending|upcoming|inactive|cancelled` forces a
+ * state for screenshots. Dead code in production builds (NODE_ENV is inlined).
  */
-function devStatusOverride(): EventStatus | undefined {
+function devNow(): Date | undefined {
   if (process.env.NODE_ENV === 'production') return undefined;
   const q = new URLSearchParams(window.location.search).get('ffstate');
-  const at = { active: '2026-08-01T00:00:00Z', upcoming: '2026-07-15T00:00:00Z', inactive: '2026-09-15T00:00:00Z' }[q ?? ''];
-  if (at) return getEventStatus(new Date(at));
-  if (q !== 'cancelled') return undefined;
+  const at = { active: '2026-08-01T00:00:00Z', ending: '2026-08-09T12:00:00Z', upcoming: '2026-07-15T00:00:00Z', inactive: '2026-09-15T00:00:00Z' }[q ?? ''];
+  return at ? new Date(at) : undefined;
+}
+
+function devStatusOverride(): EventStatus | undefined {
+  if (process.env.NODE_ENV === 'production') return undefined;
+  const at = devNow();
+  if (at) return getEventStatus(at);
+  if (new URLSearchParams(window.location.search).get('ffstate') !== 'cancelled') return undefined;
   const event = { ...FREE_FLY_HISTORY[0], freeFlyActive: false, cancelledNote: 'Dev preview of the cancelled state.' };
   return { state: 'CANCELLED_FREE_FLY', event, endsAt: new Date(event.end) };
 }
@@ -42,17 +48,19 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
   const [status, setStatus] = useState<EventStatus>(() => getEventStatus());
   const [referralUrl, setReferralUrl] = useState(FALLBACK_REFERRAL_URL);
   const [bonusOverride, setBonusOverride] = useState<BonusOverride | null>(() => getActiveBonusOverride());
+  const [endingSoon, setEndingSoon] = useState(() => isEndingSoon(status));
 
   useEffect(() => {
-    const dev = devStatusOverride();
-    setStatus(dev ?? getEventStatus());
-    setReferralUrl(getRotatedReferralUrl());
-    setBonusOverride(getActiveBonusOverride());
-    // refresh every minute so banner state flips automatically
-    const id = setInterval(() => {
-      setStatus(devStatusOverride() ?? getEventStatus());
+    const refresh = () => {
+      const next = devStatusOverride() ?? getEventStatus();
+      setStatus(next);
+      setEndingSoon(isEndingSoon(next, devNow() ?? new Date()));
       setBonusOverride(getActiveBonusOverride());
-    }, 60_000);
+    };
+    refresh();
+    setReferralUrl(getRotatedReferralUrl());
+    // refresh every minute so banner state flips automatically
+    const id = setInterval(refresh, 60_000);
     return () => clearInterval(id);
   }, []);
 
@@ -78,8 +86,11 @@ export function EventStatusBanner({ variant = 'bar' }: Props) {
   }, [variant, label, referralUrl]);
 
   const handleNavigate = () => logClick(label, referralUrl);
+  // The ending-soon link goes to dayone's starter-pack page, not RSI signup,
+  // so it gets its own label to keep it out of the signup CTR.
+  const handleKeepPlaying = () => logClick(`${label}-keep-playing`, referralUrl);
 
-  const slotProps: SlotProps = { status, referralUrl, onNavigate: handleNavigate, bonusOverride };
+  const slotProps: SlotProps = { status, referralUrl, onNavigate: handleNavigate, bonusOverride, endingSoon, onKeepPlaying: handleKeepPlaying };
   if (variant === 'bar') return <Bar {...slotProps} />;
   return (
     <div ref={heroRef}>
@@ -110,9 +121,41 @@ function CancelledBar({ eventName, referralUrl, onNavigate }: { eventName: strin
   );
 }
 
-function Bar({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
+function Bar({ status, referralUrl, onNavigate, endingSoon, onKeepPlaying }: SlotProps) {
   if (status.state === 'CANCELLED_FREE_FLY') {
     return <CancelledBar eventName={status.event.name} referralUrl={referralUrl} onNavigate={onNavigate} />;
+  }
+
+  if (status.state === 'ACTIVE' && endingSoon) {
+    return (
+      <div className="w-full border-b border-gold/50 bg-blackMid text-white">
+        <div className="container-wide flex flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-2 text-center text-sm">
+          <span className="font-semibold uppercase tracking-[0.2em] text-gold">Free Fly Ends Soon</span>
+          <CountdownTimer target={status.endsAt} variant="compact" />
+          <span className="hidden sm:inline opacity-60">·</span>
+          <span className="font-normal opacity-90">Enjoying it? A game package keeps you flying after it ends.</span>
+          <a
+            href={STARTER_PACKS_URL}
+            target="_blank"
+            rel="noopener"
+            onClick={onKeepPlaying}
+            className="group ml-2 inline-flex items-center gap-1.5 rounded-md bg-gold px-3 py-1 text-xs font-bold uppercase tracking-wide text-spaceBlack transition-transform hover:-translate-y-0.5"
+          >
+            See Starter Packs
+            <ArrowIcon className="h-3 w-3" />
+          </a>
+          <a
+            href={referralUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={onNavigate}
+            className="text-accent underline underline-offset-2 hover:text-accent/80"
+          >
+            Not signed up yet? Play free now
+          </a>
+        </div>
+      </div>
+    );
   }
 
   if (status.state === 'ACTIVE') {
@@ -210,7 +253,36 @@ function ReferralCodePanel() {
   );
 }
 
-function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
+/**
+ * Last-72-hours panel for players already in the Free Fly. Signing up is no
+ * longer their next step; buying a package before the window closes is.
+ * Links to dayone's starter-pack page, which owns prices and sale status.
+ */
+function KeepPlayingPanel({ eventName, onKeepPlaying }: { eventName: string; onKeepPlaying: () => void }) {
+  return (
+    <div className="w-full max-w-md rounded-lg border border-gold/50 bg-gold/10 p-4">
+      <div className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-gold">
+        Already playing {eventName}?
+      </div>
+      <p className="mt-1.5 text-sm leading-relaxed text-white/85">
+        When the timer hits zero the game returns to paid. To keep flying, pick up a
+        game package before it ends. See current starter pack prices and any active sale.
+      </p>
+      <a
+        href={STARTER_PACKS_URL}
+        target="_blank"
+        rel="noopener"
+        onClick={onKeepPlaying}
+        className="group mt-3 inline-flex items-center gap-1.5 rounded-md bg-gold px-4 py-2 text-sm font-bold text-spaceBlack transition-transform hover:-translate-y-0.5"
+      >
+        See Starter Packs
+        <ArrowIcon className="h-3.5 w-3.5" />
+      </a>
+    </div>
+  );
+}
+
+function Hero({ status, referralUrl, onNavigate, bonusOverride, endingSoon, onKeepPlaying }: SlotProps) {
   if (status.state === 'CANCELLED_FREE_FLY') {
     return (
       <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-blackMid p-8 sm:p-10">
@@ -291,6 +363,7 @@ function Hero({ status, referralUrl, onNavigate, bonusOverride }: SlotProps) {
               miss it — when the timer hits zero, the game returns to paid.
             </p>
             <CountdownTimer target={status.endsAt} label="Event ends in" />
+            {endingSoon && <KeepPlayingPanel eventName={status.event.name} onKeepPlaying={onKeepPlaying} />}
             <ReferralCodePanel />
             <div data-hero-cta>
               <a
