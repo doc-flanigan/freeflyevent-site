@@ -8,10 +8,10 @@ export function Footer() {
     <footer className="mt-24 border-t border-white/5 bg-spaceBlack pb-[72px] md:pb-0">
       <div className="container-wide grid gap-10 py-14 sm:grid-cols-3">
         <div>
-          <h4 className="font-display text-base font-bold text-white">
+          <h3 className="font-display text-base font-bold text-white">
             freefly<span className="text-accent">event</span>
             <span className="ml-0.5 text-xs font-semibold text-muted">.com</span>
-          </h4>
+          </h3>
           <p className="mt-3 text-sm text-muted">
             Star Citizen Free Fly tracker. Built by{' '}
             <Link
@@ -27,9 +27,9 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="font-display text-sm font-bold uppercase tracking-[0.2em] text-muted">
+          <h3 className="font-display text-sm font-bold uppercase tracking-[0.2em] text-muted">
             Site
-          </h4>
+          </h3>
           <ul className="mt-3 space-y-2 text-sm">
             <li>
               <Link href="/" className="text-white/80 hover:text-accent">
@@ -55,9 +55,9 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="font-display text-sm font-bold uppercase tracking-[0.2em] text-muted">
+          <h3 className="font-display text-sm font-bold uppercase tracking-[0.2em] text-muted">
             Referral Code
-          </h4>
+          </h3>
           <div data-final-cta className="mt-3 rounded-lg border border-accent/30 bg-accent/5 p-3">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
               <code data-ref-code className="font-mono text-base text-gold">{REFERRAL_CODE}</code>
@@ -84,12 +84,12 @@ export function Footer() {
             aria-labelledby="footer-fan-site"
             className="border-b border-border/60 pb-6 md:border-b-0 md:pb-0"
           >
-            <h5
+            <h4
               id="footer-fan-site"
               className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-accent"
             >
               Unofficial fan site
-            </h5>
+            </h4>
             <p className="mt-2">
               This is an unofficial Star Citizen fansite, not affiliated with the
               Cloud Imperium group of companies. All content not authored by
@@ -101,12 +101,12 @@ export function Footer() {
             aria-labelledby="footer-affiliate"
             className="border-b border-border/60 py-6 md:border-b-0 md:border-l md:py-0 md:pl-10"
           >
-            <h5
+            <h4
               id="footer-affiliate"
               className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-accent"
             >
               Affiliate disclosure
-            </h5>
+            </h4>
             <p className="mt-2">
               If you create a Star Citizen account using referral code STAR-GCQJ-N6NC, the site owner may receive an in-game bonus. Your 50,000 UEC new-player bonus is not affected.
             </p>
@@ -116,12 +116,12 @@ export function Footer() {
             aria-labelledby="footer-fankit"
             className="pt-6 md:border-l md:border-border/60 md:pl-10 md:pt-0"
           >
-            <h5
+            <h4
               id="footer-fankit"
               className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-accent"
             >
               Fan Kit &amp; copyright
-            </h5>
+            </h4>
             <div className="mt-3 flex items-center gap-4">
               <Image
                 src="/images/made-by-community.png"
