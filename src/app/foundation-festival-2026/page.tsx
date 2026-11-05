@@ -222,7 +222,7 @@ export default function FoundationFestival2026Page() {
               </p>
               <LightboxImage
                 src="/images/foundation-festival-2026-career-kit.webp"
-                alt='New recruit wearing the "Ready for Anything" Career Kit — RSI Venture armor set, MacFlex backpack, and rifle from the Foundation Festival 2026 referral bonus'
+                alt="Front and back view of a new recruit in the Ready for Anything Career Kit: Venture armor, backpack, rifle and pistol"
                 width={1200}
                 height={1082}
                 containerClassName="mt-5 rounded-xl border border-accent/30"

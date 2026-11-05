@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from 'next/server'
 // a burst even without external storage. A determined attacker rotating IPs
 // still needs the WAF/BotID layer — this stops replay loops and crawlers.
 const WINDOW_MS = 60_000
-const MAX_EVENTS_PER_IP = 10
+const MAX_EVENTS_PER_IP = 60
 const DUP_COOLDOWN_MS = 30_000
 const MAX_DISCORD_PER_WINDOW = 5
 

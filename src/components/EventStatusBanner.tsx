@@ -210,7 +210,7 @@ function Bar({ status, referralUrl, onNavigate, endingSoon, onKeepPlaying }: Slo
           target="_blank"
           rel="noopener noreferrer"
           onClick={onNavigate}
-          className="text-accent hover:underline"
+          className="inline-block py-3 text-accent hover:underline md:py-0"
         >
           sign up now and lock in your referral bonus
         </a>

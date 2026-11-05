@@ -34,9 +34,9 @@ export function EventCard({ event, status, highlight = false }: Props) {
 
       {event.ships.length > 0 && (
         <div>
-          <h4 className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+          <h3 className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
             What&apos;s Included
-          </h4>
+          </h3>
           <ul className="space-y-1 text-sm text-white/85">
             {event.ships.map((s) => (
               <li key={s} className="flex items-start gap-2">

@@ -22,6 +22,13 @@ export const metadata: Metadata = {
     description:
       'Quick definitions for the jargon every new Free Fly player needs. No wiki-crawling required.',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Star Citizen Glossary — Free Fly Terms Explained',
+    description:
+      'Quick definitions for the jargon every new Free Fly player needs. No wiki-crawling required.',
+    images: ['/images/og-image.png'],
+  },
 };
 
 // Terms relevant to a brand-new Free Fly player.
