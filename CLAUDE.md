@@ -10,7 +10,7 @@ game RIGHT NOW. Convert them to referral signups before the event ends.
 ## Quick Reference
 ```
 Referral code:  STAR-GCQJ-N6NC
-Enlist URL:     https://www.robertsspaceindustries.com/enlist?referral=STAR-GCQJ-N6NC
+Enlist URL:     https://robertsspaceindustries.com/enlist?referral=STAR-GCQJ-N6NC
 Hub:            https://dayonecitizen.com
 Conventions:    E:\Claude Code\sc-portfolio\SHARED_CONVENTIONS.md
 ```
