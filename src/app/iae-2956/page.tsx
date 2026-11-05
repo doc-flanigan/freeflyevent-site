@@ -18,7 +18,7 @@ export const revalidate = 3600;
 
 // Only meaningful while IAE 2956 is unannounced — bump it whenever the
 // official Comm-Links are re-checked.
-const LAST_CHECKED = 'September 29, 2026';
+const LAST_CHECKED = 'November 5, 2026';
 
 type Phase = 'unannounced' | 'upcoming' | 'active' | 'cancelled' | 'ended';
 
