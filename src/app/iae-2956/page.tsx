@@ -272,7 +272,7 @@ export default function Iae2956Page() {
 
           <LightboxImage
             src="/images/iae-2952-expo.webp"
-            alt="The IAE 2952 banner tower over New Babbage, which hosted the Intergalactic Aerospace Expo that year"
+            alt="The New Babbage skyline at sunrise with the IAE 2952 sign lit on a tower, snow on the ground below"
             width={1400}
             height={788}
             containerClassName="mt-8 rounded-xl border border-white/10"
@@ -386,7 +386,7 @@ export default function Iae2956Page() {
             </h2>
             <LightboxImage
               src="/images/iae-2953-arch.webp"
-              alt="The entrance arch at IAE 2953 in New Babbage"
+              alt="A visitor walks through the glowing IAE 2953 entrance arch toward two docked ships"
               width={1400}
               height={600}
               containerClassName="mt-6 rounded-xl border border-white/10"
@@ -449,7 +449,7 @@ export default function Iae2956Page() {
             </p>
             <LightboxImage
               src="/images/iae-manufacturer-hall.webp"
-              alt="The Aegis Dynamics showcase hall at a past Intergalactic Aerospace Expo — each manufacturer gets a themed hall on its featured day"
+              alt="A large Aegis Dynamics gunship on display in its showcase hall at the 2950 Intergalactic Aerospace Expo"
               width={1400}
               height={600}
               containerClassName="mt-6 rounded-xl border border-white/10"
