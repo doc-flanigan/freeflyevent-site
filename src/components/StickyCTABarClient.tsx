@@ -66,7 +66,7 @@ export function StickyCTABarClient({ ctaLabel }: { ctaLabel: string }) {
         } ${show ? 'translate-y-0' : 'invisible translate-y-full'}`}
       >
         <code className="shrink-0 whitespace-nowrap font-mono text-xs font-bold text-gold">{REFERRAL_CODE}</code>
-        <CTAButton size="sm" trackingLabel="sticky-bar" trackImpression={false} className="min-w-0 flex-1 !text-sm">
+        <CTAButton size="sm" trackingLabel="sticky-bar" trackImpression={false} className="min-h-[44px] min-w-0 flex-1 !text-sm">
           {ctaLabel}
         </CTAButton>
       </div>
