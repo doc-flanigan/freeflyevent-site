@@ -18,7 +18,7 @@ export function Footer() {
               href={HUB_URL}
               target="_blank"
               rel="noopener"
-              className="text-accent hover:underline"
+              className="text-accent underline underline-offset-2 hover:text-white"
             >
               Doc_Flanigan
             </Link>{' '}
