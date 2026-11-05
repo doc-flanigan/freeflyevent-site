@@ -256,6 +256,6 @@ export function getActiveBonusOverride(now: Date = new Date()): BonusOverride | 
 }
 
 export const REFERRAL_URL =
-  'https://www.robertsspaceindustries.com/enlist?referral=STAR-GCQJ-N6NC';
+  'https://robertsspaceindustries.com/enlist?referral=STAR-GCQJ-N6NC';
 export const REFERRAL_CODE = 'STAR-GCQJ-N6NC';
 export const HUB_URL = 'https://dayonecitizen.com';
