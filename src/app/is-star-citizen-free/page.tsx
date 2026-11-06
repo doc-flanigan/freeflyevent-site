@@ -63,6 +63,19 @@ function recentWindows(limit: number, now: Date = new Date()): (FreeFlyEvent & {
   ).slice(0, limit);
 }
 
+/** Table rows: recent windows plus a confirmed upcoming one (newest-first). */
+function tableWindows(limit: number): (FreeFlyEvent & { source: string })[] {
+  return FREE_FLY_HISTORY.filter(
+    (ev): ev is FreeFlyEvent & { source: string } => !!ev.source && ev.freeFlyActive !== false,
+  ).slice(0, limit);
+}
+
+function upcomingIae(now: Date): string {
+  const iae = getIae2956();
+  if (!iae || now >= new Date(iae.start) || iae.freeFlyActive === false) return '';
+  return ` Next up: ${iae.name} (${formatRangeSpacedUTC(iae.start, iae.end).replace(' – ', '-')}), confirmed by CIG.`;
+}
+
 function buildFaqs(now: Date = new Date()) {
   const items = recentWindows(3, now).map(
     (ev) => `${ev.name} (${formatRangeSpacedUTC(ev.start, ev.end).replace(' – ', '-')})`,
@@ -76,7 +89,7 @@ function buildFaqs(now: Date = new Date()) {
   },
   {
     q: 'When can I play Star Citizen for free?',
-    a: `During official Free Fly events, which run several times a year for roughly two weeks each. The most reliable windows are the May flagship event (Invictus Launch Week, run as DefenseCon in 2026) and the Intergalactic Aerospace Expo (IAE) in November. Recent examples: ${examples}.`,
+    a: `During official Free Fly events, which run several times a year for roughly two weeks each. The most reliable windows are the May flagship event (Invictus Launch Week, run as DefenseCon in 2026) and the Intergalactic Aerospace Expo (IAE) in November. Recent examples: ${examples}.${upcomingIae(now)}`,
   },
   {
     q: 'Do I need to buy anything during a Free Fly?',
@@ -132,7 +145,7 @@ export default function IsStarCitizenFreePage() {
               free</strong> with nothing but a free RSI account — no purchase needed.
               The most dependable annual window is the{' '}
               <Link href="/iae-2956" className="text-accent underline-offset-2 hover:underline">
-                Intergalactic Aerospace Expo in late November
+                Intergalactic Aerospace Expo in November
               </Link>
               . Check{' '}
               <Link href="/next-free-fly" className="text-accent underline-offset-2 hover:underline">
@@ -237,7 +250,7 @@ export default function IsStarCitizenFreePage() {
               windows each year are{' '}
               <strong className="text-white">the May flagship event (Invictus Launch Week, run as DefenseCon in 2026)</strong>{' '}
               and the <strong className="text-white">Intergalactic Aerospace Expo (IAE) in November</strong>.
-              Recent Free Fly windows:
+              Recent and upcoming Free Fly windows:
             </p>
             <div className="mt-6 overflow-hidden rounded-xl border border-white/10">
               <table className="w-full text-left text-sm">
@@ -249,7 +262,7 @@ export default function IsStarCitizenFreePage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {recentWindows(4).map((ev) => (
+                  {tableWindows(4).map((ev) => (
                     <tr key={ev.id} className="border-b border-white/5">
                       <td className="px-4 py-3 font-semibold text-white">{ev.name}</td>
                       <td className="px-4 py-3 text-muted">{formatRangeSpacedUTC(ev.start, ev.end)}</td>

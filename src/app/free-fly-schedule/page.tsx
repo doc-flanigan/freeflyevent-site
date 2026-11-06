@@ -61,7 +61,7 @@ function scheduleAnswer(now: Date = new Date()): string {
 const staticFaqs = [
   {
     q: 'Is there a fixed Free Fly schedule?',
-    a: 'No. Cloud Imperium Games does not publish an annual calendar. Each Free Fly is announced through an official Comm-Link, usually one to two weeks before the event starts. What repeats is the pattern: a May flagship event, a mid-year Foundation Festival, and the IAE in late November.',
+    a: 'No. Cloud Imperium Games does not publish an annual calendar. Each Free Fly is announced through an official Comm-Link, usually one to two weeks before the event starts. What repeats is the pattern: a May flagship event, a mid-year Foundation Festival, and the IAE in November.',
   },
   {
     q: 'How often does Star Citizen have Free Fly events?',
@@ -136,7 +136,7 @@ export default function FreeFlySchedulePage() {
             by official Comm-Link, usually one to two weeks ahead. The repeating
             pattern: a <strong className="text-white">May flagship event</strong>, a{' '}
             <strong className="text-white">mid-year Foundation Festival</strong>, and
-            the <strong className="text-white">IAE in late November</strong>. Between
+            the <strong className="text-white">IAE in November</strong>. Between
             windows,{' '}
             <Link href="/is-star-citizen-free" className="text-accent underline-offset-2 hover:underline">
               is Star Citizen free to play?
@@ -224,7 +224,7 @@ export default function FreeFlySchedulePage() {
               (Invictus Launch Week through 2025, DefenseCon in 2026) brings a
               military-themed showcase. Foundation Festival lands mid-year and is
               aimed squarely at new players. The Intergalactic Aerospace Expo in
-              late November is the biggest of the three — historically 100+ ships
+              November is the biggest of the three — historically 100+ ships
               free to fly across rotating manufacturer days. If you can only make
               one window a year, IAE is the one to plan around.
             </p>

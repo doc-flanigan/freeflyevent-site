@@ -18,7 +18,7 @@ export const revalidate = 3600;
 
 // Only meaningful while IAE 2956 is unannounced — bump it whenever the
 // official Comm-Links are re-checked.
-const LAST_CHECKED = 'November 5, 2026';
+const LAST_CHECKED = 'November 6, 2026';
 
 type Phase = 'unannounced' | 'upcoming' | 'active' | 'cancelled' | 'ended';
 
@@ -139,7 +139,7 @@ function buildFaqs(iae2956: FreeFlyEvent | undefined, now: Date = new Date()) {
       },
       {
         q: 'Where is IAE 2956 held?',
-        a: 'CIG’s official IAE 2956 Comm-Link (linked above) names this year’s venue. The host city has moved before: IAE 2953 and 2954 were held at the Tobin Expo Center in New Babbage on microTech, and IAE 2955 moved to Orison on Crusader.',
+        a: 'IAE 2956 is held in New Babbage on microTech, per CIG’s official Comm-Link (“IAE heads for microTech”). The host city has moved before: IAE 2953 and 2954 were held at the Tobin Expo Center in New Babbage on microTech, and IAE 2955 moved to Orison on Crusader.',
       },
     ];
   }

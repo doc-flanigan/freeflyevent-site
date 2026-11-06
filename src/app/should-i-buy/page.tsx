@@ -92,8 +92,8 @@ export default function ShouldIBuyPage() {
             </p>
             <p className="mt-3 text-white/85">
               <strong className="text-accent">If you weren&apos;t sure</strong> — wait for the
-              next Free Fly. IAE in late November is the usual next window (CIG has not announced IAE 2956 dates yet),
-              and it&apos;s usually the bigger of the two annual events.
+              next Free Fly. IAE 2956 is the next window: CIG has confirmed November 13 – 27, 2026
+              in New Babbage, and it&apos;s usually the bigger of the two annual events.
             </p>
           </div>
 
