@@ -162,8 +162,8 @@ function buildFaqs(iae2956: FreeFlyEvent | undefined, now: Date = new Date()) {
       a: 'About two weeks. IAE 2955 ran November 20 – December 3, 2025; IAE 2954 ran November 22 – December 5, 2024, ending with a multi-day finale where all event ships were flyable at once.',
     },
     {
-      q: 'Where will IAE 2956 be held — ArcCorp?',
-      a: 'Not announced. The host city has moved before: IAE 2953 and 2954 were held at the Tobin Expo Center in New Babbage on microTech, and IAE 2955 moved to Orison on Crusader. CIG has not said where IAE 2956 will be, so treat any ArcCorp claims as unconfirmed until an official announcement.',
+      q: 'Where will IAE 2956 be held?',
+      a: 'New Babbage on microTech. CIG\'s Countdown to IAE 2956 comm-link invites players to "the technological hub of Stanton, the breathtaking snow-covered city of New Babbage." The host city has moved before: IAE 2953 and 2954 were also at the Tobin Expo Center in New Babbage, and IAE 2955 was in Orison on Crusader.',
     },
   ];
 }
