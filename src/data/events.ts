@@ -38,6 +38,17 @@ export type FreeFlyEvent = {
  */
 export const FREE_FLY_HISTORY: FreeFlyEvent[] = [
   {
+    id: 'iae-2026',
+    name: 'Intergalactic Aerospace Expo 2956',
+    start: '2026-11-13T16:00:00Z',
+    end: '2026-11-27T20:00:00Z',
+    ships: [
+      '200+ ships and ground vehicles via show-floor kiosks — manufacturer days Nov 13–22, Finale Nov 23–27 with every IAE vehicle free',
+    ],
+    notes: 'Intergalactic Aerospace Expo 2956 (Nov 13 – Nov 27, 2026) at New Babbage, microTech. Start and end times (16:00 UTC Nov 13 to 20:00 UTC Nov 27) come from the Add-to-calendar file on the official comm-link. CIG says to play Star Citizen for free throughout the entire event and to try over 200 ships and ground vehicles via the show-floor kiosks. The ship lineup has not been published yet. No referral promotion has been announced as of November 6, 2026 (comm-link 21389).',
+    source: 'https://robertsspaceindustries.com/en/comm-link/transmission/21389-Countdown-To-IAE-2956',
+  },
+  {
     id: 'foundation-festival-2026',
     name: 'Foundation Festival 2026',
     start: '2026-07-29T16:00:00Z',

@@ -192,6 +192,14 @@
           "https://robertsspaceindustries.com/en/comm-link/transmission/21237-Twitch-Drops-Foundation-Festival-2026",
           "https://support.robertsspaceindustries.com/hc/en-us/articles/360037529633-Welcome-to-the-Star-Citizen-Free-Fly-Event"
         ]
+      },
+      {
+        "id": "event-iae-2956",
+        "claim": "Intergalactic Aerospace Expo 2956 runs 13–27 November 2026 at New Babbage, microTech (Free Fly 13 Nov 16:00 UTC – 27 Nov 20:00 UTC); Star Citizen is free to play for the whole event, with 200+ ships and ground vehicles to try via show-floor kiosks on a manufacturer schedule (RSI Nov 13–14, Origin 14–15, Anvil 15–16, Crusader + Tumbril 16–17, Drake 17–18, Argo / Consolidated Outland / Greycat / Grey's Market 18–19, Kruger / Mirai / MISC 19–20, Aegis 20–21, Aopoa / Banu / Esperia / Gatac 21–22, Best in Show Nov 22, Finale Nov 23–27 with every IAE vehicle free).",
+        "status": "verified",
+        "sources": [
+          "https://robertsspaceindustries.com/en/comm-link/transmission/21389-Countdown-To-IAE-2956"
+        ]
       }
     ],
     "/free-ships-right-now": [
@@ -262,6 +270,14 @@
         ]
       },
       {
+        "id": "event-iae-2956",
+        "claim": "Intergalactic Aerospace Expo 2956 runs 13–27 November 2026 at New Babbage, microTech (Free Fly 13 Nov 16:00 UTC – 27 Nov 20:00 UTC); Star Citizen is free to play for the whole event, with 200+ ships and ground vehicles to try via show-floor kiosks on a manufacturer schedule (RSI Nov 13–14, Origin 14–15, Anvil 15–16, Crusader + Tumbril 16–17, Drake 17–18, Argo / Consolidated Outland / Greycat / Grey's Market 18–19, Kruger / Mirai / MISC 19–20, Aegis 20–21, Aopoa / Banu / Esperia / Gatac 21–22, Best in Show Nov 22, Finale Nov 23–27 with every IAE vehicle free).",
+        "status": "verified",
+        "sources": [
+          "https://robertsspaceindustries.com/en/comm-link/transmission/21389-Countdown-To-IAE-2956"
+        ]
+      },
+      {
         "id": "iae-save-the-date-timing",
         "claim": "CIG first announced IAE dates with a Spectrum 'Save the Date' post on November 7, 2024 (IAE 2954, Nov 22 – Dec 5) and November 6, 2025 (IAE 2955, Nov 20 – Dec 3).",
         "status": "verified",
@@ -271,15 +287,24 @@
       },
       {
         "id": "iae-venue-history",
-        "claim": "The Intergalactic Aerospace Expo was held at the Tobin Expo Center in New Babbage (microTech) in 2953 and 2954, and moved to Orison (Crusader) for IAE 2955; the IAE 2956 venue is unannounced.",
+        "claim": "The Intergalactic Aerospace Expo was held at the Tobin Expo Center in New Babbage (microTech) in 2953 and 2954, moved to Orison (Crusader) for IAE 2955, and returns to New Babbage (microTech) for IAE 2956 (13–27 November 2026).",
         "status": "verified",
         "sources": [
           "https://robertsspaceindustries.com/spectrum/community/SC/forum/1/thread/intergalactic-aerospace-expo-2955-save-the-date",
-          "https://robertsspaceindustries.com/en/comm-link/transmission/20861-Intergalactic-Aerospace-Expo-2955-Free-Fly-And-Manufacturer-Schedule"
+          "https://robertsspaceindustries.com/en/comm-link/transmission/20861-Intergalactic-Aerospace-Expo-2955-Free-Fly-And-Manufacturer-Schedule",
+          "https://robertsspaceindustries.com/en/comm-link/transmission/21389-Countdown-To-IAE-2956"
         ]
       }
     ],
     "/is-star-citizen-free": [
+      {
+        "id": "event-iae-2956",
+        "claim": "Intergalactic Aerospace Expo 2956 runs 13–27 November 2026 at New Babbage, microTech (Free Fly 13 Nov 16:00 UTC – 27 Nov 20:00 UTC); Star Citizen is free to play for the whole event, with 200+ ships and ground vehicles to try via show-floor kiosks on a manufacturer schedule (RSI Nov 13–14, Origin 14–15, Anvil 15–16, Crusader + Tumbril 16–17, Drake 17–18, Argo / Consolidated Outland / Greycat / Grey's Market 18–19, Kruger / Mirai / MISC 19–20, Aegis 20–21, Aopoa / Banu / Esperia / Gatac 21–22, Best in Show Nov 22, Finale Nov 23–27 with every IAE vehicle free).",
+        "status": "verified",
+        "sources": [
+          "https://robertsspaceindustries.com/en/comm-link/transmission/21389-Countdown-To-IAE-2956"
+        ]
+      },
       {
         "id": "first-flight-pack-60-usd-aurora",
         "claim": "RSI's Star Citizen First Flight Pack is a Star Citizen-only game package that includes one Aurora Mk II, 6 Month Insurance, a Self-Land Hangar, 10,000 UEC and the Star Citizen digital download, plus 30-day loaner access to three more starter ships: Drake Golem (mining), MISC Fortune (salvage) and Crusader Intrepid (cargo hauling).",
