@@ -78,7 +78,7 @@ export default function EventHistoryPage() {
               Star Citizen runs several Free Fly events per year, and the two
               reliable anchors are the May military expo (Invictus Launch Week,
               hosted as DefenseCon in 2026) and the Intergalactic Aerospace
-              Expo (IAE) in late November.
+              Expo (IAE) in November.
             </p>
             <p className="mt-4 text-muted">
               A typical Free Fly lasts 10&ndash;14 days, and no purchase is
