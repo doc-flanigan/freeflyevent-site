@@ -108,7 +108,7 @@ export function Footer() {
               Affiliate disclosure
             </h4>
             <p className="mt-2">
-              If you create a Star Citizen account using referral code STAR-GCQJ-N6NC, the site owner may receive an in-game bonus. Your 50,000 UEC new-player bonus is not affected.
+              If you create a Star Citizen account using referral code STAR-GCQJ-N6NC, the site owner may receive an in-game bonus. Your 50,000 UEC new-player bonus is not affected. Any paint a recruit receives from the site owner is a personal gift bought with his own money, not an RSI reward.
             </p>
           </section>
 
