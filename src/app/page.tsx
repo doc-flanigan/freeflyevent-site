@@ -13,6 +13,7 @@ import { formatMonthDayUTC, formatRangeUTC } from '@/lib/format';
 import { DiscordCTA } from '@/components/DiscordCTA';
 import { IaeReadyBlock } from '@/components/IaeReadyBlock';
 import { HelpNights } from '@/components/HelpNights';
+import { PaintGiftSection } from '@/components/PaintGiftSection';
 
 const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
 
@@ -295,6 +296,8 @@ export default function HomePage() {
             </div>
           </section>
         )}
+
+        <PaintGiftSection placement="home" />
 
         <HelpNights />
 
