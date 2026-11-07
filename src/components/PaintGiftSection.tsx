@@ -7,7 +7,7 @@ const CLAIM_URL =
 export function PaintGiftSection({ placement }: { placement: 'home' | 'iae' }) {
   return (
     <section id="welcome-gift" className="container-narrow py-12 sm:py-16">
-      <div className="relative isolate overflow-hidden rounded-2xl border border-white/10 bg-spaceBlack">
+      <div className="relative isolate overflow-hidden rounded-2xl border border-white/10 bg-blackMid md:flex md:min-h-[30rem] md:flex-col md:justify-end">
         <Image
           src="/images/aurora-mk2-cloudbuster.webp"
           alt="RSI Aurora Mk II starter ship in the Cloudbuster paint, parked in a hangar"
@@ -15,19 +15,19 @@ export function PaintGiftSection({ placement }: { placement: 'home' | 'iae' }) {
           height={900}
           loading="lazy"
           sizes="(min-width: 1024px) 960px, 100vw"
-          className="absolute inset-0 -z-10 h-full w-full object-cover"
+          className="aspect-video h-auto w-full object-cover md:absolute md:inset-0 md:-z-10 md:h-full"
         />
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 bg-gradient-to-tr from-spaceBlack via-spaceBlack/80 to-transparent"
+          className="hidden md:absolute md:inset-y-0 md:left-0 md:-z-10 md:block md:w-[55%] md:bg-gradient-to-r md:from-spaceBlack md:via-spaceBlack/80 md:to-transparent"
         />
-        <div className="flex min-h-[26rem] flex-col justify-end p-6 sm:min-h-[24rem] sm:aspect-video sm:p-10">
-          <div className="max-w-xl">
+        <div className="bg-blackMid p-6 sm:p-8 md:relative md:bg-transparent md:p-10">
+          <div className="md:max-w-[46%]">
             <span className="eyebrow">New recruit welcome gift</span>
-            <h2 className="heading-display mt-3 text-2xl sm:text-3xl">
+            <h2 className="heading-display mt-3 text-2xl md:text-xl lg:text-2xl">
               This paint is yours if you join with our code
             </h2>
-            <p className="mt-3 text-sm text-white/85 sm:text-base">
+            <p className="mt-3 text-sm text-white/85 md:text-xs lg:text-sm">
               This is the Aurora Mk II, the ship in the First Flight Pack, wearing the Cloudbuster
               paint. RSI sells that paint only to its Concierge backers, so a new account cannot
               buy it. Create your account with code STAR-GCQJ-N6NC, buy the First Flight Pack, and
