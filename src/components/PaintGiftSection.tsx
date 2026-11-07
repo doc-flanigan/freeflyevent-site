@@ -25,14 +25,14 @@ export function PaintGiftSection({ placement }: { placement: 'home' | 'iae' }) {
           <div className="md:max-w-[46%]">
             <span className="eyebrow">New recruit welcome gift</span>
             <h2 className="heading-display mt-3 text-2xl md:text-xl lg:text-2xl">
-              This paint is yours if you join with our code
+              This paint is yours if you join with my code
             </h2>
             <p className="mt-3 text-sm text-white/85 md:text-xs lg:text-sm">
               This is the Aurora Mk II, the ship in the First Flight Pack, wearing the Cloudbuster
               paint. RSI sells that paint only to its Concierge backers, so a new account cannot
               buy it. Create your account with code STAR-GCQJ-N6NC, buy the First Flight Pack, and
-              the site owner sends you the paint within a day of claiming. It is a personal gift
-              from him, not an RSI reward, and your 50,000 UEC bonus is unchanged.
+              I send you the paint within a day of claiming. It is a personal gift
+              from me, Doc Flanigan, not an RSI reward, and your 50,000 UEC bonus is unchanged.
             </p>
             <div className="mt-5">
               <CTAButton href={CLAIM_URL} trackingLabel={`PaintGift-${placement}`}>
