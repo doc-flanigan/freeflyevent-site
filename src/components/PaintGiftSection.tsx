@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { CTAButton } from '@/components/CTAButton';
+import { PaintLightbox, PaintLightboxImageButton, PaintLightboxLink } from '@/components/PaintLightbox';
 
 const CLAIM_URL =
   'https://dayonecitizen.com/referral-code?utm_source=freeflyevent&utm_medium=section&utm_campaign=welcome-gift#welcome-gift';
@@ -7,22 +8,25 @@ const CLAIM_URL =
 export function PaintGiftSection({ placement }: { placement: 'home' | 'iae' }) {
   return (
     <section id="welcome-gift" className="container-narrow py-12 sm:py-16">
+      <PaintLightbox label={`PaintGift-view-${placement}`}>
       <div className="relative isolate overflow-hidden rounded-2xl border border-white/10 bg-blackMid md:flex md:min-h-[30rem] md:flex-col md:justify-end">
-        <Image
+        <PaintLightboxImageButton className="block w-full md:absolute md:inset-0 md:-z-10">
+          <Image
           src="/images/aurora-mk2-cloudbuster.webp"
           alt="RSI Aurora Mk II starter ship in the Cloudbuster paint, parked in a hangar"
           width={1600}
           height={900}
           loading="lazy"
           sizes="(min-width: 1024px) 960px, 100vw"
-          className="aspect-video h-auto w-full object-cover md:absolute md:inset-0 md:-z-10 md:h-full"
+          className="aspect-video h-auto w-full object-cover md:h-full"
         />
+        </PaintLightboxImageButton>
         <div
           aria-hidden
-          className="hidden md:absolute md:inset-y-0 md:left-0 md:-z-10 md:block md:w-[55%] md:bg-gradient-to-r md:from-spaceBlack md:via-spaceBlack/80 md:to-transparent"
+          className="pointer-events-none hidden md:absolute md:inset-y-0 md:left-0 md:-z-10 md:block md:w-[55%] md:bg-gradient-to-r md:from-spaceBlack md:via-spaceBlack/80 md:to-transparent"
         />
-        <div className="bg-blackMid p-6 sm:p-8 md:relative md:bg-transparent md:p-10">
-          <div className="md:max-w-[46%]">
+        <div className="bg-blackMid p-6 sm:p-8 md:pointer-events-none md:relative md:bg-transparent md:p-10">
+          <div className="md:pointer-events-auto md:max-w-[46%]">
             <span className="eyebrow">New recruit welcome gift</span>
             <h2 className="heading-display mt-3 text-2xl md:text-xl lg:text-2xl">
               This paint is yours if you join with my code
@@ -42,7 +46,11 @@ export function PaintGiftSection({ placement }: { placement: 'home' | 'iae' }) {
           </div>
         </div>
       </div>
-      <p className="mt-2 text-xs text-muted">Image: Cloud Imperium Games</p>
+      <p className="mt-2 text-xs text-muted">
+        Image: Cloud Imperium Games ·{" "}
+        <PaintLightboxLink className="text-xs text-muted" />
+      </p>
+      </PaintLightbox>
     </section>
   );
 }
