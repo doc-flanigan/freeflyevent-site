@@ -6,6 +6,7 @@ import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
+import { PaintGiftSection } from '@/components/PaintGiftSection';
 import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
 import { HUB_URL, FREE_FLY_HISTORY, getIae2956, type FreeFlyEvent } from '@/data/events';
@@ -477,6 +478,8 @@ export default function Iae2956Page() {
               <CTAButton size="lg" trackingLabel="iae-2956-cta" />
             </div>
           </section>
+
+          <PaintGiftSection placement="iae" />
 
           {/* FAQ */}
           <section className="mt-14">
