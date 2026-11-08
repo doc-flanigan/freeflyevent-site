@@ -46,6 +46,20 @@ export function PaintGiftSection({ placement }: { placement: 'home' | 'iae' }) {
           </div>
         </div>
       </div>
+      {placement === 'home' && (
+        <p className="mt-4 text-sm text-white/75">
+          The code and the paint gift are also on{' '}
+          <a
+            href="https://starcitizenhelp.com/enlist"
+            target="_blank"
+            rel="noopener"
+            className="text-accent underline underline-offset-2 hover:text-accent"
+          >
+            starcitizenhelp.com/enlist
+          </a>
+          .
+        </p>
+      )}
       <p className="mt-2 text-xs text-muted">
         Image: Cloud Imperium Games ·{" "}
         <PaintLightboxLink className="text-xs text-muted" />

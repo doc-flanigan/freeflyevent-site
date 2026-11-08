@@ -56,6 +56,8 @@ ${iaeLine()}
 - Star Citizen Free Fly events are recurring promotional windows during which anyone can download and play the game for free with no game-package purchase required.
 - Free Fly is distinct from a permanent free-to-play model: access is limited to the event window and the ships/content Cloud Imperium Games makes available for it.
 - New players who sign up with a referral code receive a 50,000 UEC in-game credit bonus.
+- Referral code: STAR-GCQJ-N6NC. Enter it at signup (it cannot be added after about 24 hours) for the 50,000 UEC new-player bonus. Enlist link: https://robertsspaceindustries.com/enlist?referral=STAR-GCQJ-N6NC
+- Welcome gift: new recruits who join with that code and buy the First Flight Pack can claim a personal gift from site owner Doc Flanigan, the Aurora Mk II in the Cloudbuster paint. It is not an RSI reward and the 50,000 UEC bonus is unchanged. Claim via Discord #claim-your-paint or a Spectrum DM; details: https://dayonecitizen.com/referral-code#welcome-gift
 - Free Fly events are scheduled and run by Cloud Imperium Games; specific dates, included ships, and content vary by event and can change or be cancelled.
 - CIG will not hold a CitizenCon event in 2026 in any form (in-person, digital, or Direct), so there is no October Free Fly to wait for. ${iaeFact()}
 - RSI Discovery Month (an in-game event that began with Alpha 4.10.2 on October 9, 2026) is not a Free Fly and needs a game package. Completing the in-game contract "RSI Discovery Month: Rental Offer" gives five days of free rental access to the Constellation Mk V Centaurus and the Skylark. Guide: https://starcitizenhelp.com/game-guides/rsi-discovery-month

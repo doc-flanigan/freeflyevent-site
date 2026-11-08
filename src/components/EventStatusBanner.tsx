@@ -9,6 +9,7 @@ import { CountdownTimer } from './CountdownTimer';
 import { ArrowIcon } from './CTAButton';
 import { CopyCodeButton } from './CopyCodeButton';
 import { logClick } from '@/lib/log-click';
+import { VerifiedCodeLine } from './VerifiedCodeLine';
 import { ctaLabel } from '@/lib/cta-label';
 
 type Props = {
@@ -249,6 +250,7 @@ function ReferralCodePanel() {
         </a>
         .
       </p>
+      <VerifiedCodeLine className="mt-2" />
     </div>
   );
 }

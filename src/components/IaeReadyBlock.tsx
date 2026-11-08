@@ -3,6 +3,7 @@ import { CTAButton, ArrowIcon } from './CTAButton';
 import { FREE_FLY_HISTORY, getEventStatus, getIae2956 } from '@/data/events';
 import { formatRangeSpacedUTC } from '@/lib/format';
 import { ctaLabel } from '@/lib/cta-label';
+import { ReferralBonusCard } from '@/components/ReferralBonusCard';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -69,6 +70,8 @@ export function IaeReadyBlock() {
             </ol>
           </div>
         </div>
+
+        <ReferralBonusCard className="mt-6" />
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
           <CTAButton size="lg" trackingLabel="home-iae" className="w-full sm:w-auto md:whitespace-nowrap">
