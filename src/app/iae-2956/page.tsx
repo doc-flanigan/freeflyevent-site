@@ -7,9 +7,12 @@ import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { PaintGiftSection } from '@/components/PaintGiftSection';
+import { CopyCodeButton } from '@/components/CopyCodeButton';
+import { VerifiedCodeLine } from '@/components/VerifiedCodeLine';
+import { ReferralBonusCard } from '@/components/ReferralBonusCard';
 import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
-import { HUB_URL, FREE_FLY_HISTORY, getIae2956, type FreeFlyEvent } from '@/data/events';
+import { HUB_URL, FREE_FLY_HISTORY, getIae2956, REFERRAL_CODE, type FreeFlyEvent } from '@/data/events';
 import { formatRangeUTC } from '@/lib/format';
 
 // Re-render hourly so every state-dependent string on this page (metadata,
@@ -474,7 +477,13 @@ export default function Iae2956Page() {
                 ? `Create your free RSI account, download the launcher, and you're in until ${iae2956 ? endDay(iae2956) : 'the event ends'}. A referral code only works at signup — it can't be added later — so use one now and your 50,000 UEC bonus is waiting when you first log in.`
                 : `Make your free account before the Free Fly starts. A referral code only works at signup — it can't be added later — so create your free RSI account with one now and your 50,000 UEC bonus will be waiting whenever you first log in${phase === 'unannounced' || phase === 'upcoming' ? ', whether or not IAE 2956 is live yet' : ''}.`}
             </p>
-            <div className="mt-6">
+            <ReferralBonusCard className="mt-6" />
+            <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
+              <code data-ref-code className="font-mono text-lg font-bold text-gold">{REFERRAL_CODE}</code>
+              <CopyCodeButton location="iae-2956-cta" size="sm" />
+            </div>
+            <VerifiedCodeLine className="mt-2" />
+            <div className="mt-4">
               <CTAButton size="lg" trackingLabel="iae-2956-cta" />
             </div>
           </section>
