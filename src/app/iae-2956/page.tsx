@@ -286,14 +286,25 @@ export default function Iae2956Page() {
           </p>
           )}
 
-          <LightboxImage
-            src="/images/iae-2952-expo.webp"
-            alt="The New Babbage skyline at sunrise with the IAE 2952 sign lit on a tower, snow on the ground below"
-            width={1400}
-            height={788}
-            containerClassName="mt-8 rounded-xl border border-white/10"
-            className="h-auto w-full rounded-xl"
-          />
+          {iae2956 ? (
+            <LightboxImage
+              src="/images/iae-2956-key-art.webp"
+              alt="Official Intergalactic Aerospace Expo 2956 key art: the IAE logo over blue and cyan light trails"
+              width={1400}
+              height={639}
+              containerClassName="mt-8 rounded-xl border border-white/10"
+              className="h-auto w-full rounded-xl"
+            />
+          ) : (
+            <LightboxImage
+              src="/images/iae-2952-expo.webp"
+              alt="The New Babbage skyline at sunrise with the IAE 2952 sign lit on a tower, snow on the ground below"
+              width={1400}
+              height={788}
+              containerClassName="mt-8 rounded-xl border border-white/10"
+              className="h-auto w-full rounded-xl"
+            />
+          )}
 
           {/* Confirmed box — derived from the iae-2026 entry once it exists */}
           {iae2956 ? (
@@ -384,6 +395,14 @@ export default function Iae2956Page() {
                 days&apos; worth. Dates overlap because each window is a 24-hour
                 slot, not a calendar day.
               </p>
+              <LightboxImage
+                src="/images/iae-2956-rental-schedule.webp"
+                alt="CIG's official IAE 2956 pledge and free rental schedule, one manufacturer group per day from November 13 to 27"
+                width={1400}
+                height={788}
+                containerClassName="mt-6 rounded-xl border border-white/10"
+                className="h-auto w-full rounded-xl"
+              />
               <div className="mt-6 overflow-hidden rounded-xl border border-white/10">
                 <table className="w-full text-left text-sm">
                   <thead>
@@ -413,6 +432,24 @@ export default function Iae2956Page() {
                 Black Armor Set, 6 for the MacFlex Backpack Orange. Source:{' '}
                 <SourceLink href={IAE_2956_FAQ_URL}>official IAE 2956 FAQ</SourceLink>.
               </p>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                <LightboxImage
+                  src="/images/iae-2956-transit-map.webp"
+                  alt="IAE 2956 New Babbage transit map: Metroloop from the Interstellar Spaceport via The Commons to the Tobin Expo Center"
+                  width={1400}
+                  height={788}
+                  containerClassName="rounded-xl border border-white/10"
+                  className="h-auto w-full rounded-xl"
+                />
+                <LightboxImage
+                  src="/images/iae-2956-twitch-drops.webp"
+                  alt="IAE 2956 Twitch Drops gear: a character in the black and orange Venture armor set under the IAE 2956 arch"
+                  width={1400}
+                  height={600}
+                  containerClassName="rounded-xl border border-white/10"
+                  className="h-auto w-full rounded-xl"
+                />
+              </div>
             </section>
           )}
 
