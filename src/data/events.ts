@@ -43,9 +43,9 @@ export const FREE_FLY_HISTORY: FreeFlyEvent[] = [
     start: '2026-11-13T16:00:00Z',
     end: '2026-11-27T20:00:00Z',
     ships: [
-      '200+ ships and ground vehicles via show-floor kiosks — manufacturer days Nov 13–22, Finale Nov 23–27 with every IAE vehicle free',
+      'RSI Aurora Mk II loaner for every account all event, plus 200+ ships and ground vehicles rentable free for 48 hours on their manufacturer day (Nov 13–22), Best in Show ships Nov 22–27, and a Finale Nov 23–27 with every IAE vehicle free',
     ],
-    notes: 'Intergalactic Aerospace Expo 2956 (Nov 13 – Nov 27, 2026) at New Babbage, microTech. Start and end times (16:00 UTC Nov 13 to 20:00 UTC Nov 27) come from the Add-to-calendar file on the official comm-link. CIG says to play Star Citizen for free throughout the entire event and to try over 200 ships and ground vehicles via the show-floor kiosks. The ship lineup has not been published yet. No referral promotion has been announced as of November 6, 2026 (comm-link 21389).',
+    notes: 'Intergalactic Aerospace Expo 2956 (Nov 13 – Nov 27, 2026) at the Tobin Expo Center, New Babbage, microTech. Start and end times (16:00 UTC Nov 13 to 20:00 UTC Nov 27) come from the Add-to-calendar file on the official comm-link (21389). Official FAQ (Spectrum, pinned Nov 10, 2026): the Free Fly starts with IAE on Nov 13; every account gets an RSI Aurora Mk II from any ASOP terminal for the whole event; ships are rented free from the Traveler Rentals terminals in the main hall on each manufacturer day, each rental lasts 48 hours and each ship can be rented once; Best in Show ships (RSI Perseus, Origin M80, Drake Corsair, Drake Ironclad Assault) fly free Nov 22–27; Twitch Drops at 2/4/6 hours watched (Venture Undersuit Black/Grey, Venture Black Armor Set, MacFlex Backpack Orange); Metroloop from New Babbage Interstellar Spaceport via The Commons to the Tobin Expo Center. Referral: the FAQ repeats the standard 50,000 UEC signup bonus plus a referral point if the recruit stays — no extra referral promotion announced as of November 10, 2026.',
     source: 'https://robertsspaceindustries.com/en/comm-link/transmission/21389-Countdown-To-IAE-2956',
   },
   {
@@ -246,6 +246,29 @@ export function getIae2956(): FreeFlyEvent | undefined {
 }
 
 /** True until this year's IAE has ended (or December arrives without one). */
+/** Official IAE 2956 FAQ — pinned Spectrum thread by CIG (Nov 10, 2026). */
+export const IAE_2956_FAQ_URL =
+  'https://robertsspaceindustries.com/spectrum/community/SC/forum/1/thread/iae-2956-faq-choose-your-adventure/9212241';
+
+/**
+ * IAE 2956 pledge & free rental schedule, copied from CIG's official schedule
+ * graphic (comm-link 21389 / the FAQ thread). Windows are 24-hour slots that
+ * start mid-day UTC, so consecutive rows share a calendar date.
+ */
+export const IAE_2956_SCHEDULE: { dates: string; day: string; who: string }[] = [
+  { dates: 'Nov 13–14', day: 'Day 1–2', who: 'RSI' },
+  { dates: 'Nov 14–15', day: 'Day 2–3', who: 'Origin Jumpworks' },
+  { dates: 'Nov 15–16', day: 'Day 3–4', who: 'Anvil Aerospace' },
+  { dates: 'Nov 16–17', day: 'Day 4–5', who: 'Crusader Industries, Tumbril' },
+  { dates: 'Nov 17–18', day: 'Day 5–6', who: 'Drake Interplanetary' },
+  { dates: 'Nov 18–19', day: 'Day 6–7', who: 'Argo Astronautics, Consolidated Outland, Greycat Industrial, Grey\'s Market' },
+  { dates: 'Nov 19–20', day: 'Day 7–8', who: 'Kruger Intergalactic, Mirai, MISC' },
+  { dates: 'Nov 20–21', day: 'Day 8–9', who: 'Aegis Dynamics' },
+  { dates: 'Nov 21–22', day: 'Day 9–10', who: 'Aopoa, Banu, Esperia, Gatac' },
+  { dates: 'Nov 22', day: 'Day 10', who: 'Best in Show — RSI Perseus, Origin M80, Drake Corsair, Drake Ironclad Assault (free to fly through Nov 27)' },
+  { dates: 'Nov 23–27', day: 'Day 11–15', who: 'Finale — last chance to try every IAE vehicle for free' },
+];
+
 export function iaeStillAheadThisYear(now: Date = new Date()): boolean {
   const iae = FREE_FLY_HISTORY.find((ev) => ev.id === iaeIdForYear(now.getUTCFullYear()));
   if (iae) return now < new Date(iae.end);
