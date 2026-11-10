@@ -12,7 +12,7 @@ import { VerifiedCodeLine } from '@/components/VerifiedCodeLine';
 import { ReferralBonusCard } from '@/components/ReferralBonusCard';
 import { LightboxImage } from '@/components/LightboxImage';
 import { PageBackdrop } from '@/components/PageBackdrop';
-import { HUB_URL, FREE_FLY_HISTORY, getIae2956, REFERRAL_CODE, type FreeFlyEvent } from '@/data/events';
+import { HUB_URL, FREE_FLY_HISTORY, getIae2956, IAE_2956_FAQ_URL, IAE_2956_SCHEDULE, REFERRAL_CODE, type FreeFlyEvent } from '@/data/events';
 import { formatRangeUTC } from '@/lib/format';
 
 // Re-render hourly so every state-dependent string on this page (metadata,
@@ -22,7 +22,7 @@ export const revalidate = 3600;
 
 // Only meaningful while IAE 2956 is unannounced — bump it whenever the
 // official Comm-Links are re-checked.
-const LAST_CHECKED = 'November 6, 2026';
+const LAST_CHECKED = 'November 10, 2026';
 
 type Phase = 'unannounced' | 'upcoming' | 'active' | 'cancelled' | 'ended';
 
@@ -134,8 +134,12 @@ function buildFaqs(iae2956: FreeFlyEvent | undefined, now: Date = new Date()) {
       {
         q: 'What ships will be free during IAE 2956?',
         a: iae2956.ships.length
-          ? `Confirmed so far: ${iae2956.ships.join('; ')}.`
+          ? 'Per CIG’s official FAQ, every account gets an RSI Aurora Mk II at any ASOP terminal for the whole event. On each manufacturer day, that maker’s ships — more than 200 ships and ground vehicles across the expo — can be rented free from the Traveler Rentals terminals in the main hall; each rental lasts 48 hours and each ship can be rented once. The four Best in Show ships (RSI Perseus, Origin M80, Drake Corsair, Drake Ironclad Assault) fly free November 22 – 27, and the Finale (November 23 – 27) opens every IAE vehicle at once. The day-by-day manufacturer schedule is on this page.'
           : 'CIG has not published the manufacturer schedule yet — check back closer to launch.',
+      },
+      {
+        q: 'Do I need to buy a ship to join IAE 2956?',
+        a: 'No. For the whole event every account, including a brand-new free one, can claim an RSI Aurora Mk II at the nearest ASOP ship-retrieval terminal. Use it to reach New Babbage if you start somewhere else, then rent the show-floor ships free from the Traveler Rentals terminals on their manufacturer day.',
       },
       {
         q: 'How long does IAE usually last?',
@@ -143,7 +147,15 @@ function buildFaqs(iae2956: FreeFlyEvent | undefined, now: Date = new Date()) {
       },
       {
         q: 'Where is IAE 2956 held?',
-        a: 'IAE 2956 is held in New Babbage on microTech, per CIG’s official Comm-Link (“IAE heads for microTech”). The host city has moved before: IAE 2953 and 2954 were held at the Tobin Expo Center in New Babbage on microTech, and IAE 2955 moved to Orison on Crusader.',
+        a: 'IAE 2956 is held at the Tobin Expo Center in New Babbage on microTech, per CIG’s official Comm-Link and FAQ. The host city has moved before: IAE 2953 and 2954 were also at the Tobin Expo Center, and IAE 2955 moved to Orison on Crusader.',
+      },
+      {
+        q: 'How do I get to the Tobin Expo Center?',
+        a: 'New players: when you create your character, pick the Stanton system and New Babbage as your primary residence and you start in the host city. From New Babbage Interstellar Spaceport, ride the Metroloop — the stops run Spaceport, The Commons, Tobin Expo Center, Aspire Grand — and follow the IAE signs. Flying in from off-planet? Land at the spaceport, microTech’s main travel hub, and do the same.',
+      },
+      {
+        q: 'Are there Twitch Drops during IAE 2956?',
+        a: 'Yes. Watch any Drops-enabled Star Citizen stream on Twitch: two hours unlocks the Venture Undersuit Black/Grey, four hours adds the Venture Black Armor Set, and six hours completes the set with the MacFlex Backpack Orange, per CIG’s official FAQ.',
       },
     ];
   }
@@ -274,14 +286,25 @@ export default function Iae2956Page() {
           </p>
           )}
 
-          <LightboxImage
-            src="/images/iae-2952-expo.webp"
-            alt="The New Babbage skyline at sunrise with the IAE 2952 sign lit on a tower, snow on the ground below"
-            width={1400}
-            height={788}
-            containerClassName="mt-8 rounded-xl border border-white/10"
-            className="h-auto w-full rounded-xl"
-          />
+          {iae2956 ? (
+            <LightboxImage
+              src="/images/iae-2956-key-art.webp"
+              alt="Official Intergalactic Aerospace Expo 2956 key art: the IAE logo over blue and cyan light trails"
+              width={1400}
+              height={639}
+              containerClassName="mt-8 rounded-xl border border-white/10"
+              className="h-auto w-full rounded-xl"
+            />
+          ) : (
+            <LightboxImage
+              src="/images/iae-2952-expo.webp"
+              alt="The New Babbage skyline at sunrise with the IAE 2952 sign lit on a tower, snow on the ground below"
+              width={1400}
+              height={788}
+              containerClassName="mt-8 rounded-xl border border-white/10"
+              className="h-auto w-full rounded-xl"
+            />
+          )}
 
           {/* Confirmed box — derived from the iae-2026 entry once it exists */}
           {iae2956 ? (
@@ -321,8 +344,10 @@ export default function Iae2956Page() {
                 </dl>
                 {iae2956.source && (
                   <p className="mt-5 text-xs text-muted">
-                    Source:{' '}
+                    Sources:{' '}
                     <SourceLink href={iae2956.source}>official RSI Comm-Link</SourceLink>
+                    {' · '}
+                    <SourceLink href={IAE_2956_FAQ_URL}>official IAE 2956 FAQ</SourceLink>
                   </p>
                 )}
               </div>
@@ -355,6 +380,77 @@ export default function Iae2956Page() {
               </p>
             </div>
           </section>
+          )}
+
+          {/* Manufacturer schedule — CIG's official pledge & free rental graphic */}
+          {iae2956 && phase !== 'cancelled' && (
+            <section className="mt-14">
+              <h2 className="heading-display text-2xl sm:text-3xl">
+                IAE 2956 free rental schedule
+              </h2>
+              <p className="mt-4 text-muted">
+                Each manufacturer&apos;s ships are free to rent on its day from the
+                Traveler Rentals terminals in the main hall. A rental lasts 48
+                hours and each ship can be rented once, so you can line up several
+                days&apos; worth. Dates overlap because each window is a 24-hour
+                slot, not a calendar day.
+              </p>
+              <LightboxImage
+                src="/images/iae-2956-rental-schedule.webp"
+                alt="CIG's official IAE 2956 pledge and free rental schedule, one manufacturer group per day from November 13 to 27"
+                width={1400}
+                height={788}
+                containerClassName="mt-6 rounded-xl border border-white/10"
+                className="h-auto w-full rounded-xl"
+              />
+              <div className="mt-6 overflow-hidden rounded-xl border border-white/10">
+                <table className="w-full text-left text-sm">
+                  <thead>
+                    <tr className="border-b border-white/10 bg-spaceBlack/60 text-xs uppercase tracking-[0.18em] text-muted">
+                      <th className="px-4 py-3">Dates</th>
+                      <th className="px-4 py-3">Day</th>
+                      <th className="px-4 py-3">Manufacturers</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {IAE_2956_SCHEDULE.map((row) => (
+                      <tr key={row.dates} className="border-b border-white/5 hover:bg-accent/5">
+                        <td className="whitespace-nowrap px-4 py-3 font-semibold text-accent">{row.dates}</td>
+                        <td className="whitespace-nowrap px-4 py-3 text-muted">{row.day}</td>
+                        <td className="px-4 py-3 text-white/85">{row.who}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-4 text-xs text-muted">
+                Getting there: pick New Babbage as your primary residence when you
+                create your character, or land at New Babbage Interstellar
+                Spaceport and ride the Metroloop (Spaceport → The Commons → Tobin
+                Expo Center → Aspire Grand). Twitch Drops run alongside: 2 hours
+                watched for the Venture Undersuit Black/Grey, 4 for the Venture
+                Black Armor Set, 6 for the MacFlex Backpack Orange. Source:{' '}
+                <SourceLink href={IAE_2956_FAQ_URL}>official IAE 2956 FAQ</SourceLink>.
+              </p>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                <LightboxImage
+                  src="/images/iae-2956-transit-map.webp"
+                  alt="IAE 2956 New Babbage transit map: Metroloop from the Interstellar Spaceport via The Commons to the Tobin Expo Center"
+                  width={1400}
+                  height={788}
+                  containerClassName="rounded-xl border border-white/10"
+                  className="h-auto w-full rounded-xl"
+                />
+                <LightboxImage
+                  src="/images/iae-2956-twitch-drops.webp"
+                  alt="IAE 2956 Twitch Drops gear: a character in the black and orange Venture armor set under the IAE 2956 arch"
+                  width={1400}
+                  height={600}
+                  containerClassName="rounded-xl border border-white/10"
+                  className="h-auto w-full rounded-xl"
+                />
+              </div>
+            </section>
           )}
 
           {/* What happened at IAE 2955 — recap, verified facts only */}
