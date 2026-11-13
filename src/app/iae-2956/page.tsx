@@ -382,6 +382,53 @@ export default function Iae2956Page() {
           </section>
           )}
 
+          {/* Route video — Doc's Day One Citizen Short, spaceport to the show floor */}
+          {iae2956 && phase !== 'cancelled' && (
+            <section className="mt-14">
+              <h2 className="heading-display text-2xl sm:text-3xl">
+                How to get to the Tobin Expo Center
+              </h2>
+              <div className="mt-6 grid items-center gap-8 sm:grid-cols-[minmax(0,315px)_1fr]">
+                <div className="relative mx-auto aspect-[9/16] w-full max-w-[315px] overflow-hidden rounded-xl border border-white/10 bg-blackMid">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/H_Yx_TFzlUs"
+                    title="How to Get to IAE 2956 from the New Babbage Spaceport"
+                    loading="lazy"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                    className="absolute inset-0 h-full w-full"
+                  />
+                </div>
+                <div className="text-muted">
+                  <p>
+                    This two-minute video walks the whole route in game, from your
+                    hangar to the show floor:
+                  </p>
+                  <ol className="mt-4 list-decimal space-y-2 pl-5 text-white/85">
+                    <li>Take the hangar elevator to NB International Spaceport.</li>
+                    <li>Follow the IAE posters and the Metroloop signs through security.</li>
+                    <li>Take the elevator marked To Transit Platform and choose MT Metroloop.</li>
+                    <li>Ride the train past The Commons and get off at Tobin Expo Center.</li>
+                    <li>Follow the green exit sign and the IAE banners up two flights of stairs.</li>
+                  </ol>
+                  <p className="mt-4 text-sm">
+                    More guides for new players on the{' '}
+                    <a
+                      href="https://www.youtube.com/@DayOneCitizen"
+                      className="text-accent underline-offset-4 hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Day One Citizen YouTube channel
+                    </a>
+                    .
+                  </p>
+                </div>
+              </div>
+            </section>
+          )}
+
           {/* Manufacturer schedule — CIG's official pledge & free rental graphic */}
           {iae2956 && phase !== 'cancelled' && (
             <section className="mt-14">
