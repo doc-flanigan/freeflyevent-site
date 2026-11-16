@@ -112,7 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html:
-              "try{(function(){if(sessionStorage.getItem('lref'))return;var v,qs=new URLSearchParams(location.search),u=qs.get('utm_source')||qs.get('ref');if(u){v='param:'+u;}else if(document.referrer){var rh=document.referrer.split('://')[1]||document.referrer;rh=rh.split('/')[0];if(rh.indexOf('www.')===0){rh=rh.slice(4);}var lh=location.host;if(lh.indexOf('www.')===0){lh=lh.slice(4);}v=(rh&&rh!==lh)?document.referrer.slice(0,300):'direct';}else{v='direct';}sessionStorage.setItem('lref',v);})();}catch(e){}",
+              "try{(function(){if(sessionStorage.getItem('lref'))return;var v,qs=new URLSearchParams(location.search),u=qs.get('utm_source')||qs.get('ref');if(u){v='param:'+u;var uc=qs.get('utm_content');if(uc){v+='~'+uc.slice(0,60);}}else if(document.referrer){var rh=document.referrer.split('://')[1]||document.referrer;rh=rh.split('/')[0];if(rh.indexOf('www.')===0){rh=rh.slice(4);}var lh=location.host;if(lh.indexOf('www.')===0){lh=lh.slice(4);}v=(rh&&rh!==lh)?document.referrer.slice(0,300):'direct';}else{v='direct';}sessionStorage.setItem('lref',v);})();}catch(e){}",
           }}
         />
         {children}
