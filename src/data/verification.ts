@@ -4,8 +4,8 @@
 // via the "referral check" GitHub workflow — avoid hand-editing dates. That
 // workflow also opens a reminder issue when VERIFIED_ON is over 30 days old.
 
-export const VERIFIED_ON = '2026-11-07'
-export const VERIFIED_DISPLAY = 'November 7, 2026'
+export const VERIFIED_ON = '2026-11-17'
+export const VERIFIED_DISPLAY = 'November 17, 2026'
 export const VERIFIED_MONTH = 'November 2026'
 
 export type VerificationEntry = {
