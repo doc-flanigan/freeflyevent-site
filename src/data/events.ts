@@ -215,6 +215,24 @@ export function getEventStatus(now: Date = new Date()): EventStatus {
   };
 }
 
+/** How long after a Free Fly ends the "played during the Free Fly?" block stays up. */
+export const RECENTLY_ENDED_MS = 30 * 24 * 60 * 60 * 1000;
+
+/**
+ * The most recent Free Fly that ended within the last 30 days, or undefined.
+ * Free Fly signups often buy after the event (or not at all), and the referral
+ * link is already permanent on their account — so for a month after an event
+ * the homepage and the event page tell them that, instead of only pointing at
+ * the next event. Cancelled-free-fly events are skipped (nobody played).
+ */
+export function getRecentlyEndedEvent(now: Date = new Date()): FreeFlyEvent | undefined {
+  return FREE_FLY_HISTORY
+    .filter((ev) => ev.freeFlyActive !== false)
+    .map((ev) => ({ ev, end: new Date(ev.end) }))
+    .filter(({ end }) => end.getTime() < now.getTime() && now.getTime() - end.getTime() <= RECENTLY_ENDED_MS)
+    .sort((a, b) => b.end.getTime() - a.end.getTime())[0]?.ev;
+}
+
 /** How long before a Free Fly ends the "ending soon" copy takes over. */
 export const ENDING_SOON_MS = 72 * 60 * 60 * 1000;
 

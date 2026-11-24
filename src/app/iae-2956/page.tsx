@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
 import { PaintGiftSection } from '@/components/PaintGiftSection';
+import { PostFreeFlyBlock } from '@/components/PostFreeFlyBlock';
 import { CopyCodeButton } from '@/components/CopyCodeButton';
 import { VerifiedCodeLine } from '@/components/VerifiedCodeLine';
 import { ReferralBonusCard } from '@/components/ReferralBonusCard';
@@ -285,6 +286,8 @@ export default function Iae2956Page() {
             showcases, free for anyone with an RSI account.
           </p>
           )}
+
+          {phase === 'ended' && <PostFreeFlyBlock placement="iae" />}
 
           {iae2956 ? (
             <LightboxImage

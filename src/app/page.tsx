@@ -14,6 +14,13 @@ import { DiscordCTA } from '@/components/DiscordCTA';
 import { IaeReadyBlock } from '@/components/IaeReadyBlock';
 import { HelpNights } from '@/components/HelpNights';
 import { PaintGiftSection } from '@/components/PaintGiftSection';
+import { PostFreeFlyBlock } from '@/components/PostFreeFlyBlock';
+
+// Germany is the #2 visitor country on every network site (Vercel, Nov 2026:
+// 10–16% of visitors, reading the English pages). One German line points them
+// at the German referral-code page on dayonecitizen.com.
+const DE_REFERRAL_URL =
+  'https://dayonecitizen.com/de/referral-code?utm_source=freeflyevent&utm_medium=referral&utm_campaign=de-line';
 
 const DEFENSECON_CLIP_ID = 'SneakyResourcefulStingrayBlargNaut-oB90qB92tLYAmJbF';
 
@@ -182,6 +189,16 @@ export default function HomePage() {
                 your free account with our code first — the 50,000 UEC bonus can&apos;t
                 be added later.
               </p>
+              <p className="mt-3 text-sm text-white/60" lang="de">
+                Auf Deutsch:{' '}
+                <Link
+                  href={DE_REFERRAL_URL}
+                  hrefLang="de"
+                  className="text-accent underline-offset-4 hover:underline"
+                >
+                  So gibst du den Code bei der Anmeldung ein →
+                </Link>
+              </p>
               <div className="mt-8 max-w-md">
                 <Link
                   href="#current-event"
@@ -198,6 +215,9 @@ export default function HomePage() {
         <section id="current-event" className="container-wide -mt-8 sm:-mt-12 relative z-10">
           <EventStatusBanner variant="hero" />
         </section>
+
+        {/* POST-EVENT — 30 days after a Free Fly ends: "your code is locked in" */}
+        <PostFreeFlyBlock placement="home" />
 
         {/* IAE 2956 READINESS — only while this year's IAE is still ahead */}
         {iaeStillAheadThisYear() && <IaeReadyBlock />}
