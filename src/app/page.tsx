@@ -13,7 +13,6 @@ import { formatMonthDayUTC, formatRangeUTC } from '@/lib/format';
 import { DiscordCTA } from '@/components/DiscordCTA';
 import { IaeReadyBlock } from '@/components/IaeReadyBlock';
 import { HelpNights } from '@/components/HelpNights';
-import { PaintGiftSection } from '@/components/PaintGiftSection';
 import { PostFreeFlyBlock } from '@/components/PostFreeFlyBlock';
 
 // Germany is the #2 visitor country on every network site (Vercel, Nov 2026:
@@ -316,8 +315,6 @@ export default function HomePage() {
             </div>
           </section>
         )}
-
-        <PaintGiftSection placement="home" />
 
         <HelpNights />
 

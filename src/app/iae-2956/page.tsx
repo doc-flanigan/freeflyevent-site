@@ -6,7 +6,6 @@ import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { PageSources } from '@/components/PageSources';
 import { CTAButton } from '@/components/CTAButton';
-import { PaintGiftSection } from '@/components/PaintGiftSection';
 import { PostFreeFlyBlock } from '@/components/PostFreeFlyBlock';
 import { CopyCodeButton } from '@/components/CopyCodeButton';
 import { VerifiedCodeLine } from '@/components/VerifiedCodeLine';
@@ -633,8 +632,6 @@ export default function Iae2956Page() {
               <CTAButton size="lg" trackingLabel="iae-2956-cta" />
             </div>
           </section>
-
-          <PaintGiftSection placement="iae" />
 
           {/* FAQ */}
           <section className="mt-14">

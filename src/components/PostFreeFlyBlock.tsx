@@ -4,11 +4,9 @@ import { getEventStatus, getRecentlyEndedEvent, REFERRAL_CODE } from '@/data/eve
 import { formatMonthDayUTC } from '@/lib/format';
 
 // dayonecitizen.com owns "should I buy" (content-ownership rule), so the buy
-// decision hands off there. The paint-gift details also live on dayone.
+// decision hands off there.
 const BUY_GUIDE_URL =
   'https://dayonecitizen.com/day-one-citizen/starter-package?utm_source=freeflyevent&utm_medium=referral&utm_campaign=free-fly-ended';
-const PAINT_URL =
-  'https://dayonecitizen.com/referral-code?utm_source=freeflyevent&utm_medium=referral&utm_campaign=free-fly-ended#welcome-gift';
 const DISCORD_URL = process.env.NEXT_PUBLIC_DISCORD_INVITE_URL ?? 'https://discord.gg/MpAUJs9xet';
 
 /**
@@ -52,17 +50,6 @@ export function PostFreeFlyBlock({ placement }: { placement: 'home' | 'iae' }) {
           <p>
             Not sure the game is for you yet? Day One Citizen explains what the
             starter package includes and who it suits.
-          </p>
-          <p>
-            Bought the First Flight Pack with the code? I also send you a free
-            paint for your Aurora Mk II.{' '}
-            <Link
-              href={PAINT_URL}
-              className="text-accent underline-offset-4 hover:underline"
-            >
-              How the paint gift works
-            </Link>
-            .
           </p>
         </div>
         <div className="mt-6">
